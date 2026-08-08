@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Gastos de Escrituración — Krak Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #08407C;
+    --azul: #396696;
+    --celeste: #6a8cb0;
+    --celeste-claro: #9cb2ca;
+    --gris-oscuro: #4E586E;
+    --gris-medio: #7C8594;
+    --gris-claro: #C3C3C3;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f6f9;
+    color: var(--gris-oscuro);
+  }
+
+  header {
+    background: var(--navy);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+  }
+
+  header img {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+  }
+
+  h1.page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 4px;
+  }
+
+  p.subtitle {
+    margin: 0 0 24px;
+    color: var(--gris-medio);
+    font-size: 14px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--gris-claro);
+    background: #fff;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--gris-oscuro);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .tab-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
+  .panel {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(8, 64, 124, 0.08);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+
+  .panel h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    margin-bottom: 6px;
+  }
+
+  .field input[type="number"],
+  .field select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 9px;
+    border: 1.5px solid var(--gris-claro);
+    font-size: 14.5px;
+    font-family: inherit;
+    color: var(--gris-oscuro);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field input[type="number"]:focus,
+  .field select:focus {
+    border-color: var(--celeste);
+    box-shadow: 0 0 0 4px rgba(106, 140, 176, 0.2);
+  }
+
+  .field select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' stroke='%234E586E' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 34px;
+    cursor: pointer;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    grid-column: 1 / -1;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--navy);
+    cursor: pointer;
+  }
+
+  .checkbox-row label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    cursor: pointer;
+  }
+
+  .breakdown-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 720px) {
+    .breakdown-cols { grid-template-columns: 1fr; }
+  }
+
+  .breakdown-col h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--celeste-claro);
+  }
+
+  .line-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e8eaee;
+    font-size: 13.5px;
+  }
+
+  .line-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .line-item .concepto {
+    color: var(--gris-oscuro);
+  }
+
+  .line-item .concepto .detalle {
+    display: block;
+    font-size: 11.5px;
+    color: var(--gris-medio);
+    font-weight: 400;
+  }
+
+  .line-item .monto {
+    font-weight: 700;
+    color: var(--gris-oscuro);
+    white-space: nowrap;
+  }
+
+  .line-item .monto.exento {
+    color: #1f8a4c;
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+
+  .col-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 2px solid var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .col-total .pct {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--gris-medio);
+    margin-left: 6px;
+  }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .summary-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--azul) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .summary-card.alt {
+    background: linear-gradient(135deg, var(--gris-oscuro) 0%, var(--gris-medio) 100%);
+  }
+
+  .summary-card .label {
+    font-size: 12.5px;
+    font-weight: 600;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+  }
+
+  .summary-card .value {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .summary-card .value-ars {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+
+  .summary-card .pct-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.18);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--gris-medio);
+    line-height: 1.6;
+    background: #f4f6f9;
+    border-left: 4px solid var(--celeste);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 24px;
+  }
+
+  .pdf-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .pdf-btn {
+    flex: 1;
+    min-width: 220px;
+    padding: 13px 20px;
+    border-radius: 10px;
+    border: none;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+
+  .pdf-btn:hover {
+    opacity: 0.9;
+  }
+
+  .pdf-btn.comprador {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .pdf-btn.vendedor {
+    background: var(--azul);
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="logo-krak.svg" alt="Krak Real Estate">
+</header>
+
+<main>
+  <h1 class="page-title">Calculadora de Gastos de Escrituración</h1>
+  <p class="subtitle">Operaciones de compraventa inmobiliaria — legislación vigente a junio 2026</p>
+
+  <div class="tabs">
+    <button type="button" class="tab-btn active" id="tab-caba" onclick="setJurisdiccion('caba')">CABA</button>
+    <button type="button" class="tab-btn" id="tab-pba" onclick="setJurisdiccion('pba')">Provincia de Buenos Aires (PBA)</button>
+  </div>
+
+  <div class="panel">
+    <h2>Datos de la operación</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="tipoInmueble">Tipo de inmueble</label>
+        <select id="tipoInmueble" onchange="calc()">
+          <option value="primera">Primera vivienda única, familiar y permanente</option>
+          <option value="segunda">Segunda vivienda / inversión</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="valorUSD">Valor de escrituración (USD)</label>
+        <input type="number" id="valorUSD" min="0" step="1000" value="150000" oninput="calc()">
+      </div>
+      <div class="field">
+        <label for="tipoCambio">Tipo de cambio ($ por USD)</label>
+        <input type="number" id="tipoCambio" min="0" step="1" value="1200" oninput="calc()">
+      </div>
+      <div class="field">
+        <label for="comisionComprador">Comisión inmobiliaria comprador (%)</label>
+        <input type="number" id="comisionComprador" min="0" step="0.1" value="3" oninput="calc()">
+      </div>
+      <div class="field">
+        <label for="comisionVendedor">Comisión inmobiliaria vendedor (%)</label>
+        <input type="number" id="comisionVendedor" min="0" step="0.1" value="3" oninput="calc()">
+      </div>
+      <div class="field">
+        <label for="honorariosEscribano">Honorarios de escribano a cargo del comprador (%)</label>
+        <input type="number" id="honorariosEscribano" min="0" step="0.1" value="2" oninput="calc()">
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ivaComisiones" onchange="calc()">
+        <label for="ivaComisiones">Agregar IVA (21%) en comisiones y honorarios — responsable inscripto</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="personaJuridica" onchange="calc()">
+        <label for="personaJuridica">Vendedor es persona jurídica (aplica retención Ganancias 3% a cuenta)</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Detalle de gastos</h2>
+    <div class="breakdown-cols">
+      <div class="breakdown-col">
+        <h3>Comprador</h3>
+        <div id="lista-comprador"></div>
+        <div class="col-total">
+          <span>Total comprador <span class="pct" id="pct-comprador"></span></span>
+          <span id="total-comprador">USD 0</span>
+        </div>
+      </div>
+      <div class="breakdown-col">
+        <h3>Vendedor</h3>
+        <div id="lista-vendedor"></div>
+        <div class="col-total">
+          <span>Total vendedor <span class="pct" id="pct-vendedor"></span></span>
+          <span id="total-vendedor">USD 0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Resumen</h2>
+    <div class="summary-cards">
+      <div class="summary-card alt">
+        <div class="label">Valor escriturado</div>
+        <div class="value" id="resumen-valor">USD 0</div>
+        <div class="value-ars" id="resumen-valor-ars">$ 0 ARS</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Gastos comprador</div>
+        <div class="value" id="resumen-comprador">USD 0</div>
+        <div class="value-ars" id="resumen-comprador-ars">$ 0 ARS</div>
+        <span class="pct-tag" id="resumen-comprador-pct">0% del valor</span>
+      </div>
+      <div class="summary-card">
+        <div class="label">Gastos vendedor</div>
+        <div class="value" id="resumen-vendedor">USD 0</div>
+        <div class="value-ars" id="resumen-vendedor-ars">$ 0 ARS</div>
+        <span class="pct-tag" id="resumen-vendedor-pct">0% del valor</span>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Cálculo estimativo con fines informativos. ITI (Impuesto a la Transferencia de Inmuebles) derogado por
+      Ley 27.743 (agosto 2024). Impuesto a las Ganancias Cedular exento desde 01/01/2026 para personas físicas
+      no habitualistas. Sellos CABA conforme Ley Tarifaria 6927/2026 (tope $226.100.000 ARS). Sellos PBA conforme
+      ARBA, Ley 15.558/2026 (2% general, 1% por parte). Se recomienda verificar la Valuación Inmobiliaria de
+      Referencia (VIR) ante AGIP/ARBA antes de la operación.
+    </div>
+
+    <div class="pdf-buttons">
+      <button type="button" class="pdf-btn comprador" onclick="abrirPDF('comprador')">Enviar detalle al comprador</button>
+      <button type="button" class="pdf-btn vendedor" onclick="abrirPDF('vendedor')">Enviar detalle al vendedor</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  var LOGO_SVG_NAVY = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" width="320" height="90"><g fill="none" stroke="#08407C" stroke-width="6.5" stroke-linecap="round"><path d="M14,46 C6,58 8,72 18,80"/><path d="M22,52 C18,66 22,78 30,84"/><path d="M30,55 C28,68 30,80 36,86"/><path d="M46,55 C48,68 46,80 40,86"/><path d="M54,52 C58,66 54,78 46,84"/><path d="M62,46 C70,58 68,72 58,80"/></g><circle cx="38" cy="30" r="24" fill="#08407C"/><circle cx="30" cy="26" r="3.4" fill="#FFFFFF"/><circle cx="46" cy="26" r="3.4" fill="#FFFFFF"/><text x="95" y="47" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#08407C">KRAK</text><text x="96" y="65" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="3" fill="#08407C" opacity="0.8">REAL ESTATE</text></svg>';
+
+  var TOPE_CABA = 226100000;
+
+  function round2(n) {
+    return Math.round((n + Number.EPSILON) * 100) / 100;
+  }
+
+  function fmtUSD(n) {
+    return "USD " + n.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  function fmtARS(n) {
+    return "$ " + n.toLocaleString("es-AR", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + " ARS";
+  }
+
+  var jurisdiccion = "caba";
+
+  function setJurisdiccion(j) {
+    jurisdiccion = j;
+    document.getElementById("tab-caba").classList.toggle("active", j === "caba");
+    document.getElementById("tab-pba").classList.toggle("active", j === "pba");
+    calc();
+  }
+
+  function calcularSellos(valorARS, tipoInmueble, jurisdiccion) {
+    var total = 0;
+    var detalle = "";
+
+    if (jurisdiccion === "caba") {
+      if (tipoInmueble === "primera") {
+        if (valorARS <= TOPE_CABA) {
+          total = 0;
+          detalle = "Vivienda única — exenta hasta el tope de $226.100.000 ARS";
+        } else {
+          var excedente = valorARS - TOPE_CABA;
+          total = excedente * 0.035;
+          detalle = "Vivienda única — 3,5% sobre excedente al tope, 50/50";
+        }
+      } else {
+        if (valorARS <= TOPE_CABA) {
+          total = valorARS * 0.027;
+          detalle = "Segunda vivienda / inversión — 2,7% sobre el total, 50/50";
+        } else {
+          total = valorARS * 0.035;
+          detalle = "Segunda vivienda / inversión — supera el tope, 3,5% sobre el total, 50/50";
+        }
+      }
+    } else {
+      total = valorARS * 0.02;
+      detalle = "ARBA — 2% general, 1% a cargo de cada parte";
+    }
+
+    return { total: total, porParte: total / 2, detalle: detalle };
+  }
+
+  function lineItem(concepto, detalle, montoUSD, exento) {
+    var montoHtml = exento
+      ? '<span class="monto exento">' + exento + '</span>'
+      : '<span class="monto">' + fmtUSD(round2(montoUSD)) + '</span>';
+    return '<div class="line-item"><span class="concepto">' + concepto +
+      (detalle ? '<span class="detalle">' + detalle + '</span>' : '') +
+      '</span>' + montoHtml + '</div>';
+  }
+
+  function calc() {
+    var tipoInmueble = document.getElementById("tipoInmueble").value;
+    var valorUSD = parseFloat(document.getElementById("valorUSD").value) || 0;
+    var tipoCambio = parseFloat(document.getElementById("tipoCambio").value) || 0;
+    var comisionCompradorPct = parseFloat(document.getElementById("comisionComprador").value) || 0;
+    var comisionVendedorPct = parseFloat(document.getElementById("comisionVendedor").value) || 0;
+    var honorariosPct = parseFloat(document.getElementById("honorariosEscribano").value) || 0;
+    var conIVA = document.getElementById("ivaComisiones").checked;
+    var personaJuridica = document.getElementById("personaJuridica").checked;
+
+    var valorARS = valorUSD * tipoCambio;
+    var sellos = calcularSellos(valorARS, tipoInmueble, jurisdiccion);
+    var sellosPorParteUSD = tipoCambio > 0 ? sellos.porParte / tipoCambio : 0;
+
+    var ivaMult = conIVA ? 1.21 : 1;
+
+    // Comprador
+    var comisionCompradorMonto = valorUSD * (comisionCompradorPct / 100) * ivaMult;
+    var honorariosMonto = valorUSD * (honorariosPct / 100) * ivaMult;
+    var inscripcionMonto = valorUSD * 0.005;
+    var totalComprador = comisionCompradorMonto + honorariosMonto + inscripcionMonto + sellosPorParteUSD;
+
+    var listaComprador = "";
+    listaComprador += lineItem("Comisión inmobiliaria", conIVA ? "Incluye IVA 21%" : "", comisionCompradorMonto);
+    listaComprador += lineItem("Honorarios de escribano", conIVA ? "Incluye IVA 21%" : "", honorariosMonto);
+    listaComprador += lineItem("Inscripción registral y gastos adicionales", "≈0,5% del valor", inscripcionMonto);
+    listaComprador += lineItem("Sellos (" + jurisdiccion.toUpperCase() + ")", sellos.detalle, sellosPorParteUSD);
+    listaComprador += lineItem("ITI (Impuesto a la Transferencia)", "Ley 27.743", 0, "Exento — Derogado");
+    listaComprador += lineItem("Ganancias Cedular", "Vigente desde 01/01/2026", 0, "Exento");
+    document.getElementById("lista-comprador").innerHTML = listaComprador;
+    document.getElementById("total-comprador").textContent = fmtUSD(round2(totalComprador));
+    var pctComprador = valorUSD > 0 ? (totalComprador / valorUSD) * 100 : 0;
+    document.getElementById("pct-comprador").textContent = "(" + pctComprador.toFixed(2) + "% del valor)";
+
+    // Vendedor
+    var comisionVendedorMonto = valorUSD * (comisionVendedorPct / 100) * ivaMult;
+    var gastosEscribaniaVendedor = valorUSD * 0.008;
+    var retencionGanancias = personaJuridica ? valorUSD * 0.03 : 0;
+    var totalVendedor = comisionVendedorMonto + gastosEscribaniaVendedor + sellosPorParteUSD + retencionGanancias;
+
+    var listaVendedor = "";
+    listaVendedor += lineItem("Comisión inmobiliaria", conIVA ? "Incluye IVA 21%" : "", comisionVendedorMonto);
+    listaVendedor += lineItem("Gastos de escribanía del vendedor", "≈0,8% del valor", gastosEscribaniaVendedor);
+    listaVendedor += lineItem("Sellos (" + jurisdiccion.toUpperCase() + ")", sellos.detalle, sellosPorParteUSD);
+    listaVendedor += lineItem("ITI (Impuesto a la Transferencia)", "Ley 27.743", 0, "Exento — Derogado");
+    listaVendedor += lineItem("Ganancias Cedular", "Vigente desde 01/01/2026", 0, "Exento");
+    if (personaJuridica) {
+      listaVendedor += lineItem("Retención Ganancias a cuenta (3%)", "Vendedor persona jurídica", retencionGanancias);
+    }
+    document.getElementById("lista-vendedor").innerHTML = listaVendedor;
+    document.getElementById("total-vendedor").textContent = fmtUSD(round2(totalVendedor));
+    var pctVendedor = valorUSD > 0 ? (totalVendedor / valorUSD) * 100 : 0;
+    document.getElementById("pct-vendedor").textContent = "(" + pctVendedor.toFixed(2) + "% del valor)";
+
+    // Resumen
+    document.getElementById("resumen-valor").textContent = fmtUSD(valorUSD);
+    document.getElementById("resumen-valor-ars").textContent = fmtARS(round2(valorARS));
+    document.getElementById("resumen-comprador").textContent = fmtUSD(round2(totalComprador));
+    document.getElementById("resumen-comprador-ars").textContent = fmtARS(round2(totalComprador * tipoCambio));
+    document.getElementById("resumen-comprador-pct").textContent = pctComprador.toFixed(2) + "% del valor";
+    document.getElementById("resumen-vendedor").textContent = fmtUSD(round2(totalVendedor));
+    document.getElementById("resumen-vendedor-ars").textContent = fmtARS(round2(totalVendedor * tipoCambio));
+    document.getElementById("resumen-vendedor-pct").textContent = pctVendedor.toFixed(2) + "% del valor";
+
+    window._krakData = {
+      tipoInmueble: tipoInmueble,
+      jurisdiccion: jurisdiccion,
+      valorUSD: valorUSD,
+      valorARS: valorARS,
+      tipoCambio: tipoCambio,
+      comisionCompradorPct: comisionCompradorPct,
+      comisionVendedorPct: comisionVendedorPct,
+      honorariosPct: honorariosPct,
+      conIVA: conIVA,
+      personaJuridica: personaJuridica,
+      listaComprador: listaComprador,
+      listaVendedor: listaVendedor,
+      totalComprador: totalComprador,
+      totalVendedor: totalVendedor,
+      pctComprador: pctComprador,
+      pctVendedor: pctVendedor
+    };
+  }
+
+  function abrirPDF(parte) {
+    var d = window._krakData;
+    if (!d) return;
+
+    var logoBase64 = btoa(unescape(encodeURIComponent(LOGO_SVG_NAVY)));
+    var logoImg = '<img src="data:image/svg+xml;base64,' + logoBase64 + '" alt="Krak Real Estate" style="height:40px;">';
+
+    var esComprador = parte === "comprador";
+    var titulo = esComprador ? "Detalle de gastos — Comprador" : "Detalle de gastos — Vendedor";
+    var lista = esComprador ? d.listaComprador : d.listaVendedor;
+    var total = esComprador ? d.totalComprador : d.totalVendedor;
+    var pct = esComprador ? d.pctComprador : d.pctVendedor;
+    var tipoInmuebleTexto = d.tipoInmueble === "primera"
+      ? "Primera vivienda única, familiar y permanente"
+      : "Segunda vivienda / inversión";
+
+    var html = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">' +
+      '<title>' + titulo + ' — Krak Real Estate</title>' +
+      '<style>' +
+      '@page { margin: 12mm 15mm; size: A4; }' +
+      '* { box-sizing: border-box; }' +
+      'body { font-family: "Inter", Arial, sans-serif; color: #4E586E; margin: 0; font-size: 12px; }' +
+      'header { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #08407C; padding-bottom: 10px; margin-bottom: 16px; }' +
+      'h1 { font-size: 16px; color: #08407C; margin: 0; }' +
+      'h2 { font-size: 12.5px; color: #08407C; text-transform: uppercase; letter-spacing: 0.4px; margin: 18px 0 8px; border-bottom: 1px solid #C3C3C3; padding-bottom: 4px; }' +
+      '.meta { font-size: 11px; color: #7C8594; }' +
+      '.grid-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 11.5px; }' +
+      '.grid-meta div span { font-weight: 600; color: #4E586E; }' +
+      '.line-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #e8eaee; font-size: 12px; }' +
+      '.line-item .detalle { display: block; font-size: 10px; color: #7C8594; font-weight: 400; }' +
+      '.monto { font-weight: 700; }' +
+      '.monto.exento { color: #1f8a4c; font-weight: 600; font-size: 11px; }' +
+      '.total-row { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 2px solid #08407C; font-size: 14px; font-weight: 800; color: #08407C; }' +
+      '.footer-note { font-size: 9.5px; color: #7C8594; line-height: 1.5; margin-top: 20px; border-left: 3px solid #6a8cb0; padding-left: 10px; }' +
+      '</style></head><body>' +
+      '<header>' + logoImg + '<div class="meta">' + new Date().toLocaleDateString("es-AR") + '</div></header>' +
+      '<h1>' + titulo + '</h1>' +
+      '<h2>Resumen de la operación</h2>' +
+      '<div class="grid-meta">' +
+      '<div>Jurisdicción: <span>' + d.jurisdiccion.toUpperCase() + '</span></div>' +
+      '<div>Tipo de inmueble: <span>' + tipoInmuebleTexto + '</span></div>' +
+      '<div>Valor de escrituración: <span>' + fmtUSD(d.valorUSD) + '</span></div>' +
+      '<div>Tipo de cambio: <span>$' + d.tipoCambio.toLocaleString("es-AR") + ' por USD</span></div>' +
+      '</div>' +
+      '<h2>Datos y supuestos usados</h2>' +
+      '<div class="grid-meta">' +
+      '<div>IVA en comisiones: <span>' + (d.conIVA ? "Sí (21%)" : "No") + '</span></div>' +
+      (esComprador ? '<div>Honorarios de escribano: <span>' + d.honorariosPct + '%</span></div>' : '<div>Vendedor persona jurídica: <span>' + (d.personaJuridica ? "Sí" : "No") + '</span></div>') +
+      '</div>' +
+      '<h2>Gastos de ' + parte + '</h2>' +
+      lista +
+      '<div class="total-row"><span>Total ' + parte + ' (' + pct.toFixed(2) + '% del valor)</span><span>' + fmtUSD(round2(total)) + '</span></div>' +
+      '<div class="footer-note">Cálculo estimativo con fines informativos. ITI derogado por Ley 27.743. Ganancias Cedular exento desde 01/01/2026 para personas físicas no habitualistas. Sellos CABA conforme Ley Tarifaria 6927/2026 (tope $226.100.000 ARS). Sellos PBA conforme ARBA, Ley 15.558/2026. Se recomienda verificar la Valuación Inmobiliaria de Referencia (VIR) ante AGIP/ARBA antes de la operación.</div>' +
+      '<script>window.onload = function() { window.print(); };<\/script>' +
+      '</body></html>';
+
+    var w = window.open("", "_blank");
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+  }
+
+  calc();
+</script>
+
+</body>
+</html>
