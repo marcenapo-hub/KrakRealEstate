@@ -5,3 +5,6 @@
 # Python
 __pycache__/
 *.pyc
+
+# Dashboard build output (generado por scripts/build_dashboard.py)
+dist/

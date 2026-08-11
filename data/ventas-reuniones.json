@@ -1,0 +1,42 @@
+{
+  "_schema": {
+    "descripcion": "Registro de las Jornadas de Ventas en Equipo (quincenales) de Krak Real Estate. Alimentado a partir de las transcripciones de Gemini de cada Meet. Ver proceso en memory/context/ventas-dashboard.md y el documento fuente 'Reunión De Equipo de Ventas'.",
+    "reunion": {
+      "id": "YYYY-MM-DD (fecha de la jornada; sufijo -2 si hay más de una el mismo día)",
+      "fecha": "YYYY-MM-DD",
+      "agentes_presentes": ["nombre agente", "..."],
+      "novedades_apertura": "texto libre: novedades de administración/marketing/portales/campañas compartidas al abrir",
+      "cruces": [
+        {
+          "agente_ofrece": "nombre",
+          "agente_busca": "nombre",
+          "descripcion": "qué propiedad/búsqueda se cruzó",
+          "estado": "activado | pendiente | descartado"
+        }
+      ],
+      "info_mercado": ["dato de mercado, contacto nuevo o novedad compartida, uno por item"],
+      "operaciones_trabadas": [
+        {
+          "agente": "nombre",
+          "situacion": "qué está pasando / dónde está el bloqueo",
+          "aportes_equipo": "alternativas o contactos aportados",
+          "resultado": "acción concreta definida"
+        }
+      ],
+      "compromisos": [
+        {
+          "id": "identificador único (ej. 2026-07-16-1)",
+          "agente": "nombre",
+          "descripcion": "compromiso concreto anunciado en el cierre",
+          "fecha_limite": "YYYY-MM-DD o null si no se definió",
+          "estado": "pendiente | cumplido | vencido",
+          "origen": "cruce | operacion_trabada | otro"
+        }
+      ],
+      "fuente": "gemini_transcript | manual",
+      "gmail_thread_id": "id del thread de Gmail donde llegó la transcripción, si aplica",
+      "drive_doc_id": "id del doc de Gemini en Drive, si aplica"
+    }
+  },
+  "reuniones": []
+}
