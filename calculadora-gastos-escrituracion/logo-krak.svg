@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" width="320" height="90" role="img" aria-label="Krak Real Estate">
-  <circle cx="38" cy="30" r="19" fill="none" stroke="#FFFFFF" stroke-width="8.5"/>
-  <g stroke="#FFFFFF" stroke-width="8.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M35,47 C29,54 15,51 10,60 C6,67 12,74 20,71"/>
-    <path d="M41,47 C47,54 61,51 66,60 C70,67 64,74 56,71"/>
-  </g>
-  <text x="90" y="47" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF">KRAK</text>
-  <text x="91" y="65" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="3" fill="#FFFFFF" opacity="0.8">REAL ESTATE</text>
-</svg>
