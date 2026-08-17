@@ -1,0 +1,1057 @@
+<title>Brief Funcional Krak</title>
+<style>
+:root{
+  --paper:#EDEFF1; --surface:#F8F9FA; --surface-2:#E4E8EB;
+  --ink:#12171C; --ink-2:#56626B; --ink-3:#7C8890;
+  --rule:#C6CED4; --rule-soft:#DCE2E6;
+  --accent:#C7431E; --accent-soft:#F3E1DA; --accent-ink:#FFFFFF;
+  --steel:#2E5F7D; --steel-soft:#DDE7ED;
+  --ok:#2F6B4F; --warn:#8A6212;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --maxw:1360px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1418; --surface:#161D23; --surface-2:#1E272E;
+    --ink:#E7ECEF; --ink-2:#9AA7B0; --ink-3:#7C8992;
+    --rule:#2B353D; --rule-soft:#222B32;
+    --accent:#FF7C4F; --accent-soft:#3A2118; --accent-ink:#1A0E08;
+    --steel:#7FB4D6; --steel-soft:#17262F;
+    --ok:#68B58C; --warn:#D6A63F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1418; --surface:#161D23; --surface-2:#1E272E;
+  --ink:#E7ECEF; --ink-2:#9AA7B0; --ink-3:#7C8992;
+  --rule:#2B353D; --rule-soft:#222B32;
+  --accent:#FF7C4F; --accent-soft:#3A2118; --accent-ink:#1A0E08;
+  --steel:#7FB4D6; --steel-soft:#17262F;
+  --ok:#68B58C; --warn:#D6A63F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:2px solid var(--ink);background:var(--surface)}
+.mast .wrap{padding-top:40px;padding-bottom:28px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.mast h1{font-size:clamp(34px,5.2vw,62px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:14px 0 18px}
+.mast .lede{max-width:64ch;color:var(--ink-2);font-size:17px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin-top:32px}
+.meta div{background:var(--surface);padding:12px 14px}
+.meta dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.meta dd{margin:0;font-size:14px;font-weight:600}
+
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:56px;
+  max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.rail{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;
+  padding:44px 0 44px;border-right:1px solid var(--rule-soft)}
+.rail ol{list-style:none;margin:0;padding:0 18px 0 0;display:flex;flex-direction:column;gap:2px}
+.rail a{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
+  color:var(--ink-2);text-decoration:none;padding:5px 8px 5px 0;border-left:2px solid transparent;padding-left:10px}
+.rail a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--surface)}
+.rail .rail-h{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);padding-left:10px;margin-bottom:12px}
+main{padding:44px 0 120px;min-width:0}
+@media (max-width:1000px){
+  .shell{grid-template-columns:1fr;gap:0}
+  .rail{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--rule);padding:24px 0}
+  .rail ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0}
+  main{padding-top:32px}
+}
+
+/* ---------- sections ---------- */
+section{margin-bottom:76px;scroll-margin-top:16px}
+.sec-head{display:flex;gap:16px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:26px}
+.sec-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.sec-head h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;font-weight:750}
+h3{font-size:19px;letter-spacing:-.01em;margin:34px 0 12px;font-weight:700}
+h4{font-size:15px;margin:22px 0 8px;font-weight:700}
+.sec-intro{color:var(--ink-2);max-width:72ch;margin-bottom:8px}
+ul,ol.body{padding-left:20px;margin:10px 0}
+li{margin:5px 0}
+.stack{display:flex;flex-direction:column;gap:14px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+
+/* ---------- cards / callouts ---------- */
+.card{background:var(--surface);border:1px solid var(--rule);padding:18px 20px}
+.card h4{margin-top:0}
+.note{border-left:3px solid var(--steel);background:var(--steel-soft);padding:14px 16px;font-size:14.5px}
+.flag{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 16px;font-size:14.5px}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 7px;border:1px solid var(--rule);color:var(--ink-2);background:var(--surface)}
+.tag.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+.tag.sec{border-color:var(--steel);color:var(--steel)}
+.tag.pend{border-color:var(--warn);color:var(--warn)}
+
+/* ---------- block spec ---------- */
+.blocks{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.blk{display:grid;grid-template-columns:88px minmax(0,1fr);gap:20px;border-bottom:1px solid var(--rule-soft);padding:16px 0}
+.blk-id{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;padding-top:2px}
+.blk-b h4{margin:0 0 4px}
+.blk-b p{font-size:14.5px;color:var(--ink-2)}
+.blk-b .fields{margin-top:8px;display:flex;flex-direction:column;gap:5px}
+.f{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;font-size:13.5px}
+.f dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}
+.f dd{margin:0}
+@media (max-width:620px){
+  .blk{grid-template-columns:1fr;gap:6px}
+  .f{grid-template-columns:1fr;gap:1px}
+}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--rule);background:var(--surface);margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-2);background:var(--surface-2);padding:9px 12px;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td code,p code,li code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 5px;border-radius:2px}
+
+/* ---------- wireframe ---------- */
+.wfgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin:18px 0}
+.wf{background:var(--surface);border:1px solid var(--rule);padding:14px}
+.wf-title{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.band{border:1px solid var(--rule);background:var(--surface-2);margin-bottom:5px;padding:8px 10px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:38px}
+.band b{font-size:12.5px;font-weight:650}
+.band span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;white-space:nowrap}
+.band.tall{min-height:74px}
+.band.cta{border-color:var(--accent);background:var(--accent-soft)}
+.band.cta span{color:var(--accent)}
+.band.exit{border-style:dashed}
+footer.end{border-top:2px solid var(--ink);padding:26px 0 60px;font-size:13px;color:var(--ink-2)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="eyebrow">Brief funcional · v1.0 · 17 ago 2026 · Para diseño y desarrollo</p>
+    <h1>Nueva web Krak</h1>
+    <p class="lede">Un hub de grupo con cuatro unidades, construido alrededor de un solo objetivo de negocio:
+      <strong>captar propiedades para vender</strong>. La web no es una vitrina de inmuebles — es una máquina de
+      convencer propietarios. El buscador vive fuera, en Tokko.</p>
+    <dl class="meta">
+      <div><dt>Objetivo primario</dt><dd>Solicitudes de tasación calificadas</dd></div>
+      <div><dt>Unidades</dt><dd>Real Estate · Industrial · Studio · Trabajá con Nosotros</dd></div>
+      <div><dt>Buscador de propiedades</dt><dd>Externo (Tokko) — decisión cerrada</dd></div>
+      <div><dt>Estado</dt><dd>Borrador para revisión de negocio</dd></div>
+      <div><dt>Alcance</dt><dd>IA, wireframe funcional, copy guía, specs de forms, medición</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Índice del documento">
+    <p class="rail-h">Índice</p>
+    <ol>
+      <li><a href="#s1">01 · Contexto y objetivos</a></li>
+      <li><a href="#s2">02 · Principios rectores</a></li>
+      <li><a href="#s3">03 · Arquitectura de información</a></li>
+      <li><a href="#s4">04 · Navegación</a></li>
+      <li><a href="#s5">05 · Home / Hub Krak</a></li>
+      <li><a href="#s6">06 · Krak Real Estate</a></li>
+      <li><a href="#s7">07 · Flujo de tasación</a></li>
+      <li><a href="#s8">08 · Krak Industrial</a></li>
+      <li><a href="#s9">09 · Krak Studio</a></li>
+      <li><a href="#s10">10 · Trabajá con Nosotros</a></li>
+      <li><a href="#s11">11 · Recorridos de usuario</a></li>
+      <li><a href="#s12">12 · Formularios y gestión de leads</a></li>
+      <li><a href="#s13">13 · Medición y analítica</a></li>
+      <li><a href="#s14">14 · Sistema de diseño</a></li>
+      <li><a href="#s15">15 · Requisitos técnicos y SEO</a></li>
+      <li><a href="#s16">16 · Contenido a producir</a></li>
+      <li><a href="#s17">17 · Fases y backlog</a></li>
+      <li><a href="#s18">18 · QA de lanzamiento</a></li>
+      <li><a href="#s19">19 · Decisiones pendientes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <!-- 01 -->
+  <section id="s1">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Contexto y objetivos</h2></div>
+    <p class="sec-intro">El diagnóstico de negocio define toda la arquitectura: el cuello de botella no es la
+      demanda, es el inventario. Cada decisión de este documento se justifica contra eso.</p>
+
+    <h3>El problema que resuelve la web</h3>
+    <p>Krak no necesita más compradores mirando propiedades: necesita más propietarios firmando una autorización de
+      venta. Una web inmobiliaria tradicional —buscador arriba, grilla de fichas, filtros— está optimizada para el
+      lado equivocado del mercado y, encima, compite de igual a igual con los portales, donde nunca va a ganar.
+      La nueva web invierte la ecuación: todo el espacio, el copy y la jerarquía visual trabajan para el propietario
+      que está evaluando con quién vender.</p>
+
+    <h3>Objetivos por prioridad</h3>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Objetivo</th><th>Métrica de éxito</th><th>Dónde se juega</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Captar propiedades en venta</td><td>Tasaciones solicitadas y agendadas / mes</td><td>Landing RE + flujo de tasación</td></tr>
+        <tr><td>2</td><td>Atraer y reclutar agentes</td><td>Postulaciones calificadas / mes</td><td>Trabajá con Nosotros</td></tr>
+        <tr><td>3</td><td>Generar demanda industrial</td><td>Consultas B2B / mes</td><td>Krak Industrial</td></tr>
+        <tr><td>4</td><td>Posicionar a Krak como grupo</td><td>Navegación entre unidades, tiempo de lectura del método</td><td>Hub + Método Krak</td></tr>
+        <tr><td>5</td><td>Dar salida a la demanda compradora</td><td>Clics salientes a Tokko (métrica de salud, no de éxito)</td><td>CTA terciario en todas las pantallas</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><strong>Objetivos numéricos:</strong> no se fijan en este brief. Se define un baseline con
+      30 días de medición de la web actual (tráfico, origen, formularios recibidos) y recién sobre eso se
+      comprometen metas. Fijar un número antes de tener baseline es ruido, no un objetivo.</div>
+
+    <h3>Audiencias</h3>
+    <div class="cols">
+      <div class="card"><h4>Propietario vendedor <span class="tag pri">Primaria</span></h4>
+        <p>Tiene un inmueble y está evaluando. Rara vez apurado, siempre desconfiado. Compara 2–3 inmobiliarias.
+        Le importa: cuánto vale, cuánto tarda, cuánto cuesta, quién se ocupa y si le van a decir la verdad.</p></div>
+      <div class="card"><h4>Agente inmobiliario / aspirante <span class="tag sec">Secundaria</span></h4>
+        <p>Con o sin experiencia. Busca marca, flujo de oportunidades, formación y un esquema económico claro.
+        Compara Krak contra trabajar solo o contra una red grande.</p></div>
+      <div class="card"><h4>Decisor industrial <span class="tag sec">Secundaria</span></h4>
+        <p>Empresa, desarrollador o fondo. Necesidad concreta (m², zona, plazo, requisitos técnicos).
+        Evalúa capacidad y antecedentes, no estética.</p></div>
+      <div class="card"><h4>Comprador / inversor <span class="tag">Terciaria</span></h4>
+        <p>Se lo deriva a Tokko rápido y sin fricción. No se le construye experiencia propia en esta web.</p></div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="s2">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Principios rectores</h2></div>
+    <p class="sec-intro">Reglas cerradas. Diseño y desarrollo pueden asumirlas como dadas; cualquier excepción se
+      discute contra el principio, no contra el gusto.</p>
+    <div class="blocks">
+      <div class="blk"><div class="blk-id">P-01</div><div class="blk-b">
+        <h4>La web consigue propietarios, no vende propiedades</h4>
+        <p>Ante cualquier duda de jerarquía, gana el bloque que acerca a una tasación. Ningún elemento decorativo
+        puede empujar un CTA de captación por debajo del pliegue.</p></div></div>
+      <div class="blk"><div class="blk-id">P-02</div><div class="blk-b">
+        <h4>Sin buscador ni grilla de propiedades en la web principal</h4>
+        <p>El listado y los filtros viven en el sitio de Tokko. En la web, "Ver propiedades" es una salida
+        controlada: CTA terciario, nunca primer ítem del menú, siempre en pestaña nueva y con UTMs.</p></div></div>
+      <div class="blk"><div class="blk-id">P-03</div><div class="blk-b">
+        <h4>Un objetivo por pantalla</h4>
+        <p>Cada página declara una acción principal, una secundaria y una de escape. Tres CTAs compitiendo en el
+        mismo nivel visual equivalen a ninguno.</p></div></div>
+      <div class="blk"><div class="blk-id">P-04</div><div class="blk-b">
+        <h4>Premium se demuestra, no se declara</h4>
+        <p>Prohibido el vocabulario de relleno ("excelencia", "líderes", "pasión por el servicio"). El
+        posicionamiento se construye con evidencia: método explicado paso a paso, fotografía propia, datos
+        verificables, casos con nombre y cifras, equipo con cara y matrícula.</p></div></div>
+      <div class="blk"><div class="blk-id">P-05</div><div class="blk-b">
+        <h4>Cada bloque responde una objeción</h4>
+        <p>Si un bloque no contesta una pregunta real del propietario ("¿cuánto vale?", "¿me atan con
+        exclusividad?", "¿qué pasa si no vende?"), no entra. La secuencia de la landing es una escalera de
+        objeciones, no un catálogo de secciones.</p></div></div>
+      <div class="blk"><div class="blk-id">P-06</div><div class="blk-b">
+        <h4>Mobile primero, de verdad</h4>
+        <p>Se diseña primero la vista de 390 px. Barra de acción fija en mobile con dos botones (Tasar ·
+        WhatsApp). Formularios de un campo por pantalla. Se asume mayoría de tráfico mobile y se valida con los
+        datos de la web actual.</p></div></div>
+      <div class="blk"><div class="blk-id">P-07</div><div class="blk-b">
+        <h4>La velocidad es parte de la marca</h4>
+        <p>Presupuesto de performance no negociable (ver §15). Una web premium que tarda 5 segundos en cargar
+        comunica exactamente lo contrario de lo que se propone.</p></div></div>
+      <div class="blk"><div class="blk-id">P-08</div><div class="blk-b">
+        <h4>Ningún dato inventado</h4>
+        <p>Toda cifra de prueba social debe ser real y verificable. Si el dato no existe todavía, el bloque no se
+        publica: se reemplaza por otra prueba (testimonio, caso, foto de proceso) hasta tenerlo.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="s3">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Arquitectura de información</h2></div>
+
+    <h3>Decisión de arquitectura: hub liviano</h3>
+    <p class="sec-intro">La home es un <strong>ruteador de marca</strong>, no una home corporativa larga. Su trabajo
+      es que en menos de 10 segundos el visitante entienda que Krak es un grupo con cuatro unidades y entre a la
+      suya. Todo el peso de conversión vive en las landings de unidad.</p>
+    <div class="note"><strong>Alternativa evaluada y descartada:</strong> home = Krak Real Estate, con las otras
+      unidades colgando del menú. Convierte mejor en el corto plazo (un clic menos hacia el negocio principal) pero
+      hipoteca el posicionamiento de grupo y deja a Industrial y Studio como apéndices.
+      <strong>Mitigación del costo del clic extra:</strong> todo el tráfico pago y de campañas de captación entra
+      directo a <code>/real-estate</code> o a <code>/tasacion</code>, nunca al hub.</div>
+
+    <h3>Mapa del sitio</h3>
+    <div class="tw"><table>
+      <thead><tr><th>URL</th><th>Pantalla</th><th>Objetivo</th><th>Fase</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>Hub Krak</td><td>Rutear + capturar propietario que llega por marca</td><td>F1</td></tr>
+        <tr><td><code>/real-estate</code></td><td>Landing de captación</td><td>Solicitud de tasación</td><td>F1</td></tr>
+        <tr><td><code>/real-estate/tasacion</code></td><td>Flujo de tasación (multi-paso)</td><td>Lead calificado</td><td>F1</td></tr>
+        <tr><td><code>/real-estate/vender</code></td><td>Guía "Cómo vender con Krak"</td><td>Educar y desactivar objeciones</td><td>F2</td></tr>
+        <tr><td><code>/real-estate/metodo</code></td><td>El Método Krak en detalle</td><td>Diferenciación / prueba</td><td>F2</td></tr>
+        <tr><td><code>/real-estate/casos</code></td><td>Casos de venta</td><td>Prueba social profunda</td><td>F2</td></tr>
+        <tr><td><code>/industrial</code></td><td>Landing B2B</td><td>Consulta de asesoramiento</td><td>F2</td></tr>
+        <tr><td><code>/industrial/contacto</code></td><td>Form B2B extendido</td><td>Lead calificado industrial</td><td>F2</td></tr>
+        <tr><td><code>/studio</code></td><td>Landing Studio <span class="tag pend">Def. pendiente</span></td><td>Consulta de servicio</td><td>F2</td></tr>
+        <tr><td><code>/trabaja-con-nosotros</code></td><td>Carrera en Krak</td><td>Postulación de agente</td><td>F2</td></tr>
+        <tr><td><code>/trabaja-con-nosotros/capacitaciones</code></td><td>Formación</td><td>Inscripción / interesado</td><td>F2</td></tr>
+        <tr><td><code>/trabaja-con-nosotros/postulacion</code></td><td>Formulario + CV</td><td>Postulación</td><td>F2</td></tr>
+        <tr><td><code>/nosotros</code></td><td>Grupo, historia, equipo</td><td>Confianza transversal</td><td>F2</td></tr>
+        <tr><td><code>/contacto</code></td><td>Contacto general + sucursales</td><td>Contacto</td><td>F1</td></tr>
+        <tr><td><code>/recursos</code></td><td>Blog / guías del propietario</td><td>SEO de captación</td><td>F3</td></tr>
+        <tr><td><code>/vender-mi-propiedad-en-{zona}</code></td><td>Landings por zona</td><td>SEO local de captación</td><td>F3</td></tr>
+        <tr><td><code>/gracias/{tipo}</code></td><td>Confirmaciones</td><td>Fijar expectativa + medición</td><td>F1</td></tr>
+        <tr><td><code>/privacidad</code> · <code>/terminos</code></td><td>Legales</td><td>Cumplimiento Ley 25.326</td><td>F1</td></tr>
+        <tr><td>Externo (Tokko)</td><td>Buscador y fichas</td><td>Demanda compradora</td><td>Ya existe</td></tr>
+      </tbody>
+    </table></div>
+    <div class="flag"><strong>Pendiente de definición (§19):</strong> si el sitio de Tokko se sirve bajo subdominio
+      propio (<code>propiedades.krak.com.ar</code>) o bajo dominio de Tokko. Impacta percepción de marca, medición
+      cross-domain y SEO. <em>Recomendación: subdominio propio.</em></div>
+  </section>
+
+  <!-- 04 -->
+  <section id="s4">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Navegación</h2></div>
+
+    <h3>Header (todas las pantallas)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Elemento</th><th>Contenido</th><th>Comportamiento</th></tr></thead>
+      <tbody>
+        <tr><td>Logo Krak</td><td>Marca madre</td><td>Siempre lleva al hub</td></tr>
+        <tr><td>Selector de unidad</td><td>Real Estate · Industrial · Studio · Trabajá con Nosotros</td><td>Ítem activo marcado. En mobile, menú de pantalla completa</td></tr>
+        <tr><td>Enlaces de contexto</td><td>Varían por unidad (ej. en RE: Método · Casos · Nosotros)</td><td>Segundo nivel, se muestra al entrar a la unidad</td></tr>
+        <tr><td>CTA primario</td><td><strong>Tasar mi propiedad</strong></td><td>Botón sólido, visible siempre, incluso en el hub</td></tr>
+        <tr><td>Contacto rápido</td><td>Teléfono / WhatsApp</td><td>Ícono en desktop, dentro de la barra fija en mobile</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>"Ver propiedades" no va en el header principal.</strong> Va como enlace secundario dentro de la
+      unidad Real Estate y en el footer. Ponerlo en el header vuelve a convertir la web en un portal.</p>
+
+    <h3>Barra de acción fija (mobile)</h3>
+    <p>Aparece al superar el 25 % de scroll en cualquier página de Real Estate. Dos botones al 50 %:
+      <span class="tag pri">Tasar mi propiedad</span> <span class="tag sec">WhatsApp</span>.
+      El mensaje de WhatsApp se prellena según la página de origen (ver §12).</p>
+
+    <h3>Footer maestro</h3>
+    <ul>
+      <li><strong>Columna 1 — Grupo:</strong> las cuatro unidades + Nosotros + Recursos.</li>
+      <li><strong>Columna 2 — Propietarios:</strong> Tasar · Vender con Krak · El Método · Casos.</li>
+      <li><strong>Columna 3 — Compradores:</strong> Ver propiedades disponibles (Tokko) · Contacto.</li>
+      <li><strong>Columna 4 — Contacto:</strong> dirección(es) con mapa, teléfono, WhatsApp, email, horarios, redes.</li>
+      <li><strong>Barra legal:</strong> razón social, CUIT, <strong>matrícula del corredor responsable y colegio de la
+        jurisdicción</strong>, Política de Privacidad, Términos. <span class="tag pend">Confirmar jurisdicción y matrícula</span></li>
+    </ul>
+  </section>
+
+  <!-- 05 -->
+  <section id="s5">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Home / Hub Krak</h2></div>
+    <div class="cols" style="margin-bottom:18px">
+      <div class="card"><h4>Objetivo de la pantalla</h4><p>Rutear a la unidad correcta en menos de 10 segundos y
+        capturar al propietario que llegó buscando la marca.</p></div>
+      <div class="card"><h4>Acciones</h4><p><strong>Principal:</strong> entrar a una unidad.
+        <strong>Secundaria:</strong> tasar mi propiedad. <strong>Escape:</strong> contacto.</p></div>
+      <div class="card"><h4>Regla de extensión</h4><p>Máximo 7 bloques. Si crece, se está convirtiendo en una home
+        corporativa y pierde su función.</p></div>
+    </div>
+
+    <div class="wfgrid">
+      <div class="wf"><p class="wf-title">Wireframe · Hub (mobile-first, orden vertical)</p>
+        <div class="band"><b>Header + CTA Tasar</b><span>H-01</span></div>
+        <div class="band tall"><b>Hero: statement de grupo</b><span>H-02</span></div>
+        <div class="band tall"><b>4 tarjetas de unidad</b><span>H-03</span></div>
+        <div class="band"><b>Prueba de grupo (cifras)</b><span>H-04</span></div>
+        <div class="band cta tall"><b>Banda de captación → tasación</b><span>H-05 · CTA</span></div>
+        <div class="band"><b>Teaser Trabajá con Nosotros</b><span>H-06</span></div>
+        <div class="band"><b>Footer maestro</b><span>H-07</span></div>
+      </div>
+      <div>
+        <div class="blocks">
+          <div class="blk"><div class="blk-id">H-02</div><div class="blk-b">
+            <h4>Hero de grupo</h4>
+            <p>Una sola frase que explique qué es Krak como grupo, sin adjetivos. Fondo: fotografía o video corto
+            propio (nunca stock). Sin carrusel.</p>
+            <dl class="fields">
+              <div class="f"><dt>Copy guía</dt><dd>"Cuatro unidades, un mismo estándar de trabajo." / "Real estate,
+                industrial y contenido, con el mismo método." — a validar con marca.</dd></div>
+              <div class="f"><dt>CTA</dt><dd>Scroll a H-03 + botón secundario "Tasar mi propiedad"</dd></div>
+              <div class="f"><dt>Aceptación</dt><dd>En 390 px se ve el titular completo y al menos una tarjeta de unidad asomando</dd></div>
+            </dl></div></div>
+          <div class="blk"><div class="blk-id">H-03</div><div class="blk-b">
+            <h4>Selector de unidades</h4>
+            <p>Cuatro tarjetas iguales en peso visual, cada una con: nombre, una línea de "qué hace", una de "para
+            quién", imagen propia y CTA propio. Real Estate primero por volumen de negocio.</p>
+            <dl class="fields">
+              <div class="f"><dt>CTAs</dt><dd>"Quiero vender" · "Ver soluciones industriales" · "Ver Studio" · "Sumate al equipo"</dd></div>
+              <div class="f"><dt>Evento</dt><dd><code>unit_card_click</code> con <code>{unit}</code></dd></div>
+              <div class="f"><dt>Aceptación</dt><dd>Toda la tarjeta es clickeable, no solo el botón. Estado hover y focus visibles</dd></div>
+            </dl></div></div>
+          <div class="blk"><div class="blk-id">H-04</div><div class="blk-b">
+            <h4>Prueba de grupo</h4>
+            <p>3–5 cifras reales del grupo: años de operación, operaciones cerradas, m² industriales
+            comercializados, equipo, sucursales. <span class="tag pend">Datos a proveer por Krak</span></p>
+            <dl class="fields"><div class="f"><dt>Regla</dt><dd>Sin dato real, no hay bloque (P-08)</dd></div></dl></div></div>
+          <div class="blk"><div class="blk-id">H-05</div><div class="blk-b">
+            <h4>Banda de captación</h4>
+            <p>El hub también captura. Franja de ancho completo con contraste alto: "¿Tenés una propiedad y querés
+            saber cuánto vale hoy?" + CTA a tasación.</p>
+            <dl class="fields"><div class="f"><dt>Aceptación</dt><dd>Presente también en Industrial y Studio, con copy adaptado</dd></div></dl></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="s6">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Krak Real Estate — landing de captación</h2></div>
+    <p class="sec-intro">La pantalla más importante del proyecto. Está construida como una escalera de objeciones:
+      cada bloque contesta la pregunta que el propietario se hace después del bloque anterior. El orden importa y no
+      debería alterarse sin un test que lo justifique.</p>
+
+    <div class="cols" style="margin-bottom:22px">
+      <div class="card"><h4>Acción principal</h4><p>Solicitar tasación (formulario o agenda)</p></div>
+      <div class="card"><h4>Acción secundaria</h4><p>Contacto directo: WhatsApp o llamada</p></div>
+      <div class="card"><h4>Acción de escape</h4><p>Ver propiedades disponibles → Tokko, pestaña nueva</p></div>
+    </div>
+
+    <div class="wfgrid">
+      <div class="wf"><p class="wf-title">Wireframe · Landing Real Estate</p>
+        <div class="band"><b>Header + CTA sticky</b><span>RE-01</span></div>
+        <div class="band tall"><b>Hero: promesa + doble CTA</b><span>RE-02 · CTA</span></div>
+        <div class="band"><b>Barra de confianza (cifras)</b><span>RE-03</span></div>
+        <div class="band"><b>El problema del propietario</b><span>RE-04</span></div>
+        <div class="band tall"><b>El Método Krak · 6 pasos</b><span>RE-05</span></div>
+        <div class="band"><b>Cómo trabajamos el activo</b><span>RE-06</span></div>
+        <div class="band"><b>Casos y testimonios</b><span>RE-07</span></div>
+        <div class="band"><b>Transparencia: el informe</b><span>RE-08</span></div>
+        <div class="band cta tall"><b>Tasación embebida</b><span>RE-09 · CTA</span></div>
+        <div class="band"><b>Equipo con nombre y matrícula</b><span>RE-10</span></div>
+        <div class="band"><b>FAQ / objeciones duras</b><span>RE-11</span></div>
+        <div class="band exit"><b>Salida: ver propiedades (Tokko)</b><span>RE-12 · exit</span></div>
+        <div class="band cta"><b>CTA final + canales</b><span>RE-13 · CTA</span></div>
+        <div class="band"><b>Footer</b><span>RE-14</span></div>
+      </div>
+      <div class="stack">
+        <div class="note"><strong>Por qué la salida a Tokko va casi al final (RE-12):</strong> ubicarla arriba
+          drena el tráfico de propietarios hacia la grilla de propiedades, que es exactamente el comportamiento
+          que este proyecto quiere evitar. Quien busca comprar la va a encontrar igual: está en el footer, en el
+          menú de la unidad y en RE-06.</div>
+        <div class="flag"><strong>Prohibiciones explícitas en esta pantalla:</strong> buscador, filtros, grilla de
+          fichas con precio, slider automático de propiedades, contador regresivo, chat-bot que abre solo a los
+          3 segundos, banco de imágenes.</div>
+      </div>
+    </div>
+
+    <h3>Especificación bloque por bloque</h3>
+    <div class="blocks">
+      <div class="blk"><div class="blk-id">RE-02</div><div class="blk-b">
+        <h4>Hero — promesa de resultado</h4>
+        <p>Debe decir qué obtiene el propietario y por qué con Krak es distinto. Nada de "tu inmobiliaria de
+        confianza".</p>
+        <dl class="fields">
+          <div class="f"><dt>Titular A</dt><dd>"Vendé tu propiedad al precio que realmente vale, en el plazo que
+            acordamos." (resultado + control)</dd></div>
+          <div class="f"><dt>Titular B</dt><dd>"No publicamos tu propiedad. La preparamos, la posicionamos y la
+            vendemos." (método)</dd></div>
+          <div class="f"><dt>Titular C</dt><dd>"Un método de venta, no un aviso más." (contraste con el mercado)</dd></div>
+          <div class="f"><dt>Bajada</dt><dd>Una línea con el diferencial operativo real (preparación del activo +
+            plan de comercialización + reporte quincenal)</dd></div>
+          <div class="f"><dt>CTA 1</dt><dd><strong>Tasar mi propiedad</strong> — sólido, primario</dd></div>
+          <div class="f"><dt>CTA 2</dt><dd>Quiero vender / Hablar con un asesor — contorneado</dd></div>
+          <div class="f"><dt>Imagen</dt><dd>Fotografía propia de una propiedad trabajada por Krak, con persona real si es posible</dd></div>
+          <div class="f"><dt>Aceptación</dt><dd>Titular + bajada + ambos CTAs visibles sin scroll en 390×844. LCP &lt; 2,5 s</dd></div>
+          <div class="f"><dt>Test</dt><dd>A/B de titulares A · B · C una vez estabilizado el tráfico</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-03</div><div class="blk-b">
+        <h4>Barra de confianza</h4>
+        <p>Franja fina, inmediatamente bajo el hero. 3–4 cifras que importen al vendedor.</p>
+        <dl class="fields">
+          <div class="f"><dt>Candidatos</dt><dd>Días promedio de venta · % del precio de publicación al que se
+            cierra · operaciones cerradas en 12 meses · propiedades en cartera · valuación total comercializada</dd></div>
+          <div class="f"><dt>Regla</dt><dd>Cifras reales y auditables (P-08). Se acompaña con el período de referencia</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-04</div><div class="blk-b">
+        <h4>El problema del propietario</h4>
+        <p>Nombrar el dolor antes de vender la solución. Tres o cuatro frases cortas, sin tono acusador hacia la
+        competencia.</p>
+        <dl class="fields">
+          <div class="f"><dt>Contenido</dt><dd>Precio fijado por corazonada · publicar y esperar · visitas de
+            curiosos sin filtro · meses sin novedades · el propietario enterándose de nada</dd></div>
+          <div class="f"><dt>Cierre</dt><dd>Frase puente hacia el método</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-05</div><div class="blk-b">
+        <h4>El Método Krak — 6 pasos <span class="tag pri">Núcleo</span></h4>
+        <p>El corazón de la diferenciación y el activo de contenido más reutilizable del proyecto. Numeración
+        secuencial real: cada paso ocurre después del anterior.</p>
+        <dl class="fields">
+          <div class="f"><dt>Paso 1</dt><dd><strong>Tasación con datos.</strong> Comparables, absorción de la zona,
+            rango de precio y estrategia. Entregable: informe de valuación.</dd></div>
+          <div class="f"><dt>Paso 2</dt><dd><strong>Preparación del activo.</strong> Puesta a punto, home staging,
+            fotografía profesional, plano, video/recorrido. Entregable: material de comercialización.</dd></div>
+          <div class="f"><dt>Paso 3</dt><dd><strong>Plan de comercialización.</strong> Portales, pauta,
+            red de agentes, base propia y difusión off-market. Entregable: plan escrito con inversión y plazos.</dd></div>
+          <div class="f"><dt>Paso 4</dt><dd><strong>Filtrado y visitas acompañadas.</strong> Calificación previa del
+            interesado. Entregable: reporte de visitas e interés.</dd></div>
+          <div class="f"><dt>Paso 5</dt><dd><strong>Negociación.</strong> Manejo de ofertas y contraofertas con
+            criterio, no por impulso. Entregable: reserva.</dd></div>
+          <div class="f"><dt>Paso 6</dt><dd><strong>Cierre y escritura.</strong> Coordinación con escribano y
+            documentación. Entregable: operación cerrada.</dd></div>
+          <div class="f"><dt>Estructura</dt><dd>Por paso: qué hacemos · qué recibís · plazo estimado</dd></div>
+          <div class="f"><dt>Interacción</dt><dd>Acordeón o pasos con revelado al scroll. Todo el texto debe existir
+            en el HTML por SEO y accesibilidad, no inyectarse por JS</dd></div>
+          <div class="f"><dt>CTA</dt><dd>"Empezá por el paso 1: pedí tu tasación"</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-06</div><div class="blk-b">
+        <h4>Cómo trabajamos el activo</h4>
+        <p>Galería curada (6–9 piezas) de propiedades trabajadas: antes/después de la puesta en valor, fotografía,
+        plano. Demuestra el paso 2 en vez de contarlo.</p>
+        <dl class="fields">
+          <div class="f"><dt>Sin precios</dt><dd>No es un listado. Sin filtros, sin fichas, sin "ver más propiedades" por unidad</dd></div>
+          <div class="f"><dt>CTA</dt><dd>Enlace secundario "Ver propiedades disponibles" → Tokko</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-07</div><div class="blk-b">
+        <h4>Casos y testimonios de propietarios</h4>
+        <p>Formato fijo por caso: <em>propiedad y zona → situación inicial → qué hicimos → resultado</em>. Video
+        vertical de 30–45 s cuando exista.</p>
+        <dl class="fields">
+          <div class="f"><dt>Mínimo viable</dt><dd>3 casos con nombre (o inicial + zona), foto y una cifra de resultado</dd></div>
+          <div class="f"><dt>Legal</dt><dd>Consentimiento escrito para usar imagen y datos de la operación</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-08</div><div class="blk-b">
+        <h4>Transparencia — el informe del propietario</h4>
+        <p>Diferenciador tangible: mostrar el reporte periódico que recibe el propietario (visitas, consultas,
+        origen del interés, recomendación). Una imagen del informe real (anonimizado) vale más que tres párrafos.</p>
+        <dl class="fields"><div class="f"><dt>Aceptación</dt><dd>Se ve el documento, no un ícono genérico de "transparencia"</dd></div></dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-09</div><div class="blk-b">
+        <h4>Tasación embebida <span class="tag pri">Ancla de conversión</span></h4>
+        <p>Primer paso del flujo de tasación embebido en la landing (tipo de propiedad + zona). Al elegir, continúa
+        en <code>/real-estate/tasacion</code> con el estado ya cargado.</p>
+        <dl class="fields">
+          <div class="f"><dt>Por qué</dt><dd>Empezar reduce fricción mucho más que un botón: el efecto de progreso
+            iniciado sostiene la finalización</dd></div>
+          <div class="f"><dt>Evento</dt><dd><code>valuation_start</code> con <code>{source:"inline_re"}</code></dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-10</div><div class="blk-b">
+        <h4>Equipo</h4>
+        <p>Rostros reales, nombre, rol, zona de especialidad y matrícula donde corresponda. Foto en estudio con
+        dirección de arte unificada — no selfies ni fotos de perfil recortadas.</p></div></div>
+
+      <div class="blk"><div class="blk-id">RE-11</div><div class="blk-b">
+        <h4>FAQ — objeciones duras</h4>
+        <p>Acá se contestan las preguntas incómodas. Evadirlas no las elimina: las manda a la competencia.</p>
+        <dl class="fields">
+          <div class="f"><dt>Preguntas</dt><dd>¿Cuánto cobran y quién paga los honorarios? · ¿Piden exclusividad y
+            por qué? · ¿Cuánto tarda una venta hoy? · ¿Qué pasa si no se vende? · ¿Quién paga la fotografía y la
+            pauta? · ¿Puedo cancelar? · ¿Qué documentación necesito? · ¿Trabajan mi zona?</dd></div>
+          <div class="f"><dt>SEO</dt><dd>Marcado <code>FAQPage</code>, contenido en HTML</dd></div>
+          <div class="f"><dt>Evento</dt><dd><code>faq_open</code> con <code>{question_id}</code> — insumo directo para el equipo comercial</dd></div>
+        </dl></div></div>
+
+      <div class="blk"><div class="blk-id">RE-13</div><div class="blk-b">
+        <h4>CTA final + canales</h4>
+        <p>Cierre con las tres vías, jerarquizadas: tasar (primario), WhatsApp/llamar (secundario), agendar una
+        visita de tasación en calendario (si se habilita agenda directa).</p>
+        <dl class="fields"><div class="f"><dt>Expectativa</dt><dd>Declarar el tiempo de respuesta: "Te contactamos
+          dentro de las 2 horas hábiles". Sólo si el equipo lo puede sostener</dd></div></dl></div></div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="s7">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Flujo de tasación</h2></div>
+    <p class="sec-intro">Es el producto digital del proyecto, no un formulario de contacto. Multi-paso, una pregunta
+      por pantalla, con los datos de contacto al final: el usuario ya invirtió esfuerzo y la tasa de finalización
+      sube. Además califica el lead antes de que llegue al equipo comercial.</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Paso</th><th>Pregunta</th><th>Campos</th><th>Notas de UX</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>¿Qué tipo de propiedad es?</td><td>Departamento · Casa · PH · Lote · Local · Oficina · Galpón · Cochera · Campo</td><td>Tarjetas grandes con ícono. Un toque avanza</td></tr>
+        <tr><td>2</td><td>¿Dónde queda?</td><td>Dirección con autocompletado, barrio/localidad, piso y unidad (opcional)</td><td>Aclarar que la altura exacta no se publica. Permitir sólo barrio si duda</td></tr>
+        <tr><td>3</td><td>¿Cómo es?</td><td>Ambientes, m² cubiertos, m² totales, antigüedad, estado (a refaccionar / bueno / muy bueno / a estrenar), cochera, amenities</td><td>Todos con opción "No estoy seguro". Nunca bloquear por un dato técnico</td></tr>
+        <tr><td>4</td><td>¿En qué situación estás?</td><td>Motivo (vender / saber el valor / sucesión / mudanza), plazo (ya · 3 meses · 6 meses · explorando), ocupación, escritura al día, ¿está publicada hoy?</td><td>Paso de calificación: define el scoring y la prioridad de contacto</td></tr>
+        <tr><td>5</td><td>¿A dónde te enviamos la tasación?</td><td>Nombre, email, teléfono/WhatsApp, canal preferido, consentimiento</td><td>Único paso con datos personales. Recién acá se pide el teléfono</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="cols">
+      <div class="card"><h4>Requisitos funcionales</h4><ul>
+        <li>Barra de progreso con paso actual y total.</li>
+        <li>Botón "Atrás" que conserva lo cargado.</li>
+        <li>Persistencia en <code>localStorage</code>: si abandona y vuelve, retoma donde estaba.</li>
+        <li>Validación en el campo, no al enviar. Mensajes que dicen cómo corregir.</li>
+        <li>Sin registro, sin login, sin captcha visible (ver §12).</li>
+        <li>Accesible por teclado y lector de pantalla; foco al título de cada paso.</li>
+      </ul></div>
+      <div class="card"><h4>Después del envío — <code>/gracias/tasacion</code></h4><ul>
+        <li>Confirmación explícita: quién lo contacta, por qué canal y en cuánto tiempo.</li>
+        <li>Qué tener a mano: escritura, plano, expensas, reglamento.</li>
+        <li>Opción de agendar la visita de tasación directo en agenda.</li>
+        <li>Descarga de la guía "Cómo preparar tu propiedad para vender" (captura de valor extra).</li>
+        <li>Email automático inmediato con el resumen de lo cargado.</li>
+        <li>Es una URL propia — no un modal — para poder medirla como conversión.</li>
+      </ul></div>
+    </div>
+
+    <h4>Calificación automática del lead</h4>
+    <div class="tw"><table>
+      <thead><tr><th>Señal</th><th>Caliente</th><th>Tibio</th><th>Frío</th></tr></thead>
+      <tbody>
+        <tr><td>Plazo</td><td>Ya / &lt; 3 meses</td><td>3–6 meses</td><td>Explorando</td></tr>
+        <tr><td>Motivo</td><td>Vender</td><td>Mudanza / sucesión</td><td>Curiosidad de valor</td></tr>
+        <tr><td>Documentación</td><td>Escritura al día</td><td>En trámite</td><td>Con problemas</td></tr>
+        <tr><td>Zona</td><td>Zona core de Krak</td><td>Zona secundaria</td><td>Fuera de cobertura</td></tr>
+        <tr><td>Acción</td><td>Asignación y llamado inmediato</td><td>Contacto en 24 h + nutrición</td><td>Automatizado + newsletter</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">Los leads fuera de zona de cobertura no se descartan en silencio: se responden con un mensaje
+      honesto. Un "no trabajamos esa zona, pero te dejamos una referencia" preserva la marca y genera derivaciones.</div>
+  </section>
+
+  <!-- 08 -->
+  <section id="s8">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Krak Industrial</h2></div>
+    <p class="sec-intro">Otro comprador, otro ciclo de decisión, otro lenguaje. Acá el visitante evalúa capacidad
+      técnica y antecedentes; el registro es sobrio y orientado a datos. El único elemento compartido con RE es el
+      sistema visual.</p>
+    <div class="blocks">
+      <div class="blk"><div class="blk-id">IN-01</div><div class="blk-b"><h4>Hero B2B</h4>
+        <p>Propuesta concreta: qué resuelve Krak Industrial y para quién. CTA: "Solicitar asesoramiento".</p></div></div>
+      <div class="blk"><div class="blk-id">IN-02</div><div class="blk-b"><h4>Servicios</h4>
+        <p>Comercialización de naves y lotes · búsqueda a medida (tenant representation) · build-to-suit ·
+        sale &amp; leaseback · asesoramiento en radicación y habilitaciones · valuaciones.
+        <span class="tag pend">Confirmar alcance real</span></p></div></div>
+      <div class="blk"><div class="blk-id">IN-03</div><div class="blk-b"><h4>Tipologías y zonas</h4>
+        <p>Parques industriales y corredores cubiertos, con mapa. Es el bloque que más rankea en búsquedas B2B.</p></div></div>
+      <div class="blk"><div class="blk-id">IN-04</div><div class="blk-b"><h4>Casos y clientes</h4>
+        <p>Operaciones con m², rubro y resultado. Logos sólo con autorización.</p></div></div>
+      <div class="blk"><div class="blk-id">IN-05</div><div class="blk-b"><h4>Doble captación</h4>
+        <p>Dos caminos explícitos: "Busco un inmueble industrial" y "Tengo un inmueble industrial para
+        comercializar". El segundo es captación y va primero visualmente.</p></div></div>
+      <div class="blk"><div class="blk-id">IN-06</div><div class="blk-b"><h4>Formulario B2B</h4>
+        <p>Campos: empresa, rol, rubro, tipo de operación (compra/alquiler/venta), m² cubiertos y de terreno
+        requeridos, zona, plazo de mudanza, requisitos técnicos (altura libre, energía disponible, playa de
+        maniobras, muelles), presupuesto. Contacto corporativo.</p></div></div>
+      <div class="blk"><div class="blk-id">IN-07</div><div class="blk-b"><h4>Equipo industrial + salida a Tokko</h4>
+        <p>Referentes con contacto directo, y enlace a la disponibilidad industrial filtrada en Tokko.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section id="s9">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Krak Studio</h2></div>
+    <div class="flag"><strong>Bloqueante de contenido.</strong> No hay definición confirmada de qué vende Studio,
+      a quién y con qué modelo. Sin eso, cualquier wireframe sería adivinanza. Se deja la estructura genérica de
+      landing de servicio y se prioriza la respuesta en §19.</div>
+    <h3>Dos hipótesis a confirmar</h3>
+    <div class="cols">
+      <div class="card"><h4>Hipótesis A — Studio como productora interna</h4>
+        <p>Contenido, fotografía, video y branding para las propiedades y para el grupo. Servicio que puede
+        venderse a terceros (desarrolladores, otras inmobiliarias).<br>
+        <strong>Implicancia:</strong> Studio se convierte en la prueba visible del paso 2 del Método Krak y debe
+        enlazarse cruzado desde RE-06.</p></div>
+      <div class="card"><h4>Hipótesis B — Studio como estudio de arquitectura / interiorismo</h4>
+        <p>Proyecto, obra, reforma, puesta en valor y diseño de interiores.<br>
+        <strong>Implicancia:</strong> es un servicio complementario que se le ofrece al propietario antes de
+        vender, con un embudo propio y ticket alto.</p></div>
+    </div>
+    <h3>Estructura provisional (válida para ambas hipótesis)</h3>
+    <ol class="body">
+      <li><strong>ST-01</strong> Hero con la pieza más fuerte del portfolio (obra, no texto).</li>
+      <li><strong>ST-02</strong> Qué hacemos: 3–5 servicios con entregable concreto.</li>
+      <li><strong>ST-03</strong> Portfolio / trabajos, con proyecto ampliable.</li>
+      <li><strong>ST-04</strong> Proceso de trabajo (paralelo estructural al Método Krak).</li>
+      <li><strong>ST-05</strong> Clientes y testimonios.</li>
+      <li><strong>ST-06</strong> Formulario de consulta con tipo de proyecto, plazo y presupuesto orientativo.</li>
+      <li><strong>ST-07</strong> Banda de captación cruzada: "¿Vas a vender? Prepará tu propiedad con Studio."</li>
+    </ol>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Trabajá con Nosotros</h2></div>
+    <p class="sec-intro">Dos audiencias con motivaciones distintas conviviendo en la misma unidad. Mezclarlas en una
+      sola página diluye ambas: el agente con cartera propia no quiere leer sobre un curso inicial, y el que recién
+      empieza no se identifica con un mensaje de "sumá tu experiencia".</p>
+
+    <h3>Estructura: una página madre con bifurcación temprana</h3>
+    <div class="blocks">
+      <div class="blk"><div class="blk-id">TN-01</div><div class="blk-b"><h4>Hero + bifurcación</h4>
+        <p>Titular común sobre la propuesta de carrera en Krak y, en el primer scroll, dos caminos claros:
+        <strong>"Ya soy agente"</strong> y <strong>"Quiero empezar en el rubro"</strong>. Cada uno lleva a su
+        recorrido.</p></div></div>
+      <div class="blk"><div class="blk-id">TN-02</div><div class="blk-b"><h4>Qué te da Krak</h4>
+        <p>La propuesta de valor al agente, concreta y sin épica: marca y respaldo, flujo de oportunidades de la
+        web, CRM (Tokko) y herramientas, capacitación continua, material de marketing producido por Studio,
+        espacio de trabajo, acompañamiento en operaciones complejas y esquema de comisiones.
+        <span class="tag pend">Definir qué se publica del esquema económico</span></p></div></div>
+      <div class="blk"><div class="blk-id">TN-03</div><div class="blk-b"><h4>Programa de capacitaciones</h4>
+        <p>Por módulo: contenido, duración, modalidad (presencial/online), a quién está dirigido, si otorga
+        certificado y si tiene costo. Calendario de próximas fechas si aplica.</p>
+        <dl class="fields"><div class="f"><dt>Cuidado legal</dt><dd>En Argentina el ejercicio del corretaje
+          inmobiliario requiere matrícula. La comunicación no debe sugerir que la capacitación habilita a ejercer
+          si no es el caso. Texto a revisar con asesoría legal</dd></div></dl></div></div>
+      <div class="blk"><div class="blk-id">TN-04</div><div class="blk-b"><h4>Historias de agentes</h4>
+        <p>Trayectorias reales dentro de Krak, con foto, tiempo en el equipo y una línea de resultado. Es la prueba
+        social que decide una postulación.</p></div></div>
+      <div class="blk"><div class="blk-id">TN-05</div><div class="blk-b"><h4>Proceso de selección</h4>
+        <p>Cuatro pasos con plazos: postulación → entrevista → jornada de conocimiento → incorporación. Reduce la
+        ansiedad y filtra al que no está dispuesto.</p></div></div>
+      <div class="blk"><div class="blk-id">TN-06</div><div class="blk-b"><h4>Requisitos y FAQ</h4>
+        <p>Matrícula, dedicación (full/part time), zona, movilidad, ingresos esperables. Honestidad acá ahorra
+        entrevistas inútiles.</p></div></div>
+      <div class="blk"><div class="blk-id">TN-07</div><div class="blk-b"><h4>Formulario de postulación</h4>
+        <p>Nombre, contacto, zona, experiencia (años / ninguna), matrícula (sí/no/en trámite), disponibilidad,
+        CV opcional (PDF, máx. 5 MB), "contanos por qué Krak" (opcional). Consentimiento de tratamiento de datos.</p>
+        <dl class="fields"><div class="f"><dt>Destino</dt><dd>Casilla de RR. HH. + notificación. No mezclar con el
+          buzón de leads comerciales</dd></div></dl></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11">
+    <div class="sec-head"><span class="sec-num">11</span><h2>Recorridos de usuario</h2></div>
+    <div class="tw"><table>
+      <thead><tr><th>Perfil</th><th>Entrada típica</th><th>Recorrido</th><th>Conversión</th><th>Seguimiento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Propietario explorando</strong> (no decidido)</td><td>Búsqueda "cuánto vale mi departamento en {zona}" o Instagram</td><td><code>/real-estate</code> → Método (RE-05) → FAQ (RE-11) → RE-09</td><td>Tasación</td><td>Guía + secuencia de 3 emails + llamado</td></tr>
+        <tr><td><strong>Propietario decidido</strong></td><td>Recomendación, marca directa</td><td><code>/</code> → <code>/real-estate</code> → CTA hero</td><td>Tasación o WhatsApp</td><td>Llamado en menos de 2 h hábiles</td></tr>
+        <tr><td><strong>Propietario que ya publicó y no vende</strong></td><td>Búsqueda "no puedo vender mi propiedad"</td><td>Artículo de <code>/recursos</code> → RE-04 → RE-08</td><td>Tasación (segunda opinión)</td><td>Guion comercial específico</td></tr>
+        <tr><td><strong>Comprador / inversor</strong></td><td>Portal, redes, marca</td><td>Cualquier página → "Ver propiedades"</td><td>Salida a Tokko (medida)</td><td>Lo toma el circuito de Tokko/CRM</td></tr>
+        <tr><td><strong>Agente candidato</strong></td><td>Aviso, Instagram, boca a boca</td><td><code>/trabaja-con-nosotros</code> → bifurcación → TN-04 → TN-07</td><td>Postulación</td><td>RR. HH., respuesta en 5 días hábiles</td></tr>
+        <tr><td><strong>Decisor industrial</strong></td><td>Búsqueda "galpón en alquiler {zona}", referidos</td><td><code>/industrial</code> → IN-03 → IN-06</td><td>Consulta B2B</td><td>Contacto del referente en 24 h</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><strong>Regla de arquitectura derivada:</strong> ningún recorrido de captación debe requerir
+      más de <strong>dos clics</strong> desde cualquier página hasta el inicio de la tasación.</div>
+  </section>
+
+  <!-- 12 -->
+  <section id="s12">
+    <div class="sec-head"><span class="sec-num">12</span><h2>Formularios y gestión de leads</h2></div>
+
+    <h3>Inventario de formularios</h3>
+    <div class="tw"><table>
+      <thead><tr><th>ID</th><th>Formulario</th><th>Ubicación</th><th>Destino</th><th>SLA</th></tr></thead>
+      <tbody>
+        <tr><td>F-01</td><td>Tasación (multi-paso)</td><td><code>/real-estate/tasacion</code> + embebido en RE-09</td><td>CRM (Tokko) + email comercial + notificación al agente</td><td>2 h hábiles</td></tr>
+        <tr><td>F-02</td><td>Contacto rápido</td><td><code>/contacto</code>, RE-13</td><td>Email comercial</td><td>24 h</td></tr>
+        <tr><td>F-03</td><td>Consulta industrial</td><td><code>/industrial</code></td><td>Email industrial + CRM</td><td>24 h</td></tr>
+        <tr><td>F-04</td><td>Consulta Studio</td><td><code>/studio</code></td><td>Email Studio</td><td>48 h</td></tr>
+        <tr><td>F-05</td><td>Postulación de agente</td><td><code>/trabaja-con-nosotros/postulacion</code></td><td>RR. HH.</td><td>5 días hábiles</td></tr>
+        <tr><td>F-06</td><td>Interés en capacitación</td><td><code>/trabaja-con-nosotros/capacitaciones</code></td><td>RR. HH. + lista de novedades</td><td>Automático + 72 h</td></tr>
+        <tr><td>F-07</td><td>Descarga de guía</td><td><code>/recursos</code>, páginas de gracias</td><td>Email marketing</td><td>Automático</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Reglas transversales</h3>
+    <div class="cols">
+      <div class="card"><h4>UX</h4><ul>
+        <li>Etiquetas siempre visibles (nunca sólo <em>placeholder</em>).</li>
+        <li>Teclado correcto por tipo de campo en mobile (<code>tel</code>, <code>email</code>, numérico).</li>
+        <li>Errores en línea, con instrucción de corrección.</li>
+        <li>Estado de envío en el botón; deshabilitar para evitar doble envío.</li>
+        <li>Nunca perder lo cargado ante un error de red.</li>
+      </ul></div>
+      <div class="card"><h4>Datos y legales</h4><ul>
+        <li>Casilla de consentimiento <strong>no premarcada</strong>, con enlace a la política de privacidad.</li>
+        <li>Ley 25.326: finalidad del tratamiento, responsable y derechos de acceso, rectificación y supresión.</li>
+        <li>Pedir sólo lo que el equipo comercial realmente usa.</li>
+        <li>Baja de comunicaciones en un clic en todo email.</li>
+      </ul></div>
+      <div class="card"><h4>Anti-spam</h4><ul>
+        <li>Campo trampa oculto + control de tiempo mínimo de completado.</li>
+        <li>Límite de envíos por IP.</li>
+        <li>reCAPTCHA v3 o Turnstile — invisible, sin resolver imágenes.</li>
+        <li>Validación también en el servidor, nunca sólo en el navegador.</li>
+      </ul></div>
+      <div class="card"><h4>Entrega del lead</h4><ul>
+        <li>Alta automática en el CRM con origen, UTMs y página de entrada.</li>
+        <li>Notificación al agente por WhatsApp o Slack, con los datos ya cargados.</li>
+        <li>Respuesta automática al usuario en menos de 1 minuto.</li>
+        <li>Reintentos ante fallo del CRM + registro de errores: <strong>un lead perdido es dinero perdido</strong>.</li>
+        <li>Panel simple de leads recibidos por semana y por formulario.</li>
+      </ul></div>
+    </div>
+
+    <h3>WhatsApp</h3>
+    <p>Enlace <code>wa.me</code> con mensaje prellenado según la página de origen — por ejemplo, desde
+      <code>/real-estate</code>: <em>"Hola Krak, quiero tasar mi propiedad en&nbsp;…"</em>. Cada enlace lleva su
+      parámetro de origen para poder atribuir la conversación. Horario de atención visible; fuera de horario, el
+      mensaje lo aclara.</p>
+  </section>
+
+  <!-- 13 -->
+  <section id="s13">
+    <div class="sec-head"><span class="sec-num">13</span><h2>Medición y analítica</h2></div>
+    <p class="sec-intro">Sin esto no hay optimización posible: se implementa junto con el sitio, no después.
+      Stack: GTM + GA4, Meta Pixel con API de conversiones, y consent mode.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Evento</th><th>Cuándo se dispara</th><th>Parámetros</th><th>Tipo</th></tr></thead>
+      <tbody>
+        <tr><td><code>unit_card_click</code></td><td>Clic en tarjeta de unidad del hub</td><td>unit</td><td>Navegación</td></tr>
+        <tr><td><code>cta_click</code></td><td>Cualquier CTA</td><td>label, unit, block_id, position</td><td>Micro</td></tr>
+        <tr><td><code>valuation_start</code></td><td>Primer paso del flujo de tasación</td><td>source (inline_re / page / hub)</td><td>Micro</td></tr>
+        <tr><td><code>valuation_step</code></td><td>Al completar cada paso</td><td>step, property_type</td><td>Micro</td></tr>
+        <tr><td><code>valuation_submit</code></td><td>Envío exitoso</td><td>property_type, zone, timeframe, lead_score</td><td><strong>Conversión primaria</strong></td></tr>
+        <tr><td><code>lead_submit</code></td><td>Cualquier otro formulario</td><td>form_id, unit</td><td>Conversión</td></tr>
+        <tr><td><code>whatsapp_click</code></td><td>Clic en WhatsApp</td><td>page, block_id</td><td>Conversión</td></tr>
+        <tr><td><code>phone_click</code></td><td>Clic en teléfono</td><td>page</td><td>Conversión</td></tr>
+        <tr><td><code>tokko_exit_click</code></td><td>Salida al buscador</td><td>page, block_id</td><td>Salud</td></tr>
+        <tr><td><code>agent_apply_submit</code></td><td>Postulación enviada</td><td>experience, has_license</td><td>Conversión</td></tr>
+        <tr><td><code>training_interest</code></td><td>Interés en capacitación</td><td>module</td><td>Conversión</td></tr>
+        <tr><td><code>faq_open</code></td><td>Apertura de pregunta</td><td>question_id</td><td>Insight comercial</td></tr>
+        <tr><td><code>scroll_75</code> · <code>video_play</code></td><td>Profundidad de lectura / video</td><td>page, video_id</td><td>Engagement</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Atribución hacia Tokko:</strong> si va en subdominio propio, configurar medición entre dominios en
+        GA4. Si no, marcar todas las salidas con
+        <code>?utm_source=web-krak&amp;utm_medium=referral&amp;utm_campaign=ver-propiedades&amp;utm_content={block_id}</code>.</li>
+      <li><strong>Circuito completo:</strong> el CRM debe guardar el origen del lead para poder medir no sólo
+        formularios enviados, sino <strong>autorizaciones de venta firmadas</strong> por canal. Ese es el KPI que
+        realmente importa.</li>
+      <li><strong>Mapas de calor y grabaciones</strong> (Clarity o Hotjar) en la landing de RE y en el flujo de
+        tasación durante los primeros 90 días, para ver dónde se abandona.</li>
+      <li><strong>Panel mensual:</strong> visitas por unidad → inicios de tasación → envíos → contactados → tasaciones
+        realizadas → captaciones firmadas.</li>
+    </ul>
+  </section>
+
+  <!-- 14 -->
+  <section id="s14">
+    <div class="sec-head"><span class="sec-num">14</span><h2>Sistema de diseño</h2></div>
+    <div class="note">Este brief no define la paleta ni la tipografía: se toman del manual de marca vigente de Krak.
+      Lo que sigue son los entregables de diseño requeridos y las reglas de aplicación.</div>
+    <h3>Entregables de diseño</h3>
+    <ul>
+      <li>Tokens: color (marca, neutrales, semánticos de estado), tipografía, espaciado en escala de 4/8, radios, sombras y bordes.</li>
+      <li>Grilla de 12 columnas en desktop y 4 en mobile. Breakpoints: 390 / 768 / 1024 / 1440.</li>
+      <li>Escala tipográfica con un solo tamaño por rol y jerarquía clara entre titular, bajada, cuerpo y etiqueta.</li>
+      <li>Sistema de botones: primario, secundario, terciario y de texto — con estados normal, hover, foco, activo, deshabilitado y cargando.</li>
+      <li>Componentes: tarjeta de unidad, paso de método, testimonio, cifra de prueba, ítem de FAQ, campo de formulario, paso del flujo de tasación, barra fija mobile, footer.</li>
+      <li>Estados vacíos, de error y de éxito para cada formulario.</li>
+      <li>Dirección de arte fotográfica: luz natural, encuadres amplios sin distorsión, personas reales del equipo, coherencia de temperatura de color.</li>
+    </ul>
+    <h3>Reglas de aplicación premium</h3>
+    <div class="cols">
+      <div class="card"><h4>Sí</h4><ul>
+        <li>Aire generoso; menos elementos por pantalla.</li>
+        <li>Tipografía grande y jerarquía marcada.</li>
+        <li>Fotografía propia impecable como protagonista.</li>
+        <li>Movimiento sobrio: revelados suaves al scroll, un solo acento animado por pantalla.</li>
+        <li>Detalle en los estados: foco visible, transiciones cortas, consistencia.</li>
+      </ul></div>
+      <div class="card"><h4>No</h4><ul>
+        <li>Banco de imágenes, íconos infantiles, degradados decorativos.</li>
+        <li>Carruseles de héroe y sliders automáticos.</li>
+        <li>Ventanas emergentes de intención de salida y chats que se abren solos.</li>
+        <li>Sellos de "los mejores", superlativos sin respaldo.</li>
+        <li>Texto sobre foto sin capa de contraste suficiente.</li>
+      </ul></div>
+    </div>
+    <h3>Tono de voz</h3>
+    <p>Directo, adulto, sin jerga inmobiliaria ni promesas vacías. Se habla de vos. Frases cortas. Números antes que
+      adjetivos. Cada afirmación tiene que poder sostenerse en una reunión con el propietario.</p>
+  </section>
+
+  <!-- 15 -->
+  <section id="s15">
+    <div class="sec-head"><span class="sec-num">15</span><h2>Requisitos técnicos y SEO</h2></div>
+    <div class="cols">
+      <div class="card"><h4>Stack recomendado</h4>
+        <p><strong>Con equipo de desarrollo:</strong> Next.js (renderizado estático/servidor) + CMS headless
+        (Sanity o Payload) + despliegue en Vercel. Formularios en API propia hacia CRM y email.<br>
+        <strong>Sin equipo de desarrollo:</strong> Webflow, priorizando autonomía de marketing. En ese caso, el
+        flujo de tasación se resuelve con una herramienta de formularios multi-paso con webhook al CRM.<br>
+        Criterio de decisión: quién mantiene el sitio a los 6 meses.</p></div>
+      <div class="card"><h4>Presupuesto de performance</h4><ul>
+        <li>LCP &lt; 2,5 s en 4G · INP &lt; 200 ms · CLS &lt; 0,1.</li>
+        <li>Peso de la primera vista &lt; 1 MB.</li>
+        <li>Imágenes en AVIF/WebP, responsivas, con carga diferida salvo la del hero.</li>
+        <li>Sin librerías pesadas de animación si alcanza con CSS.</li>
+        <li>Lighthouse ≥ 90 en las cuatro categorías, medido en mobile.</li>
+      </ul></div>
+      <div class="card"><h4>Accesibilidad — WCAG 2.2 AA</h4><ul>
+        <li>Contraste mínimo 4,5:1 en texto.</li>
+        <li>Navegación completa por teclado con foco visible.</li>
+        <li>Textos alternativos reales en imágenes informativas.</li>
+        <li>Formularios con etiquetas asociadas y errores anunciados.</li>
+        <li>Respeto de <code>prefers-reduced-motion</code>.</li>
+      </ul></div>
+      <div class="card"><h4>SEO técnico</h4><ul>
+        <li>Un <code>&lt;h1&gt;</code> por página; jerarquía correcta.</li>
+        <li>Datos estructurados: <code>Organization</code>, <code>RealEstateAgent</code>,
+          <code>LocalBusiness</code> por sucursal, <code>FAQPage</code>, <code>BreadcrumbList</code>.</li>
+        <li>Sitemap XML, robots.txt, canónicas, metadatos Open Graph por página.</li>
+        <li>Sin duplicar contenido de las fichas de Tokko.</li>
+        <li>Perfil de Google Business por sucursal, enlazado y con reseñas activas.</li>
+      </ul></div>
+    </div>
+    <h3>Migración desde la web actual</h3>
+    <ul>
+      <li>Inventario completo de URLs actuales con tráfico y posiciones. <span class="tag pend">Tarea previa: exportar de GA4 y Search Console</span></li>
+      <li>Mapa de redirecciones 301 una a una; nada apunta a la home por defecto.</li>
+      <li>Conservar las URLs que ya rankean cuando el contenido se mantiene.</li>
+      <li>Monitoreo de errores 404 y de cobertura durante los 30 días posteriores al lanzamiento.</li>
+    </ul>
+    <h3>Estrategia de contenido SEO de captación <span class="tag">Fase 3</span></h3>
+    <p>Es el motor orgánico de captación: páginas por zona
+      (<code>/vender-mi-propiedad-en-{zona}</code>) con datos reales de mercado del barrio, y artículos que responden
+      lo que busca un propietario: cómo se fija el precio, gastos e impuestos de vender, documentación necesaria,
+      cómo preparar la propiedad, exclusiva sí o no. Cada pieza cierra en el flujo de tasación.</p>
+  </section>
+
+  <!-- 16 -->
+  <section id="s16">
+    <div class="sec-head"><span class="sec-num">16</span><h2>Contenido a producir</h2></div>
+    <p class="sec-intro">El contenido es la ruta crítica del proyecto: el diseño se frena esperando esto, no al
+      revés. Cada ítem necesita responsable y fecha antes de arrancar el diseño visual.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Ítem</th><th>Detalle</th><th>Usa</th><th>Responsable</th></tr></thead>
+      <tbody>
+        <tr><td>Cifras del grupo</td><td>Años, operaciones, m², equipo, sucursales, período de referencia</td><td>H-04, RE-03</td><td>Dirección</td></tr>
+        <tr><td>Método Krak escrito</td><td>Los 6 pasos con entregable y plazo por paso</td><td>RE-05</td><td>Dirección comercial</td></tr>
+        <tr><td>Casos de venta</td><td>3 mínimo, con foto, cifra y consentimiento firmado</td><td>RE-07</td><td>Comercial + Studio</td></tr>
+        <tr><td>Testimonios en video</td><td>3 videos verticales de 30–45 s</td><td>RE-07</td><td>Studio</td></tr>
+        <tr><td>Informe del propietario</td><td>Ejemplo real anonimizado</td><td>RE-08</td><td>Operaciones</td></tr>
+        <tr><td>Fotos de equipo</td><td>Sesión unificada, todos los agentes</td><td>RE-10, TN-04</td><td>Studio</td></tr>
+        <tr><td>Galería de propiedades</td><td>6–9 piezas con antes/después</td><td>RE-06</td><td>Studio</td></tr>
+        <tr><td>FAQ respondidas</td><td>Honorarios, exclusividad, plazos, cancelación</td><td>RE-11</td><td>Dirección + legales</td></tr>
+        <tr><td>Propuesta al agente</td><td>Beneficios y qué se publica del esquema económico</td><td>TN-02</td><td>Dirección</td></tr>
+        <tr><td>Programa de capacitaciones</td><td>Módulos, duración, modalidad, costo, certificación</td><td>TN-03</td><td>Formación</td></tr>
+        <tr><td>Definición de Studio</td><td>Servicios, audiencia y modelo comercial</td><td>§09 completa</td><td>Dirección</td></tr>
+        <tr><td>Alcance industrial</td><td>Servicios y zonas reales de cobertura</td><td>IN-02, IN-03</td><td>Industrial</td></tr>
+        <tr><td>Textos legales</td><td>Privacidad, términos, matrícula y colegio</td><td>Footer, forms</td><td>Legales</td></tr>
+        <tr><td>Guía del propietario</td><td>PDF descargable, 6–10 páginas</td><td>F-07, gracias</td><td>Marketing + Studio</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 17 -->
+  <section id="s17">
+    <div class="sec-head"><span class="sec-num">17</span><h2>Fases y backlog</h2></div>
+    <div class="tw"><table>
+      <thead><tr><th>Fase</th><th>Alcance</th><th>Criterio de salida</th></tr></thead>
+      <tbody>
+        <tr><td><strong>F0 — Definición</strong></td><td>Cerrar §19, relevar URLs actuales, producir contenido crítico (Método, cifras, casos), definir stack</td><td>Contenido de RE aprobado y decisiones firmadas</td></tr>
+        <tr><td><strong>F1 — Núcleo de captación</strong></td><td>Hub + Landing RE + flujo de tasación + páginas de gracias + contacto + legales + medición completa</td><td>Un lead de prueba recorre todo el circuito hasta el CRM y aparece en GA4</td></tr>
+        <tr><td><strong>F2 — Unidades</strong></td><td>Industrial, Studio, Trabajá con Nosotros, Nosotros, subpáginas de RE</td><td>Cuatro unidades navegables con su formulario propio funcionando</td></tr>
+        <tr><td><strong>F3 — Crecimiento</strong></td><td>Recursos/blog, landings por zona, secuencias de email, tests de CRO</td><td>Primer test A/B corriendo con datos suficientes</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Prioridad del backlog</h3>
+    <div class="cols">
+      <div class="card"><h4><span class="tag pri">Imprescindible</span></h4><ul>
+        <li>Landing RE completa con el Método.</li>
+        <li>Flujo de tasación con entrega al CRM y notificación.</li>
+        <li>Hub con las cuatro unidades.</li>
+        <li>Barra fija mobile y WhatsApp con mensaje prellenado.</li>
+        <li>Medición de eventos y conversiones.</li>
+        <li>Legales y consentimiento.</li>
+        <li>Redirecciones desde el sitio actual.</li>
+      </ul></div>
+      <div class="card"><h4><span class="tag sec">Debería</span></h4><ul>
+        <li>Agenda directa de la visita de tasación.</li>
+        <li>Casos y testimonios en video.</li>
+        <li>Página del Método ampliada.</li>
+        <li>Landings de Industrial y Trabajá con Nosotros.</li>
+        <li>Guía descargable del propietario.</li>
+      </ul></div>
+      <div class="card"><h4><span class="tag">Podría</span></h4><ul>
+        <li>Destacados de propiedades traídos por API de Tokko (sin buscador).</li>
+        <li>Portal del propietario para ver el informe en línea.</li>
+        <li>Calculadora de gastos de venta.</li>
+        <li>Versión en inglés de Industrial.</li>
+      </ul></div>
+      <div class="card"><h4><span class="tag pend">Fuera de alcance</span></h4><ul>
+        <li>Buscador y fichas de propiedades (viven en Tokko).</li>
+        <li>Cuentas de usuario para compradores.</li>
+        <li>Favoritos y alertas de búsqueda.</li>
+        <li>Chat con inteligencia artificial en el lanzamiento.</li>
+      </ul></div>
+    </div>
+    <h3>Plan de CRO posterior al lanzamiento</h3>
+    <p>Con volumen suficiente, en este orden: (1) titular del hero de RE, (2) formulario embebido en RE-09 contra
+      botón simple, (3) orden de RE-05 y RE-07, (4) cantidad de pasos del flujo de tasación, (5) copy del CTA
+      primario. Un test por vez, con criterio de corte definido de antemano.</p>
+  </section>
+
+  <!-- 18 -->
+  <section id="s18">
+    <div class="sec-head"><span class="sec-num">18</span><h2>QA de lanzamiento</h2></div>
+    <div class="cols">
+      <div class="card"><h4>Funcional</h4><ul>
+        <li>Cada formulario enviado llega al destino correcto y al CRM.</li>
+        <li>Respuesta automática recibida y sin caer en spam.</li>
+        <li>Notificación al agente funcionando.</li>
+        <li>Enlaces de WhatsApp y teléfono correctos en mobile y desktop.</li>
+        <li>Salidas a Tokko en pestaña nueva y con UTMs.</li>
+        <li>Persistencia y botón atrás del flujo de tasación.</li>
+      </ul></div>
+      <div class="card"><h4>Técnico</h4><ul>
+        <li>Lighthouse mobile ≥ 90 en las páginas clave.</li>
+        <li>Redirecciones 301 verificadas una a una.</li>
+        <li>Sitemap enviado y sin errores de cobertura.</li>
+        <li>404 propia y útil, con salida a captación.</li>
+        <li>Metadatos Open Graph verificados al compartir.</li>
+        <li>SSL, www y sin-www resueltos a una sola versión.</li>
+      </ul></div>
+      <div class="card"><h4>Contenido y legal</h4><ul>
+        <li>Cero textos de relleno o imágenes de muestra.</li>
+        <li>Todas las cifras verificadas contra su fuente.</li>
+        <li>Matrícula y datos societarios en el footer.</li>
+        <li>Política de privacidad enlazada desde cada formulario.</li>
+        <li>Consentimientos de imagen firmados para testimonios.</li>
+      </ul></div>
+      <div class="card"><h4>Medición</h4><ul>
+        <li>Todos los eventos de §13 disparando, verificados en tiempo real.</li>
+        <li>Conversión primaria marcada en GA4 y en Meta.</li>
+        <li>Consent mode configurado.</li>
+        <li>Panel de leads operativo antes del lanzamiento.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section id="s19">
+    <div class="sec-head"><span class="sec-num">19</span><h2>Decisiones pendientes</h2></div>
+    <p class="sec-intro">Ordenadas por cuánto bloquean. Las tres primeras frenan el arranque del diseño.</p>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Decisión</th><th>Por qué importa</th><th>Bloquea</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>¿Qué es Krak Studio, a quién le vende y con qué modelo?</td><td>Sin esto la unidad no se puede diseñar ni escribir</td><td>§09 completa</td></tr>
+        <tr><td>2</td><td>Cifras reales de prueba social y período de referencia</td><td>Sostienen todo el posicionamiento premium (P-08)</td><td>H-04, RE-03</td></tr>
+        <tr><td>3</td><td>Los 6 pasos del Método con entregable y plazo por paso</td><td>Es el núcleo de la landing principal</td><td>RE-05</td></tr>
+        <tr><td>4</td><td>¿Se trabaja con exclusiva? ¿Se publican honorarios?</td><td>Define el copy de las objeciones más buscadas</td><td>RE-11</td></tr>
+        <tr><td>5</td><td>Dominio del sitio Tokko: ¿subdominio propio o dominio de Tokko?</td><td>Marca, medición cross-domain y SEO</td><td>Navegación, §13</td></tr>
+        <tr><td>6</td><td>¿Tokko es el CRM único o hay otro sistema? ¿A dónde entran los leads?</td><td>Define la integración de todos los formularios</td><td>§12</td></tr>
+        <tr><td>7</td><td>Jurisdicciones, sucursales, matrícula y colegio del corredor responsable</td><td>Requisito legal y de confianza</td><td>Footer, legales</td></tr>
+        <tr><td>8</td><td>Zonas de cobertura de RE e Industrial</td><td>Calificación de leads y SEO local</td><td>§07, F3</td></tr>
+        <tr><td>9</td><td>Capacitaciones: ¿pagas o gratuitas? ¿certifican?</td><td>Cambia el objetivo de la página: venta o reclutamiento</td><td>TN-03</td></tr>
+        <tr><td>10</td><td>¿Quién desarrolla y quién mantiene la web?</td><td>Determina el stack (§15)</td><td>Arranque técnico</td></tr>
+        <tr><td>11</td><td>¿Existe agenda para tasaciones? ¿Con qué SLA real de respuesta?</td><td>No se promete lo que no se cumple</td><td>RE-13, /gracias</td></tr>
+        <tr><td>12</td><td>Inventario de URLs y tráfico de la web actual</td><td>Sin esto no hay plan de migración</td><td>§15</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer class="end">
+    <p><strong>Insumos usados.</strong> Requerimientos de negocio provistos por la dirección de Krak (agosto 2026).
+      El borrador de Excalidraw no pudo abrirse: el archivo cifrado se descarga correctamente desde el servidor de
+      Excalidraw, pero la clave incluida en el enlace no lo autentica — hay que volver a compartir el link o exportar
+      el archivo <code>.excalidraw</code>. La web actual (krak.com.ar) no pudo consultarse desde este entorno por
+      restricciones de red. Ambos insumos pueden modificar la estructura propuesta y quedan pendientes de
+      incorporación.</p>
+  </footer>
+  </main>
+</div>
