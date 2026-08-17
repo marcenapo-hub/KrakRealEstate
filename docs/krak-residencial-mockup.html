@@ -1,0 +1,594 @@
+<title>Krak Residencial</title>
+<style>
+:root{
+  --navy:#08407C; --navy-d:#062F5B; --navy-2:#396696; --blue-3:#6a8cb0;
+  --blue-4:#9cb2ca; --blue-5:#cdd8e4; --blue-6:#e8eef5;
+  --sand:#B07D3F; --sand-l:#F3E9DC;
+  --ink:#16202B; --ink-2:#4A5765; --ink-3:#7A8797;
+  --paper:#FFFFFF; --paper-2:#F5F7F9; --rule:#DFE5EB;
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --wrap:1140px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.eyebrow{font-family:var(--sans);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);
+  font-size:15px;font-weight:600;padding:15px 26px;border-radius:2px;text-decoration:none;
+  border:1.5px solid transparent;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
+.btn-p{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-p:hover{background:var(--navy-d);border-color:var(--navy-d)}
+.btn-o{background:transparent;color:var(--navy);border-color:var(--navy)}
+.btn-o:hover{background:var(--blue-6)}
+.btn-w{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.btn-w:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.sec{padding:96px 0}
+.sec-t{font-size:clamp(28px,3.6vw,42px);line-height:1.1}
+.sec-s{margin-top:16px;color:var(--ink-2);max-width:62ch;font-size:17px}
+.ph{background:linear-gradient(135deg,#c8d2dc 0%,#9fb0c1 55%,#8397a9 100%);position:relative;overflow:hidden}
+.ph::after{content:attr(data-l);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.92);text-shadow:0 1px 3px rgba(0,0,0,.35)}
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--rule);backdrop-filter:blur(8px)}
+.nav{display:flex;align-items:center;gap:28px;height:76px}
+.logo{display:flex;align-items:baseline;gap:8px;font-family:var(--serif);font-size:26px;font-weight:700;color:var(--navy);letter-spacing:.02em}
+.logo small{font-family:var(--sans);font-size:8.5px;letter-spacing:.28em;color:var(--blue-3);font-weight:600}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;flex:1}
+.nav a{text-decoration:none;font-size:14.5px;color:var(--ink-2);font-weight:500}
+.nav a:hover{color:var(--navy)}
+.nav .tel{font-size:14.5px;color:var(--navy);font-weight:600;text-decoration:none}
+@media(max-width:900px){.nav ul,.nav .tel{display:none}}
+
+/* hero */
+.hero{position:relative;background:var(--navy);color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 78% 18%,rgba(156,178,202,.55) 0%,rgba(8,64,124,0) 58%),
+    linear-gradient(160deg,#0a4B8F 0%,#08407C 45%,#052A50 100%);
+  animation:pan 26s ease-in-out infinite alternate}
+@keyframes pan{from{transform:scale(1.06) translate3d(-1.5%,-1%,0)}to{transform:scale(1.12) translate3d(1.5%,1%,0)}}
+.hero .grain{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,25,48,.72),rgba(5,25,48,0) 55%)}
+.hero .wrap{position:relative;padding-top:120px;padding-bottom:104px}
+.hero h1{font-size:clamp(38px,5.6vw,68px);line-height:1.04;max-width:16ch}
+.hero .lede{margin-top:26px;max-width:56ch;color:var(--blue-5);font-size:18px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+.hero .fine{margin-top:26px;font-size:13.5px;color:var(--blue-4)}
+.videotag{position:absolute;right:28px;bottom:22px;font-family:var(--sans);font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(205,216,228,.75)}
+
+/* cifras */
+.cifras{background:var(--blue-6);border-bottom:1px solid var(--rule)}
+.cifras .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;padding:52px 0}
+.cifra b{display:block;font-family:var(--serif);font-size:40px;line-height:1;color:var(--navy)}
+.cifra span{display:block;margin-top:10px;font-size:14.5px;color:var(--navy-2);font-weight:600}
+.cifra em{display:block;margin-top:4px;font-size:12.5px;color:var(--blue-3);font-style:normal}
+
+/* bifurcacion */
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+@media(max-width:820px){.fork{grid-template-columns:1fr}}
+.fork a{display:block;padding:34px;text-decoration:none;border:1px solid var(--rule);background:var(--paper);transition:border-color .2s,transform .2s}
+.fork a:hover{border-color:var(--navy);transform:translateY(-2px)}
+.fork a.on{background:var(--blue-6);border-color:var(--navy)}
+.fork h3{font-size:23px;color:var(--navy)}
+.fork p{margin-top:10px;color:var(--ink-2);font-size:15px}
+.fork .go{margin-top:20px;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--navy)}
+
+/* plan */
+.plan{background:var(--paper-2)}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;margin-top:52px;background:var(--rule);border:1px solid var(--rule)}
+.step{background:var(--paper);padding:34px 30px 36px}
+.step .n{font-family:var(--serif);font-size:15px;color:var(--sand);letter-spacing:.08em;font-weight:700}
+.step h3{margin-top:14px;font-size:21px;color:var(--navy)}
+.step p{margin-top:12px;color:var(--ink-2);font-size:14.5px}
+.algo{margin-top:2px;background:var(--navy);color:#fff;padding:30px 34px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.algo b{font-family:var(--serif);font-size:20px;font-weight:700}
+.algo span{color:var(--blue-5);font-size:14.5px}
+.plazo{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:9px 16px;background:var(--sand-l);
+  border:1px solid #E2CDB0;color:#7A5320;font-size:13.5px;font-weight:600;border-radius:2px}
+
+/* antes/despues */
+.ba{background:var(--navy);color:#fff}
+.ba .sec-s{color:var(--blue-5)}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+.ba-card .ph{height:200px}
+.ba-card h4{margin-top:18px;font-size:18px;color:#fff}
+.ba-card p{margin-top:6px;color:var(--blue-4);font-size:14px}
+.ba-card .res{color:#fff;font-weight:600}
+
+/* tasacion */
+.tas{background:var(--blue-6);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tas .inner{max-width:820px;margin:0 auto;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px}
+.chip{background:var(--paper);border:1px solid var(--blue-4);padding:15px 26px;font-size:15px;
+  color:var(--navy);font-weight:600;cursor:pointer;border-radius:2px;transition:all .18s;font-family:var(--sans)}
+.chip:hover{border-color:var(--navy);background:var(--navy);color:#fff}
+.tas .row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+.tas input{flex:1;min-width:260px;padding:15px 18px;border:1px solid var(--blue-4);background:var(--paper);
+  font-size:15px;font-family:var(--sans);color:var(--ink);border-radius:2px}
+.tas input::placeholder{color:var(--ink-3)}
+.progress{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:30px;font-size:13px;color:var(--navy-2)}
+.progress .track{width:180px;height:5px;background:var(--blue-4);border-radius:3px;overflow:hidden}
+.progress .track i{display:block;width:20%;height:100%;background:var(--navy)}
+
+/* informe */
+.inf-grid{display:grid;grid-template-columns:400px 1fr;gap:64px;align-items:center}
+@media(max-width:900px){.inf-grid{grid-template-columns:1fr;gap:36px}}
+.doc{border:1px solid var(--rule);box-shadow:0 18px 44px -26px rgba(8,64,124,.42)}
+.doc .dh{background:var(--navy);color:#fff;padding:18px 22px;font-size:13.5px;letter-spacing:.02em}
+.doc .dr{display:flex;justify-content:space-between;padding:15px 22px;border-bottom:1px solid var(--rule);font-size:14px}
+.doc .dr:last-child{border-bottom:0}
+.doc .dr span{color:var(--ink-2)}
+.doc .dr b{color:var(--navy);font-weight:600}
+.doc .dn{padding:16px 22px;background:var(--paper-2);font-size:12.5px;color:var(--ink-3)}
+
+/* testimonios */
+.tst{background:var(--paper-2)}
+.tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;margin-top:48px}
+.tst-card{background:var(--paper);border:1px solid var(--rule);padding:32px}
+.tst-card q{display:block;font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink);quotes:none}
+.tst-card .who{display:flex;align-items:center;gap:14px;margin-top:26px}
+.tst-card .who .ph{width:46px;height:46px;border-radius:50%;flex-shrink:0}
+.tst-card .who b{display:block;font-size:14.5px;color:var(--navy)}
+.tst-card .who span{display:block;font-size:13px;color:var(--ink-3)}
+
+/* equipo */
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px;margin-top:48px}
+.eq .ph{height:250px}
+.eq h4{margin-top:16px;font-size:17px;color:var(--navy)}
+.eq p{font-size:13.5px;color:var(--ink-3);margin-top:3px}
+
+/* propiedades */
+.props{background:var(--paper-2)}
+.tabs{display:flex;gap:10px;margin-top:32px}
+.tabs input{position:absolute;opacity:0;pointer-events:none}
+.tabs label{padding:12px 24px;border:1px solid var(--rule);background:var(--paper);font-size:14.5px;
+  font-weight:600;color:var(--navy-2);cursor:pointer;border-radius:2px}
+#t1:checked~.tabs label[for="t1"],#t2:checked~.tabs label[for="t2"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pane{display:none;margin-top:32px}
+#t1:checked~#p1,#t2:checked~#p2{display:block}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.pcard{background:var(--paper);border:1px solid var(--rule)}
+.pcard .ph{height:150px}
+.pcard .b{padding:18px}
+.pcard h4{font-size:15.5px;color:var(--navy);font-family:var(--sans);font-weight:700}
+.pcard .zone{font-size:13px;color:var(--ink-3);margin-top:3px}
+.pcard .price{margin-top:12px;font-family:var(--serif);font-size:20px;color:var(--ink)}
+.props .out{display:flex;align-items:center;gap:18px;margin-top:36px;flex-wrap:wrap}
+.props .out small{color:var(--ink-3);font-size:13px}
+
+/* zocalo */
+.zoc{background:var(--blue-6)}
+.zoc .in{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;padding:52px 0}
+.zoc h3{font-size:26px;color:var(--navy)}
+.zoc p{margin-top:10px;color:var(--navy-2);max-width:52ch;font-size:15px}
+
+/* faq */
+details{border-bottom:1px solid var(--rule)}
+details summary{list-style:none;cursor:pointer;padding:24px 44px 24px 0;font-size:17.5px;
+  color:var(--navy);font-weight:600;position:relative}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";position:absolute;right:8px;top:20px;font-size:24px;color:var(--blue-3);font-weight:400}
+details[open] summary::after{content:"\2013"}
+details .a{padding:0 60px 26px 0;color:var(--ink-2);font-size:15.5px}
+.faq-wrap{margin-top:44px;border-top:1px solid var(--rule)}
+
+/* form */
+.form{background:var(--navy);color:#fff}
+.form .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media(max-width:900px){.form .grid{grid-template-columns:1fr;gap:36px}}
+.form h2{color:#fff}
+.form .sec-s{color:var(--blue-5)}
+.form .datos{margin-top:38px;font-size:14.5px;color:var(--blue-5);line-height:2}
+.form .datos b{color:#fff;display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.f-need{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.f-need span{padding:10px 20px;border:1px solid rgba(205,216,228,.45);font-size:14px;color:var(--blue-5);cursor:pointer;border-radius:2px}
+.f-need span.on{background:#fff;color:var(--navy);border-color:#fff;font-weight:600}
+.form input,.form textarea{width:100%;padding:15px 18px;margin-bottom:14px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(205,216,228,.35);color:#fff;font-size:15px;font-family:var(--sans);border-radius:2px}
+.form input::placeholder,.form textarea::placeholder{color:rgba(205,216,228,.75)}
+.form .consent{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--blue-5);margin:8px 0 22px}
+.form .consent input{width:18px;height:18px;margin:2px 0 0}
+
+/* footer */
+footer.end{background:var(--navy-d);color:var(--blue-5);padding:64px 0 30px;font-size:14px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+@media(max-width:820px){.fgrid{grid-template-columns:1fr 1fr}}
+footer.end h5{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:600;font-family:var(--sans)}
+footer.end ul{list-style:none;margin:0;padding:0}
+footer.end li{margin-bottom:10px}
+footer.end a{text-decoration:none}
+footer.end a:hover{color:#fff}
+.legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(156,178,202,.25);font-size:12.5px;color:var(--blue-3)}
+
+/* sticky mobile */
+.sticky{position:fixed;left:0;right:0;bottom:0;display:none;gap:10px;padding:12px;
+  background:rgba(255,255,255,.97);border-top:1px solid var(--rule);z-index:60}
+.sticky .btn{flex:1;padding:14px}
+@media(max-width:720px){.sticky{display:flex}body{padding-bottom:78px}}
+
+/* notas */
+.notas{background:#FFF8F5;border-top:4px solid var(--sand)}
+.notas h2{color:#8A4B18}
+.nlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:40px}
+.ncard{background:#fff;border:1px solid #EBD9C8;padding:24px}
+.ncard h4{font-family:var(--sans);font-size:14px;letter-spacing:.02em;color:#8A4B18}
+.ncard p{margin-top:10px;font-size:14px;color:var(--ink-2)}
+.inv{margin-top:44px;background:#fff;border:1px solid #E9C9C9;padding:28px 30px}
+.inv h4{font-family:var(--sans);font-size:14px;color:#A02020;letter-spacing:.02em}
+.inv ul{margin:14px 0 0;padding-left:20px;columns:2;column-gap:40px}
+@media(max-width:760px){.inv ul{columns:1}}
+.inv li{font-size:14px;color:var(--ink-2);margin-bottom:8px;break-inside:avoid}
+</style>
+
+<header class="top">
+  <nav class="nav wrap">
+    <a class="logo" href="#">KRAK <small>REAL ESTATE</small></a>
+    <ul>
+      <li><a href="#vender">Vender</a></li>
+      <li><a href="#tasar">Tasar</a></li>
+      <li><a href="#propiedades">Propiedades</a></li>
+      <li><a href="#propiedades">Emprendimientos</a></li>
+      <li><a href="#equipo">Nosotros</a></li>
+    </ul>
+    <a class="tel" href="tel:1139882095">11 3988-2095</a>
+    <a class="btn btn-p" href="#tasar">Tasar mi propiedad</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="bg"></div><div class="grain"></div>
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--blue-4)">Zona Norte · Martínez · Acassuso · San Isidro · Beccar</p>
+    <h1>Tu propiedad merece un plan de acción, no un aviso más.</h1>
+    <p class="lede">Fotografía profesional, drone, recorridos 360°, home staging y máxima exposición en
+      portales. Un plan de cuatro meses, con informe quincenal para que sepas siempre en qué estado está tu venta.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="#tasar" style="background:#fff;color:var(--navy);border-color:#fff">Tasar mi propiedad</a>
+      <a class="btn btn-w" href="#vender">Cómo vendemos</a>
+    </div>
+    <p class="fine">Tasación sin costo · Te respondemos dentro de las 2 horas hábiles</p>
+  </div>
+  <span class="videotag">Video de drone en loop, sin audio</span>
+</section>
+
+<section class="cifras">
+  <div class="wrap grid">
+    <div class="cifra"><b>62 días</b><span>promedio hasta la reserva</span><em>Mercado Zona Norte: 118 días</em></div>
+    <div class="cifra"><b>96%</b><span>del precio de publicación</span><em>Promedio de cierre 2025</em></div>
+    <div class="cifra"><b>184</b><span>operaciones cerradas</span><em>Últimos 12 meses</em></div>
+    <div class="cifra"><b>4 meses</b><span>de plan de acción</span><em>Con informe quincenal</em></div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <h2 class="sec-t">¿Con qué viniste?</h2>
+  <div class="fork">
+    <a class="on" href="#tasar">
+      <h3>Quiero vender o tasar</h3>
+      <p>Te decimos cuánto vale tu propiedad hoy y exactamente cómo la vamos a vender.</p>
+      <p class="go">Empezar mi tasación →</p>
+    </a>
+    <a href="#propiedades">
+      <h3>Estoy buscando mi hogar</h3>
+      <p>Mirá las propiedades y los emprendimientos que tenemos disponibles en Zona Norte.</p>
+      <p class="go">Ver propiedades →</p>
+    </a>
+  </div>
+</section>
+
+<section class="sec plan" id="vender">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sand)">Plan de acción comercial</p>
+    <h2 class="sec-t" style="margin-top:14px">¿Pensando en vender tu propiedad?</h2>
+    <p class="sec-s">Esto es lo que hacemos, en este orden, apenas firmamos. No es una lista de servicios
+      opcionales: es el plan que aplicamos en los primeros cuatro meses de trabajo.</p>
+    <p class="plazo">Todo incluido en el plan — sin costo adicional para el propietario</p>
+
+    <div class="plan-grid">
+      <div class="step"><p class="n">01</p><h3>Máxima exposición en portales</h3>
+        <p>Avisos Premier Súper Destacados, con SEO y ficha 100% completa. Tu propiedad aparece arriba,
+        donde efectivamente se busca.</p></div>
+      <div class="step"><p class="n">02</p><h3>Fotos y video de alta calidad</h3>
+        <p>Composición de imagen profesional que garantiza la mejor exposición posible ante los
+        potenciales compradores.</p></div>
+      <div class="step"><p class="n">03</p><h3>Recorridos 360°</h3>
+        <p>El interesado explora la propiedad como si estuviera físicamente ahí, con una visión detallada
+        y realista de cada espacio.</p></div>
+      <div class="step"><p class="n">04</p><h3>Vuelos de drone</h3>
+        <p>Permiten dimensionar el tamaño real de la propiedad, su ubicación, morfología y suelo. Decisivo
+        en lotes y casas con terreno.</p></div>
+      <div class="step"><p class="n">05</p><h3>Exposición en redes sociales</h3>
+        <p>Edición de material con un perfil adaptado a cada red, para ampliar el alcance de las
+        publicaciones y lograr un posicionamiento óptimo.</p></div>
+      <div class="step"><p class="n">06</p><h3>Home staging</h3>
+        <p>Diseño interior y puesta en escena de los ambientes, destacando el inmueble y captando la
+        atención de los potenciales compradores.</p></div>
+    </div>
+    <div class="algo">
+      <b>Los avisos 100% completos son premiados por el algoritmo de los portales.</b>
+      <span>Por eso cargamos cada ficha entera: medidas, expensas, plano, orientación y amenities.</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec ba">
+  <div class="wrap">
+    <h2 class="sec-t">Mirá la diferencia</h2>
+    <p class="sec-s">La misma propiedad, antes y después de pasar por el plan de acción. Es la razón por la
+      que una casa se reserva en semanas y otra queda meses publicada.</p>
+    <div class="ba-grid">
+      <div class="ba-card"><div class="ph" data-l="Antes / Después — deslizable"></div>
+        <h4>Casa en Acassuso</h4><p><span class="res">Reserva en 41 días</span> · 8 meses publicada antes</p></div>
+      <div class="ba-card"><div class="ph" data-l="Fotografía profesional"></div>
+        <h4>Departamento en Martínez</h4><p><span class="res">Reserva en 29 días</span> · 3 ambientes</p></div>
+      <div class="ba-card"><div class="ph" data-l="Home staging"></div>
+        <h4>PH en San Isidro</h4><p><span class="res">Reserva en 58 días</span> · Con staging completo</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tas" id="tasar">
+  <div class="wrap inner">
+    <h2 class="sec-t">¿Cuánto vale tu propiedad hoy?</h2>
+    <p class="sec-s" style="margin-left:auto;margin-right:auto">Empezá por el paso 1. Son cinco preguntas y
+      menos de dos minutos. Después te llamamos con un rango de precio fundamentado, no con una opinión.</p>
+    <div class="chips">
+      <button class="chip">Departamento</button><button class="chip">Casa</button>
+      <button class="chip">PH</button><button class="chip">Lote</button>
+      <button class="chip">Local u oficina</button><button class="chip">Otro</button>
+    </div>
+    <div class="row">
+      <input type="text" placeholder="Barrio o dirección aproximada" aria-label="Barrio o dirección">
+      <button class="btn btn-p">Continuar</button>
+    </div>
+    <div class="progress"><span>Paso 1 de 5</span><span class="track"><i></i></span><span>Sin costo</span></div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="inf-grid">
+    <div class="doc">
+      <div class="dh">Informe quincenal · Casa en Acassuso</div>
+      <div class="dr"><span>Visitas realizadas</span><b>7</b></div>
+      <div class="dr"><span>Consultas recibidas</span><b>23</b></div>
+      <div class="dr"><span>Origen principal</span><b>Portal + Instagram</b></div>
+      <div class="dr"><span>Tiempo publicada</span><b>32 días</b></div>
+      <div class="dr"><span>Recomendación</span><b>Sostener precio</b></div>
+      <div class="dn">Próximo informe: 15 de septiembre · Agente asignado: Nombre Apellido</div>
+    </div>
+    <div>
+      <h2 class="sec-t">Nunca más “no hay novedades”</h2>
+      <p class="sec-s">Cada quince días recibís un informe con las visitas, las consultas, de dónde viene el
+        interés y qué recomendamos hacer con el precio y la estrategia.</p>
+      <p class="sec-s" style="margin-top:18px">Es el mismo informe con el que trabaja tu agente. No hay una
+        versión para adentro y otra para el propietario.</p>
+      <p style="margin-top:30px"><a class="btn btn-o" href="#tasar">Quiero este seguimiento</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tst">
+  <div class="wrap">
+    <h2 class="sec-t">Propietarios que ya vendieron con Krak</h2>
+    <div class="tst-grid">
+      <div class="tst-card">
+        <q>“Estuvo ocho meses publicada con otra inmobiliaria. Con Krak se reservó en 41 días, al 97% de lo
+        que pedíamos.”</q>
+        <div class="who"><div class="ph" data-l=""></div><div><b>Marcela D.</b><span>Casa en Acassuso</span></div></div>
+      </div>
+      <div class="tst-card">
+        <q>“Lo que más valoré fue el informe. Sabía todo el tiempo qué estaba pasando, sin tener que llamar
+        para que me contaran.”</q>
+        <div class="who"><div class="ph" data-l=""></div><div><b>Familia Rossi</b><span>Departamento en Martínez</span></div></div>
+      </div>
+      <div class="tst-card">
+        <q>“El video con drone definió la visita del que terminó comprando. Vio el terreno completo antes de
+        venir.”</q>
+        <div class="who"><div class="ph" data-l=""></div><div><b>Jorge V.</b><span>Lote en Beccar</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap eq" id="equipo">
+  <h2 class="sec-t">Quién te va a atender</h2>
+  <p class="sec-s">Un agente asignado a tu propiedad, especializado en tu zona. No un conmutador: un nombre,
+    un teléfono y una cara.</p>
+  <div class="eq-grid">
+    <div><div class="ph" data-l="Retrato"></div><h4>Nombre Apellido</h4><p>Martínez y Acassuso · Mat. XXXX</p></div>
+    <div><div class="ph" data-l="Retrato"></div><h4>Nombre Apellido</h4><p>San Isidro y Beccar · Mat. XXXX</p></div>
+    <div><div class="ph" data-l="Retrato"></div><h4>Nombre Apellido</h4><p>Vicente López y Olivos · Mat. XXXX</p></div>
+    <div><div class="ph" data-l="Retrato"></div><h4>Nombre Apellido</h4><p>Tigre y Nordelta · Mat. XXXX</p></div>
+  </div>
+</section>
+
+<section class="sec props" id="propiedades">
+  <div class="wrap">
+    <h2 class="sec-t">¿Buscando tu próximo hogar?</h2>
+    <p class="sec-s">Una selección de lo que tenemos disponible. El listado completo, con buscador y filtros,
+      está en nuestro sitio de propiedades.</p>
+    <input type="radio" name="tab" id="t1" checked><input type="radio" name="tab" id="t2">
+    <div class="tabs"><label for="t1">Propiedades</label><label for="t2">Emprendimientos</label></div>
+    <div class="pane" id="p1">
+      <div class="pgrid">
+        <div class="pcard"><div class="ph" data-l="Foto"></div><div class="b"><h4>Casa 4 ambientes</h4>
+          <p class="zone">Acassuso · 320 m²</p><p class="price">USD 385.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Foto"></div><div class="b"><h4>Departamento 3 ambientes</h4>
+          <p class="zone">Martínez · 92 m²</p><p class="price">USD 189.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Foto"></div><div class="b"><h4>PH 3 ambientes</h4>
+          <p class="zone">San Isidro · 110 m²</p><p class="price">USD 165.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Foto"></div><div class="b"><h4>Casa 5 ambientes</h4>
+          <p class="zone">Beccar · 410 m²</p><p class="price">USD 520.000</p></div></div>
+      </div>
+    </div>
+    <div class="pane" id="p2">
+      <p style="font-family:var(--serif);font-size:24px;color:var(--navy);margin-bottom:24px">Un nuevo lugar, un nuevo comienzo</p>
+      <div class="pgrid">
+        <div class="pcard"><div class="ph" data-l="Render"></div><div class="b"><h4>Edificio Dardo Rocha</h4>
+          <p class="zone">Martínez · Entrega 2027</p><p class="price">Desde USD 145.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Render"></div><div class="b"><h4>Barrio cerrado</h4>
+          <p class="zone">Tigre · Lotes desde 600 m²</p><p class="price">Desde USD 98.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Render"></div><div class="b"><h4>Torre San Isidro</h4>
+          <p class="zone">San Isidro · En pozo</p><p class="price">Desde USD 172.000</p></div></div>
+        <div class="pcard"><div class="ph" data-l="Render"></div><div class="b"><h4>Condominio Beccar</h4>
+          <p class="zone">Beccar · Entrega 2026</p><p class="price">Desde USD 210.000</p></div></div>
+      </div>
+    </div>
+    <div class="out">
+      <a class="btn btn-o" href="#" rel="noopener">Ver todas las propiedades →</a>
+      <small>Te lleva a nuestro buscador completo, con filtros por zona, precio y tipología.</small>
+    </div>
+  </div>
+</section>
+
+<section class="zoc">
+  <div class="wrap in">
+    <div>
+      <h3>¿No encontraste tu lugar?</h3>
+      <p>Contanos qué estás buscando y te avisamos antes de que salga publicado. Trabajamos propiedades que
+        todavía no llegaron a los portales.</p>
+    </div>
+    <a class="btn btn-p" href="#contacto">Dejar mi búsqueda</a>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <h2 class="sec-t">Lo que todo propietario pregunta</h2>
+  <div class="faq-wrap">
+    <details open><summary>¿Cuánto cobran de honorarios y quién los paga?</summary>
+      <p class="a">A completar con el dato real de Krak. Es la primera pregunta que se hace un propietario y
+        no publicarla lo manda a averiguarlo a otra inmobiliaria.</p></details>
+    <details><summary>¿Piden exclusividad?</summary>
+      <p class="a">A definir. Si la respuesta es sí, hay que justificarla acá mismo: qué recibe el propietario
+        a cambio y por cuánto tiempo.</p></details>
+    <details><summary>¿Quién paga las fotos, el drone y el home staging?</summary>
+      <p class="a">Están incluidos en el plan de acción comercial, sin costo adicional para el propietario.
+        <em>(Asumido — confirmar.)</em></p></details>
+    <details><summary>¿Cuánto tarda hoy una venta en Zona Norte?</summary>
+      <p class="a">Entre 60 y 120 días según tipología, estado y precio de salida. Una propiedad bien
+        posicionada desde el día uno se reserva en la mitad de tiempo que una que empieza cara y baja después.</p></details>
+    <details><summary>¿Qué pasa si en cuatro meses no se vendió?</summary>
+      <p class="a">Revisamos juntos precio y estrategia con los datos del informe: visitas, consultas y
+        comparables de la zona. Sin costo y sin renovación automática.</p></details>
+    <details><summary>¿Qué documentación necesito para empezar?</summary>
+      <p class="a">Para tasar, con la dirección y los metros alcanza. Para publicar: escritura o boleto,
+        plano, última expensa y reglamento de copropiedad si es PH o departamento.</p></details>
+  </div>
+</section>
+
+<section class="sec form" id="contacto">
+  <div class="wrap grid">
+    <div>
+      <h2 class="sec-t">Dejanos tus datos</h2>
+      <p class="sec-s">Un agente de tu zona te contacta dentro de las 2 horas hábiles. Sin llamados
+        automáticos y sin pasarte de área en área.</p>
+      <div class="datos">
+        <b>Oficina</b>
+        Dardo Rocha 2070, 1° piso<br>Martínez, Provincia de Buenos Aires<br>
+        11 3988-2095<br>info@krak.com.ar
+      </div>
+    </div>
+    <div>
+      <p style="font-size:13.5px;color:var(--blue-5);margin-bottom:12px">¿En qué te podemos ayudar?</p>
+      <div class="f-need"><span class="on">Vender</span><span>Tasar</span><span>Comprar</span><span>Alquilar</span></div>
+      <input type="text" placeholder="Nombre y apellido" aria-label="Nombre y apellido">
+      <input type="tel" placeholder="Número de contacto" aria-label="Número de contacto">
+      <input type="email" placeholder="Mail" aria-label="Mail">
+      <textarea rows="3" placeholder="Mensaje (opcional)" aria-label="Mensaje"></textarea>
+      <label class="consent"><input type="checkbox"> Acepto la política de privacidad y el tratamiento de
+        mis datos para ser contactado.</label>
+      <button class="btn btn-p" style="background:#fff;color:var(--navy);border-color:#fff;width:100%">Enviar</button>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="#" style="color:#fff">KRAK <small style="color:var(--blue-4)">REAL ESTATE</small></a>
+        <p style="margin-top:20px;line-height:1.9">Dardo Rocha 2070, 1° piso<br>Martínez, Prov. de Buenos Aires<br>
+          11 3988-2095<br>info@krak.com.ar</p>
+      </div>
+      <div><h5>Vender</h5><ul>
+        <li><a href="#tasar">Tasar mi propiedad</a></li><li><a href="#vender">Plan de acción</a></li>
+        <li><a href="#">Casos de venta</a></li></ul></div>
+      <div><h5>Comprar</h5><ul>
+        <li><a href="#propiedades">Propiedades</a></li><li><a href="#propiedades">Emprendimientos</a></li>
+        <li><a href="#contacto">Dejar mi búsqueda</a></li></ul></div>
+      <div><h5>Grupo Krak</h5><ul>
+        <li><a href="#">Krak Industrial</a></li><li><a href="#">Krak Studio</a></li>
+        <li><a href="#">Trabajá con nosotros</a></li></ul></div>
+    </div>
+    <p class="legal">Krak Real Estate · CUIT XX-XXXXXXXX-X · Mat. XXXX (colegio a confirmar) ·
+      Política de privacidad · Términos y condiciones</p>
+  </div>
+</footer>
+
+<div class="sticky">
+  <a class="btn btn-p" href="#tasar">Tasar mi propiedad</a>
+  <a class="btn btn-o" href="#contacto">WhatsApp</a>
+</div>
+
+<section class="sec notas">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sand)">Para el equipo — no forma parte de la página</p>
+    <h2 class="sec-t" style="margin-top:14px">Decisiones de esta propuesta</h2>
+    <p class="sec-s">Qué cambié respecto del borrador de Excalidraw y por qué.</p>
+    <div class="nlist">
+      <div class="ncard"><h4>El orden de la página</h4><p>El borrador abría con los carruseles de compra y
+        dejaba “¿Pensando en vender?” al 60% del scroll. Si el problema de negocio es captar, el propietario
+        no puede entrar quinto. Ahora la página entera trabaja para él y el comprador se resuelve en la
+        bifurcación del primer scroll.</p></div>
+      <div class="ncard"><h4>El plan de acción, al centro</h4><p>Eran seis cuadrados numerados y vacíos. Es
+        el mejor argumento de captación que tiene Krak y no estaba escrito en ninguna parte. Ahora es el
+        bloque principal, con el texto del PDF y una promesa temporal: cuatro meses.</p></div>
+      <div class="ncard"><h4>La frase del algoritmo</h4><p>Estaba escondida al final del PDF. La subo a
+        cierre del bloque: es información que el propietario no conoce y posiciona a Krak como el que sabe
+        cómo funcionan los portales.</p></div>
+      <div class="ncard"><h4>Los carruseles</h4><p>Reemplazados por una selección curada con dos solapas
+        (Propiedades y Emprendimientos). Un carrusel automático se ignora, esconde la mitad del contenido y
+        empuja hacia abajo todo lo que convierte. Sigue sin haber buscador: el listado vive en Tokko.</p></div>
+      <div class="ncard"><h4>El zócalo de tasación</h4><p>Era “Tasá tu casa + Contactanos”. Ahora es el paso
+        1 del formulario, ya visible en la página. Un botón pide una decisión; un paso empezado genera
+        compromiso. Es la mayor diferencia de conversión de toda la página.</p></div>
+      <div class="ncard"><h4>El informe quincenal</h4><p>No existía en el borrador. Ataca el reclamo número
+        uno del propietario: la inmobiliaria que desaparece. Si hoy ese informe no existe, el bloque no se
+        publica hasta que exista.</p></div>
+      <div class="ncard"><h4>El titular</h4><p>“KRAK Residencial” describe quién sos, no qué gana el
+        propietario. El nombre ya está en el logo; el titular tiene que vender el método.</p></div>
+      <div class="ncard"><h4>El acento arena</h4><p>La paleta es monocroma y no tiene un color que empuje la
+        conversión. Sumé un arena (#B07D3F) para numerales, foco y detalles premium. Es una propuesta: si el
+        manual de marca no lo admite, se resuelve con el navy más oscuro.</p></div>
+      <div class="ncard"><h4>Dividir la parte de compra</h4><p>Tu nota proponía separar Comercial /
+        Residencial / Emprendimientos. En esta web —la residencial— quedan dos solapas: Propiedades y
+        Emprendimientos. Lo comercial se deriva a la unidad que corresponda.</p></div>
+    </div>
+
+    <div class="inv">
+      <h4>Datos inventados — hay que corregirlos antes de mostrar esto a nadie</h4>
+      <ul>
+        <li>62 días promedio hasta la reserva</li>
+        <li>118 días de promedio del mercado Zona Norte</li>
+        <li>96% del precio de publicación</li>
+        <li>184 operaciones cerradas en 12 meses</li>
+        <li>Los tres testimonios y sus cifras</li>
+        <li>Los días de reserva de antes/después (41, 29 y 58)</li>
+        <li>Las cuatro zonas asignadas al equipo</li>
+        <li>Precios, tipologías y emprendimientos de las fichas</li>
+        <li>Cuatro de las seis respuestas de la FAQ</li>
+        <li>Que la producción está incluida sin costo</li>
+        <li>El SLA de 2 horas hábiles</li>
+        <li>Matrícula y colegio profesional</li>
+      </ul>
+    </div>
+  </div>
+</section>
