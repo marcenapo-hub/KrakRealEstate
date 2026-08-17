@@ -467,9 +467,9 @@ function keyBar(s, y, label, text, color) {
     fontFace: F, fontSize: 12.5, bold: true, color: BLUE,
   });
   const casos = [
-    { v: "1,5%", t: "ITI", d: "Comprado hasta el 31/12/2017. Se calcula sobre el precio de venta, no sobre la ganancia." },
-    { v: "15%", t: "IMPUESTO CEDULAR", d: "Comprado desde el 1/1/2018. Sobre la ganancia: precio menos costo actualizado y gastos." },
-    { v: "Exenta", t: "CASA-HABITACIÓN", d: "La vivienda única de residencia permanente no paga, en ninguno de los dos regímenes." },
+    { t: "COMPRADO HASTA EL 31/12/2017", v: "No paga", d: "El ITI de 1,5% quedó derogado por la Ley 27.743 en julio de 2024." },
+    { t: "COMPRADO DESDE EL 1/1/2018", v: "15%", d: "Impuesto cedular sobre la ganancia: precio menos costo actualizado y gastos." },
+    { t: "CASA-HABITACIÓN", v: "Exenta", d: "La vivienda única de residencia permanente no tributa el cedular." },
   ];
   casos.forEach((c, i) => {
     const x = L + i * 3.02;
@@ -493,7 +493,7 @@ function keyBar(s, y, label, text, color) {
   });
 
   s.addNotes(
-    "Ganancias no es una alícuota única, y esa es la confusión más común. En sociedades son tres tramos (25%, 30% y 35%) que se aplican solo sobre el excedente de cada uno, más un 7% si la utilidad se distribuye como dividendo; si se reinvierte, ese 7% no se paga. En personas humanas es una escala de nueve tramos del 5% al 35%. Lo más útil para el equipo es el tercer bloque: al vender un inmueble, la fecha de compra define todo. Hasta el 31/12/2017 corresponde ITI, 1,5% sobre el precio de venta, se haya ganado o perdido. Desde el 1/1/2018 es el impuesto cedular del 15%, pero sobre la ganancia real. Y la casa-habitación —vivienda única de residencia permanente— está exenta en los dos casos. Los montos de los tramos en pesos se actualizan por IPC todos los años, así que nunca hay que citarlos de memoria."
+    "Ganancias no es una alícuota única, y esa es la confusión más común. En sociedades son tres tramos (25%, 30% y 35%) que se aplican solo sobre el excedente de cada uno, más un 7% si la utilidad se distribuye como dividendo; si se reinvierte, ese 7% no se paga. En personas humanas es una escala de nueve tramos del 5% al 35%. Lo más útil para el equipo es el tercer bloque: al vender un inmueble, la fecha de compra define todo. Si se compró hasta el 31/12/2017 hoy no se paga nada: el ITI, que era el 1,5% sobre el precio de venta, fue derogado por el artículo 67 de la Ley 27.743 en julio de 2024, y el escribano ya no retiene por ese concepto. Si se compró desde el 1/1/2018 corresponde el impuesto cedular del 15%, pero sobre la ganancia real, no sobre el precio. Y la casa-habitación —vivienda única de residencia permanente— está exenta del cedular. Los montos de los tramos en pesos se actualizan por IPC todos los años, así que nunca hay que citarlos de memoria."
   );
 }
 
