@@ -405,7 +405,99 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-/* ============================== 8. INGRESOS BRUTOS Y CONVENIO MULTILATERAL */
+/* ================================================ 8. ESCALAS DE GANANCIAS */
+{
+  const s = contentSlide(
+    "Las escalas de Ganancias",
+    "Son dos regímenes distintos, y para la venta de un inmueble hay un tercero."
+  );
+
+  // Sociedades
+  round(s, { x: L, y: 1.28, w: 4.32, h: 1.9, fill: { color: BLUE } });
+  s.addText("Sociedades", {
+    x: L + 0.28, y: 1.44, w: 3.7, h: 0.32, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 17, bold: true, color: W,
+  });
+  s.addText("Tres tramos sobre la ganancia neta acumulada. Cada alícuota se aplica solo sobre el excedente del tramo.", {
+    x: L + 0.28, y: 1.8, w: 3.78, h: 0.44, margin: 0,
+    fontFace: F, fontSize: 10, color: "DCE6F2", lineSpacing: 13,
+  });
+  [["25%", "1.er tramo"], ["30%", "2.º tramo"], ["35%", "3.er tramo"]].forEach((t, i) => {
+    const x = L + 0.28 + i * 1.28;
+    s.addText(t[0], {
+      x, y: 2.28, w: 1.2, h: 0.4, margin: 0, valign: "middle",
+      fontFace: F, fontSize: 22, bold: true, color: W,
+    });
+    s.addText(t[1], {
+      x, y: 2.68, w: 1.2, h: 0.22, margin: 0, valign: "middle",
+      fontFace: F, fontSize: 9, color: "C9D6E6",
+    });
+  });
+  s.addText("+ 7% adicional si la utilidad se distribuye como dividendo.", {
+    x: L + 0.28, y: 2.86, w: 3.78, h: 0.24, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 9.5, bold: true, color: W,
+  });
+
+  // Personas humanas
+  round(s, { x: L + 4.52, y: 1.28, w: 4.32, h: 1.9, fill: { color: GRAYC } });
+  s.addText("Personas humanas", {
+    x: L + 4.8, y: 1.44, w: 3.7, h: 0.32, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 17, bold: true, color: W,
+  });
+  s.addText("Sueldos en relación de dependencia, lo que factura un agente como autónomo y los alquileres cobrados.", {
+    x: L + 4.8, y: 1.8, w: 3.78, h: 0.44, margin: 0,
+    fontFace: F, fontSize: 10, color: "F0F2F5", lineSpacing: 13,
+  });
+  s.addText("5% → 35%", {
+    x: L + 4.8, y: 2.28, w: 2.2, h: 0.42, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 24, bold: true, color: W,
+  });
+  s.addText("Nueve tramos progresivos", {
+    x: L + 4.8, y: 2.7, w: 2.4, h: 0.22, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 9, color: "E4E7EC",
+  });
+  s.addText("ARCA publica una tabla para enero–junio y otra para julio–diciembre.", {
+    x: L + 6.9, y: 2.28, w: 1.7, h: 0.66, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 9, color: "F0F2F5", lineSpacing: 11,
+  });
+
+  // Venta de inmuebles
+  s.addText("Cuando se vende un inmueble, la fecha de compra define el impuesto", {
+    x: L, y: 3.26, w: CW, h: 0.28, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 12.5, bold: true, color: BLUE,
+  });
+  const casos = [
+    { v: "1,5%", t: "ITI", d: "Comprado hasta el 31/12/2017. Se calcula sobre el precio de venta, no sobre la ganancia." },
+    { v: "15%", t: "IMPUESTO CEDULAR", d: "Comprado desde el 1/1/2018. Sobre la ganancia: precio menos costo actualizado y gastos." },
+    { v: "Exenta", t: "CASA-HABITACIÓN", d: "La vivienda única de residencia permanente no paga, en ninguno de los dos regímenes." },
+  ];
+  casos.forEach((c, i) => {
+    const x = L + i * 3.02;
+    round(s, { x, y: 3.6, w: 2.8, h: 1.3, fill: { color: "F2F4F7" } });
+    s.addText(c.t, {
+      x: x + 0.22, y: 3.72, w: 2.4, h: 0.2, margin: 0, valign: "middle",
+      fontFace: F, fontSize: 8.5, bold: true, color: MUTED, charSpacing: 0.8,
+    });
+    s.addText(c.v, {
+      x: x + 0.22, y: 3.94, w: 2.4, h: 0.38, margin: 0, valign: "middle",
+      fontFace: F, fontSize: 20, bold: true, color: BLUE,
+    });
+    s.addText(c.d, {
+      x: x + 0.22, y: 4.36, w: 2.44, h: 0.46, margin: 0,
+      fontFace: F, fontSize: 9.5, color: INK, lineSpacing: 12,
+    });
+  });
+  s.addText("Las alícuotas las fija la ley, pero los montos de cada tramo se actualizan todos los años: confirmar siempre los valores vigentes en arca.gob.ar antes de hacer un número.", {
+    x: L, y: 4.99, w: CW, h: 0.3, margin: 0, valign: "middle",
+    fontFace: F, fontSize: 9.5, italic: true, color: MUTED,
+  });
+
+  s.addNotes(
+    "Ganancias no es una alícuota única, y esa es la confusión más común. En sociedades son tres tramos (25%, 30% y 35%) que se aplican solo sobre el excedente de cada uno, más un 7% si la utilidad se distribuye como dividendo; si se reinvierte, ese 7% no se paga. En personas humanas es una escala de nueve tramos del 5% al 35%. Lo más útil para el equipo es el tercer bloque: al vender un inmueble, la fecha de compra define todo. Hasta el 31/12/2017 corresponde ITI, 1,5% sobre el precio de venta, se haya ganado o perdido. Desde el 1/1/2018 es el impuesto cedular del 15%, pero sobre la ganancia real. Y la casa-habitación —vivienda única de residencia permanente— está exenta en los dos casos. Los montos de los tramos en pesos se actualizan por IPC todos los años, así que nunca hay que citarlos de memoria."
+  );
+}
+
+/* ============================== 9. INGRESOS BRUTOS Y CONVENIO MULTILATERAL */
 {
   const s = contentSlide(
     "Ingresos Brutos: el que más duele",
@@ -461,7 +553,7 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-/* ============================================================= 9. SELLOS */
+/* ============================================================ 10. SELLOS */
 {
   const s = contentSlide(
     "Sellos: el impuesto de la firma",
@@ -507,7 +599,7 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-/* ========================================= 10. IMPUESTOS DEL INMUEBLE */
+/* ======================================== 11. IMPUESTOS DEL INMUEBLE */
 {
   const s = contentSlide(
     "Los impuestos del inmueble",
@@ -542,7 +634,7 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-/* ==================================== 11. CONTROLES Y ERRORES CAROS */
+/* =================================== 12. CONTROLES Y ERRORES CAROS */
 {
   const s = contentSlide(
     "El control de todos los días",
@@ -605,7 +697,7 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-/* =========================================================== 12. CIERRE */
+/* =========================================================== 13. CIERRE */
 {
   const s = pres.addSlide();
   s.background = { path: A("bg_close.png") };
