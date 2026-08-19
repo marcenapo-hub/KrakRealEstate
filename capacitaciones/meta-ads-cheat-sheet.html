@@ -1,0 +1,876 @@
+<title>Meta Ads en una página</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+
+<style>
+:root{
+  --paper:#EFEFF3;
+  --surface:#FFFFFF;
+  --surface-2:#F7F7FA;
+  --ink:#17171F;
+  --ink-2:#4A4A58;
+  --ink-3:#787888;
+  --line:#DCDCE4;
+  --line-strong:#B7B7C4;
+  --accent:#0B6E78;
+  --accent-ink:#075158;
+  --accent-soft:#DEEFF0;
+  --warn:#8F5408;
+  --warn-soft:#F6EBDA;
+  --bad:#9E2F45;
+  --bad-soft:#F8E5E9;
+  --good:#1F6244;
+  --good-soft:#E0EFE7;
+  --shadow:0 1px 0 rgba(23,23,31,.04);
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111117;
+    --surface:#1A1A22;
+    --surface-2:#22222D;
+    --ink:#ECECF2;
+    --ink-2:#B3B3C1;
+    --ink-3:#85859A;
+    --line:#2E2E3A;
+    --line-strong:#454553;
+    --accent:#55C3CE;
+    --accent-ink:#8FDCE4;
+    --accent-soft:#123138;
+    --warn:#E2A94F;
+    --warn-soft:#372B14;
+    --bad:#F08497;
+    --bad-soft:#3A1A22;
+    --good:#6FCB9A;
+    --good-soft:#15301F;
+    --shadow:0 1px 0 rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111117;
+  --surface:#1A1A22;
+  --surface-2:#22222D;
+  --ink:#ECECF2;
+  --ink-2:#B3B3C1;
+  --ink-3:#85859A;
+  --line:#2E2E3A;
+  --line-strong:#454553;
+  --accent:#55C3CE;
+  --accent-ink:#8FDCE4;
+  --accent-soft:#123138;
+  --warn:#E2A94F;
+  --warn-soft:#372B14;
+  --bad:#F08497;
+  --bad-soft:#3A1A22;
+  --good:#6FCB9A;
+  --good-soft:#15301F;
+  --shadow:0 1px 0 rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:15.5px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:28px;
+  align-items:end;
+  padding:52px 0 26px;
+  border-bottom:2px solid var(--ink);
+}
+.eyebrow{
+  font-family:var(--f-display);
+  font-stretch:118%;
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 10px;
+}
+h1{
+  font-family:var(--f-display);
+  font-stretch:112%;
+  font-weight:700;
+  font-size:clamp(34px,5.4vw,58px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin:0;
+  text-wrap:balance;
+}
+.deck{
+  margin:14px 0 0;
+  max-width:56ch;
+  font-size:17px;
+  color:var(--ink-2);
+}
+.deck b{color:var(--ink);font-weight:600}
+.stamp{
+  font-family:var(--f-mono);
+  font-size:11.5px;
+  line-height:1.7;
+  color:var(--ink-3);
+  text-align:right;
+  white-space:nowrap;
+}
+.stamp span{color:var(--ink-2)}
+
+/* ---------- index ---------- */
+nav.index{
+  position:sticky;top:0;z-index:20;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+nav.index ul{
+  list-style:none;margin:0;padding:11px 0;
+  display:flex;flex-wrap:wrap;gap:4px 20px;
+}
+nav.index a{
+  font-family:var(--f-display);
+  font-stretch:112%;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  text-decoration:none;
+  padding:3px 0;
+  border-bottom:2px solid transparent;
+}
+nav.index a:hover,nav.index a:focus-visible{color:var(--ink);border-bottom-color:var(--accent)}
+
+/* ---------- sections ---------- */
+section{padding-top:14px;margin-bottom:44px;scroll-margin-top:64px}
+.sec-head{
+  display:flex;align-items:baseline;gap:14px;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:8px;margin-bottom:20px;
+}
+.sec-head h2{
+  font-family:var(--f-display);
+  font-stretch:115%;
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:-.005em;
+  margin:0;
+}
+.sec-head .tag{
+  font-family:var(--f-mono);
+  font-size:11px;
+  color:var(--ink-3);
+  margin-left:auto;
+  white-space:nowrap;
+}
+
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.c4{grid-column:span 4}.c6{grid-column:span 6}.c5{grid-column:span 5}
+.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+.c3{grid-column:span 3}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:18px 18px 16px;
+  box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:10px;
+}
+.card h3{
+  font-family:var(--f-display);
+  font-stretch:110%;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.005em;
+  margin:0;
+}
+.card h3 .n{color:var(--accent);font-family:var(--f-mono);font-size:12px;margin-right:7px}
+.card p{margin:0;color:var(--ink-2)}
+.card p strong,.card li strong{color:var(--ink);font-weight:600}
+.lede{font-size:15.5px}
+
+ul.tight{margin:0;padding-left:17px;color:var(--ink-2)}
+ul.tight li{margin-bottom:5px}
+ul.tight li::marker{color:var(--line-strong)}
+ul.plain{list-style:none;margin:0;padding:0;color:var(--ink-2)}
+ul.plain li{margin-bottom:6px;padding-left:15px;position:relative}
+ul.plain li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+.kicker{
+  font-family:var(--f-display);
+  font-stretch:118%;
+  font-weight:600;
+  font-size:10.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+.mono{font-family:var(--f-mono);font-size:13px}
+
+/* chain */
+.chain{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  font-family:var(--f-display);font-stretch:110%;font-weight:600;font-size:13px;
+}
+.chain span{
+  background:var(--accent-soft);color:var(--accent-ink);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  padding:5px 11px;border-radius:2px;
+}
+.chain i{color:var(--ink-3);font-style:normal;font-family:var(--f-mono);font-size:14px}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--surface)}
+.pillar{padding:16px 18px;border-right:1px solid var(--line)}
+.pillar:last-child{border-right:0}
+.pillar b{
+  display:block;font-family:var(--f-display);font-stretch:115%;font-weight:700;
+  font-size:15px;margin-bottom:4px;
+}
+.pillar span{color:var(--ink-2);font-size:14px}
+
+/* tables */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{
+  font-family:var(--f-display);font-stretch:116%;font-weight:600;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  border-bottom:1px solid var(--line-strong);
+}
+td{color:var(--ink-2)}
+td:first-child{color:var(--ink);font-weight:600;white-space:nowrap;padding-right:20px}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--accent-ink);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+/* metric cards */
+.metric{
+  background:var(--surface);border:1px solid var(--line);border-radius:3px;
+  padding:15px 16px;display:flex;flex-direction:column;gap:7px;
+}
+.metric .name{font-family:var(--f-display);font-stretch:118%;font-weight:700;font-size:17px;letter-spacing:.01em}
+.metric .formula{
+  font-family:var(--f-mono);font-size:12.5px;color:var(--accent-ink);
+  background:var(--accent-soft);padding:5px 8px;border-radius:2px;
+}
+.metric .read{font-size:14px;color:var(--ink-2)}
+
+/* diagnostic */
+.diag{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dx{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden;display:flex;flex-direction:column}
+.dx header{padding:12px 16px;border-bottom:1px solid var(--line)}
+.dx header .state{
+  font-family:var(--f-display);font-stretch:115%;font-weight:700;font-size:15px;display:block;
+}
+.dx header .q{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.09em;display:block;margin-bottom:3px}
+.dx .body{padding:14px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.dx .body p{margin:0;color:var(--ink-2);font-size:14px}
+.dx .act{
+  margin-top:auto;font-size:14px;padding-top:10px;border-top:1px dashed var(--line-strong);color:var(--ink);
+}
+.dx .act b{font-family:var(--f-display);font-stretch:116%;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:3px}
+.dx-a header{background:var(--warn-soft)} .dx-a .q,.dx-a .act b{color:var(--warn)}
+.dx-b header{background:var(--bad-soft)}  .dx-b .q,.dx-b .act b{color:var(--bad)}
+.dx-c header{background:var(--good-soft)} .dx-c .q,.dx-c .act b{color:var(--good)}
+
+/* loop */
+.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 15px}
+.step .num{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;color:var(--surface);
+  background:var(--ink);border-radius:2px;padding:1px 6px;display:inline-block;margin-bottom:8px;
+}
+.step b{display:block;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:14px;margin-bottom:4px}
+.step span{font-size:13.5px;color:var(--ink-2)}
+
+/* do / dont */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rules{border:1px solid var(--line);border-radius:3px;background:var(--surface);padding:16px 18px}
+.rules h3{margin:0 0 10px}
+.rules.no h3{color:var(--bad)}
+.rules.yes h3{color:var(--good)}
+.rules ul{list-style:none;margin:0;padding:0}
+.rules li{padding-left:22px;position:relative;margin-bottom:8px;color:var(--ink-2);font-size:14.5px}
+.rules.no li::before{content:"✕";position:absolute;left:0;color:var(--bad);font-size:12px;top:2px}
+.rules.yes li::before{content:"✓";position:absolute;left:0;color:var(--good);font-size:12px;top:2px}
+
+/* code block */
+.code{
+  font-family:var(--f-mono);font-size:13px;line-height:1.85;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:3px;
+  padding:14px 16px;overflow-x:auto;white-space:pre;color:var(--ink);
+}
+.code em{color:var(--ink-3);font-style:normal}
+.code b{color:var(--accent-ink);font-weight:500}
+
+/* callout */
+.callout{
+  border-left:3px solid var(--accent);
+  background:var(--accent-soft);
+  padding:13px 16px;border-radius:0 3px 3px 0;
+  font-size:15px;color:var(--accent-ink);
+}
+.callout b{color:var(--accent-ink)}
+
+/* closing principles */
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px}
+.principles div{padding:12px 0;border-bottom:1px solid var(--line)}
+.principles b{
+  font-family:var(--f-display);font-stretch:114%;font-weight:700;font-size:14.5px;display:block;margin-bottom:2px;
+}
+.principles span{color:var(--ink-2);font-size:14px}
+
+footer{
+  margin-top:56px;padding-top:18px;border-top:2px solid var(--ink);
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
+  font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);
+}
+
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media (max-width:1000px){
+  .c4,.c5,.c6,.c7,.c8{grid-column:span 6}
+  .c3{grid-column:span 6}
+  .diag{grid-template-columns:1fr}
+  .loop{grid-template-columns:repeat(2,1fr)}
+  .pillars{grid-template-columns:1fr}
+  .pillar{border-right:0;border-bottom:1px solid var(--line)}
+  .pillar:last-child{border-bottom:0}
+}
+@media (max-width:640px){
+  .c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}
+  .split,.principles,.loop{grid-template-columns:1fr}
+  .masthead{grid-template-columns:1fr;align-items:start}
+  .stamp{text-align:left}
+  nav.index{position:static}
+}
+@media print{
+  nav.index{display:none}
+  body{background:#fff;font-size:10.5pt}
+  .card,.dx,.step,.rules,.metric{break-inside:avoid}
+  section{break-inside:avoid-page}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Capacitación · Meta Ads</p>
+      <h1>Meta Ads en una página</h1>
+      <p class="deck">No controlás la plataforma: <b>la entrenás</b>. Todo lo que sigue es el sistema para darle señales limpias, leer lo que devuelve y decidir sin adivinar.</p>
+    </div>
+    <div class="stamp">
+      Curso: <span>Cómo pensar como<br>performance marketer en Meta Ads</span><br>
+      18 módulos · resumen operativo<br>
+      Krak Real Estate
+    </div>
+  </header>
+
+  <nav class="index">
+    <ul>
+      <li><a href="#modelo">Modelo mental</a></li>
+      <li><a href="#antes">Antes de lanzar</a></li>
+      <li><a href="#numeros">Números</a></li>
+      <li><a href="#estructura">Estructura</a></li>
+      <li><a href="#creativo">Creativo</a></li>
+      <li><a href="#metricas">Métricas</a></li>
+      <li><a href="#diagnostico">Diagnóstico</a></li>
+      <li><a href="#loop">Loop</a></li>
+      <li><a href="#reportar">Reportar</a></li>
+      <li><a href="#escalar">Escalar</a></li>
+      <li><a href="#extras">Catálogos y objetivos</a></li>
+    </ul>
+  </nav>
+
+  <!-- 1 -->
+  <section id="modelo">
+    <div class="sec-head"><h2>El modelo mental</h2><span class="tag">Módulos 1–2, 10</span></div>
+    <div class="grid">
+      <div class="c7 card">
+        <h3>Andromeda decide, vos enseñás</h3>
+        <p class="lede">Andromeda es el motor de IA que define <strong>a quién, cuándo, cuánto pagar y qué anuncio mostrar</strong>, en milisegundos y con datos que nadie ve. Meta dejó de ser una herramienta que se opera y pasó a ser un sistema que se entrena: rinde según la calidad de lo que recibe.</p>
+        <p>La pregunta ya no es «¿cómo configuro mejor la campaña?» sino <strong>«¿qué le estoy enseñando al sistema?»</strong>.</p>
+        <div class="callout"><b>Sobre-segmentar es el error más caro.</b> Público diminuto = pescar en un charco: Meta no junta datos para aprender y la campaña queda en fase de aprendizaje permanente, gastando sin resultado.</div>
+      </div>
+      <div class="c5 card">
+        <h3>Los tres pilares</h3>
+        <p>Si falla uno, el sistema no puede optimizar y ninguna configuración lo salva.</p>
+        <div class="pillars">
+          <div class="pillar"><b>Creativo</b><span>Hace que alguien se detenga o siga de largo.</span></div>
+          <div class="pillar"><b>Oferta</b><span>Define si compra o no compra.</span></div>
+          <div class="pillar"><b>Señal</b><span>Le dice a Meta qué está funcionando.</span></div>
+        </div>
+      </div>
+      <div class="c12 card">
+        <h3>La cadena que no se puede romper</h3>
+        <div class="chain">
+          <span>Creativo</span><i>→</i><span>Atención</span><i>→</i><span>Clic</span><i>→</i><span>Señal</span><i>→</i><span>Aprendizaje</span><i>→</i><span>Optimización</span>
+        </div>
+        <p>Sin creativo no hay atención; sin atención no hay clic; sin clic no hay señal; sin señal el sistema no aprende. Por eso, cuando algo no funciona, <strong>se arregla desde el creativo antes que desde la configuración</strong>: es la fuente principal de señal y la palanca que mueve todo lo demás.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="antes">
+    <div class="sec-head"><h2>Antes de lanzar: público, objetivo y medición</h2><span class="tag">Módulos 3–5, 9</span></div>
+    <div class="grid">
+      <div class="c4 card">
+        <h3>Público = dónde empezar a buscar</h3>
+        <ul class="plain">
+          <li><strong>Broad.</strong> Sin restricciones, Advantage+ activo. El default recomendado: <em>el anuncio hace la segmentación</em>.</li>
+          <li><strong>Custom / remarketing.</strong> Visitantes del sitio (píxel), engagement de IG, lista de clientes.</li>
+          <li><strong>Lookalike.</strong> Proyecta tu mejor origen a gente nueva. Es tráfico <strong>frío</strong>, sirve para prospección, no para remarketing. Origen débil = lookalike débil.</li>
+          <li><strong>Intereses.</strong> Hoy pesan poco. Usar como <em>sugerencia</em>, no como filtro duro.</li>
+        </ul>
+        <p class="mono" style="color:var(--ink-3)">Excluir compradores actuales para no pagar impresiones repetidas.</p>
+      </div>
+      <div class="c4 card">
+        <h3>Objetivo = la instrucción más importante</h3>
+        <p>Es darle una dirección al repartidor: si es la equivocada, llega eficientemente al lugar incorrecto.</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><td>Tráfico</td><td>Meta busca gente que <strong>hace clic</strong></td></tr>
+            <tr><td>Leads</td><td>gente que <strong>llena formularios</strong></td></tr>
+            <tr><td>Mensajes</td><td>gente que <strong>inicia conversaciones</strong></td></tr>
+            <tr><td>Conversión</td><td>gente con <strong>probabilidad de comprar</strong></td></tr>
+          </table>
+        </div>
+        <p>La pregunta: <strong>¿qué acción, si ocurre, mueve el negocio?</strong> Ese es el objetivo.</p>
+      </div>
+      <div class="c4 card">
+        <h3>Medición: acá se vuelve real o se desmorona</h3>
+        <p><strong>Píxel</strong> (navegador, va en el <span class="mono">&lt;head&gt;</span>) + <strong>CAPI</strong> (servidor, tapa los huecos). Activar <strong>coincidencias avanzadas automáticas</strong>.</p>
+        <p class="kicker">Jerarquía de eventos</p>
+        <div class="chain"><span>Page View</span><i>‹</i><span>Add to Cart</span><i>‹</i><span>Purchase</span></div>
+        <ul class="tight">
+          <li><strong>Eventos mal definidos:</strong> marcar compra donde hubo carrito. Usar la lista estándar de Meta.</li>
+          <li><strong>Tracking duplicado:</strong> píxel instalado dos veces, Meta cree que hubo el doble de ventas.</li>
+        </ul>
+      </div>
+      <div class="c12 card">
+        <h3>Orden de diagnóstico cuando algo no cierra</h3>
+        <div class="chain">
+          <span>1 · Medición</span><i>→</i><span>2 · Objetivo</span><i>→</i><span>3 · Audiencia</span><i>→</i><span>4 · ¿Forman un sistema coherente?</span>
+        </div>
+        <p>Primero medición: <strong>si está rota, todo lo que leés es mentira</strong>. Una buena audiencia con el objetivo equivocado sigue entrenando a Meta para encontrar a la persona equivocada. Presupuestos, creativos y estructura se apoyan sobre estas tres decisiones: si la base está torcida, nada de lo que pongas encima lo arregla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="numeros">
+    <div class="sec-head"><h2>Números que hay que saber de memoria</h2><span class="tag">Umbrales operativos</span></div>
+    <div class="grid">
+      <div class="c7 card">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Variable</th><th>Valor</th><th>Por qué</th></tr></thead>
+            <tbody>
+              <tr><td>Eventos por semana / ad set</td><td class="num">50</td><td>Volumen para que el algoritmo aprenda bien</td></tr>
+              <tr><td>Mínimo para estabilizarse</td><td class="num">10–20</td><td>Por debajo, CBO decide a ciegas</td></tr>
+              <tr><td>Presupuesto diario</td><td class="num">3–5× CPA</td><td>CPA esperado $10 → $30–50/día</td></tr>
+              <tr><td>Creativos por lanzamiento</td><td class="num">3–5</td><td>Variaciones reales, no cambios menores</td></tr>
+              <tr><td>Sin tocar nada tras publicar</td><td class="num">72 h</td><td>Nunca pausar en las primeras 24–48 h</td></tr>
+              <tr><td>Fase de aprendizaje</td><td class="num">3–7 días</td><td>No son para ganar, son para aprender</td></tr>
+              <tr><td>Frecuencia de cambios</td><td class="num">1 / semana</td><td>Una variable por vez</td></tr>
+              <tr><td>Tamaño del cambio</td><td class="num">20–30 %</td><td>Gradual, nunca de golpe</td></tr>
+              <tr><td>Lookalike parecido / amplio</td><td class="num">1–3 % / 5–10 %</td><td>Menos alcance y más similitud, o al revés</td></tr>
+              <tr><td>Ventanas de público custom</td><td class="num">30 / 365 días</td><td>Visitantes web / engagement de Instagram</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="c5 card">
+        <h3>Cuando no hay conversiones suficientes</h3>
+        <p>Si la tienda hace 10 compras semanales, optimizar a compra le da muy pocos datos al sistema. <strong>Subir un nivel en el embudo:</strong> optimizar a <em>Add to Cart</em> o <em>Initiate Checkout</em>, eventos más frecuentes, para darle más ejemplos.</p>
+        <p class="kicker">No arrancar en conversión si…</p>
+        <ul class="tight">
+          <li>Negocio nuevo sin historial de compras.</li>
+          <li>Menos de 10–20 conversiones por semana.</li>
+          <li>Ticket alto con ciclo de decisión largo.</li>
+        </ul>
+        <p>Los demás objetivos funcionan como <strong>herramientas de transición</strong> que alimentan al sistema con señales intermedias.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="estructura">
+    <div class="sec-head"><h2>Estructura y presupuesto</h2><span class="tag">Módulos 4–5, 11–12</span></div>
+    <div class="grid">
+      <div class="c5 card">
+        <h3>Tres niveles, tres decisiones</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Nivel</th><th>Qué se define</th></tr></thead>
+            <tbody>
+              <tr><td>Campaña</td><td><strong>Por qué:</strong> objetivo, nombre, tipo de compra (siempre subasta), presupuesto si va acá</td></tr>
+              <tr><td>Conjunto</td><td><strong>A quién:</strong> público, ubicaciones, conjunto de datos, evento de conversión, presupuesto, fechas</td></tr>
+              <tr><td>Anuncio</td><td><strong>Qué:</strong> identidad, formato, creativo, copy, CTA, destino</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mono" style="color:var(--ink-3)">Presupuesto diario &gt; total: escala más fácil.<br>Atribución estándar &gt; incremental: más flexible.</p>
+      </div>
+      <div class="c7 card">
+        <h3>ABO vs CBO — quién reparte la plata</h3>
+        <p><strong>ABO</strong>: vos definís cuánto va a cada conjunto. <strong>CBO</strong>: un solo monto en campaña y Meta reparte. Meta <em>nunca</em> reparte parejo: manda el dinero donde detecta más probabilidad de resultado.</p>
+        <div class="split">
+          <div class="rules yes">
+            <h3 style="color:var(--ink)">Usar ABO cuando…</h3>
+            <ul class="tight">
+              <li>El presupuesto es limitado y cada audiencia necesita inversión suficiente para ser evaluada.</li>
+              <li>Estás testeando creativos nuevos y querés darle a cada uno una oportunidad justa.</li>
+              <li>Corrés remarketing: en CBO, una audiencia chica junto a una broad enorme <strong>muere de hambre</strong>.</li>
+            </ul>
+          </div>
+          <div class="rules yes">
+            <h3 style="color:var(--ink)">Usar CBO cuando…</h3>
+            <ul class="tight">
+              <li>Ya hay volumen de inversión y datos acumulados.</li>
+              <li>Trabajás con audiencias broad a escala.</li>
+              <li>Más de 10 eventos por semana: menos que eso, decide a ciegas.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><b>ABO da control, CBO da eficiencia.</b> Nunca compares conjuntos dentro de un CBO como si hubieran recibido el mismo dinero: descartarías creativos que nunca tuvieron oportunidad real.</div>
+      </div>
+      <div class="c7 card">
+        <h3>Nomenclatura — la base para medir y automatizar</h3>
+        <div class="code"><em>Campaña</em>   objetivo | país | producto | fecha
+          <b>Ventas | Latam | Krak Expert | Abril 2026</b>
+
+<em>Conjunto</em>  público | geo | tipo
+          <b>Broad | México | Cold</b>
+
+<em>Anuncio</em>   ángulo | hook | formato
+          <b>Cambio trabajos del futuro | Dato industria | Reel</b></div>
+        <p>Sin esto no podés saber qué hook, qué promesa o qué formato ganó. La nomenclatura es lo que convierte una cuenta en un dataset legible.</p>
+      </div>
+      <div class="c5 card">
+        <h3>Reglas automatizadas</h3>
+        <p>Se crean desde <span class="mono">Más › Crear una regla nueva</span>: filtro, acción, condiciones y programación.</p>
+        <p class="kicker">Ejemplo: pausa de ads ineficientes</p>
+        <div class="code">nivel:     anuncio
+ventana:   últimos 7 días
+si gasto   <b>&gt; $100</b>
+y CPR      <b>&gt; $15</b>
+(mín.      <b>8.000</b> impresiones)
+acción:    desactivar
+corre:     diario, 00:00–01:00</div>
+        <p><strong>No funcionan con CBO.</strong> Sólo operan con presupuesto a nivel de conjunto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="creativo">
+    <div class="sec-head"><h2>El creativo es la segmentación</h2><span class="tag">Módulos 7–8</span></div>
+    <div class="grid">
+      <div class="c12 card">
+        <p class="lede">Meta ya tiene datos de sobra para encontrar gente; lo que necesita es <strong>una señal de a quién buscar</strong>, y esa señal la da el anuncio. «Estamos contratando» atrae a cualquiera; «buscamos freelancer de marketing con tres años en campañas digitales» atrae al perfil exacto. <strong>El anuncio es un filtro, no un adorno.</strong></p>
+      </div>
+      <div class="c4 card">
+        <h3>Cuatro ángulos</h3>
+        <ul class="plain">
+          <li><strong>Problema</strong> — nombra un dolor que ya existe.</li>
+          <li><strong>Deseo</strong> — apunta a algo que quiere ganar.</li>
+          <li><strong>Objeción</strong> — desarma por qué no compraría.</li>
+          <li><strong>Caso de uso</strong> — muestra el producto funcionando en una situación donde se reconoce.</li>
+        </ul>
+        <p class="mono" style="color:var(--ink-3)">Insumos previos: beneficio + evidencia (producto), dolor + deseo (cliente).</p>
+      </div>
+      <div class="c4 card">
+        <h3>Cinco ganchos</h3>
+        <ul class="plain">
+          <li><strong>Dolor</strong> — «estás perdiendo dinero y no lo sabés».</li>
+          <li><strong>Beneficio directo</strong> — «en tres meses, sin clases tradicionales».</li>
+          <li><strong>Curiosidad</strong> — «esto es lo que nadie te dice sobre…».</li>
+          <li><strong>Contraste</strong> — dos ideas opuestas que crean tensión.</li>
+          <li><strong>Declaración fuerte</strong> — una afirmación audaz que frena el scroll.</li>
+        </ul>
+        <p>El ángulo sin gancho es tener la respuesta correcta y murmurarla.</p>
+      </div>
+      <div class="c4 card">
+        <h3>Cinco bloques del anuncio</h3>
+        <ul class="plain">
+          <li><strong>Gancho</strong> — detiene el scroll.</li>
+          <li><strong>Contexto</strong> — «¿pero qué es esto?».</li>
+          <li><strong>Valor</strong> — no lo que el producto <em>es</em>, lo que la persona <em>gana</em>.</li>
+          <li><strong>Prueba</strong> — un número, un resultado, un testimonio.</li>
+          <li><strong>CTA</strong> — decir exactamente qué hacer.</li>
+        </ul>
+        <p>Saltar bloques crea brechas, las brechas crean dudas, las dudas matan conversiones.</p>
+      </div>
+      <div class="c6 card">
+        <h3>Testear sin quemar presupuesto</h3>
+        <p>Una hipótesis limpia cambia <strong>una sola cosa</strong>: «el ángulo de dolor va a generar un CPC 20 % menor que el de beneficio, porque mi audiencia responde más a lo que está perdiendo».</p>
+        <ul class="tight">
+          <li>Criterio de éxito definido <strong>antes</strong> de lanzar.</li>
+          <li>Presupuesto mínimo por variación para que Meta junte datos.</li>
+          <li>Cortar el test temprano es leer ruido, no resultados.</li>
+        </ul>
+        <p>Aceptá que la mayoría de los anuncios va a fallar: el trabajo no es evitar errores, es encontrar rápido qué funciona. Por eso <strong>volumen de pruebas, no perfección</strong>.</p>
+      </div>
+      <div class="c6 card">
+        <h3>Ads Library: leer a la competencia</h3>
+        <ul class="tight">
+          <li>Filtrar por <strong>país</strong>, categoría «todos los anuncios» y página oficial de la marca.</li>
+          <li>Ordenar por <strong>impresiones</strong> → dónde está poniendo el presupuesto (probablemente lo más rentable).</li>
+          <li>Ordenar por <strong>más recientes</strong> → qué está testeando ahora.</li>
+          <li>Clic en el CTA → a qué destino manda: página de precios o landing con contexto.</li>
+        </ul>
+        <p>De cada anuncio se extraen hooks, mensajes, formatos y CTA. Después, la matriz creativa (hooks × promesas × cuerpos × CTA × formato) se arma con IA y se codifica en el naming para poder medir qué combinación ganó.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="metricas">
+    <div class="sec-head"><h2>Leer una campaña con tres preguntas</h2><span class="tag">Módulos 6, 13</span></div>
+    <div class="grid">
+      <div class="c4 metric">
+        <span class="kicker">¿La gente reacciona?</span>
+        <span class="name">CTR</span>
+        <span class="formula">clics ÷ impresiones × 100</span>
+        <span class="read">Bajo = el anuncio no frena la atención. <strong>El problema no es el público, es el creativo.</strong></span>
+      </div>
+      <div class="c4 metric">
+        <span class="kicker">¿A qué precio entra el tráfico?</span>
+        <span class="name">CPC</span>
+        <span class="formula">gasto ÷ clics</span>
+        <span class="read">Alto = el anuncio no conecta o el entorno está muy disputado. Podés tener CPC alto y ser rentable si convertís bien.</span>
+      </div>
+      <div class="c4 metric">
+        <span class="kicker">¿Tiene sentido financiero?</span>
+        <span class="name">CPA</span>
+        <span class="formula">gasto ÷ resultados</span>
+        <span class="read">La métrica que conecta con el negocio. Acá se define si lo que estás haciendo cierra o no.</span>
+      </div>
+      <div class="c12 card">
+        <h3>El reporte en tres bloques</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Bloque</th><th>Pregunta</th><th>Columnas</th></tr></thead>
+            <tbody>
+              <tr><td>Entregabilidad</td><td>¿Se están mostrando bien?</td><td>Importe gastado · Alcance · Impresiones · CPM · Frecuencia</td></tr>
+              <tr><td>Tráfico</td><td>¿Cuánta gente llega y a qué costo?</td><td>CTR de clics en el enlace · Clics en el enlace · CPC · Visitas a la página de destino · Costo por visita</td></tr>
+              <tr><td>Conversión</td><td>¿Qué pasa después del clic?</td><td>Add to cart · Inicios de pago · Compras · Costo por compra · ROAS</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><span class="mono">Alcance = personas únicas · Impresiones = exposiciones totales · Frecuencia = impresiones ÷ alcance · ROAS = valor de compra ÷ gasto</span></p>
+        <p>Armar un <strong>conjunto de columnas propio</strong> y guardarlo: sirve igual en los tres niveles. Para el reporte profundo, tabla dinámica en Informes de anuncios, borrando todas las columnas por defecto y dejando el nombre de campaña como desglose.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="diagnostico">
+    <div class="sec-head"><h2>Árbol de diagnóstico: sólo hay tres escenarios</h2><span class="tag">Módulos 6, 15</span></div>
+    <div class="diag">
+      <div class="dx dx-a">
+        <header><span class="q">Escenario A</span><span class="state">No gasta</span></header>
+        <div class="body">
+          <p>Meta no encuentra oportunidades para entregar. El creativo casi nunca es la causa.</p>
+          <ul class="tight">
+            <li>Señal insuficiente para optimizar.</li>
+            <li>Evento de conversión mal configurado.</li>
+            <li>Restricciones de entrega.</li>
+            <li>Público demasiado cerrado.</li>
+          </ul>
+          <p class="act"><b>Acción</b>¿El presupuesto es viable para ese objetivo? ¿El público está sobre-segmentado? Abrir el público, bajar un nivel el evento.</p>
+        </div>
+      </div>
+      <div class="dx dx-b">
+        <header><span class="q">Escenario B</span><span class="state">Gasta y no convierte</span></header>
+        <div class="body">
+          <p>Hay clics y tráfico, cero resultados. Con CTR alto y conversión baja, <strong>Meta está haciendo su trabajo</strong>: el fallo está después del clic.</p>
+          <ul class="tight">
+            <li>La oferta no es clara ni atractiva.</li>
+            <li>Landing confusa, lenta o sin CTA.</li>
+            <li>El precio no es el que el mercado paga.</li>
+            <li>Fricción técnica en el checkout.</li>
+          </ul>
+          <p class="act"><b>Acción</b>No toques la campaña. Arreglá primero lo que está fuera de Meta.</p>
+        </div>
+      </div>
+      <div class="dx dx-c">
+        <header><span class="q">Escenario C</span><span class="state">Convierte pero caro</span></header>
+        <div class="body">
+          <p>Tenés algo que funciona. El error más costoso es apagarlo porque el CPA está alto.</p>
+          <ul class="tight">
+            <li>Falta de iteración creativa.</li>
+            <li>Oferta poco competitiva.</li>
+            <li>Poca optimización acumulada.</li>
+          </ul>
+          <p class="act"><b>Acción</b>Empezá por el creativo. <strong>Duplicá el ad set —nunca lo edites—</strong> y probá hooks y ángulos nuevos. Mejorás lo que ya hay, no empezás de cero.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <div class="c12 card">
+        <h3>Lectura cruzada: dónde está el hueco</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Lo que ves</th><th>Dónde está el problema</th><th>Qué tocar</th></tr></thead>
+            <tbody>
+              <tr><td>CTR bajo</td><td>Impresión → clic: el gancho falla</td><td>Creativo / ángulo</td></tr>
+              <tr><td>CPC alto con CPM normal</td><td>Ven el anuncio y no hacen clic</td><td>Creativo</td></tr>
+              <tr><td>CTR bueno, conversión baja</td><td>Clic → conversión: después del clic</td><td>Landing, oferta, precio, checkout</td></tr>
+              <tr><td>Convierte, CPA sobre objetivo</td><td>Costo → margen</td><td>Modelo de negocio: el precio no soporta el CAC</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>El error más común es <strong>actuar en el lugar equivocado del embudo</strong>: tener un problema de landing y cambiar el creativo, o tener un problema de creativo y bajar el presupuesto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section id="loop">
+    <div class="sec-head"><h2>El loop operativo</h2><span class="tag">Módulo 15 · semana a semana</span></div>
+    <div class="loop">
+      <div class="step"><span class="num">01</span><b>Lanzar</b><span>Mínimo viable: un ad set, un público, dos o tres creativos. Datos sin sobreplanificar.</span></div>
+      <div class="step"><span class="num">02</span><b>Medir</b><span>No a las seis horas ni al primer día: mínimo tres días o cuando haya datos relevantes.</span></div>
+      <div class="step"><span class="num">03</span><b>Decidir</b><span>Con el árbol de diagnóstico. Sin adivinar.</span></div>
+      <div class="step"><span class="num">04</span><b>Iterar</b><span>Sobre lo que ya tiene tracción. No empezar de cero cada vez.</span></div>
+      <div class="step"><span class="num">05</span><b>Escalar</b><span>Sólo cuando hay base sólida. Nunca antes.</span></div>
+    </div>
+    <div class="split" style="margin-top:16px">
+      <div class="rules no">
+        <h3>Reinicia el aprendizaje</h3>
+        <ul>
+          <li>Cambiar el objetivo de optimización.</li>
+          <li>Cambiar el evento de conversión.</li>
+          <li>Cambios grandes de público.</li>
+          <li>Editar directamente el creativo activo.</li>
+          <li>Mover el presupuesto todos los días.</li>
+          <li>Pausar en las primeras 24–48 h.</li>
+        </ul>
+      </div>
+      <div class="rules yes">
+        <h3>Cómo cambiar sin romper</h3>
+        <ul>
+          <li>Si puede reiniciar el aprendizaje, <strong>duplicar en vez de editar</strong>.</li>
+          <li>Una modificación por semana, una variable por vez.</li>
+          <li>Cambios graduales del 20–30 %.</li>
+          <li>Antes de tocar presupuesto o público, probar un creativo nuevo.</li>
+          <li>Dejar correr 72 h antes de sacar conclusiones.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:16px"><b>Meta tiene memoria.</b> Cada cambio significativo manda al sistema a explorar de nuevo — como reiniciar el GPS a mitad de camino. Los cambios constantes destruyen el rendimiento aunque parezcan mejoras.</div>
+  </section>
+
+  <!-- 9 -->
+  <section id="reportar">
+    <div class="sec-head"><h2>Storytelling con data</h2><span class="tag">Módulo 14</span></div>
+    <div class="grid">
+      <div class="c7 card">
+        <h3>Cuatro pasos para explicar cualquier resultado</h3>
+        <div class="chain"><span>Contexto</span><i>→</i><span>Hallazgo</span><i>→</i><span>Interpretación</span><i>→</i><span>Acción</span></div>
+        <p class="kicker">Ejemplo</p>
+        <p>«El CTR está en <strong>0,6 %</strong>, por debajo del 1 % habitual de la cuenta. El creativo lleva más de tres semanas activo, lo que sugiere <strong>fatiga creativa</strong>. Vamos a duplicar el ad set y probar dos creativos nuevos con hooks distintos.»</p>
+        <p>Nunca «sentía que ya no funcionaba». Siempre: vi esto en los datos, lo interpreté, por eso tomé esta decisión. Misma decisión, otro nivel de credibilidad.</p>
+      </div>
+      <div class="c5 card">
+        <h3>Cinco errores al presentar</h3>
+        <ul class="tight">
+          <li>Listar métricas sin decir qué significan.</li>
+          <li>Dar conclusiones sin mostrar los datos que las sostienen.</li>
+          <li>Hablar de un problema sin proponer una acción concreta.</li>
+          <li>Actuar en el lugar equivocado del embudo.</li>
+          <li>No conectar lo que pasa en Meta con lo que pasa en el negocio.</li>
+        </ul>
+        <p class="kicker">Idioma según quién escucha</p>
+        <p>Con un perfil técnico: CTR, CPA, ROAS. Con un cliente o dueño: <strong>empezá por el dinero</strong> — ventas, leads, ingresos — y después explicá el porqué.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="escalar">
+    <div class="sec-head"><h2>Escalar</h2><span class="tag">Módulo 18</span></div>
+    <div class="grid">
+      <div class="c6 card">
+        <h3>Escalar no es gastar más</h3>
+        <p class="lede">Es <strong>mantener o mejorar los resultados mientras crece la inversión</strong>. Si subís el presupuesto y el CPA se dispara, no estás escalando: estás comprando volumen más caro.</p>
+        <ul class="plain">
+          <li><strong>Vertical.</strong> Más presupuesto sobre lo que ya funciona, de a 20–30 % por vez. De golpe no: entra en nueva fase de aprendizaje.</li>
+          <li><strong>Horizontal.</strong> Duplicar lo que funciona: más ad sets, más ángulos, más mensajes, sin tocar la estructura rentable.</li>
+        </ul>
+        <p>Los mejores resultados vienen de combinar las dos: escalás vertical lo probado mientras probás variaciones en horizontal. <strong>Si el CPA sube de forma consistente, frená y diagnosticá antes de seguir.</strong></p>
+      </div>
+      <div class="c6 card">
+        <h3>Principios que sostienen todo</h3>
+        <div class="principles">
+          <div><b>Sistemas, no campañas</b><span>La campaña es una pieza: señal, estructura, creativos, decisión y loop.</span></div>
+          <div><b>El creativo es la palanca</b><span>El targeting lo hace la plataforma; el mensaje lo controlás vos.</span></div>
+          <div><b>Gana quien aprende más rápido</b><span>No quien tiene la campaña perfecta el día uno.</span></div>
+          <div><b>Meta es un canal, no el negocio</b><span>Un buen sistema puede migrar de canal.</span></div>
+          <div><b>Los datos guían, no gobiernan</b><span>La atribución es imperfecta: buscá tendencias consistentes, no certeza.</span></div>
+          <div><b>Consistencia &gt; intensidad</b><span>El loop semana tras semana, no sprints que se apagan.</span></div>
+        </div>
+        <p style="margin-top:12px">No optimizás para que el CTR se vea lindo: <strong>optimizás para que el negocio crezca</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="extras">
+    <div class="sec-head"><h2>Multi-objetivo y catálogos</h2><span class="tag">Módulos 16–17</span></div>
+    <div class="grid">
+      <div class="c6 card">
+        <h3>La tubería de valor</h3>
+        <p>Los objetivos no compiten, se conectan: arriba entra volumen, abajo sale valor.</p>
+        <div class="tbl-wrap">
+          <table>
+            <tbody>
+              <tr><td>Tráfico</td><td>Llena la parte alta y crea pools de remarketing. Si ves CTR alto, CPC bajo y cero conversiones, pasá de <em>clics</em> a <em>visitas a la landing</em>.</td></tr>
+              <tr><td>Leads</td><td>Formulario corto = volumen con intención débil. Con preguntas de calificación (presupuesto, plazo) = menos leads, más comprometidos.</td></tr>
+              <tr><td>Mensajes</td><td>Meta trae gente que saluda, no compradores. La velocidad de respuesta y un proceso de venta claro lo son todo.</td></tr>
+              <tr><td>Conversión</td><td>El destino final. Invertí más donde la señal es más débil.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>No cambies de objetivo a mitad de campaña</strong> porque los resultados se ven lentos: cada cambio reinicia el entrenamiento.</p>
+      </div>
+      <div class="c6 card">
+        <h3>Catálogos y anuncios dinámicos</h3>
+        <p>El anuncio se alimenta del inventario: imagen, título y precio salen del feed. Con enlace dinámico, el catálogo se actualiza solo (programable, p. ej. una vez por día).</p>
+        <p class="kicker">Columnas obligatorias</p>
+        <p class="mono" style="color:var(--ink-2)">título · descripción · disponibilidad · condición · precio · link del sitio · link de imagen · marca</p>
+        <ul class="tight">
+          <li><strong>Conjuntos por filtro automático</strong> (ej. el título contiene «fundamentos») se actualizan solos; los manuales no.</li>
+          <li><strong>Formatos:</strong> carousel (el copy refleja sólo la primera tarjeta), imagen o video único (muestra el producto que la persona miró) y colección (tienda dentro del anuncio).</li>
+          <li><strong>Usos:</strong> remarketing de carrito abandonado y prospecting a audiencias frías.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Resumen operativo del curso «Cómo pensar como performance marketer en Meta Ads» · 18 módulos</span>
+    <span>Krak Real Estate · Capacitaciones</span>
+  </footer>
+
+</div>
