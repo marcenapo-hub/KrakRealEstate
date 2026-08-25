@@ -1,12 +1,18 @@
 <title>Sistema Cromático Krak</title>
 <style>
 :root{
-  /* la pagina usa el propio sistema que documenta */
+  /* Real Estate */
   --re-1:#08407C; --re-2:#396696; --re-3:#6a8cb0; --re-4:#9cb2ca; --re-5:#cdd8e4;
+  /* Industrial */
   --in-1:#2F3941; --in-2:#4F5B65; --in-3:#7C8892; --in-4:#B4BDC4; --in-5:#E2E6E9;
-  --sig-ok:#0E7A5F; --sig-al:#C2410C; --sig-am:#B5651D;
-  --paper:#FFFFFF; --paper-2:#F6F7F8; --ink:#1B2228; --ink-2:#4F5B65; --ink-3:#7C8892;
-  --rule:#DDE2E5;
+  /* Studio */
+  --st-0:#FFFFFF; --st-1:#F6F7F9; --st-2:#EAEDF0; --st-3:#D6DBE0;
+  --st-ink2:#6C757E; --st-ink:#12171C; --st-acc:#1A62D6; --st-acc-soft:#E8F0FD;
+  /* señales */
+  --sig-ok:#0E7A5F; --sig-al:#C2410C;
+  /* página */
+  --paper:#FFFFFF; --paper-2:#F6F7F9; --ink:#12171C; --ink-2:#4A545D; --ink-3:#6C757E;
+  --rule:#DDE2E6;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
@@ -15,256 +21,294 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{margin:0;letter-spacing:-.02em;text-wrap:balance}
 p{margin:0}
-.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 code,.hex{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
-/* masthead */
-.mast{background:var(--in-1);color:#fff;padding:56px 0 44px}
-.mast .eyebrow{color:var(--in-4)}
+.mast{background:var(--st-ink);color:#fff;padding:56px 0 44px}
+.mast .eyebrow{color:#8B949D}
 .mast h1{font-size:clamp(30px,4.4vw,50px);line-height:1.05;margin:14px 0 16px;font-weight:750}
-.mast p{max-width:64ch;color:#C7CFD5;font-size:17px}
-.mast .strip{display:flex;margin-top:34px;height:14px;max-width:640px}
+.mast p{max-width:66ch;color:#C4CBD1;font-size:17px}
+.mast .strip{display:flex;margin-top:34px;height:16px;max-width:760px;border:1px solid #333B42}
 .mast .strip i{flex:1}
+.mast .slab{display:flex;gap:1px;margin-top:8px;max-width:760px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:#8B949D}
+.mast .slab span{flex:1;text-align:center}
 
 section{padding:64px 0;border-bottom:1px solid var(--rule)}
 section:last-of-type{border-bottom:0}
 h2{font-size:clamp(22px,2.6vw,30px);font-weight:750;margin-bottom:14px}
-.lede{color:var(--ink-2);max-width:70ch;font-size:16.5px}
-h3{font-size:18px;margin:34px 0 12px;font-weight:700}
+.lede{color:var(--ink-2);max-width:72ch;font-size:16.5px}
+h3{font-size:18px;margin:36px 0 12px;font-weight:700}
 
 /* paletas */
-.pals{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
-@media(max-width:860px){.pals{grid-template-columns:1fr}}
+.pals{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px}
 .pal{border:1px solid var(--rule)}
-.pal header{padding:16px 20px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.pal header b{font-size:16px}
-.pal header span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.row{display:grid;grid-template-columns:74px 1fr auto;gap:14px;align-items:center;padding:11px 20px;border-bottom:1px solid #EEF1F2}
+.pal header{padding:16px 20px;border-bottom:1px solid var(--rule)}
+.pal header b{font-size:16px;display:block}
+.pal header span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:10px 18px;border-bottom:1px solid #F0F2F4}
 .row:last-child{border-bottom:0}
-.sw{height:46px;border:1px solid rgba(0,0,0,.08)}
-.rname{font-size:14px;font-weight:600}
-.rmeta{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
-.rhex{font-size:13.5px;font-weight:600;font-family:var(--mono)}
-.rc{font-size:11px;color:var(--ink-3);font-family:var(--mono);text-align:right}
+.sw{height:42px;border:1px solid rgba(0,0,0,.09)}
+.rname{font-size:13.5px;font-weight:600}
+.rmeta{font-size:11px;color:var(--ink-3);font-family:var(--mono)}
+.rhex{font-size:13px;font-weight:600;font-family:var(--mono)}
+.rc{font-size:10.5px;color:var(--ink-3);font-family:var(--mono);text-align:right}
 
-/* tabla */
 .tw{overflow-x:auto;border:1px solid var(--rule);margin:20px 0}
-table{border-collapse:collapse;width:100%;font-size:14px;min-width:600px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
 th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink-3);background:var(--paper-2);padding:10px 14px;border-bottom:1px solid var(--rule);white-space:nowrap}
-td{padding:10px 14px;border-bottom:1px solid #EEF1F2;vertical-align:top}
+td{padding:10px 14px;border-bottom:1px solid #F0F2F4;vertical-align:top}
 tr:last-child td{border-bottom:0}
 .ok{color:var(--sig-ok);font-weight:600}
 .no{color:var(--sig-al);font-weight:600}
 
-/* callouts */
-.note{border-left:3px solid var(--in-2);background:var(--paper-2);padding:16px 18px;font-size:15px;margin:20px 0}
+.note{border-left:3px solid var(--st-acc);background:var(--st-acc-soft);padding:16px 18px;font-size:15px;margin:20px 0}
 .warn{border-left:3px solid var(--sig-al);background:#FDF4EF;padding:16px 18px;font-size:15px;margin:20px 0}
 
 /* demo aplicada */
-.demos{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
-@media(max-width:860px){.demos{grid-template-columns:1fr}}
+.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:28px}
 .demo{border:1px solid var(--rule);overflow:hidden}
 .demo .dh{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
-.demo .logo{font-size:14px;font-weight:750;letter-spacing:.04em;color:#fff}
-.demo .nav{display:flex;gap:14px;font-size:11px}
-.demo .cta{font-size:11.5px;font-weight:600;padding:7px 14px}
+.demo .logo{font-size:13px;font-weight:750;letter-spacing:.04em}
+.demo .cta{font-size:11px;font-weight:600;padding:7px 13px}
 .demo .body{padding:22px 18px}
-.demo h4{font-size:19px;margin-bottom:8px}
-.demo .sub{font-size:13px;color:var(--ink-2);margin-bottom:16px}
+.demo h4{font-size:18px;margin-bottom:8px}
+.demo .sub{font-size:12.5px;margin-bottom:16px}
 .demo .cards{display:flex;gap:10px}
-.demo .card{flex:1;padding:12px;font-size:11.5px;border:1px solid var(--rule)}
-.demo .big{font-size:22px;font-weight:750;display:block;margin-bottom:3px}
-.demo .btn{display:inline-block;margin-top:16px;font-size:13px;font-weight:600;padding:11px 20px;color:#fff}
+.demo .card{flex:1;padding:12px;font-size:11px;border:1px solid}
+.demo .big{font-size:21px;font-weight:750;display:block;margin-bottom:3px}
+.demo .btn{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:600;padding:11px 20px}
 
-/* proporcion */
 .ratio{display:flex;height:56px;margin-top:16px;border:1px solid var(--rule)}
-.ratio div{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-family:var(--mono)}
+.ratio div{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-family:var(--mono);text-align:center;padding:0 6px}
 
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .chip{display:flex;align-items:center;gap:8px;border:1px solid var(--rule);padding:8px 12px;font-size:13px}
-.chip i{width:16px;height:16px;display:block}
+.chip i{width:16px;height:16px;display:block;flex-shrink:0}
 
 ul{padding-left:20px;margin:12px 0}
 li{margin:7px 0}
 .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
 @media(max-width:760px){.do-dont{grid-template-columns:1fr}}
 .do-dont div{border:1px solid var(--rule);padding:20px}
-.do-dont h4{font-size:14px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.do-dont h4{font-size:13px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
 </style>
 
 <header class="mast">
   <div class="wrap">
     <p class="eyebrow">Sistema de marca · Universo Krak</p>
-    <h1>Gama cromática Krak Industrial</h1>
-    <p>El gris diferencia la unidad industrial de la residencial sin salirse de la familia. La clave está en
-      que no sea un gris neutro, sino el mismo matiz de Real Estate con la saturación bajada al mínimo.</p>
+    <h1>Gama cromática Krak Studio</h1>
+    <p>El blanco diferencia a Studio del azul de Real Estate y del grafito de Industrial. Pero el blanco no
+      es un color: es una ausencia. Para que funcione como identidad de una agencia creativa, la marca la
+      tienen que cargar la tinta y el acento.</p>
     <div class="strip">
+      <i style="background:#08407C"></i><i style="background:#396696"></i><i style="background:#6a8cb0"></i>
       <i style="background:#2F3941"></i><i style="background:#4F5B65"></i><i style="background:#7C8892"></i>
-      <i style="background:#B4BDC4"></i><i style="background:#E2E6E9"></i><i style="background:#08407C"></i>
+      <i style="background:#FFFFFF"></i><i style="background:#EAEDF0"></i><i style="background:#1A62D6"></i>
     </div>
+    <div class="slab"><span>Real Estate</span><span>Real Estate</span><span>Real Estate</span>
+      <span>Industrial</span><span>Industrial</span><span>Industrial</span>
+      <span>Studio</span><span>Studio</span><span>Studio</span></div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <h2>El principio: mismo matiz, distinta saturación</h2>
-    <p class="lede">La gama de Real Estate no es una lista de azules sueltos: es una escalera construida sobre
-      el matiz <strong>211°</strong>, con la saturación cayendo de 88% a 30% y la luminosidad subiendo de 26% a
-      85%. Esa estructura es el sistema. Industrial la hereda entera y solo cambia una variable: la saturación
-      colapsa a entre 9% y 16%.</p>
+    <h2>La regla del sistema</h2>
+    <p class="lede">Las tres unidades comparten la misma familia de matiz —entre 207° y 220°, el azul de
+      Krak— y se diferencian por dónde se paran en dos ejes: <strong>cuánta saturación tienen</strong> y
+      <strong>qué tan clara u oscura es su superficie dominante</strong>.</p>
 
-    <div class="warn"><strong>Por eso no va un gris neutro.</strong> Un gris de saturación 0% (#3A3A3A, #808080)
-      se percibe como ausencia de decisión y, al lado del azul de Real Estate, no parece de la misma empresa:
-      parece un error de impresión. Un gris con 12% de azul lee como gris a simple vista, pero cuando se lo pone
-      junto al navy el ojo reconoce el parentesco. Es la diferencia entre <em>otra unidad de la misma marca</em>
-      y <em>otra marca</em>.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Unidad</th><th>Superficie dominante</th><th>Matiz</th><th>Saturación</th><th>Luminosidad</th><th>Lectura</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Real Estate</strong></td><td><code>#08407C</code></td><td>211°</td><td>88%</td><td>26%</td><td>Color · institucional</td></tr>
+        <tr><td><strong>Industrial</strong></td><td><code>#2F3941</code></td><td>207°</td><td>16%</td><td>22%</td><td>Neutro oscuro · técnico</td></tr>
+        <tr><td><strong>Studio</strong></td><td><code>#FFFFFF</code> / <code>#F6F7F9</code></td><td>220°</td><td>2–20%</td><td>97–100%</td><td>Neutro claro · creativo</td></tr>
+      </tbody>
+    </table></div>
 
-    <div class="pals">
-      <div class="pal">
-        <header><b>Krak Real Estate</b><span>existente · matiz 211°</span></header>
-        <div class="row"><div class="sw" style="background:#08407C"></div>
-          <div><div class="rname">Principal</div><div class="rmeta">hsl 211 · 88% · 26%</div></div>
-          <div><div class="rhex">#08407C</div><div class="rc">10.3 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#396696"></div>
-          <div><div class="rname">Secundario</div><div class="rmeta">hsl 211 · 45% · 41%</div></div>
-          <div><div class="rhex">#396696</div><div class="rc">5.97 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#6a8cb0"></div>
-          <div><div class="rname">Apoyo</div><div class="rmeta">hsl 211 · 31% · 55%</div></div>
-          <div><div class="rhex">#6a8cb0</div><div class="rc">3.51 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#9cb2ca"></div>
-          <div><div class="rname">Fondos</div><div class="rmeta">hsl 211 · 30% · 70%</div></div>
-          <div><div class="rhex">#9cb2ca</div><div class="rc">2.18 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#cdd8e4"></div>
-          <div><div class="rname">Fondos claros</div><div class="rmeta">hsl 211 · 30% · 85%</div></div>
-          <div><div class="rhex">#cdd8e4</div><div class="rc">1.44 : 1</div></div></div>
-      </div>
-
-      <div class="pal">
-        <header><b>Krak Industrial</b><span>propuesta · matiz 207°</span></header>
-        <div class="row"><div class="sw" style="background:#2F3941"></div>
-          <div><div class="rname">Principal</div><div class="rmeta">hsl 207 · 16% · 22%</div></div>
-          <div><div class="rhex">#2F3941</div><div class="rc">11.8 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#4F5B65"></div>
-          <div><div class="rname">Secundario</div><div class="rmeta">hsl 207 · 12% · 35%</div></div>
-          <div><div class="rhex">#4F5B65</div><div class="rc">6.96 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#7C8892"></div>
-          <div><div class="rname">Apoyo</div><div class="rmeta">hsl 207 · 9% · 53%</div></div>
-          <div><div class="rhex">#7C8892</div><div class="rc">3.62 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#B4BDC4"></div>
-          <div><div class="rname">Fondos</div><div class="rmeta">hsl 206 · 12% · 74%</div></div>
-          <div><div class="rhex">#B4BDC4</div><div class="rc">1.91 : 1</div></div></div>
-        <div class="row"><div class="sw" style="background:#E2E6E9"></div>
-          <div><div class="rname">Fondos claros</div><div class="rmeta">hsl 206 · 14% · 90%</div></div>
-          <div><div class="rhex">#E2E6E9</div><div class="rc">1.26 : 1</div></div></div>
-      </div>
-    </div>
-    <p style="margin-top:14px;font-size:13px;color:var(--ink-3)">Los ratios son el contraste real de cada color
-      sobre blanco, calculados según WCAG 2.1.</p>
+    <p class="lede">Real Estate es <em>oscuro y saturado</em>. Industrial es <em>oscuro y desaturado</em>.
+      Studio es <em>clarísimo</em>. Cada unidad ocupa una casilla distinta y ninguna se pisa con otra, pero
+      las tres salen del mismo matiz. Esa es toda la regla, y se explica en una frase en cualquier reunión.</p>
   </div>
 </section>
 
 <section style="background:var(--paper-2)">
   <div class="wrap">
-    <h2>El acento: el navy del grupo</h2>
-    <p class="lede">Una gama de cinco grises no puede convertir. No tiene ningún color capaz de decir
-      <em>"hacé clic acá"</em>, y una web B2B con botones grises pierde consultas. La solución más elegante no es
-      inventar un color nuevo: es <strong>invertir la jerarquía</strong>.</p>
+    <h2>El problema del blanco, y cómo se resuelve</h2>
+    <div class="warn"><strong>Una paleta de cinco blancos no es una identidad.</strong> Si Studio se define
+      solo por el blanco, el resultado es una web que se parece a las otras cuatrocientas webs de agencia que
+      usan blanco porque no decidieron nada. Y para una agencia que vende identidad de marca, no tener
+      identidad propia es un problema comercial, no estético.</div>
 
-    <div class="note">En Real Estate, el navy <code>#08407C</code> es el color principal. En Industrial, ese mismo
-      navy pasa a ser <strong>el acento</strong>: aparece solo en botones, enlaces y datos clave, sobre una base
-      de grises. El sistema queda unido por el mismo color, con los roles invertidos. Y no hay que aprobar
-      ninguna tinta nueva.</div>
+    <p class="lede">La solución no es abandonar el blanco: es entender qué rol cumple cada pieza.
+      <strong>El blanco es el suelo, no la marca.</strong> La marca la cargan otros dos elementos:</p>
 
-    <h3>Proporción de uso</h3>
-    <div class="ratio">
-      <div style="flex:60;background:#E2E6E9;color:#2F3941">60% — fondos claros y blanco</div>
-      <div style="flex:30;background:#2F3941;color:#fff">30% — grises</div>
-      <div style="flex:10;background:#08407C;color:#fff">10% — navy</div>
-    </div>
-    <p style="margin-top:12px;font-size:14px;color:var(--ink-2)">Si el navy pasa del 10% de la superficie, la
-      web industrial empieza a parecerse a la residencial y se pierde la diferenciación.</p>
+    <ul style="max-width:72ch;font-size:16px">
+      <li><strong>La tinta.</strong> Un casi negro —<code>#12171C</code>— que en Studio ocupa el lugar que en
+        Real Estate ocupa el navy: es el color que da carácter. Tipografía grande y negra sobre blanco es una
+        decisión de diseño fuerte, no una ausencia de decisión.</li>
+      <li><strong>El acento.</strong> Un solo color vivo, usado en muy poca superficie, que ninguna otra
+        unidad del grupo tiene. Es el que firma.</li>
+    </ul>
 
-    <h3>Colores funcionales</h3>
-    <p style="font-size:15px;color:var(--ink-2)">No son de marca: son señales de estado. Se usan en fichas de
-      parques, tablas de disponibilidades y validaciones de formulario.</p>
-    <div class="chips">
-      <span class="chip"><i style="background:#0E7A5F"></i><span><code>#0E7A5F</code> · Disponible</span></span>
-      <span class="chip"><i style="background:#B5651D"></i><span><code>#B5651D</code> · Reservado</span></span>
-      <span class="chip"><i style="background:#C2410C"></i><span><code>#C2410C</code> · Alerta / error</span></span>
-    </div>
-    <div class="warn"><strong>Cuidado con el ámbar.</strong> <code>#B5651D</code> tiene 4.34:1 sobre blanco y
-      el mínimo AA para texto normal es 4.5:1. Sirve como fondo de etiqueta con texto blanco o para texto
-      grande, pero <strong>no</strong> para texto pequeño sobre fondo claro. Si se necesita ámbar en texto
-      chico, oscurecerlo a <code>#96530F</code>.</div>
+    <p class="lede" style="margin-top:18px">Dicho de otro modo: en Studio el blanco no comunica por lo que es,
+      sino por <strong>cuánto hay</strong>. El aire es el mensaje — y eso solo funciona si la tipografía y el
+      acento están a la altura.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Las dos unidades, lado a lado</h2>
-    <p class="lede">La prueba de que el sistema funciona: mismo layout, misma estructura, y aun así se
-      distinguen a primera vista sin dejar de ser la misma empresa.</p>
-
-    <div class="demos">
-      <div class="demo">
-        <div class="dh" style="background:#08407C">
-          <span class="logo">KRAK REAL ESTATE</span>
-          <span class="cta" style="background:#fff;color:#08407C">Tasar</span>
-        </div>
-        <div class="body">
-          <h4 style="color:#08407C">Vendé con un plan de acción</h4>
-          <p class="sub">Zona Norte · Residencial</p>
-          <div class="cards">
-            <div class="card" style="background:#cdd8e4;border-color:#9cb2ca">
-              <span class="big" style="color:#08407C">62</span>días promedio</div>
-            <div class="card" style="background:#cdd8e4;border-color:#9cb2ca">
-              <span class="big" style="color:#08407C">96%</span>del precio</div>
-          </div>
-          <span class="btn" style="background:#08407C">Tasar mi propiedad</span>
-        </div>
+    <h2>La gama</h2>
+    <div class="pals">
+      <div class="pal">
+        <header><b>Krak Studio</b><span>propuesta · superficies</span></header>
+        <div class="row"><div class="sw" style="background:#FFFFFF"></div>
+          <div><div class="rname">Principal</div><div class="rmeta">blanco puro</div></div>
+          <div><div class="rhex">#FFFFFF</div><div class="rc">—</div></div></div>
+        <div class="row"><div class="sw" style="background:#F6F7F9"></div>
+          <div><div class="rname">Superficie alterna</div><div class="rmeta">hsl 220 · 20% · 97%</div></div>
+          <div><div class="rhex">#F6F7F9</div><div class="rc">1.07 : 1</div></div></div>
+        <div class="row"><div class="sw" style="background:#EAEDF0"></div>
+          <div><div class="rname">Fondos</div><div class="rmeta">hsl 210 · 17% · 93%</div></div>
+          <div><div class="rhex">#EAEDF0</div><div class="rc">1.18 : 1</div></div></div>
+        <div class="row"><div class="sw" style="background:#D6DBE0"></div>
+          <div><div class="rname">Bordes</div><div class="rmeta">hsl 210 · 14% · 86%</div></div>
+          <div><div class="rhex">#D6DBE0</div><div class="rc">1.39 : 1</div></div></div>
       </div>
 
-      <div class="demo">
-        <div class="dh" style="background:#2F3941">
-          <span class="logo">KRAK INDUSTRIAL</span>
-          <span class="cta" style="background:#08407C;color:#fff">Publicar</span>
-        </div>
-        <div class="body">
-          <h4 style="color:#2F3941">Inmuebles industriales del AMBA</h4>
-          <p class="sub">16 parques · Norte, Oeste y Sur</p>
-          <div class="cards">
-            <div class="card" style="background:#E2E6E9;border-color:#B4BDC4">
-              <span class="big" style="color:#2F3941">16</span>parques en cartera</div>
-            <div class="card" style="background:#E2E6E9;border-color:#B4BDC4">
-              <span class="big" style="color:#08407C">11</span>lotes disponibles</div>
-          </div>
-          <span class="btn" style="background:#08407C">Publicar mi inmueble</span>
-        </div>
+      <div class="pal">
+        <header><b>Tinta y acento</b><span>lo que carga la marca</span></header>
+        <div class="row"><div class="sw" style="background:#12171C"></div>
+          <div><div class="rname">Tinta principal</div><div class="rmeta">hsl 210 · 22% · 9%</div></div>
+          <div><div class="rhex">#12171C</div><div class="rc">18.0 : 1</div></div></div>
+        <div class="row"><div class="sw" style="background:#6C757E"></div>
+          <div><div class="rname">Tinta secundaria</div><div class="rmeta">hsl 210 · 8% · 46%</div></div>
+          <div><div class="rhex">#6C757E</div><div class="rc">4.68 : 1</div></div></div>
+        <div class="row"><div class="sw" style="background:#1A62D6"></div>
+          <div><div class="rname">Acento</div><div class="rmeta">azul eléctrico</div></div>
+          <div><div class="rhex">#1A62D6</div><div class="rc">5.58 : 1</div></div></div>
+        <div class="row"><div class="sw" style="background:#E8F0FD"></div>
+          <div><div class="rname">Acento suave</div><div class="rmeta">fondo de destaque</div></div>
+          <div><div class="rhex">#E8F0FD</div><div class="rc">1.13 : 1</div></div></div>
       </div>
     </div>
-    <p style="margin-top:16px;font-size:14px;color:var(--ink-2)">Fijate en el detalle: en la tarjeta industrial
-      el número que importa comercialmente (los lotes disponibles) va en navy, y el resto en grafito. Ese es todo
-      el trabajo que hace el acento.</p>
+    <p style="margin-top:14px;font-size:13px;color:var(--ink-3)">Contrastes calculados sobre blanco, según
+      WCAG 2.1.</p>
+
+    <h3>Por qué azul eléctrico y no otro color</h3>
+    <p class="lede">Es la misma familia de matiz del grupo, pero llevada al extremo opuesto: donde Real Estate
+      es navy institucional y profundo, Studio es azul digital y brillante. Mismo origen, energía contraria —
+      que es exactamente la relación entre una inmobiliaria y su agencia.</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Candidato</th><th>Hex</th><th>Sobre blanco</th><th>Blanco encima</th><th>Veredicto</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Azul eléctrico</strong></td><td><code>#1A62D6</code></td><td>5.58 : 1</td><td>5.58 : 1</td><td class="ok">Recomendado — familia + margen AA</td></tr>
+        <tr><td>Azul eléctrico claro</td><td><code>#1F6FEB</code></td><td>4.63 : 1</td><td>4.63 : 1</td><td>Pasa AA al límite. Preferir para fondos, no texto</td></tr>
+        <tr><td>Violeta</td><td><code>#6C4CF5</code></td><td>5.26 : 1</td><td>5.26 : 1</td><td>Alternativa si se quiere independencia total del grupo</td></tr>
+        <tr><td>Bermellón</td><td><code>#FF4B2B</code></td><td>3.34 : 1</td><td>3.34 : 1</td><td class="no">No AA en texto. Solo como fondo con tinta oscura (5.40 : 1)</td></tr>
+        <tr><td>Navy del grupo</td><td><code>#08407C</code></td><td>10.3 : 1</td><td>10.3 : 1</td><td>Seguro, pero no diferencia: es el color de Real Estate</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Proporción de uso</h3>
+    <div class="ratio">
+      <div style="flex:80;background:#FFFFFF;color:#12171C;border-right:1px solid #DDE2E6">80% — blanco y superficies claras</div>
+      <div style="flex:15;background:#12171C;color:#fff">15% — tinta</div>
+      <div style="flex:5;background:#1A62D6;color:#fff">5% — acento</div>
+    </div>
+    <p style="margin-top:12px;font-size:14px;color:var(--ink-2)">Es la proporción más extrema de las tres
+      unidades, y es deliberado: en Studio el aire tiene que ser tan evidente que se lea como decisión.</p>
   </div>
 </section>
 
 <section style="background:var(--paper-2)">
   <div class="wrap">
+    <h2>Las tres unidades, lado a lado</h2>
+    <p class="lede">Mismo layout, misma estructura. Se distinguen de un vistazo y siguen siendo la misma
+      empresa.</p>
+
+    <div class="demos">
+      <div class="demo" style="background:#fff">
+        <div class="dh" style="background:#08407C">
+          <span class="logo" style="color:#fff">KRAK REAL ESTATE</span>
+          <span class="cta" style="background:#fff;color:#08407C">Tasar</span>
+        </div>
+        <div class="body">
+          <h4 style="color:#08407C">Vendé con un plan de acción</h4>
+          <p class="sub" style="color:#4A545D">Zona Norte · Residencial</p>
+          <div class="cards">
+            <div class="card" style="background:#cdd8e4;border-color:#9cb2ca;color:#396696">
+              <span class="big" style="color:#08407C">62</span>días promedio</div>
+            <div class="card" style="background:#cdd8e4;border-color:#9cb2ca;color:#396696">
+              <span class="big" style="color:#08407C">96%</span>del precio</div>
+          </div>
+          <span class="btn" style="background:#08407C;color:#fff">Tasar mi propiedad</span>
+        </div>
+      </div>
+
+      <div class="demo" style="background:#fff">
+        <div class="dh" style="background:#2F3941">
+          <span class="logo" style="color:#fff">KRAK INDUSTRIAL</span>
+          <span class="cta" style="background:#08407C;color:#fff">Publicar</span>
+        </div>
+        <div class="body">
+          <h4 style="color:#2F3941">Naves, galpones y lotes</h4>
+          <p class="sub" style="color:#4F5B65">20 parques · Norte, Oeste y Sur</p>
+          <div class="cards">
+            <div class="card" style="background:#E2E6E9;border-color:#B4BDC4;color:#4F5B65">
+              <span class="big" style="color:#2F3941">20</span>parques en cartera</div>
+            <div class="card" style="background:#E2E6E9;border-color:#B4BDC4;color:#4F5B65">
+              <span class="big" style="color:#08407C">11</span>lotes disponibles</div>
+          </div>
+          <span class="btn" style="background:#08407C;color:#fff">Publicar mi inmueble</span>
+        </div>
+      </div>
+
+      <div class="demo" style="background:#fff">
+        <div class="dh" style="background:#FFFFFF;border-bottom:1px solid #EAEDF0">
+          <span class="logo" style="color:#12171C">KRAK STUDIO</span>
+          <span class="cta" style="background:#1A62D6;color:#fff">Hablemos</span>
+        </div>
+        <div class="body">
+          <h4 style="color:#12171C">Marketing 360 con ADN inmobiliario</h4>
+          <p class="sub" style="color:#6C757E">Agencia · Estrategia y performance</p>
+          <div class="cards">
+            <div class="card" style="background:#F6F7F9;border-color:#EAEDF0;color:#6C757E">
+              <span class="big" style="color:#12171C">80%</span>de un parque vendido</div>
+            <div class="card" style="background:#E8F0FD;border-color:#C9DDF9;color:#4A545D">
+              <span class="big" style="color:#1A62D6">5</span>áreas de trabajo</div>
+          </div>
+          <span class="btn" style="background:#12171C;color:#fff">Contanos tu proyecto</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:14.5px;color:var(--ink-2)">Mirá el detalle de Studio: el botón
+      principal va en <strong>tinta negra</strong>, no en el acento. El azul eléctrico queda reservado para el
+      dato que tiene que saltar y para el CTA del header. Si el acento se usa en todos los botones, deja de
+      ser acento y Studio empieza a parecerse a Real Estate.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <h2>Reglas de aplicación</h2>
     <div class="tw"><table>
       <thead><tr><th>Elemento</th><th>Color</th><th>Sobre</th><th>Contraste</th><th>Estado</th></tr></thead>
       <tbody>
-        <tr><td>Texto de cuerpo</td><td><code>#2F3941</code></td><td>Blanco</td><td>11.8:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Texto de cuerpo</td><td><code>#2F3941</code></td><td><code>#E2E6E9</code></td><td>9.39:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Texto secundario</td><td><code>#4F5B65</code></td><td>Blanco</td><td>6.96:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Texto auxiliar pequeño</td><td><code>#7C8892</code></td><td>Blanco</td><td>3.62:1</td><td class="no">No AA — solo bordes, íconos o texto ≥ 24px</td></tr>
-        <tr><td>Texto sobre header oscuro</td><td>Blanco</td><td><code>#2F3941</code></td><td>11.8:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Botón primario</td><td>Blanco</td><td><code>#08407C</code></td><td>10.3:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Enlace en texto</td><td><code>#08407C</code></td><td>Blanco</td><td>10.3:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Enlace sobre fondo claro</td><td><code>#08407C</code></td><td><code>#E2E6E9</code></td><td>8.22:1</td><td class="ok">AAA</td></tr>
-        <tr><td>Etiqueta "Disponible"</td><td>Blanco</td><td><code>#0E7A5F</code></td><td>5.29:1</td><td class="ok">AA</td></tr>
+        <tr><td>Titulares y texto de cuerpo</td><td><code>#12171C</code></td><td>Blanco</td><td>18.0 : 1</td><td class="ok">AAA</td></tr>
+        <tr><td>Texto sobre superficie alterna</td><td><code>#12171C</code></td><td><code>#EAEDF0</code></td><td>15.3 : 1</td><td class="ok">AAA</td></tr>
+        <tr><td>Texto secundario</td><td><code>#6C757E</code></td><td>Blanco</td><td>4.68 : 1</td><td class="ok">AA — no bajar de este valor</td></tr>
+        <tr><td>Enlaces y datos destacados</td><td><code>#1A62D6</code></td><td>Blanco</td><td>5.58 : 1</td><td class="ok">AA</td></tr>
+        <tr><td>Botón primario</td><td>Blanco</td><td><code>#12171C</code></td><td>18.0 : 1</td><td class="ok">AAA</td></tr>
+        <tr><td>Botón de acento</td><td>Blanco</td><td><code>#1A62D6</code></td><td>5.58 : 1</td><td class="ok">AA</td></tr>
+        <tr><td>Bordes y separadores</td><td><code>#D6DBE0</code></td><td>Blanco</td><td>1.39 : 1</td><td>Solo estructura, nunca texto</td></tr>
       </tbody>
     </table></div>
 
@@ -272,76 +316,81 @@ li{margin:7px 0}
       <div>
         <h4 style="color:var(--sig-ok)">Sí</h4>
         <ul>
-          <li><strong>Grafito para superficies grandes:</strong> header, footer, bandas de sección y el bloque de captación.</li>
-          <li><strong>Navy solo en acción y dato:</strong> botones, enlaces, cifras destacadas y estados activos de filtros.</li>
-          <li><strong>Fondos claros para tablas técnicas:</strong> alternar blanco y <code>#E2E6E9</code> en las filas.</li>
-          <li><strong>Apoyo <code>#7C8892</code> para estructura:</strong> bordes, separadores, íconos lineales.</li>
-          <li><strong>Blanco como color:</strong> el aire es parte del registro técnico y corporativo.</li>
+          <li><strong>Tipografía grande y negra:</strong> es lo que sostiene la identidad cuando el fondo es blanco.</li>
+          <li><strong>Aire desmedido:</strong> márgenes y espaciados por encima de lo habitual. En Studio el vacío es el mensaje.</li>
+          <li><strong>Imagen a sangre:</strong> el trabajo del cliente aporta el color que la paleta no tiene.</li>
+          <li><strong>Superficie alterna para separar bloques</strong> en lugar de líneas divisorias.</li>
+          <li><strong>El acento en un solo lugar por pantalla.</strong></li>
         </ul>
       </div>
       <div>
         <h4 style="color:var(--sig-al)">No</h4>
         <ul>
-          <li><strong>Grises neutros</strong> (#808080, #333333): rompen la familia y se ven sucios al lado del navy.</li>
-          <li><strong>Degradados de gris a navy:</strong> mezclan las dos identidades justo donde deberían separarse.</li>
-          <li><strong>Navy en superficies grandes:</strong> pasa a leerse como Real Estate.</li>
-          <li><strong>Texto en <code>#7C8892</code> a 12 o 14 px:</strong> no llega a AA. Es el error más fácil de cometer.</li>
-          <li><strong>Sumar un segundo acento de marca:</strong> los funcionales alcanzan.</li>
+          <li><strong>Grises medios como fondo:</strong> invaden el territorio de Industrial.</li>
+          <li><strong>El navy en superficies:</strong> invade el territorio de Real Estate.</li>
+          <li><strong>Degradados de colores:</strong> es el recurso con el que se disfraza la falta de identidad.</li>
+          <li><strong>Más de un acento:</strong> dos colores vivos anulan a los dos.</li>
+          <li><strong>Texto gris claro sobre blanco</strong> por debajo de <code>#6C757E</code>: no llega a AA.</li>
         </ul>
       </div>
+    </div>
+
+    <h3>De dónde sale el color, entonces</h3>
+    <p class="lede">De los trabajos. Una agencia con paleta neutra y portfolio a todo color consigue algo que
+      ninguna paleta propia logra: <strong>que cada caso se vea como es, sin competir con la marca de la
+      agencia</strong>. El blanco de Studio es el marco del museo, no el cuadro. Es un argumento que se puede
+      decir en voz alta frente a un cliente, y eso lo vuelve una decisión de posicionamiento y no de gusto.</p>
+  </div>
+</section>
+
+<section style="background:var(--st-ink);color:#fff;border:0">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#8B949D">Resumen ejecutable</p>
+    <h2 style="color:#fff;margin-top:12px">La gama de Studio, en seis líneas</h2>
+    <div class="tw" style="border-color:#333B42;margin-top:22px">
+      <table style="background:#1B2126;color:#D4DAE0">
+        <thead><tr>
+          <th style="background:#262D33;color:#A9B2BA">Rol</th>
+          <th style="background:#262D33;color:#A9B2BA">Hex</th>
+          <th style="background:#262D33;color:#A9B2BA">Dónde se usa</th></tr></thead>
+        <tbody>
+          <tr><td style="border-color:#333B42">Principal</td><td style="border-color:#333B42"><code>#FFFFFF</code></td><td style="border-color:#333B42">Fondo dominante de toda la web</td></tr>
+          <tr><td style="border-color:#333B42">Superficie alterna</td><td style="border-color:#333B42"><code>#F6F7F9</code></td><td style="border-color:#333B42">Separar secciones sin usar líneas</td></tr>
+          <tr><td style="border-color:#333B42">Fondos</td><td style="border-color:#333B42"><code>#EAEDF0</code></td><td style="border-color:#333B42">Tarjetas, bloques de dato, placeholders</td></tr>
+          <tr><td style="border-color:#333B42">Bordes</td><td style="border-color:#333B42"><code>#D6DBE0</code></td><td style="border-color:#333B42">Contornos y separadores. Nunca texto</td></tr>
+          <tr><td style="border-color:#333B42">Tinta principal</td><td style="border-color:#333B42"><code>#12171C</code></td><td style="border-color:#333B42">Titulares, cuerpo y botón primario</td></tr>
+          <tr><td style="border-color:#333B42">Tinta secundaria</td><td style="border-color:#333B42"><code>#6C757E</code></td><td style="border-color:#333B42">Bajadas, epígrafes, texto de apoyo</td></tr>
+          <tr><td style="border-color:#333B42">Acento</td><td style="border-color:#333B42"><code>#1A62D6</code></td><td style="border-color:#333B42">Enlaces, dato clave, un CTA por pantalla. Máx. 5%</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Cómo queda el sistema completo</h2>
-    <p class="lede">Si esta lógica se sostiene, el universo Krak queda con una regla única y fácil de explicar:
-      <strong>una misma escalera de matiz, y cada unidad se apropia de un tramo distinto.</strong></p>
-
+    <h2>El sistema completo</h2>
     <div class="tw"><table>
-      <thead><tr><th>Unidad</th><th>Color principal</th><th>Acento</th><th>Registro</th><th>Estado</th></tr></thead>
+      <thead><tr><th>Unidad</th><th>Superficie dominante</th><th>Acento</th><th>Registro</th><th>Estado</th></tr></thead>
       <tbody>
-        <tr><td><strong>Krak Real Estate</strong></td><td><code>#08407C</code> navy saturado</td><td>A definir (arena)</td><td>Cercano, premium, humano</td><td class="ok">Definido</td></tr>
-        <tr><td><strong>Krak Industrial</strong></td><td><code>#2F3941</code> grafito azulado</td><td><code>#08407C</code> navy</td><td>Técnico, corporativo, sobrio</td><td>Propuesta de este documento</td></tr>
-        <tr><td><strong>Krak Studio</strong></td><td><code>#12171B</code> casi negro</td><td>Uno vivo, a definir</td><td>Creativo, contemporáneo</td><td>Hipótesis, sin validar</td></tr>
+        <tr><td><strong>Krak Real Estate</strong></td><td><code>#08407C</code> navy saturado</td><td>Pendiente (¿arena <code>#B07D3F</code>?)</td><td>Cercano, premium, humano</td><td>Definido salvo el acento</td></tr>
+        <tr><td><strong>Krak Industrial</strong></td><td><code>#2F3941</code> grafito azulado</td><td><code>#08407C</code> navy</td><td>Técnico, corporativo, sobrio</td><td>Propuesto</td></tr>
+        <tr><td><strong>Krak Studio</strong></td><td><code>#FFFFFF</code> blanco</td><td><code>#1A62D6</code> azul eléctrico</td><td>Creativo, contemporáneo</td><td>Propuesto</td></tr>
         <tr><td><strong>Krak (marca madre)</strong></td><td><code>#08407C</code></td><td>—</td><td>Institucional</td><td>Hereda de Real Estate</td></tr>
       </tbody>
     </table></div>
 
-    <div class="note">La fila de Studio es una hipótesis y no la trabajé todavía. La lógica sería la misma:
-      Studio es la unidad creativa, así que le corresponde el extremo oscuro de la escalera más un acento vivo
-      —el único lugar del sistema donde un color saturado no compite con nadie—. Cuando lo abordemos, se define
-      contra su propia web, no acá.</div>
+    <div class="note"><strong>La decisión que sigue trabada.</strong> Real Estate todavía no tiene acento
+      definido. Ahora es más urgente que antes: si Studio se queda con el azul eléctrico, Real Estate no puede
+      tomar otro azul, y la salida natural es el arena <code>#B07D3F</code> que propuse en el mockup
+      residencial. El sistema quedaría así: <strong>Real Estate</strong> azul + arena,
+      <strong>Industrial</strong> grafito + azul, <strong>Studio</strong> blanco + azul eléctrico. Un solo
+      color cálido en todo el universo, y siempre en la unidad que le habla a familias.</div>
 
-    <h3>Una decisión pendiente que arrastra este documento</h3>
-    <p style="font-size:15.5px;color:var(--ink-2)">Real Estate hoy no tiene color de acento: es monocroma. Le
-      propuse un arena <code>#B07D3F</code> en el mockup residencial, y quedó sin resolver. Conviene definirlo
-      junto con esta gama, porque las dos decisiones se afectan: si Real Estate suma un acento cálido, el
-      sistema queda con azul + arena en residencial y grafito + azul en industrial, que es coherente. Si Real
-      Estate se queda monocroma, hay que revisar si el navy alcanza como acento único en industrial.</p>
-  </div>
-</section>
-
-<section style="background:var(--in-1);color:#fff;border:0">
-  <div class="wrap">
-    <p class="eyebrow" style="color:var(--in-4)">Resumen ejecutable</p>
-    <h2 style="color:#fff;margin-top:12px">La gama, en cinco líneas</h2>
-    <div class="tw" style="border-color:#4F5B65;margin-top:22px">
-      <table style="background:#374149;color:#E2E6E9">
-        <thead><tr style="background:#4F5B65">
-          <th style="background:#4F5B65;color:#C7CFD5">Rol</th>
-          <th style="background:#4F5B65;color:#C7CFD5">Hex</th>
-          <th style="background:#4F5B65;color:#C7CFD5">Dónde se usa</th></tr></thead>
-        <tbody>
-          <tr><td style="border-color:#4F5B65">Principal</td><td style="border-color:#4F5B65"><code>#2F3941</code></td><td style="border-color:#4F5B65">Header, footer, bandas de sección, texto de cuerpo</td></tr>
-          <tr><td style="border-color:#4F5B65">Secundario</td><td style="border-color:#4F5B65"><code>#4F5B65</code></td><td style="border-color:#4F5B65">Texto secundario, tarjetas sobre fondo oscuro</td></tr>
-          <tr><td style="border-color:#4F5B65">Apoyo</td><td style="border-color:#4F5B65"><code>#7C8892</code></td><td style="border-color:#4F5B65">Bordes, íconos, separadores. Nunca texto chico</td></tr>
-          <tr><td style="border-color:#4F5B65">Fondos</td><td style="border-color:#4F5B65"><code>#B4BDC4</code></td><td style="border-color:#4F5B65">Placeholders, estados inactivos, divisores fuertes</td></tr>
-          <tr><td style="border-color:#4F5B65">Fondos claros</td><td style="border-color:#4F5B65"><code>#E2E6E9</code></td><td style="border-color:#4F5B65">Secciones alternas, filas de tabla, tarjetas de dato</td></tr>
-          <tr><td style="border-color:#4F5B65">Acento</td><td style="border-color:#4F5B65"><code>#08407C</code></td><td style="border-color:#4F5B65">Botones, enlaces, cifras clave. Máximo 10% de la superficie</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="lede" style="margin-top:20px">La otra pregunta abierta es de marca, no de color:
+      <strong>¿Studio se presenta como parte del universo Krak o de forma autónoma?</strong> Si es autónoma,
+      el violeta <code>#6C4CF5</code> es mejor acento que el azul eléctrico, porque corta el parentesco a
+      propósito. Si es parte del grupo —que es lo que sugiere el "Powered by Krak Studio" en los pies de
+      página de las otras dos webs— el azul eléctrico es la respuesta correcta.</p>
   </div>
 </section>
