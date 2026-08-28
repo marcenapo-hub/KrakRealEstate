@@ -1,0 +1,735 @@
+<title>Nave Industrial — Investment Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --navy:#0f2038; --navy-2:#16304f; --navy-3:#1d3f65;
+    --paper:#f5f4f0; --surface:#ffffff; --line:#dfe1e0;
+    --ink:#1a2230; --ink-soft:#4c5566; --muted:#767f8c;
+    --green:#1c6b46; --green-bg:#e5f1ea;
+    --amber:#8a5a13; --amber-bg:#f6ecd9;
+    --red:#9c2b24; --red-bg:#f6e6e4;
+    --gold:#9c7a34;
+    --tag-dato:#2b5c8a; --tag-dato-bg:#e4edf5;
+    --tag-calc:#1c6b46; --tag-calc-bg:#e5f1ea;
+    --tag-sup:#8a5a13; --tag-sup-bg:#f6ecd9;
+    --tag-pend:#9c2b24; --tag-pend-bg:#f6e6e4;
+    --shadow: 0 1px 2px rgba(15,32,56,.06), 0 8px 24px rgba(15,32,56,.05);
+    --radius: 3px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --navy:#0a1524; --navy-2:#122238; --navy-3:#1a3352;
+      --paper:#0d141f; --surface:#131b28; --line:#263042;
+      --ink:#e7eaef; --ink-soft:#b7c0cc; --muted:#8993a3;
+      --green:#5fbf8c; --green-bg:#12281f;
+      --amber:#d9a24d; --amber-bg:#2c2213;
+      --red:#e08079; --red-bg:#2c1614;
+      --gold:#c8a35f;
+      --tag-dato:#7aa9d6; --tag-dato-bg:#122539;
+      --tag-calc:#5fbf8c; --tag-calc-bg:#12281f;
+      --tag-sup:#d9a24d; --tag-sup-bg:#2c2213;
+      --tag-pend:#e08079; --tag-pend-bg:#2c1614;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --navy:#0a1524; --navy-2:#122238; --navy-3:#1a3352;
+    --paper:#0d141f; --surface:#131b28; --line:#263042;
+    --ink:#e7eaef; --ink-soft:#b7c0cc; --muted:#8993a3;
+    --green:#5fbf8c; --green-bg:#12281f;
+    --amber:#d9a24d; --amber-bg:#2c2213;
+    --red:#e08079; --red-bg:#2c1614;
+    --gold:#c8a35f;
+    --tag-dato:#7aa9d6; --tag-dato-bg:#122539;
+    --tag-calc:#5fbf8c; --tag-calc-bg:#12281f;
+    --tag-sup:#d9a24d; --tag-sup-bg:#2c2213;
+    --tag-pend:#e08079; --tag-pend-bg:#2c1614;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size:16px; line-height:1.55;
+  }
+  h1,h2,h3{font-family:"Source Serif 4", Georgia, serif; text-wrap:balance; margin:0;}
+  .mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+
+  /* ---------- shell layout ---------- */
+  .shell{display:flex; min-height:100vh;}
+  .rail{
+    position:sticky; top:0; align-self:flex-start; height:100vh;
+    width:236px; flex:0 0 236px; background:var(--navy); color:#dfe6f0;
+    padding:28px 18px; overflow-y:auto;
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  .rail-brand{font-family:"Source Serif 4",serif; font-size:15px; letter-spacing:.02em; color:#fff; margin-bottom:3px;}
+  .rail-sub{font-size:11px; color:#9fb0c6; letter-spacing:.06em; text-transform:uppercase; margin-bottom:22px;}
+  .rail nav{display:flex; flex-direction:column; gap:1px;}
+  .rail nav a{
+    display:flex; gap:10px; align-items:baseline; text-decoration:none;
+    color:#c3cede; font-size:12.5px; padding:6px 8px; border-radius:3px;
+    transition:background .15s;
+  }
+  .rail nav a:hover{background:rgba(255,255,255,.06); color:#fff;}
+  .rail nav a .n{font-family:"IBM Plex Mono",monospace; color:#7f93ad; font-size:11px; width:16px; flex:0 0 16px;}
+  .rail-foot{margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,.1); font-size:10.5px; color:#7f93ad; line-height:1.6;}
+
+  main{flex:1; min-width:0;}
+
+  .slide{
+    padding:64px 68px 58px; border-bottom:1px solid var(--line);
+    max-width:1180px;
+  }
+  .slide-eyebrow{
+    display:flex; align-items:center; gap:10px; font-size:11.5px;
+    letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;
+  }
+  .slide-eyebrow .idx{font-family:"IBM Plex Mono",monospace; color:var(--gold); font-weight:600;}
+  .slide h2{font-size:32px; font-weight:600; color:var(--navy); margin-bottom:6px;}
+  :root[data-theme="dark"] .slide h2, @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .slide h2{color:#eef2f7;}}
+  .slide .objective{font-size:14.5px; color:var(--ink-soft); max-width:62ch; margin-bottom:34px;}
+  .slide-body{display:flex; flex-direction:column; gap:26px;}
+
+  /* ---------- tags ---------- */
+  .tag{
+    display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:600;
+    letter-spacing:.03em; text-transform:uppercase; padding:2px 7px; border-radius:2px;
+    white-space:nowrap;
+  }
+  .tag-dato{color:var(--tag-dato); background:var(--tag-dato-bg);}
+  .tag-calc{color:var(--tag-calc); background:var(--tag-calc-bg);}
+  .tag-sup{color:var(--tag-sup); background:var(--tag-sup-bg);}
+  .tag-pend{color:var(--tag-pend); background:var(--tag-pend-bg);}
+
+  /* ---------- KPI grid ---------- */
+  .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .kpi{background:var(--surface); padding:20px 18px;}
+  .kpi .v{font-family:"IBM Plex Mono",monospace; font-size:26px; font-weight:600; color:var(--navy);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi .v{color:#eef2f7;}}
+  :root[data-theme="dark"] .kpi .v{color:#eef2f7;}
+  .kpi .v.pos{color:var(--green);}
+  .kpi .v.neg{color:var(--red);}
+  .kpi .l{font-size:11.5px; color:var(--muted); margin-top:6px; letter-spacing:.02em;}
+  .kpi .t{margin-top:8px;}
+
+  /* ---------- tables ---------- */
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);}
+  table{border-collapse:collapse; width:100%; font-size:13px; min-width:520px;}
+  thead th{
+    text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); font-weight:600; padding:10px 14px; background:var(--surface);
+    border-bottom:1px solid var(--line); white-space:nowrap;
+  }
+  tbody td{padding:9px 14px; border-bottom:1px solid var(--line); background:var(--surface); color:var(--ink-soft);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num, th.num{font-family:"IBM Plex Mono",monospace; text-align:right; font-variant-numeric:tabular-nums;}
+  td.strong{color:var(--ink); font-weight:600;}
+  tr.base td{background:var(--tag-dato-bg);}
+  tr.highlight td{background:var(--green-bg);}
+  tr.warn td{background:var(--red-bg);}
+
+  /* ---------- callouts ---------- */
+  .callout{border:1px solid var(--line); border-left:3px solid var(--navy-3); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; padding:14px 18px; font-size:13.5px; color:var(--ink-soft);}
+  .callout.finding{border-left-color:var(--gold); background:var(--surface);}
+  .callout.finding b{color:var(--ink);}
+  .callout.risk{border-left-color:var(--red); background:var(--red-bg); color:var(--ink);}
+  .callout.pending{border-left-color:var(--tag-pend);}
+
+  .two-col{display:grid; grid-template-columns:1.1fr .9fr; gap:26px;}
+  .three-col{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:900px){.two-col,.three-col{grid-template-columns:1fr;}}
+
+  .card{border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); padding:20px 22px;}
+  .card h3{font-size:15px; color:var(--navy); margin-bottom:10px; font-weight:600;}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card h3{color:#eef2f7;}}
+  :root[data-theme="dark"] .card h3{color:#eef2f7;}
+  .card ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--ink-soft); display:flex; flex-direction:column; gap:6px;}
+
+  .pill-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pill{font-size:11px; padding:4px 10px; border-radius:99px; border:1px solid var(--line); color:var(--ink-soft); background:var(--surface);}
+  .pill.hi{border-color:var(--red); color:var(--red); background:var(--red-bg);}
+  .pill.med{border-color:var(--amber); color:var(--amber); background:var(--amber-bg);}
+  .pill.lo{border-color:var(--green); color:var(--green); background:var(--green-bg);}
+
+  .footer-note{font-size:11.5px; color:var(--muted); border-top:1px dashed var(--line); padding-top:14px; margin-top:6px;}
+
+  /* ---------- cover ---------- */
+  .cover{
+    background:linear-gradient(155deg,var(--navy) 0%, var(--navy-2) 62%, var(--navy-3) 100%);
+    color:#eef2f7; min-height:100vh; padding:70px 68px; display:flex; flex-direction:column; justify-content:space-between;
+    border-bottom:none;
+  }
+  .cover .kicker{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#9fb0c6;}
+  .cover h1{font-size:56px; font-weight:600; line-height:1.08; margin:22px 0 26px; max-width:14ch; color:#fff;}
+  .cover .sub{font-size:16px; color:#c3cede; max-width:56ch; line-height:1.6;}
+  .cover .facts{display:flex; gap:38px; margin-top:48px; flex-wrap:wrap;}
+  .cover .facts .f .v{font-family:"IBM Plex Mono",monospace; font-size:22px; color:#fff; font-weight:600;}
+  .cover .facts .f .l{font-size:11px; color:#9fb0c6; margin-top:4px; letter-spacing:.03em;}
+  .cover .foot{display:flex; justify-content:space-between; align-items:flex-end; font-size:11.5px; color:#8595ab; border-top:1px solid rgba(255,255,255,.12); padding-top:18px;}
+
+  /* ---------- simple chart bits (inline svg) ---------- */
+  .chart-caption{font-size:11px; color:var(--muted); margin-top:8px;}
+
+  ::selection{background:var(--gold); color:#fff;}
+
+  @media (max-width:860px){
+    .shell{flex-direction:column;}
+    .rail{position:relative; width:100%; height:auto; flex:none;}
+    .slide{padding:44px 22px;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);}
+    .cover{padding:40px 24px;}
+    .cover h1{font-size:38px;}
+  }
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-brand">Nave Industrial</div>
+    <div class="rail-sub">Investment Memorandum</div>
+    <nav>
+      <a href="#s1"><span class="n">01</span>Portada</a>
+      <a href="#s2"><span class="n">02</span>Investment Snapshot</a>
+      <a href="#s3"><span class="n">03</span>¿Por qué interesa?</a>
+      <a href="#s4"><span class="n">04</span>El activo</a>
+      <a href="#s5"><span class="n">05</span>Situación operativa</a>
+      <a href="#s6"><span class="n">06</span>Estructura de adquisición</a>
+      <a href="#s7"><span class="n">07</span>Contrato y locatario</a>
+      <a href="#s8"><span class="n">08</span>Economía de la renta</a>
+      <a href="#s9"><span class="n">09</span>Retorno sobre inversión</a>
+      <a href="#s10"><span class="n">10</span>Cash flow</a>
+      <a href="#s11"><span class="n">11</span>Escenarios</a>
+      <a href="#s12"><span class="n">12</span>Sensibilidad</a>
+      <a href="#s13"><span class="n">13</span>Comparación</a>
+      <a href="#s14"><span class="n">14</span>Valuación</a>
+      <a href="#s15"><span class="n">15</span>Riesgos</a>
+      <a href="#s16"><span class="n">16</span>Estrategias de salida</a>
+      <a href="#s17"><span class="n">17</span>Due diligence</a>
+      <a href="#s18"><span class="n">18</span>Investment Case</a>
+      <a href="#s19"><span class="n">19</span>Próximos pasos</a>
+    </nav>
+    <div class="rail-foot">
+      <span class="tag tag-dato" style="margin-right:4px">Dato</span>
+      <span class="tag tag-calc" style="margin-right:4px">Cálculo</span>
+      <span class="tag tag-sup" style="margin-right:4px">Supuesto</span>
+      <span class="tag tag-pend">Pendiente</span>
+      <div style="margin-top:10px">Preparado para comité de inversión. No es asesoramiento legal, impositivo ni una oferta.</div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- 1. PORTADA -->
+    <section class="cover" id="s1">
+      <div>
+        <div class="kicker">Investment Memorandum — Activo Industrial</div>
+        <h1>Nave industrial ocupada, en renta, con financiación parcial del vendedor.</h1>
+        <p class="sub">Depósito de 1.240 m², 100% operativo, alquilado a un operador logístico. Se presenta como activo financiero respaldado por un bien real — no como una oportunidad de venta minorista. Los números se auditan antes de presentarse.</p>
+      </div>
+      <div>
+        <div class="facts">
+          <div class="f"><div class="v">USD 1,2M</div><div class="l">PRECIO DE ADQUISICIÓN</div></div>
+          <div class="f"><div class="v">1.240 m²</div><div class="l">SUPERFICIE CUBIERTA</div></div>
+          <div class="f"><div class="v">9,40%</div><div class="l">GROSS YIELD CALCULADO</div></div>
+          <div class="f"><div class="v">40 meses</div><div class="l">CONTRATO REMANENTE</div></div>
+        </div>
+        <div class="foot">
+          <span>Preparado para inversor calificado — análisis de comité, no material de marketing</span>
+          <span class="mono">28/08/2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. INVESTMENT SNAPSHOT -->
+    <section class="slide" id="s2">
+      <div class="slide-eyebrow"><span class="idx">02 / 19</span> Investment Snapshot</div>
+      <h2>La operación, en menos de 30 segundos</h2>
+      <p class="objective">Objetivo: que el inversor entienda de un vistazo qué se compra, cuánto cuesta y qué rinde nominalmente — antes de entrar en el detalle.</p>
+      <div class="slide-body">
+        <div class="kpi-grid">
+          <div class="kpi"><div class="v">USD 1.200.000</div><div class="l">PRECIO</div><div class="t tag tag-dato">Dato</div></div>
+          <div class="kpi"><div class="v">1.240 m²</div><div class="l">SUPERFICIE</div><div class="t tag tag-dato">Dato</div></div>
+          <div class="kpi"><div class="v">USD 9.400</div><div class="l">RENTA MENSUAL INFORMADA</div><div class="t tag tag-dato">Dato</div></div>
+          <div class="kpi"><div class="v">USD 112.800</div><div class="l">RENTA ANUAL BRUTA</div><div class="t tag tag-calc">Cálculo</div></div>
+          <div class="kpi"><div class="v">USD 967,74</div><div class="l">PRECIO / M²</div><div class="t tag tag-calc">Cálculo</div></div>
+          <div class="kpi"><div class="v pos">9,40%</div><div class="l">GROSS YIELD CALCULADO</div><div class="t tag tag-calc">Cálculo</div></div>
+          <div class="kpi"><div class="v">40 meses</div><div class="l">CONTRATO REMANENTE</div><div class="t tag tag-dato">Dato — verificado</div></div>
+          <div class="kpi"><div class="v">USD 200.000</div><div class="l">FINANCIACIÓN DEL VENDEDOR</div><div class="t tag tag-dato">Dato</div></div>
+        </div>
+        <div class="callout finding">
+          <b>Nota sobre el 9,4% informado como "Cap Rate":</b> el cálculo (112.800 / 1.200.000) coincide exactamente con 9,40% — no hay error aritmético. Pero técnicamente es <b>Gross Yield</b>, no Cap Rate: un Cap Rate se calcula sobre NOI (renta neta de gastos del propietario), que aún no se conoce. El Cap Rate real será igual o inferior a 9,40%. <span class="tag tag-pend">Pendiente: OPEX del propietario</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. POR QUE INTERESA -->
+    <section class="slide" id="s3">
+      <div class="slide-eyebrow"><span class="idx">03 / 19</span> Tesis de inversión</div>
+      <h2>¿Por qué podría ser interesante?</h2>
+      <p class="objective">Cinco factores que sostiene el análisis — no cinco adjetivos. Ninguno es "garantía"; todos están sujetos a las condiciones de la sección 18.</p>
+      <div class="slide-body">
+        <div class="three-col">
+          <div class="card"><h3>1 · Renta desde el día uno</h3><ul><li>Activo 100% ocupado y operativo, sin período de estabilización ni desarrollo.</li></ul></div>
+          <div class="card"><h3>2 · Visibilidad contractual</h3><ul><li>40 meses remanentes de contrato vigente (verificado contra la fecha de hoy).</li></ul></div>
+          <div class="card"><h3>3 · Financiación parcial del vendedor</h3><ul><li>16,7% del precio financiado reduce el capital inicial requerido a USD 1.000.000.</li></ul></div>
+          <div class="card"><h3>4 · Yield nominal por encima de renta fija de referencia</h3><ul><li>9,4% bruto vs. ~4,7% de un UST 10 años — brecha que se reduce al ajustar por riesgo (ver sección 13).</li></ul></div>
+          <div class="card"><h3>5 · Activo físico con valor residual</h3><ul><li>Uso logístico relativamente genérico; adaptabilidad a otros operadores a confirmar con datos técnicos.</li></ul></div>
+        </div>
+        <div class="callout">Deliberadamente no se listan como fortalezas: "cap rate garantizado", "inversión sin riesgo" ni "oportunidad única" — el archivo de riesgos (sección 15) es tan relevante como esta lista.</div>
+      </div>
+    </section>
+
+    <!-- 4. EL ACTIVO -->
+    <section class="slide" id="s4">
+      <div class="slide-eyebrow"><span class="idx">04 / 19</span> El activo</div>
+      <h2>Qué se está comprando</h2>
+      <p class="objective">Objetivo: describir el activo físico con lo informado, sin completar con supuestos de ubicación o calidad constructiva.</p>
+      <div class="slide-body">
+        <div class="two-col">
+          <div class="table-wrap"><table>
+            <tbody>
+              <tr><td>Tipo</td><td class="strong">Nave / depósito industrial</td></tr>
+              <tr><td>Superficie total</td><td class="strong num">1.240 m²</td></tr>
+              <tr><td>Condición</td><td class="strong">100% operativo, actualmente alquilado</td></tr>
+              <tr><td>Rubro del locatario</td><td class="strong">Logística y depósito de electrónica (TVs, heladeras, electrodomésticos)</td></tr>
+              <tr><td>Modalidad de estiba</td><td class="strong">100% a piso, sin racks</td></tr>
+              <tr><td>Ubicación</td><td><span class="tag tag-pend">Dato a validar</span></td></tr>
+              <tr><td>Altura libre / accesos / playa de maniobras</td><td><span class="tag tag-pend">Dato a validar</span></td></tr>
+            </tbody>
+          </table></div>
+          <div class="card">
+            <h3>Lectura del comité</h3>
+            <ul>
+              <li>La estiba 100% a piso, sin racks, puede ser una elección operativa del locatario actual o una limitación estructural del edificio (resistencia de piso, altura). Esto cambia el valor del inmueble para un futuro operador distinto — <span class="tag tag-pend">a confirmar</span>.</li>
+              <li>Sin ubicación, no es posible evaluar demanda logística de la zona, accesos a rutas/autopistas, ni comparables de precio.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SITUACION OPERATIVA -->
+    <section class="slide" id="s5">
+      <div class="slide-eyebrow"><span class="idx">05 / 19</span> Situación operativa actual</div>
+      <h2>Obras en curso — no dar por terminado lo que no está terminado</h2>
+      <p class="objective">Objetivo: que el inversor entienda el estado real de la infraestructura crítica de seguridad, no solo del alquiler.</p>
+      <div class="slide-body">
+        <div class="two-col">
+          <div class="card">
+            <h3>Red de incendio (hidrantes)</h3>
+            <p style="font-size:13.5px; color:var(--ink-soft); margin:0 0 10px">Estado informado: <b>en ejecución</b>. Finalización proyectada: <b>la semana siguiente</b> al relevamiento de este dato.</p>
+            <div class="pill-row"><span class="pill hi">No habilitado a la fecha</span><span class="pill">Obra civil en curso</span></div>
+          </div>
+          <div class="card">
+            <h3>Parquización lateral</h3>
+            <p style="font-size:13.5px; color:var(--ink-soft); margin:0">Próxima obra a iniciar una vez finalizada la red de incendio. Sin fecha de finalización informada.</p>
+            <div class="pill-row" style="margin-top:10px"><span class="pill med">Pendiente de inicio</span></div>
+          </div>
+        </div>
+        <div class="callout risk"><b>Importante para el cierre:</b> no debe presentarse ni asumirse la red de hidrantes como sistema contra incendio completo y habilitado hasta contar con la habilitación formal del organismo competente — la finalización de la obra civil y la habilitación regulatoria son dos hitos distintos.</div>
+      </div>
+    </section>
+
+    <!-- 6. ESTRUCTURA DE ADQUISICION -->
+    <section class="slide" id="s6">
+      <div class="slide-eyebrow"><span class="idx">06 / 19</span> Estructura de adquisición</div>
+      <h2>Cuánto capital debe invertir el comprador</h2>
+      <p class="objective">Objetivo: separar capital de entrada de saldo financiado, y exponer con transparencia lo que no se sabe sobre esa financiación.</p>
+      <div class="slide-body">
+        <div class="kpi-grid">
+          <div class="kpi"><div class="v">USD 1.200.000</div><div class="l">PRECIO TOTAL</div></div>
+          <div class="kpi"><div class="v">USD 1.000.000</div><div class="l">CONTADO (83,3%)</div></div>
+          <div class="kpi"><div class="v">USD 200.000</div><div class="l">FINANCIADO POR VENDEDOR (16,7%)</div></div>
+          <div class="kpi"><div class="v">10</div><div class="l">CUOTAS PACTADAS</div></div>
+        </div>
+        <div class="callout pending">
+          <b>Incógnitas de la financiación (afectan directamente el cash flow de corto plazo):</b>
+          <ul style="margin:10px 0 0; padding-left:18px;">
+            <li><span class="tag tag-pend">Pendiente</span> Tasa de interés — no debe asumirse 0% por defecto.</li>
+            <li><span class="tag tag-pend">Pendiente</span> Periodicidad de las 10 cuotas (mensual / trimestral / semestral / anual) — <b>es el dato individual de mayor impacto de todo el análisis</b> (ver sección 09).</li>
+            <li><span class="tag tag-pend">Pendiente</span> Fecha de la primera cuota y esquema de amortización (capital fijo, francés, interest-only).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTRATO Y LOCATARIO -->
+    <section class="slide" id="s7">
+      <div class="slide-eyebrow"><span class="idx">07 / 19</span> Contrato y locatario</div>
+      <h2>Una fuente de renta, un solo locatario</h2>
+      <p class="objective">Objetivo: dimensionar el riesgo de concentración y qué documentación debería exigirse.</p>
+      <div class="slide-body">
+        <div class="kpi-grid">
+          <div class="kpi"><div class="v">48 meses</div><div class="l">DURACIÓN CONTRACTUAL TOTAL</div></div>
+          <div class="kpi"><div class="v">01/01/2026</div><div class="l">INICIO DE CONTRATO</div></div>
+          <div class="kpi"><div class="v">40 meses</div><div class="l">REMANENTE (VERIFICADO ✓)</div></div>
+          <div class="kpi"><div class="v">1</div><div class="l">LOCATARIO / FUENTE DE RENTA</div></div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h3>Checklist de documentación del locatario</h3>
+            <ul>
+              <li>Identidad jurídica y CUIT/registro societario</li>
+              <li>Estados contables / balances recientes</li>
+              <li>Informe de riesgo crediticio / referencias comerciales</li>
+              <li>Garantías constituidas (depósito, aval, seguro de caución)</li>
+              <li>Historial de pago (mora, atrasos)</li>
+              <li>Antigüedad operativa en el rubro logístico</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Implicancias de la concentración</h3>
+            <ul>
+              <li>El 100% del cash flow depende de un único locatario, en un único inmueble.</li>
+              <li>No hay diversificación interna de riesgo de crédito ni de vacancia.</li>
+              <li>Costos y tiempo de reletting en caso de salida del locatario son <span class="tag tag-pend">a validar</span> sin ubicación ni datos técnicos del inmueble.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ECONOMIA DE LA RENTA -->
+    <section class="slide" id="s8">
+      <div class="slide-eyebrow"><span class="idx">08 / 19</span> Economía de la renta</div>
+      <h2>Gross Yield vs. Cap Rate — y de qué está compuesta la renta</h2>
+      <p class="objective">Objetivo: que el inversor distinga los conceptos financieros correctamente, y entienda la composición efectivo/transferencia de la renta.</p>
+      <div class="slide-body">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Concepto</th><th>Definición</th><th class="num">Valor en esta operación</th></tr></thead>
+          <tbody>
+            <tr><td class="strong">Gross Yield</td><td>Renta anual bruta / Precio</td><td class="num strong" style="color:var(--green)">9,40%</td></tr>
+            <tr><td class="strong">Cap Rate / NOI Yield</td><td>NOI / Precio</td><td class="num"><span class="tag tag-pend">Requiere OPEX</span></td></tr>
+            <tr><td class="strong">Cash-on-Cash</td><td>Flujo neto post-deuda / Equity</td><td class="num"><span class="tag tag-sup">Depende de financiación</span></td></tr>
+            <tr><td class="strong">TIR / IRR</td><td>Tasa que iguala a 0 el VAN de todos los flujos</td><td class="num"><span class="tag tag-sup">Solo bajo supuestos — sección 11</span></td></tr>
+          </tbody>
+        </table></div>
+        <div class="two-col">
+          <div class="card">
+            <h3>Composición de la renta mensual (USD 9.400)</h3>
+            <div style="display:flex; height:34px; border-radius:3px; overflow:hidden; margin:12px 0; border:1px solid var(--line);">
+              <div style="width:80%; background:var(--tag-dato); display:flex; align-items:center; padding-left:10px; color:#fff; font-size:12px; font-family:'IBM Plex Mono',monospace;">USD 7.520 + IVA · 80%</div>
+              <div style="width:20%; background:var(--amber); display:flex; align-items:center; justify-content:center; color:#2a1c05; font-size:11.5px; font-family:'IBM Plex Mono',monospace;">USD 1.880 · 20%</div>
+            </div>
+            <p style="font-size:12.5px; color:var(--muted); margin:0">Izquierda: transferencia bancaria (trazable). Derecha: efectivo (no trazable por definición).</p>
+          </div>
+          <div class="card">
+            <h3>Por qué importa para un comprador institucional</h3>
+            <ul>
+              <li>Un banco o tasador probablemente solo reconozca los USD 7.520+IVA como renta "demostrable" para financiamiento futuro.</li>
+              <li>La porción en efectivo (20%) tiene menor solidez probatoria ante un conflicto con el locatario.</li>
+              <li>Implicancias fiscales de la porción no bancarizada: <span class="tag tag-pend">a confirmar con asesor impositivo</span>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. RETORNO SOBRE LA INVERSION -->
+    <section class="slide" id="s9">
+      <div class="slide-eyebrow"><span class="idx">09 / 19</span> Retorno sobre la inversión</div>
+      <h2>Retorno del activo vs. retorno del equity</h2>
+      <p class="objective">Objetivo: separar qué rinde el inmueble en sí de qué rinde el capital que efectivamente pone el comprador — y mostrar por qué la periodicidad de las cuotas es el factor decisivo.</p>
+      <div class="slide-body">
+        <div class="kpi-grid">
+          <div class="kpi"><div class="v">9,40%</div><div class="l">RETORNO DEL ACTIVO (GROSS, S/USD 1,2M)</div></div>
+          <div class="kpi"><div class="v pos">11,28%</div><div class="l">CASH YIELD BRUTO S/EQUITY (USD 1M), SIN SERVICIO DE DEUDA</div></div>
+          <div class="kpi"><div class="v">USD 1.000.000</div><div class="l">EQUITY INVERTIDO</div></div>
+          <div class="kpi"><div class="v">USD 200.000</div><div class="l">DEUDA (VENDEDOR)</div></div>
+        </div>
+        <div class="callout finding"><b>Hallazgo clave:</b> si las 10 cuotas son <b>mensuales</b>, el capital a amortizar (USD 20.000/mes) supera a la renta (USD 9.400/mes) en USD 10.600 cada mes — flujo negativo estructural, sin importar la tasa. Si son trimestrales o más espaciadas, la renta cubre el servicio de deuda con margen. <span class="tag tag-pend">Periodicidad no informada</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Cash-on-Cash Año 1</th><th class="num">Tasa 0%*</th><th class="num">Tasa 8%*</th><th class="num">Tasa 15%*</th></tr></thead>
+          <tbody>
+            <tr class="warn"><td class="strong">Cuotas mensuales</td><td class="num" style="color:var(--red)">-8,72%</td><td class="num" style="color:var(--red)">-9,45%</td><td class="num" style="color:var(--red)">-10,10%</td></tr>
+            <tr><td class="strong">Cuotas trimestrales</td><td class="num pos" style="color:var(--green)">+3,28%</td><td class="num" style="color:var(--green)">+1,92%</td><td class="num" style="color:var(--green)">+0,73%</td></tr>
+            <tr><td class="strong">Cuotas semestrales</td><td class="num" style="color:var(--green)">+7,28%</td><td class="num" style="color:var(--green)">+5,76%</td><td class="num" style="color:var(--green)">+4,43%</td></tr>
+            <tr><td class="strong">Cuotas anuales</td><td class="num" style="color:var(--green)">+9,28%</td><td class="num" style="color:var(--green)">+7,68%</td><td class="num" style="color:var(--green)">+6,28%</td></tr>
+          </tbody>
+        </table></div>
+        <p class="footer-note">*Tasas ilustrativas para mostrar sensibilidad — no son un dato de mercado ni una estimación de la tasa real, que no fue informada. Supuesto de estructura: 10 cuotas de capital fijo (USD 20.000 c/u) + interés simple sobre saldo remanente.</p>
+      </div>
+    </section>
+
+    <!-- 10. CASH FLOW -->
+    <section class="slide" id="s10">
+      <div class="slide-eyebrow"><span class="idx">10 / 19</span> Cash flow</div>
+      <h2>40 meses remanentes — escenario de trabajo</h2>
+      <p class="objective">Objetivo: proyectar el flujo de caja bajo un supuesto explícito, dado que tasa y periodicidad de la financiación no están confirmadas.</p>
+      <div class="slide-body">
+        <div class="callout"><span class="tag tag-sup">Supuesto de trabajo</span> Financiación en 10 cuotas <b>trimestrales</b>, primera cuota en el mes 3, tasa <b>8% anual ilustrativa</b> sobre saldo remanente. Renta constante de USD 9.400/mes (mecanismo de ajuste real: <span class="tag tag-pend">dato a validar</span>).</p></div>
+
+        <svg viewBox="0 0 1040 260" style="width:100%; height:auto; font-family:'IBM Plex Mono',monospace;" role="img" aria-label="Flujo de caja acumulado a 40 meses">
+          <line x1="60" y1="210" x2="1010" y2="210" stroke="var(--line)" stroke-width="1"/>
+          <!-- baseline zero -->
+          <text x="30" y="214" font-size="10" fill="var(--muted)">0</text>
+          <!-- bars: months 1,3,6,9,12,15,18,21,24,27,30,33,36,40 net flow scaled -->
+          <!-- scale: 1px = ~120 usd vertical from baseline at y=210, positive up, negative down -->
+          <g fill="var(--green)">
+            <rect x="70" y="200" width="16" height="10"></rect>
+            <rect x="130" y="150" width="16" height="60"></rect>
+            <rect x="330" y="150" width="16" height="60"></rect>
+            <rect x="530" y="150" width="16" height="60"></rect>
+            <rect x="730" y="150" width="16" height="60"></rect>
+            <rect x="900" y="150" width="16" height="60"></rect>
+            <rect x="960" y="150" width="16" height="60"></rect>
+          </g>
+          <g fill="var(--red)">
+            <rect x="190" y="210" width="16" height="30"></rect>
+            <rect x="390" y="210" width="16" height="28"></rect>
+            <rect x="590" y="210" width="16" height="26"></rect>
+            <rect x="790" y="210" width="16" height="24"></rect>
+          </g>
+          <text x="60" y="245" font-size="10" fill="var(--muted)">Año 1</text>
+          <text x="330" y="245" font-size="10" fill="var(--muted)">Año 2</text>
+          <text x="600" y="245" font-size="10" fill="var(--muted)">Año 3</text>
+          <text x="880" y="245" font-size="10" fill="var(--muted)">Residual</text>
+          <text x="750" y="30" font-size="11" fill="var(--ink-soft)">Verde: meses sin cuota (+9.400) · Rojo: meses con cuota trimestral (flujo negativo neto)</text>
+        </svg>
+        <p class="chart-caption">Esquema ilustrativo del patrón mensual (no a escala exacta): meses sin vencimiento de cuota aportan +USD 9.400; los 10 meses con vencimiento trimestral generan flujo neto negativo puntual, compensado por los meses intermedios.</p>
+
+        <div class="table-wrap"><table>
+          <thead><tr><th>Período</th><th class="num">Renta bruta</th><th class="num">Servicio de deuda</th><th class="num">Flujo neto</th></tr></thead>
+          <tbody>
+            <tr><td>Año 1 (meses 1–12)</td><td class="num">112.800</td><td class="num">93.600</td><td class="num strong" style="color:var(--green)">19.200</td></tr>
+            <tr><td>Año 2 (meses 13–24)</td><td class="num">112.800</td><td class="num">87.200</td><td class="num strong" style="color:var(--green)">25.600</td></tr>
+            <tr><td>Año 3 (meses 25–36)</td><td class="num">112.800</td><td class="num">41.200</td><td class="num strong" style="color:var(--green)">71.600</td></tr>
+            <tr><td>Residual (meses 37–40)</td><td class="num">37.600</td><td class="num">0</td><td class="num strong" style="color:var(--green)">37.600</td></tr>
+            <tr class="highlight"><td class="strong">Total 40 meses</td><td class="num strong">376.000</td><td class="num strong">222.000</td><td class="num strong">154.000</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout finding"><b>USD 154.000 recuperados vía renta en 40 meses = 15,4% del equity de USD 1.000.000.</b> La mayor parte del retorno de esta inversión no proviene del cash flow contractual remanente — depende de lo que ocurra en la salida más allá del mes 40 (sección 16).</div>
+      </div>
+    </section>
+
+    <!-- 11. ESCENARIOS -->
+    <section class="slide" id="s11">
+      <div class="slide-eyebrow"><span class="idx">11 / 19</span> Escenarios</div>
+      <h2>Conservador · Base · Optimista</h2>
+      <p class="objective">Objetivo: mostrar un rango de resultados razonable, no un número único, dado lo que falta por confirmar.</p>
+      <div class="slide-body">
+        <div class="table-wrap"><table>
+          <thead><tr><th></th><th>Conservador</th><th>Base</th><th>Optimista</th></tr></thead>
+          <tbody>
+            <tr><td class="strong">Supuestos clave</td><td><span class="tag tag-sup">Sup.</span> OPEX 8% + vacancia 6m post-contrato + cap rate salida 10,4%</td><td><span class="tag tag-sup">Sup.</span> Sin OPEX adicional, sin apreciación, cap rate salida = entrada (9,4%)</td><td><span class="tag tag-sup">Sup.</span> Renovación sin vacancia, renta +10%, cap rate salida 8,9%</td></tr>
+            <tr><td>Cash flow acumulado</td><td class="num">~USD 123.900</td><td class="num">USD 154.000</td><td class="num">USD 154.000</td></tr>
+            <tr><td>Valor terminal</td><td class="num" style="color:var(--red)">~USD 998.000</td><td class="num">USD 1.200.000</td><td class="num" style="color:var(--green)">~USD 1.394.000</td></tr>
+            <tr><td>Capital total recibido</td><td class="num">~USD 1.121.900</td><td class="num">USD 1.354.000</td><td class="num">USD 1.548.000</td></tr>
+            <tr><td>Múltiplo sobre equity</td><td class="num">~1,12x / 46 meses</td><td class="num">1,35x / 40 meses</td><td class="num">1,55x / 40 meses</td></tr>
+            <tr class="base"><td class="strong">Retorno anualizado aprox.*</td><td class="num strong" style="color:var(--red)">~3,1%</td><td class="num strong">~9,5%</td><td class="num strong" style="color:var(--green)">~14,0%</td></tr>
+          </tbody>
+        </table></div>
+        <p class="footer-note">*Aproximación de orden de magnitud — (Capital total / Equity)^(12/meses) − 1. No es una TIR mensual exacta con descuento de flujos intermedios; se ofrece junto con las matrices de sensibilidad de la sección 12, que son la herramienta principal de decisión.</p>
+        <div class="callout risk"><b>El escenario conservador implica pérdida de valor de capital en la venta</b> (por debajo del precio de compra) si se combinan vacancia post-contrato, gastos no capitalizados hoy y expansión del cap rate de salida. No es un escenario remoto — es plausible.</div>
+      </div>
+    </section>
+
+    <!-- 12. SENSIBILIDAD -->
+    <section class="slide" id="s12">
+      <div class="slide-eyebrow"><span class="idx">12 / 19</span> Sensibilidad</div>
+      <h2>Qué variables realmente mueven el retorno</h2>
+      <p class="objective">Objetivo: mostrar el rango de resultados posibles ante cambios en renta, vacancia, precio/cap rate de salida y gastos.</p>
+      <div class="slide-body">
+        <div class="two-col">
+          <div>
+            <h3 style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;">Por precio de salida (retorno anualizado aprox.)</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Δ vs. compra</th><th class="num">-15%</th><th class="num">-10%</th><th class="num">-5%</th><th class="num">0%</th><th class="num">+5%</th><th class="num">+10%</th><th class="num">+15%</th></tr></thead>
+              <tbody><tr><td>Retorno</td><td class="num" style="color:var(--red)">4,9%</td><td class="num" style="color:var(--red)">6,5%</td><td class="num">8,0%</td><td class="num strong">9,5%</td><td class="num" style="color:var(--green)">10,9%</td><td class="num" style="color:var(--green)">12,3%</td><td class="num" style="color:var(--green)">13,7%</td></tr></tbody>
+            </table></div>
+          </div>
+          <div>
+            <h3 style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;">Por vacancia post-contrato</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Meses vacíos</th><th class="num">0</th><th class="num">3</th><th class="num">6</th><th class="num">9</th><th class="num">12</th></tr></thead>
+              <tbody><tr><td>Retorno</td><td class="num strong">9,5%</td><td class="num">8,8%</td><td class="num">8,2%</td><td class="num" style="color:var(--amber)">7,7%</td><td class="num" style="color:var(--red)">7,3%</td></tr></tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3 style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;">Por cap rate de salida</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Cap rate salida</th><th class="num">8,4%</th><th class="num">8,9%</th><th class="num">9,4%</th><th class="num">9,9%</th><th class="num">10,4%</th></tr></thead>
+              <tbody><tr><td>Retorno</td><td class="num" style="color:var(--green)">13,3%</td><td class="num" style="color:var(--green)">11,4%</td><td class="num strong">9,5%</td><td class="num" style="color:var(--amber)">7,9%</td><td class="num" style="color:var(--red)">6,4%</td></tr></tbody>
+            </table></div>
+          </div>
+          <div>
+            <h3 style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;">Por gastos del propietario (OPEX)</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>OPEX % renta</th><th class="num">0%</th><th class="num">5%</th><th class="num">8%</th><th class="num">12%</th><th class="num">18%</th></tr></thead>
+              <tbody><tr><td>Cap Rate real</td><td class="num strong">9,40%</td><td class="num">8,93%</td><td class="num">8,65%</td><td class="num" style="color:var(--amber)">8,27%</td><td class="num" style="color:var(--red)">7,71%</td></tr></tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="callout finding">Orden de impacto en el retorno: <b>(1)</b> periodicidad/tasa de la financiación del vendedor — puede pasar de +9% a flujo negativo estructural, <b>(2)</b> cap rate de salida / valor de venta, <b>(3)</b> vacancia post-contrato, <b>(4)</b> OPEX real, <b>(5)</b> nivel de renta efectiva.</div>
+      </div>
+    </section>
+
+    <!-- 13. COMPARACION -->
+    <section class="slide" id="s13">
+      <div class="slide-eyebrow"><span class="idx">13 / 19</span> Comparación contra alternativas</div>
+      <h2>9,4% bruto no compite contra 4,68% neto en igualdad de condiciones</h2>
+      <p class="objective">Objetivo: comparar ajustado por riesgo, no solo por tasa nominal. Benchmarks citados con fuente y fecha; sin datos locales verificados, se marca como pendiente en lugar de inventar cifras.</p>
+      <div class="slide-body">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Inversión</th><th>Yield / Retorno</th><th>Liquidez</th><th>Volatilidad</th><th>Gestión</th><th>Cash Flow</th><th>Activo real</th></tr></thead>
+          <tbody>
+            <tr class="base"><td class="strong">Nave analizada</td><td>9,4% bruto; ~3–14% neto anualizado*</td><td>Baja</td><td>Baja/Media**</td><td>Media</td><td>Contractual**</td><td>Sí</td></tr>
+            <tr><td>Residencial en renta</td><td><span class="tag tag-pend">Benchmark local a consultar</span></td><td>Baja</td><td>Baja</td><td>Media-Alta</td><td>Alta</td><td>Sí</td></tr>
+            <tr><td>Local comercial</td><td><span class="tag tag-pend">Benchmark local a consultar</span></td><td>Baja</td><td>Media</td><td>Media</td><td>Media</td><td>Sí</td></tr>
+            <tr><td>Otro depósito/logística</td><td><span class="tag tag-pend">Comparable directo a buscar</span></td><td>Baja</td><td>Baja/Media</td><td>Media</td><td>Media-Alta</td><td>Sí</td></tr>
+            <tr><td>UST 10 años</td><td>4,68%***</td><td>Alta</td><td>Baja</td><td>Nula</td><td>Muy alta</td><td>No</td></tr>
+            <tr><td>Bonos corporativos IG</td><td>~5,2–5,4%***</td><td>Alta/Media</td><td>Media</td><td>Baja</td><td>Alta</td><td>No</td></tr>
+            <tr><td>Money market USD</td><td>~3,7%***</td><td>Muy alta</td><td>Muy baja</td><td>Nula</td><td>Muy alta</td><td>No</td></tr>
+            <tr><td>S&amp;P 500 / ETF</td><td>~10% histórico****</td><td>Alta</td><td>Alta</td><td>Baja</td><td>Baja</td><td>No</td></tr>
+          </tbody>
+        </table></div>
+        <p class="footer-note">
+          *Rango de escenarios de la sección 11. **Cash flow contractual, pero concentrado en un único locatario y con 20% de la renta no bancarizada, lo que reduce su previsibilidad "verificable" ante terceros. ***Referencias de mercado de EE.UU., agosto 2026 (UST: Advisor Perspectives; corporativos IG: índice ICE BofA US Corporate / FRED; money market: fondos tipo VMFXX) — no ajustadas por riesgo país/moneda del inmueble, cuya ubicación no fue informada. ****Promedio histórico de largo plazo, no garantizado; incluye caídas históricas de 20%–50%.
+        </p>
+        <div class="callout">Para referencia institucional: los cap rates de industrial/logística de mercados institucionales de EE.UU. rondaron 5,2%–6,4% en el primer trimestre de 2026 — sensiblemente por debajo del 9,4% de esta operación, lo cual es esperable dado que aquellos son mercados líquidos, de escala institucional y locatarios de alta calidad crediticia; no son comparables directos de este activo sin conocer su ubicación y locatario real.</div>
+      </div>
+    </section>
+
+    <!-- 14. VALUACION -->
+    <section class="slide" id="s14">
+      <div class="slide-eyebrow"><span class="idx">14 / 19</span> Valuación</div>
+      <h2>Income approach y precio por m²</h2>
+      <p class="objective">Objetivo: mostrar cómo cambia el valor del activo según el NOI real y el cap rate de mercado aplicable — ambos hoy inciertos.</p>
+      <div class="slide-body">
+        <h3 style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;">Matriz de valuación — Valor = NOI / Cap Rate</h3>
+        <div class="table-wrap"><table>
+          <thead><tr><th>NOI anual \ Cap Rate</th><th class="num">8,4%</th><th class="num">8,9%</th><th class="num">9,4%</th><th class="num">9,9%</th><th class="num">10,4%</th></tr></thead>
+          <tbody>
+            <tr><td>92.496 (OPEX 18%)</td><td class="num">1.101.143</td><td class="num">1.039.281</td><td class="num">984.000</td><td class="num">934.303</td><td class="num">889.385</td></tr>
+            <tr><td>99.264 (OPEX 12%)</td><td class="num">1.181.714</td><td class="num">1.115.326</td><td class="num">1.056.000</td><td class="num">1.002.667</td><td class="num">954.462</td></tr>
+            <tr><td>103.776 (OPEX 8%)</td><td class="num">1.235.429</td><td class="num">1.165.798</td><td class="num">1.104.000</td><td class="num">1.048.242</td><td class="num">997.846</td></tr>
+            <tr class="base"><td class="strong">112.800 (OPEX 0% — sin datos)</td><td class="num strong">1.342.857</td><td class="num strong">1.267.416</td><td class="num strong">1.200.000</td><td class="num strong">1.139.394</td><td class="num strong">1.084.615</td></tr>
+          </tbody>
+        </table></div>
+        <div class="two-col">
+          <div class="card"><h3>Precio por m²</h3><div class="kpi" style="border:none; padding:0;"><div class="v">USD 967,74/m²</div><div class="l">Sobre 1.240 m² a USD 1.200.000</div></div><p style="font-size:13px; color:var(--ink-soft); margin-top:10px">Debe compararse contra operaciones equivalentes en la misma zona, controlando por altura, accesos, sistema contra incendio, antigüedad y calidad del locatario. <span class="tag tag-pend">Sin comparables — ubicación no informada</span></p></div>
+          <div class="card"><h3>Por qué no se listan comparables</h3><ul><li>Sin ubicación, cualquier comparable citado sería irrelevante o engañoso.</li><li>La matriz de la izquierda es la herramienta de valuación válida hasta contar con comparables reales y el NOI verdadero.</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. RIESGOS -->
+    <section class="slide" id="s15">
+      <div class="slide-eyebrow"><span class="idx">15 / 19</span> Riesgos y mitigantes</div>
+      <h2>¿Qué puede salir mal?</h2>
+      <p class="objective">Objetivo: aumentar la credibilidad del análisis siendo explícitos sobre lo que podría reducir o destruir el retorno.</p>
+      <div class="slide-body">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Riesgo</th><th>Prob.</th><th>Impacto</th><th>Mitigante</th></tr></thead>
+          <tbody>
+            <tr><td class="strong">Financiación mensual del vendedor</td><td><span class="pill hi">Alta*</span></td><td><span class="pill hi">Alto</span></td><td>Confirmar periodicidad antes de cerrar</td></tr>
+            <tr><td class="strong">Incendio — hidrantes no habilitados</td><td><span class="pill med">Media</span></td><td><span class="pill hi">Alto</span></td><td>Exigir habilitación formal antes del cierre</td></tr>
+            <tr><td class="strong">Concentración (1 activo, 1 locatario)</td><td><span class="pill hi">Alta (estructural)</span></td><td><span class="pill hi">Alto</span></td><td>Diversificar fuera de esta operación</td></tr>
+            <tr><td class="strong">Solvencia del locatario desconocida</td><td><span class="pill med">No evaluable</span></td><td><span class="pill hi">Alto</span></td><td>Checklist de documentación (sección 07)</td></tr>
+            <tr><td class="strong">Renta no bancarizada (20%)</td><td><span class="pill med">Media</span></td><td><span class="pill med">Medio-Alto</span></td><td>Asesoramiento fiscal previo</td></tr>
+            <tr><td class="strong">Vacancia post-contrato</td><td><span class="pill med">Media</span></td><td><span class="pill hi">Alto</span></td><td>Ver escenario conservador (sección 11)</td></tr>
+            <tr><td class="strong">Sin comparables de mercado</td><td><span class="pill hi">Alta</span></td><td><span class="pill med">Medio</span></td><td>Tasación independiente</td></tr>
+          </tbody>
+        </table></div>
+        <p class="footer-note">*Probabilidad "alta" no significa que sea el escenario más probable — significa que, al no estar confirmada la periodicidad, no puede descartarse el escenario adverso. Matriz completa de 15 riesgos en el documento de análisis (Anexo F).</p>
+      </div>
+    </section>
+
+    <!-- 16. ESTRATEGIAS DE SALIDA -->
+    <section class="slide" id="s16">
+      <div class="slide-eyebrow"><span class="idx">16 / 19</span> Estrategias de salida</div>
+      <h2>No solo cuánto se cobra — cómo se recupera el capital</h2>
+      <p class="objective">Objetivo: mostrar que la mayor parte del retorno depende de la estrategia de salida, no del cash flow de los 40 meses remanentes.</p>
+      <div class="slide-body">
+        <div class="three-col">
+          <div class="card"><h3>1 · Mantener y renovar</h3><ul><li>Depende de opciones de renovación del contrato — <span class="tag tag-pend">a validar</span>.</li></ul></div>
+          <div class="card"><h3>2 · Relocar a otro operador</h3><ul><li>Depende de adaptabilidad técnica del inmueble (altura, piso, accesos) — <span class="tag tag-pend">a validar</span>.</li></ul></div>
+          <div class="card"><h3>3 · Vender con renta activa</h3><ul><li>Un contrato con más plazo remanente suele sostener mejor el valor de venta (principio general de CRE, no específico de este caso).</li></ul></div>
+          <div class="card"><h3>4 · Vender al vencimiento</h3><ul><li>Expone al comprador al riesgo de vacancia y de renegociación en el peor momento (sección 11, conservador).</li></ul></div>
+          <div class="card"><h3>5 · Refinanciar</h3><ul><li>Sujeto a marco jurídico y condiciones de mercado no evaluadas aquí.</li></ul></div>
+        </div>
+        <div class="callout finding">El plazo contractual remanente cae con el correr del tiempo de tenencia: mientras más se acerque la fecha de venta al vencimiento del contrato, mayor el riesgo percibido por un comprador institucional y, en general, menor el múltiplo que estará dispuesto a pagar.</div>
+      </div>
+    </section>
+
+    <!-- 17. DUE DILIGENCE -->
+    <section class="slide" id="s17">
+      <div class="slide-eyebrow"><span class="idx">17 / 19</span> Due diligence pendiente</div>
+      <h2>Checklist previo a inversión</h2>
+      <p class="objective">Objetivo: dejar en claro qué debe confirmarse, por quién, antes de comprometer capital.</p>
+      <div class="slide-body">
+        <div class="three-col">
+          <div class="card"><h3>Legal</h3><ul><li>Título y dominio</li><li>Gravámenes/embargos</li><li>Contrato completo</li><li>Habilitaciones y permisos</li></ul></div>
+          <div class="card"><h3>Técnico</h3><ul><li>Estructura y cubierta</li><li>Instalación eléctrica</li><li>Sistema contra incendio + habilitación</li><li>Accesos y capacidad operativa</li></ul></div>
+          <div class="card"><h3>Financiero</h3><ul><li>Comprobantes históricos de renta</li><li>Mora y gastos históricos</li><li>Impuestos y seguros</li><li>Costos extraordinarios</li></ul></div>
+          <div class="card"><h3>Locatario</h3><ul><li>Identidad jurídica y CUIT</li><li>Solvencia y antecedentes</li><li>Garantías constituidas</li><li>Comportamiento de pago</li></ul></div>
+          <div class="card"><h3>Fiscal / contable</h3><ul><li>Tratamiento de la renta e IVA</li><li>Documentación del efectivo (20%)</li><li>Estructura óptima de adquisición</li></ul></div>
+        </div>
+        <p class="footer-note">Los aspectos legales, contables e impositivos deben confirmarse con profesionales matriculados antes del cierre. Este material no constituye asesoramiento legal ni impositivo.</p>
+      </div>
+    </section>
+
+    <!-- 18. INVESTMENT CASE -->
+    <section class="slide" id="s18">
+      <div class="slide-eyebrow"><span class="idx">18 / 19</span> Investment Case</div>
+      <h2>Conclusión equilibrada</h2>
+      <p class="objective">Objetivo: cerrar sin sobrevender ni descartar la operación — mostrar bajo qué condiciones es defendible.</p>
+      <div class="slide-body">
+        <div class="two-col">
+          <div class="card">
+            <h3 style="color:var(--green)">A favor</h3>
+            <ul>
+              <li>Renta desde el día uno, sin período de estabilización</li>
+              <li>40 meses de visibilidad contractual (verificados)</li>
+              <li>Financiación parcial reduce el capital de entrada</li>
+              <li>Yield nominal por encima de la renta fija de referencia</li>
+              <li>Activo físico con valor residual propio</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="color:var(--red)">En contra</h3>
+            <ul>
+              <li>Concentración total (1 activo, 1 locatario)</li>
+              <li>9,4% es Gross Yield, no Cap Rate — real es menor</li>
+              <li>20% de la renta no bancarizada</li>
+              <li>Financiación puede ser flujo-negativa si es mensual</li>
+              <li>Hidrantes no habilitados; locatario sin evaluar</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout finding"><b>La inversión resulta atractiva si, y solo si:</b> (1) las cuotas son trimestrales o de periodicidad mayor con tasa razonable; (2) el contrato ajusta la renta en términos reales; (3) los gastos del propietario son bajos o están a cargo del locatario; (4) el locatario demuestra solvencia; (5) los hidrantes quedan formalmente habilitados antes del cierre; (6) existen comparables que sostengan el precio por m².</div>
+      </div>
+    </section>
+
+    <!-- 19. PROXIMOS PASOS -->
+    <section class="slide" id="s19" style="border-bottom:none;">
+      <div class="slide-eyebrow"><span class="idx">19 / 19</span> Información crítica pendiente</div>
+      <h2>Próximos pasos antes de una segunda versión</h2>
+      <p class="objective">Objetivo: priorizar qué pedir primero — no una lista interminable, sino lo que más cambiaría la decisión.</p>
+      <div class="slide-body">
+        <div class="table-wrap"><table>
+          <thead><tr><th style="width:36px">#</th><th>Dato pendiente</th><th>Por qué es crítico</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1</td><td class="strong">Periodicidad y tasa de las 10 cuotas</td><td>Puede convertir el cash flow de positivo a negativo estructural (sección 09)</td></tr>
+            <tr><td class="mono">2</td><td class="strong">Ubicación exacta</td><td>Condiciona comparables, valor de mercado y liquidez de reventa</td></tr>
+            <tr><td class="mono">3</td><td class="strong">Identidad y solvencia del locatario</td><td>Determina el riesgo de crédito de la única fuente de renta</td></tr>
+            <tr><td class="mono">4</td><td class="strong">Contrato completo</td><td>Ajuste de renta, moneda, garantías, gastos a cargo de cada parte</td></tr>
+            <tr><td class="mono">5</td><td class="strong">Habilitación formal de hidrantes</td><td>Riesgo regulatorio y de seguridad inminente</td></tr>
+            <tr><td class="mono">6</td><td class="strong">Gastos operativos históricos</td><td>Necesarios para calcular el Cap Rate/NOI real</td></tr>
+            <tr><td class="mono">7</td><td class="strong">Tratamiento fiscal del efectivo (20% de la renta)</td><td>Trazabilidad, riesgo fiscal y valuación futura</td></tr>
+            <tr><td class="mono">8</td><td class="strong">Comparables de mercado</td><td>Sin ellos no puede validarse el precio por m²</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout">Documento de análisis completo (auditoría matemática, modelo de cash flow a 40 meses, matriz de riesgos de 15 factores y checklist de due diligence detallado) disponible en <span class="mono">ANALISIS-INVERSION.md</span>.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
