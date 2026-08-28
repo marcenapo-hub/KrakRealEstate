@@ -1,190 +1,278 @@
-<title>Nave Industrial — One Page</title>
+<title>Nave Industrial — Ficha de Inversión</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
-    --navy:#0f2038; --navy-2:#16304f; --navy-3:#1d3f65;
-    --paper:#f5f4f0; --surface:#ffffff; --line:#dfe1e0;
-    --ink:#1a2230; --ink-soft:#4c5566; --muted:#767f8c;
+    --navy:#0f2f57; --navy-deep:#0a2242; --navy-soft:#3a5f8c;
+    --paper:#eef1f4; --surface:#ffffff; --line:#e2e6ea;
+    --ink:#1a2230; --ink-soft:#4c5566; --muted:#7b8494;
+    --panel:#f2f4f7;
     --green:#1c6b46; --green-bg:#e5f1ea;
     --amber:#8a5a13; --amber-bg:#f6ecd9;
     --red:#9c2b24; --red-bg:#f6e6e4;
     --gold:#9c7a34;
-    --tag-dato:#2b5c8a; --tag-dato-bg:#e4edf5;
-    --tag-calc:#1c6b46; --tag-calc-bg:#e5f1ea;
-    --tag-sup:#8a5a13; --tag-sup-bg:#f6ecd9;
-    --tag-pend:#9c2b24; --tag-pend-bg:#f6e6e4;
-    --shadow: 0 1px 2px rgba(15,32,56,.06), 0 8px 24px rgba(15,32,56,.05);
-    --radius: 3px;
+    --radius:6px;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --navy:#0a1524; --navy-2:#122238; --navy-3:#1a3352;
+      --navy:#3f6fa8; --navy-deep:#7fa8d8; --navy-soft:#8fb3dc;
       --paper:#0d141f; --surface:#131b28; --line:#263042;
       --ink:#e7eaef; --ink-soft:#b7c0cc; --muted:#8993a3;
+      --panel:#182233;
       --green:#5fbf8c; --green-bg:#12281f;
       --amber:#d9a24d; --amber-bg:#2c2213;
       --red:#e08079; --red-bg:#2c1614;
       --gold:#c8a35f;
-      --tag-dato:#7aa9d6; --tag-dato-bg:#122539;
-      --tag-calc:#5fbf8c; --tag-calc-bg:#12281f;
-      --tag-sup:#d9a24d; --tag-sup-bg:#2c2213;
-      --tag-pend:#e08079; --tag-pend-bg:#2c1614;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
     }
   }
   :root[data-theme="dark"]{
-    --navy:#0a1524; --navy-2:#122238; --navy-3:#1a3352;
+    --navy:#3f6fa8; --navy-deep:#7fa8d8; --navy-soft:#8fb3dc;
     --paper:#0d141f; --surface:#131b28; --line:#263042;
     --ink:#e7eaef; --ink-soft:#b7c0cc; --muted:#8993a3;
+    --panel:#182233;
     --green:#5fbf8c; --green-bg:#12281f;
     --amber:#d9a24d; --amber-bg:#2c2213;
     --red:#e08079; --red-bg:#2c1614;
     --gold:#c8a35f;
-    --tag-dato:#7aa9d6; --tag-dato-bg:#122539;
-    --tag-calc:#5fbf8c; --tag-calc-bg:#12281f;
-    --tag-sup:#d9a24d; --tag-sup-bg:#2c2213;
-    --tag-pend:#e08079; --tag-pend-bg:#2c1614;
-    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-    font-size:15px; line-height:1.5;
-  }
+  svg.icon{width:1em; height:1em;}
+  .photo-main svg.icon, .photo-sm svg.icon{width:26px; height:26px;}
+  .bullet .ic svg.icon{width:17px; height:17px;}
+  .contact-item svg.icon{width:14px; height:14px;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; font-size:14.5px; line-height:1.5;}
   h1,h2,h3{font-family:"Source Serif 4", Georgia, serif; text-wrap:balance; margin:0;}
   .mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums;}
+  .sheet{max-width:900px; margin:0 auto; background:var(--surface); position:relative; overflow:hidden; box-shadow:0 1px 3px rgba(15,32,56,.08), 0 20px 48px rgba(15,32,56,.10);}
+  .deco-a{position:absolute; top:-90px; right:-70px; width:260px; height:260px; border-radius:50%; background:var(--panel); z-index:0;}
+  .deco-b{position:absolute; top:40px; right:-140px; width:200px; height:200px; border-radius:50%; background:var(--paper); z-index:0;}
 
-  .page{max-width:980px; margin:0 auto; padding:0 0 40px;}
+  header.brand{position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-start; padding:34px 44px 6px;}
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo svg{width:38px; height:38px; flex:none;}
+  .logo .word{line-height:1.05;}
+  .logo .word b{font-family:"Source Serif 4",serif; font-size:19px; font-weight:700; color:var(--navy); letter-spacing:.03em;}
+  .logo .word span{display:block; font-size:9px; letter-spacing:.22em; color:var(--muted); margin-top:1px;}
+  .eyebrow-box{text-align:right;}
+  .eyebrow-box .tag-top{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--navy-soft); font-weight:600;}
+  .eyebrow-box .date{font-size:11px; color:var(--muted); margin-top:4px;}
 
-  .cover{
-    background:linear-gradient(155deg,var(--navy) 0%, var(--navy-2) 62%, var(--navy-3) 100%);
-    color:#eef2f7; padding:44px 48px 36px;
+  .titleblock{position:relative; z-index:1; padding:14px 44px 22px; border-bottom:1px solid var(--line);}
+  .titleblock h1{font-size:29px; font-weight:700; color:var(--navy); line-height:1.18; max-width:30ch;}
+  .titleblock .addr{font-size:14.5px; color:var(--ink-soft); margin-top:8px;}
+  .titleblock .taglist{font-size:12px; color:var(--navy-soft); font-style:italic; margin-top:8px;}
+
+  section{padding:24px 44px; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  section h2{font-size:16px; font-weight:700; color:var(--navy); margin-bottom:14px;}
+
+  /* photos */
+  .photo-main{position:relative; width:100%; height:250px; border-radius:var(--radius); background:repeating-linear-gradient(135deg, var(--panel), var(--panel) 10px, var(--surface) 10px, var(--surface) 20px); border:1.5px dashed #b9c3cf; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--muted);}
+  .photo-main i{font-size:26px; color:#9aa7b6;}
+  .photo-main .lbl{font-size:12.5px; font-weight:600; color:var(--ink-soft);}
+  .photo-main .sub{font-size:10.5px; max-width:38ch; text-align:center;}
+  .photo-row{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+  .photo-sm{height:130px; border-radius:var(--radius); background:repeating-linear-gradient(135deg, var(--panel), var(--panel) 10px, var(--surface) 10px, var(--surface) 20px); border:1.5px dashed #b9c3cf; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--muted);}
+  .photo-sm i{font-size:18px; color:#9aa7b6;}
+  .photo-sm .lbl{font-size:11px; font-weight:600; color:var(--ink-soft);}
+  .photo-caption{font-size:10.5px; color:var(--muted); margin-top:8px; font-style:italic;}
+
+  /* icon bullets */
+  .bullet-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 26px;}
+  .bullet{display:flex; gap:12px; align-items:flex-start;}
+  .bullet .ic{flex:none; width:38px; height:38px; border-radius:50%; border:1.6px solid var(--navy); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:14px;}
+  .bullet .tx b{display:block; font-size:13px; color:var(--ink); margin-bottom:2px;}
+  .bullet .tx p{margin:0; font-size:12px; color:var(--ink-soft); line-height:1.4;}
+  .bullet .tag{display:inline-block; margin-top:3px; font-size:9px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; padding:1px 6px; border-radius:2px; color:var(--red); background:var(--red-bg);}
+
+  /* kpi row */
+  .kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  .kpi-box{background:var(--panel); border-radius:var(--radius); padding:16px 16px;}
+  .kpi-box .v{font-family:"IBM Plex Mono",monospace; font-size:20px; font-weight:600; color:var(--navy);}
+  .kpi-box .l{font-size:10.5px; color:var(--muted); margin-top:5px; line-height:1.3;}
+
+  /* commercial condition navy box */
+  .cond-box{background:linear-gradient(155deg,var(--navy) 0%, var(--navy-deep) 100%); border-radius:var(--radius); display:grid; grid-template-columns:1fr 1.5fr; overflow:hidden; color:#eef2f7;}
+  .cond-box .stat{padding:28px 24px; display:flex; flex-direction:column; justify-content:center;}
+  .cond-box .stat .v{font-family:"IBM Plex Mono",monospace; font-size:42px; font-weight:700; line-height:1;}
+  .cond-box .stat .l{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#b9c9de; margin-top:8px;}
+  .cond-box .text{padding:26px 26px 26px 6px; border-left:1px solid rgba(255,255,255,.14); display:flex; flex-direction:column; justify-content:center;}
+  .cond-box .text h3{font-size:14px; color:#fff; margin-bottom:8px; font-weight:600;}
+  .cond-box .text p{margin:0; font-size:12.5px; color:#d3dced; line-height:1.55;}
+
+  /* scenario range viz */
+  .scenario-viz{padding:18px 6px 6px;}
+  .range-track{position:relative; height:6px; background:var(--line); border-radius:3px; margin:38px 20px 46px;}
+  .range-fill{position:absolute; top:0; bottom:0; left:0; background:linear-gradient(90deg,var(--red),var(--amber),var(--green)); border-radius:3px; opacity:.35;}
+  .range-pt{position:absolute; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; border:3px solid var(--surface);}
+  .range-pt .rp-label{position:absolute; bottom:16px; left:50%; transform:translateX(-50%); text-align:center; white-space:nowrap;}
+  .range-pt .rp-label .rv{font-family:"IBM Plex Mono",monospace; font-weight:700; font-size:14px;}
+  .range-pt .rp-label .rl{font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:1px;}
+  .range-pt .rp-sub{position:absolute; top:16px; left:50%; transform:translateX(-50%); font-size:9.5px; color:var(--muted); white-space:nowrap; text-align:center; max-width:120px; white-space:normal; line-height:1.3;}
+
+  .assump-table{width:100%; border-collapse:collapse; font-size:11.5px; margin-top:8px;}
+  .assump-table th{text-align:left; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; padding:6px 10px; border-bottom:1px solid var(--line);}
+  .assump-table td{padding:7px 10px; border-bottom:1px solid var(--line); color:var(--ink-soft); vertical-align:top;}
+  .assump-table td.h{font-weight:700; color:var(--ink); white-space:nowrap;}
+
+  /* callouts */
+  .callout{border-radius:0 var(--radius) var(--radius) 0; padding:13px 18px; font-size:12.5px; line-height:1.5; margin-top:14px;}
+  .callout.risk{border-left:3px solid var(--red); background:var(--red-bg); color:var(--ink);}
+  .callout.finding{border-left:3px solid var(--gold); background:var(--panel); color:var(--ink-soft);}
+  .callout.finding b, .callout.risk b{color:var(--ink);}
+  .callout ul{margin:6px 0 0; padding-left:18px;}
+  .callout li{margin-bottom:3px;}
+
+  footer.contact{position:relative; z-index:1; background:var(--panel); padding:20px 44px;}
+  .contact-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+  .contact-item{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ink-soft);}
+  .contact-item i{color:var(--navy); font-size:14px; width:16px; text-align:center;}
+  .disclaimer{text-align:center; font-size:10.5px; color:var(--muted); margin-top:16px; padding-top:14px; border-top:1px solid var(--line);}
+
+  @media (max-width:640px){
+    .bullet-grid, .kpi-row, .photo-row{grid-template-columns:1fr;}
+    .cond-box{grid-template-columns:1fr;}
+    .cond-box .text{border-left:none; border-top:1px solid rgba(255,255,255,.14);}
+    header.brand, .titleblock, section, footer.contact{padding-left:22px; padding-right:22px;}
+    .contact-row{flex-direction:column;}
   }
-  .cover .kicker{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#9fb0c6;}
-  .cover h1{font-size:30px; font-weight:600; line-height:1.18; margin:12px 0 12px; max-width:38ch; color:#fff;}
-  .cover .sub{font-size:13.5px; color:#c3cede; max-width:70ch; line-height:1.55; margin-bottom:22px;}
-  .cover .facts{display:flex; gap:0; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.14); padding-top:16px;}
-  .cover .facts .f{flex:1 1 0; min-width:120px; padding-right:14px;}
-  .cover .facts .f .v{font-family:"IBM Plex Mono",monospace; font-size:18px; color:#fff; font-weight:600;}
-  .cover .facts .f .l{font-size:10px; color:#9fb0c6; margin-top:3px; letter-spacing:.03em;}
 
-  section{padding:26px 48px; border-bottom:1px solid var(--line);}
-  section h2{font-size:16px; font-weight:600; color:var(--navy); margin-bottom:12px; letter-spacing:.01em;}
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) section h2{color:#eef2f7;}}
-  :root[data-theme="dark"] section h2{color:#eef2f7;}
-
-  .tag{display:inline-flex; align-items:center; gap:5px; font-size:9.5px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; padding:1px 6px; border-radius:2px; white-space:nowrap;}
-  .tag-dato{color:var(--tag-dato); background:var(--tag-dato-bg);}
-  .tag-calc{color:var(--tag-calc); background:var(--tag-calc-bg);}
-  .tag-sup{color:var(--tag-sup); background:var(--tag-sup-bg);}
-  .tag-pend{color:var(--tag-pend); background:var(--tag-pend-bg);}
-
-  .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:14px;}
-  .kpi{background:var(--surface); padding:12px 14px;}
-  .kpi .v{font-family:"IBM Plex Mono",monospace; font-size:19px; font-weight:600; color:var(--navy);}
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi .v{color:#eef2f7;}}
-  :root[data-theme="dark"] .kpi .v{color:#eef2f7;}
-  .kpi .v.pos{color:var(--green);}
-  .kpi .l{font-size:10px; color:var(--muted); margin-top:3px;}
-
-  .callout{border:1px solid var(--line); border-left:3px solid var(--navy-3); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; padding:11px 15px; font-size:13px; color:var(--ink-soft); margin-bottom:10px;}
-  .callout.finding{border-left-color:var(--gold);}
-  .callout.finding b{color:var(--ink);}
-  .callout.risk{border-left-color:var(--red); background:var(--red-bg); color:var(--ink);}
-
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  @media (max-width:700px){.two-col{grid-template-columns:1fr;} .kpi-grid{grid-template-columns:repeat(2,1fr);} .cover{padding:32px 24px;} section{padding:22px 24px;}}
-
-  .card h3{font-size:13px; margin-bottom:6px; font-weight:600;}
-  .card ul{margin:0; padding-left:16px; font-size:12.5px; color:var(--ink-soft); display:flex; flex-direction:column; gap:4px;}
-  .card.good h3{color:var(--green);}
-  .card.bad h3{color:var(--red);}
-
-  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin-bottom:10px;}
-  table{border-collapse:collapse; width:100%; font-size:12px; min-width:480px;}
-  thead th{text-align:left; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; padding:7px 12px; background:var(--surface); border-bottom:1px solid var(--line); white-space:nowrap;}
-  tbody td{padding:6px 12px; border-bottom:1px solid var(--line); background:var(--surface); color:var(--ink-soft);}
-  tbody tr:last-child td{border-bottom:none;}
-  td.num, th.num{font-family:"IBM Plex Mono",monospace; text-align:right;}
-  td.strong{color:var(--ink); font-weight:600;}
-  tr.warn td{background:var(--red-bg);}
-
-  .footer{padding:20px 48px; font-size:11px; color:var(--muted);}
-  .footer a{color:var(--tag-dato);}
+  @media print{
+    body{background:#fff;}
+    .sheet{box-shadow:none; max-width:none;}
+    section, .titleblock, header.brand, footer.contact{padding-left:32px; padding-right:32px;}
+  }
 </style>
 
-<div class="page">
+<div class="sheet">
+  <div class="deco-a"></div>
+  <div class="deco-b"></div>
 
-  <section class="cover">
-    <div class="kicker">Investment Memorandum — Activo Industrial · One Page</div>
-    <h1>Nave industrial ocupada, en renta, con financiación parcial del vendedor.</h1>
-    <p class="sub">Depósito de 1.240 m², 100% operativo, alquilado a un operador logístico. Se presenta como activo financiero respaldado por un bien real — no como una oportunidad de venta minorista.</p>
-    <div class="facts">
-      <div class="f"><div class="v">USD 1,2M</div><div class="l">PRECIO</div></div>
-      <div class="f"><div class="v">1.240 m²</div><div class="l">SUPERFICIE</div></div>
-      <div class="f"><div class="v">9,40%</div><div class="l">GROSS YIELD</div></div>
-      <div class="f"><div class="v">40 meses</div><div class="l">CONTRATO REMANENTE</div></div>
+  <header class="brand">
+    <div class="logo">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round">
+        <path d="M30,30 C30,15 20,5 10,10 C5,20 15,30 30,30 Z" transform="rotate(0 30 30)"/>
+        <path d="M30,30 C30,15 20,5 10,10 C5,20 15,30 30,30 Z" transform="rotate(90 30 30)"/>
+        <path d="M30,30 C30,15 20,5 10,10 C5,20 15,30 30,30 Z" transform="rotate(180 30 30)"/>
+        <path d="M30,30 C30,15 20,5 10,10 C5,20 15,30 30,30 Z" transform="rotate(270 30 30)"/>
+      </svg>
+      <div class="word"><b>KRAK</b><span>REAL ESTATE</span></div>
     </div>
-  </section>
-
-  <section>
-    <h2>La operación en 30 segundos</h2>
-    <div class="kpi-grid">
-      <div class="kpi"><div class="v">USD 1.000.000</div><div class="l">CONTADO (83,3%)</div></div>
-      <div class="kpi"><div class="v">USD 200.000</div><div class="l">FINANCIADO POR VENDEDOR, 10 CUOTAS</div></div>
-      <div class="kpi"><div class="v">USD 9.400</div><div class="l">RENTA MENSUAL (80% transf. / 20% efectivo)</div></div>
-      <div class="kpi"><div class="v pos">11,28%</div><div class="l">CASH YIELD S/EQUITY, SIN SERVICIO DE DEUDA</div></div>
+    <div class="eyebrow-box">
+      <div class="tag-top">Ficha de Inversión</div>
+      <div class="date mono">28/08/2026</div>
     </div>
-    <div class="callout finding"><b>El 9,4% es Gross Yield, no Cap Rate.</b> Falta el OPEX del propietario para calcular el Cap Rate real, que será igual o menor.</div>
-    <div class="callout risk"><b>Dato crítico pendiente:</b> la <b>periodicidad</b> de las 10 cuotas del vendedor. Si son mensuales, el servicio de deuda (USD 20.000/mes) supera la renta (USD 9.400/mes) → flujo negativo estructural. Si son trimestrales o más espaciadas, la renta cubre la deuda con margen.</div>
-  </section>
+  </header>
 
-  <section>
-    <h2>Escenarios de retorno anualizado (equity USD 1.000.000)</h2>
-    <div class="table-wrap"><table>
-      <thead><tr><th></th><th>Conservador</th><th>Base</th><th>Optimista</th></tr></thead>
-      <tbody>
-        <tr><td class="strong">Supuesto clave</td><td>Vacancia 6m + OPEX 8% + cap salida 10,4%</td><td>Sin OPEX, sin apreciación, cap salida = entrada</td><td>Renovación sin vacancia, renta +10%, cap salida 8,9%</td></tr>
-        <tr class="warn"><td class="strong">Retorno anualizado</td><td class="num" style="color:var(--red)">~3,1%</td><td class="num strong">~9,5%</td><td class="num" style="color:var(--green)">~14,0%</td></tr>
-      </tbody>
-    </table></div>
-    <p style="font-size:11.5px; color:var(--muted); margin:0">El caso base asume financiación trimestral al 8% ilustrativo. En 40 meses se recupera solo ~15,4% del equity vía renta — la mayor parte del retorno depende de la salida (venta, renovación), no del cash flow contractual.</p>
-  </section>
-
-  <section>
-    <h2>A favor / En contra</h2>
-    <div class="two-col">
-      <div class="card good">
-        <h3>A favor</h3>
-        <ul>
-          <li>Renta desde el día uno, activo 100% operativo</li>
-          <li>40 meses de visibilidad contractual (verificados)</li>
-          <li>Financiación parcial reduce el capital de entrada</li>
-          <li>Yield nominal por encima de renta fija de referencia (UST 10y ~4,68%)</li>
-        </ul>
-      </div>
-      <div class="card bad">
-        <h3>En contra</h3>
-        <ul>
-          <li>Concentración total: 1 activo, 1 locatario</li>
-          <li>20% de la renta no bancarizada (efectivo)</li>
-          <li>Financiación puede ser flujo-negativa si es mensual</li>
-          <li>Hidrantes no habilitados; locatario sin evaluar; sin ubicación ni comparables</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Condición para que la inversión sea atractiva</h2>
-    <div class="callout finding">Atractiva si, y solo si: (1) cuotas trimestrales o mayores con tasa razonable; (2) el contrato ajusta la renta en términos reales; (3) OPEX bajo o a cargo del locatario; (4) el locatario demuestra solvencia; (5) hidrantes formalmente habilitados antes del cierre; (6) hay comparables que sostengan el precio por m² (USD 967,74/m²).</div>
-  </section>
-
-  <div class="footer">
-    Preparado para comité de inversión el 28/08/2026. No es asesoramiento legal, impositivo ni una oferta. Análisis completo (auditoría matemática, cash flow a 40 meses, matriz de 15 riesgos, due diligence) en <span class="mono">ANALISIS-INVERSION.md</span> y <span class="mono">presentacion.html</span> (versión de 19 diapositivas).
+  <div class="titleblock">
+    <h1>Nave industrial en renta — activo logístico ocupado</h1>
+    <p class="addr">Depósito industrial de 1.240 m² cubiertos, 100% operativo, alquilado a un operador logístico de electrodomésticos.</p>
+    <p class="taglist">Renta desde el día 1 · Financiación parcial del vendedor · 40 meses de contrato vigente</p>
   </div>
 
+  <section>
+    <div class="photo-main">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
+      <div class="lbl">Foto exterior / fachada — a incorporar</div>
+      <div class="sub">Espacio reservado para fotografía real del activo. Enviar imágenes para reemplazar este bloque.</div>
+    </div>
+    <div class="photo-row">
+      <div class="photo-sm"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg><div class="lbl">Interior / nave a piso</div></div>
+      <div class="photo-sm"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg><div class="lbl">Accesos / playa de maniobras</div></div>
+    </div>
+    <p class="photo-caption">Vista satelital y fotografías del activo — pendientes de carga hasta contar con material verificado.</p>
+  </section>
+
+  <section>
+    <h2>Datos del activo</h2>
+    <div class="bullet-grid">
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div><div class="tx"><b>Nave industrial · 1.240 m²</b><p>100% operativa. Estiba a piso, sin racks.</p></div></div>
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16h5M9.5 10h2"/></svg></div><div class="tx"><b>40 meses de contrato remanente</b><p>Sobre 48 meses totales desde 01/01/2026 (verificado).</p></div></div>
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="12" height="9"/><path d="M14 11h4l4 4v2h-8z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg></div><div class="tx"><b>Locatario logístico</b><p>Depósito de electrodomésticos (TVs, heladeras). Solvencia sin evaluar aún.</p></div></div>
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5 1.3 2 3 2.5 3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5"/></svg></div><div class="tx"><b>Renta USD 9.400 / mes</b><p>80% por transferencia bancaria + 20% en efectivo.</p></div></div>
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3-2 4-2 7a4 4 0 108 0c0-1.5-1-2-1-3.5 1 .5 2 2 2 4.5a6 6 0 11-12 0c0-4 3-5 5-8z"/></svg></div><div class="tx"><b>Obras en curso</b><p>Red de hidrantes en ejecución. <span class="tag">Habilitación pendiente</span></p></div></div>
+      <div class="bullet"><div class="ic"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l5-4 4 3 3-2 8 5-3 3-2-1-3 3-4-3-2 2-3-3z"/><path d="M9 11l4 3"/></svg></div><div class="tx"><b>Financiación del vendedor</b><p>USD 200.000 (16,7%) en 10 cuotas. <span class="tag">Periodicidad a confirmar</span></p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Números de la inversión</h2>
+    <div class="kpi-row">
+      <div class="kpi-box"><div class="v">USD 1,2M</div><div class="l">PRECIO DE ADQUISICIÓN</div></div>
+      <div class="kpi-box"><div class="v">USD 1,0M</div><div class="l">CAPITAL INICIAL (EQUITY)</div></div>
+      <div class="kpi-box"><div class="v">9,40%</div><div class="l">GROSS YIELD ANUAL</div></div>
+      <div class="kpi-box"><div class="v">11,28%</div><div class="l">CASH YIELD BRUTO S/EQUITY</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Condiciones comerciales</h2>
+    <div class="cond-box">
+      <div class="stat">
+        <div class="v">9,40%</div>
+        <div class="l">Gross Yield anual</div>
+      </div>
+      <div class="text">
+        <h3>Estructura de la operación</h3>
+        <p>Renta anual de USD 112.800 sobre un precio de USD 1.200.000. Es <b style="color:#fff">Gross Yield, no Cap Rate</b>: falta el gasto operativo del propietario (OPEX) para calcular el rendimiento neto real, que será igual o menor. USD 200.000 financiados por el vendedor en 10 cuotas reducen el capital inicial requerido a USD 1.000.000 — con la periodicidad de esas cuotas como variable crítica del flujo de caja.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Escenarios de retorno</h2>
+    <p style="font-size:12px; color:var(--ink-soft); margin:0 0 4px">Retorno anualizado aproximado sobre el equity de USD 1.000.000, en un horizonte de referencia de 40 meses.</p>
+    <div class="scenario-viz">
+      <div class="range-track">
+        <div class="range-fill" style="left:0%; width:100%"></div>
+        <div class="range-pt" style="left:12%; background:var(--red);">
+          <div class="rp-label"><div class="rv" style="color:var(--red)">3,1%</div><div class="rl">Conservador</div></div>
+          <div class="rp-sub">Vacancia 6m + OPEX 8% + cap salida 10,4%</div>
+        </div>
+        <div class="range-pt" style="left:52%; background:var(--navy);">
+          <div class="rp-label"><div class="rv" style="color:var(--navy)">9,5%</div><div class="rl">Base</div></div>
+          <div class="rp-sub">Sin OPEX adicional, sin apreciación</div>
+        </div>
+        <div class="range-pt" style="left:92%; background:var(--green);">
+          <div class="rp-label"><div class="rv" style="color:var(--green)">14,0%</div><div class="rl">Optimista</div></div>
+          <div class="rp-sub">Renovación sin vacancia, renta +10%</div>
+        </div>
+      </div>
+    </div>
+    <table class="assump-table">
+      <thead><tr><th>Escenario</th><th>Cash flow 40 meses</th><th>Valor terminal</th><th>Múltiplo s/equity</th></tr></thead>
+      <tbody>
+        <tr><td class="h" style="color:var(--red)">Conservador</td><td>~USD 123.900</td><td>~USD 998.000</td><td>~1,12x / 46 meses</td></tr>
+        <tr><td class="h">Base</td><td>USD 154.000</td><td>USD 1.200.000</td><td>1,35x / 40 meses</td></tr>
+        <tr><td class="h" style="color:var(--green)">Optimista</td><td>USD 154.000</td><td>~USD 1.394.000</td><td>1,55x / 40 meses</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10.5px; color:var(--muted); margin-top:8px">En el horizonte contractual (40 meses) se recupera vía renta solo ~15,4% del equity: la mayor parte del retorno depende de la salida (venta o renovación), no del cash flow contractual remanente.</p>
+  </section>
+
+  <section>
+    <h2>Puntos de atención</h2>
+    <div class="callout risk">
+      <b>Antes de comprometer capital, confirmar:</b>
+      <ul>
+        <li><b>Periodicidad de las 10 cuotas del vendedor</b> — si son mensuales, el servicio de deuda (USD 20.000/mes) supera la renta y genera flujo negativo estructural.</li>
+        <li><b>Habilitación formal de hidrantes</b> — la obra civil no reemplaza la habilitación del organismo competente.</li>
+        <li><b>Ubicación y comparables de mercado</b> — sin ellos no puede validarse el precio de USD 967,74/m².</li>
+        <li><b>Solvencia del locatario</b> — única fuente de renta; sin documentación evaluada aún.</li>
+      </ul>
+    </div>
+    <div class="callout finding">
+      <b>La inversión resulta atractiva si, y solo si:</b> las cuotas son trimestrales o de periodicidad mayor con tasa razonable, el contrato ajusta la renta en términos reales, el OPEX es bajo o está a cargo del locatario, el locatario demuestra solvencia, los hidrantes quedan habilitados antes del cierre, y existen comparables que sostengan el precio por m².
+    </div>
+  </section>
+
+  <footer class="contact">
+    <div class="contact-row">
+      <div class="contact-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2C9.5 21 3 14.5 3 6a2 2 0 012-2z"/></svg> +54 9 11 3705-1114</div>
+      <div class="contact-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 6l9 7 9-7"/></svg> marcelo@krak.com.ar</div>
+      <div class="contact-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg> www.krak.com.ar</div>
+    </div>
+    <div class="disclaimer">Preparado para comité de inversión — análisis interno, no es asesoramiento legal, impositivo ni una oferta. Información sujeta a verificación y disponibilidad. Análisis completo en <span class="mono">ANALISIS-INVERSION.md</span>.</div>
+  </footer>
 </div>
