@@ -50,5 +50,10 @@ paso de gasoducto a favor de Naturgy BAN S.A.; en el Polígono ABCDEFA no se
 permiten construcciones ni plantaciones. Coincide en superficie con la parcela
 1aa de origen (S/P 47-11-2023).
 
+**Comercial:** valor de lista USD 220/m² — USD 3.227.164,60 de referencia por
+el total. Forma de pago a negociar. Contacto: Pablo Kisieluk,
++54 9 11 6483-5192, pablo@krak.com.ar.
+
 Archivos: `UP27-ficha.pdf`, `UP27-detalle.png`, `UP27-ubicacion.jpg`,
-`UP27-gasoducto.png`.
+`UP27-gasoducto.png`. El isotipo de marca usado en la ficha está en
+`assets/krak-iso.svg`.
