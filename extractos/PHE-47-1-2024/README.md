@@ -30,3 +30,25 @@ Conjunto: 76 unidades funcionales — 274.681,60 m² de superficie privativa tot
 
 Uso informativo. No reemplaza al plano original, al título ni al reglamento de
 propiedad horizontal.
+
+## U.P. 27
+
+| Dato | Valor |
+|---|---|
+| Superficie | 14.668,93 m² |
+| Frente (Camino del Buen Ayre) | 153,84 m (21,37 + 70,00 + 62,47) |
+| Contrafrente (Calle 8) | 156,92 m |
+| Lateral E (calle interna) | 120,83 m |
+| Lateral O | 44,94 + 10,01 + 40,04 m (quebrado) |
+| Zona de gasoducto | Polígono ABCDEFA — 508,96 m² afectados |
+| Peso en el conjunto | 5,34% del privativo total |
+
+Unidad de esquina, con frente a Camino del Buen Ayre, contrafrente a Calle 8 y
+lateral este sobre calle interna del parque. Cortina forestal y servidumbre de
+paso de 10,00 m sobre ambos frentes. Es la unidad que cede la servidumbre de
+paso de gasoducto a favor de Naturgy BAN S.A.; en el Polígono ABCDEFA no se
+permiten construcciones ni plantaciones. Coincide en superficie con la parcela
+1aa de origen (S/P 47-11-2023).
+
+Archivos: `UP27-ficha.pdf`, `UP27-detalle.png`, `UP27-ubicacion.jpg`,
+`UP27-gasoducto.png`.
