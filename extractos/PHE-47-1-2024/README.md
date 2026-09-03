@@ -2,8 +2,16 @@
 
 Parque Industrial — Camino del Buen Ayre N° 4600, Ciudad Jardín El Libertador,
 Partido de General San Martín, Prov. de Buenos Aires.
-Titular: Fiduciaria del Buen Ayre S.A. — Agrimensor: Rodolfo Omar Seynaeve (Mat. CPA 1070).
-Mensura: agosto de 2024. 1ª corrección aprobada 23/10/2024 (tela nueva, La Plata, 27/3/2025).
+Agrimensor: Rodolfo Omar Seynaeve (Mat. CPA 1070). Mensura: agosto de 2024.
+
+**Política de las fichas comerciales:** somos intermediarios, no el titular.
+Las fichas para el cliente (`*-ficha.pdf`) no mencionan el nombre del
+propietario ni la corrección del plano, y no incluyen el coeficiente de
+copropiedad ni las expensas (no surgen del plano de todos modos).
+
+Nota interna (no va en ninguna ficha): titular Fiduciaria del Buen Ayre S.A.
+1ª corrección del plano aprobada 23/10/2024 (tela nueva, La Plata, 27/3/2025),
+rectificó medidas de las U.F. 69 y 70.
 
 ## U.F. 14
 
@@ -50,7 +58,9 @@ de origen (S/P 47-11-2023).
 Nota interna (no va en la ficha del cliente): la U.P. 27 es la unidad que cede
 la servidumbre de paso de gasoducto a favor de Naturgy BAN S.A. — Polígono
 ABCDEFA, 508,96 m² afectados, sin construcciones ni plantaciones. Ver Detalle
-N°1 del plano original.
+N°1 del plano original. Es además la unidad que cede la franja donde se ubica
+esa servidumbre; el titular registral es Fiduciaria del Buen Ayre S.A. (ver
+nota interna general al inicio de este archivo).
 
 **Comercial:** valor de lista USD 220/m² — USD 3.227.164,60 de referencia por
 el total. Forma de pago a negociar. Contacto: Pablo Kisieluk,
