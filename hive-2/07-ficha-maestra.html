@@ -1,0 +1,516 @@
+<title>Ficha Maestra Hive 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F7FA;
+  --surface:#FFFFFF;
+  --surface-2:#EDF1F6;
+  --ink:#141C27;
+  --ink-2:#4E586E;
+  --ink-3:#7C8594;
+  --line:#D5DCE5;
+  --line-strong:#B4BFCC;
+  --brand:#08407C;
+  --brand-soft:#E4EDF7;
+  --crit:#9E2B36;
+  --crit-bg:#F7E7E8;
+  --warn:#8A5A12;
+  --warn-bg:#F7EEDD;
+  --ok:#245C42;
+  --ok-bg:#E2EFE8;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E131A;
+    --surface:#151C26;
+    --surface-2:#1C2531;
+    --ink:#E7ECF3;
+    --ink-2:#A9B4C4;
+    --ink-3:#7C8594;
+    --line:#28323F;
+    --line-strong:#3B4859;
+    --brand:#6BA6E0;
+    --brand-soft:#16283C;
+    --crit:#E8919A;
+    --crit-bg:#2E1A1D;
+    --warn:#DCB16A;
+    --warn-bg:#2C2314;
+    --ok:#7FC4A2;
+    --ok-bg:#152A21;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E131A;
+  --surface:#151C26;
+  --surface-2:#1C2531;
+  --ink:#E7ECF3;
+  --ink-2:#A9B4C4;
+  --ink-3:#7C8594;
+  --line:#28323F;
+  --line-strong:#3B4859;
+  --brand:#6BA6E0;
+  --brand-soft:#16283C;
+  --crit:#E8919A;
+  --crit-bg:#2E1A1D;
+  --warn:#DCB16A;
+  --warn-bg:#2C2314;
+  --ok:#7FC4A2;
+  --ok-bg:#152A21;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.62;
+  margin:0;
+  padding:0 20px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto}
+
+/* ---------- carátula tipo plancheta de plano ---------- */
+.sheet{
+  border:1px solid var(--line-strong);
+  background:var(--surface);
+  margin:32px 0 44px;
+}
+.sheet-top{
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:20px;padding:30px 30px 24px;border-bottom:1px solid var(--line);
+}
+.eyebrow{
+  font-family:var(--display);font-weight:600;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin:0 0 10px;
+}
+h1{
+  font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,44px);
+  line-height:1.04;letter-spacing:-.02em;margin:0;text-wrap:balance;
+}
+h1 .sub{display:block;font-weight:500;font-size:.5em;letter-spacing:.01em;color:var(--ink-2);margin-top:10px}
+.stamp{
+  font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--warn);background:var(--warn-bg);
+  border:1px solid currentColor;padding:7px 12px;white-space:nowrap;
+}
+.plancheta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  border-top:0;
+}
+.pl{
+  padding:16px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.pl:last-child{border-right:0}
+.pl dt{
+  font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 6px;
+}
+.pl dd{margin:0;font-family:var(--mono);font-size:13.5px;font-weight:500;line-height:1.4;color:var(--ink)}
+.pl dd.big{font-size:20px;font-weight:600;letter-spacing:-.01em}
+
+/* ---------- secciones ---------- */
+section{margin:0 0 52px;scroll-margin-top:20px}
+h2{
+  font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;
+  margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid var(--ink);
+  display:flex;align-items:baseline;gap:12px;
+}
+h2 .num{
+  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brand);
+  letter-spacing:.04em;flex:none;
+}
+h3{
+  font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);margin:30px 0 12px;
+}
+p{margin:0 0 15px;max-width:68ch}
+ul,ol{margin:0 0 15px;padding-left:22px;max-width:68ch}
+li{margin:0 0 7px}
+strong{font-weight:600;color:var(--ink)}
+a{color:var(--brand)}
+
+/* ---------- tablas ---------- */
+.tw{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{
+  font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);text-align:left;
+  padding:12px 16px;border-bottom:1px solid var(--line);
+}
+th{
+  font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);text-align:left;
+  padding:10px 16px;border-bottom:1px solid var(--line-strong);white-space:nowrap;
+}
+td{
+  padding:9px 16px;border-bottom:1px solid var(--line);vertical-align:top;
+  font-family:var(--body);
+}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+th.n{font-family:var(--display)}
+td.k{font-family:var(--display);font-weight:600;font-size:13px}
+tr.total td{border-top:2px solid var(--ink);border-bottom:0;font-weight:600;background:var(--surface-2)}
+tr.total td.n{font-weight:600}
+td em{font-style:normal;color:var(--ink-3);font-size:13px}
+
+/* ---------- chips ---------- */
+.chip{
+  display:inline-block;font-family:var(--display);font-size:9.5px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;white-space:nowrap;
+}
+.c-alta{color:var(--crit);background:var(--crit-bg)}
+.c-media{color:var(--warn);background:var(--warn-bg)}
+.c-ok{color:var(--ok);background:var(--ok-bg)}
+.win{color:var(--ok);font-weight:600}
+.lose{color:var(--crit);font-weight:600}
+
+/* ---------- bloques destacados ---------- */
+.claim{
+  border-left:3px solid var(--brand);background:var(--brand-soft);
+  padding:22px 26px;margin:0 0 20px;
+}
+.claim p{
+  font-family:var(--display);font-weight:600;font-size:20px;line-height:1.35;
+  letter-spacing:-.01em;margin:0;color:var(--ink);text-wrap:balance;
+}
+.note{
+  border:1px dashed var(--line-strong);padding:14px 18px;margin:0 0 18px;
+  font-size:14px;color:var(--ink-2);background:var(--surface);
+}
+.note strong{color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 18px}
+.grid2 > div{background:var(--surface);padding:18px 20px}
+.grid2 h4{
+  font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--brand);margin:0 0 10px;
+}
+.grid2 p{font-size:14.5px;margin:0}
+.segment-tag{font-family:var(--mono);font-size:11px;color:var(--ink-3);display:block;margin-top:8px}
+
+/* ---------- cierre ---------- */
+.approve{
+  border:2px solid var(--ink);padding:28px 30px;margin-top:56px;background:var(--surface);
+}
+.approve h2{border-bottom:0;margin-bottom:12px;padding-bottom:0}
+.pipeline{
+  display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0;padding:0;list-style:none;max-width:none;
+}
+.pipeline li{
+  font-family:var(--mono);font-size:11.5px;padding:5px 10px;margin:0;
+  border:1px solid var(--line-strong);color:var(--ink-2);
+}
+.pipeline li:first-child{border-color:var(--brand);color:var(--brand);font-weight:600}
+footer{
+  margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
+}
+@media (max-width:620px){
+  body{padding:0 14px 64px}
+  .sheet-top{padding:24px 20px 20px}
+  .pl{padding:14px 16px}
+  th,td{padding:8px 12px}
+}
+</style>
+
+<div class="wrap">
+
+<div class="sheet">
+  <div class="sheet-top">
+    <div>
+      <p class="eyebrow">Krak Real Estate · Área Industrial · Cierre de brief</p>
+      <h1>Hive 2 Storage Park<span class="sub">Ficha Maestra de comercialización — v1.0</span></h1>
+    </div>
+    <div class="stamp">Pendiente de aprobación</div>
+  </div>
+  <dl class="plancheta">
+    <div class="pl"><dt>Unidades</dt><dd class="big">18</dd></div>
+    <div class="pl"><dt>Valor del proyecto</dt><dd class="big">USD 5,96 M</dd></div>
+    <div class="pl"><dt>Objetivo preventa</dt><dd class="big">5–6 unid.</dd></div>
+    <div class="pl"><dt>Plazo</dt><dd class="big">4 meses</dd></div>
+    <div class="pl"><dt>Desarrollador</dt><dd>Stark Desarrollos SRL</dd></div>
+    <div class="pl"><dt>Ubicación</dt><dd>Camino del Buen Ayre y De&nbsp;Benedetti · Gral. San Martín</dd></div>
+    <div class="pl"><dt>Etapa</dt><dd>Pozo · fin de obra feb-2028</dd></div>
+    <div class="pl"><dt>Fecha del documento</dt><dd>7 de septiembre de 2026</dd></div>
+  </dl>
+</div>
+
+<section>
+  <h2><span class="num">01</span> El proyecto</h2>
+  <p><strong>Hive 2 Storage Park</strong> es un complejo de 18 naves industriales con entrepiso privado, dentro del <strong>Polo Industrial Buen Ayre 2</strong>, sobre la colectora norte del Camino del Buen Ayre casi cruce De Benedetti, partido de General San Martín. El lote AB tiene 9.643 m².</p>
+  <p><em>Hive</em> significa colmena: naves chicas que funcionan como una comunidad, un centro de operaciones compartido. La marca «HIVE STORAGE» está registrada a nombre de Stark Desarrollos.</p>
+  <div class="tw"><table>
+    <caption>Estructura del negocio</caption>
+    <tbody>
+      <tr><td class="k">Desarrollador</td><td>Stark Desarrollos SRL</td></tr>
+      <tr><td class="k">Comercializa</td><td>Krak Real Estate, <strong>en exclusiva</strong> — área Industrial</td></tr>
+      <tr><td class="k">Vehículo legal</td><td>Fideicomiso Inmobiliario de Construcción al Costo — <strong>aún no conformado</strong></td></tr>
+      <tr><td class="k">Etapa</td><td>Pozo. Fin de obra estimado <strong>febrero 2028</strong> <em>(a conciliar: se informó también fin 2028 / principios 2029)</em></td></tr>
+      <tr><td class="k">Antecedente</td><td><strong>Hive 1</strong>, mismo desarrollador, en el parque de enfrente: <strong>100% vendido y ocupado</strong></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="num">02</span> Producto</h2>
+  <p>18 unidades en 10 tipologías. Cada nave incluye <strong>entrepiso privado</strong> equivalente a ≈33% de su superficie y <strong>más de 7 metros de altura libre</strong>, con acceso independiente por cortina metálica motorizada.</p>
+  <div class="tw"><table>
+    <caption>Tipologías y ticket a precio de preventa</caption>
+    <thead><tr><th>Tipo</th><th class="n">Nave m²</th><th class="n">Entrepiso m²</th><th class="n">Total m²</th><th class="n">Cant.</th><th class="n">Ticket USD</th></tr></thead>
+    <tbody>
+      <tr><td class="k">H</td><td class="n">675</td><td class="n">232</td><td class="n">907</td><td class="n">1</td><td class="n">854.910</td></tr>
+      <tr><td class="k">D</td><td class="n">369</td><td class="n">121</td><td class="n">490</td><td class="n">1</td><td class="n">463.680</td></tr>
+      <tr><td class="k">E</td><td class="n">314</td><td class="n">105</td><td class="n">419</td><td class="n">1</td><td class="n">395.850</td></tr>
+      <tr><td class="k">C</td><td class="n">300</td><td class="n">96</td><td class="n">396</td><td class="n">1</td><td class="n">375.480</td></tr>
+      <tr><td class="k">I</td><td class="n">280</td><td class="n">96</td><td class="n">376</td><td class="n">2</td><td class="n">354.480</td></tr>
+      <tr><td class="k">F</td><td class="n">273</td><td class="n">105</td><td class="n">378</td><td class="n">1</td><td class="n">352.800</td></tr>
+      <tr><td class="k">A</td><td class="n">266</td><td class="n">94</td><td class="n">360</td><td class="n">1</td><td class="n">338.520</td></tr>
+      <tr><td class="k">B</td><td class="n">244</td><td class="n">81</td><td class="n">325</td><td class="n">2</td><td class="n">307.230</td></tr>
+      <tr><td class="k">G</td><td class="n">210</td><td class="n">108</td><td class="n">318</td><td class="n">1</td><td class="n">288.540</td></tr>
+      <tr><td class="k">J</td><td class="n">207</td><td class="n">69</td><td class="n">276</td><td class="n">6</td><td class="n">260.820</td></tr>
+      <tr class="total"><td class="k">Total</td><td class="n">4.697</td><td class="n">1.629</td><td class="n">6.326</td><td class="n">17</td><td class="n">5.958.120</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>Supuesto a validar.</strong> La distribución por tipología surge de la lámina de mix del brochure y del masterplan numerado, y suma 17 unidades: falta identificar la 18ª. Impacto estimado sobre el total: entre USD 260.000 y 460.000.</div>
+
+  <h3>Agrupación comercial</h3>
+  <div class="grid2">
+    <div><h4>Compact</h4><p>Tipología J — 207 m² + 69 de entrepiso. Seis unidades. E-commerce, profesionales y comercio.<span class="segment-tag">USD 260.820 · el ticket de entrada</span></p></div>
+    <div><h4>Medium</h4><p>B, A, F, I — de 244 a 280 m². PyMEs, talleres y almacenamiento industrial.<span class="segment-tag">USD 307.230 – 354.480</span></p></div>
+    <div><h4>Large</h4><p>C, E, D, H — de 300 a 675 m². Operadores logísticos, industria y almacenamiento flexible.<span class="segment-tag">USD 375.480 – 854.910</span></p></div>
+  </div>
+
+  <h3>Características confirmadas</h3>
+  <div class="tw"><table>
+    <tbody>
+      <tr><td class="k">Constructivas</td><td>Panel sándwich en tonos oscuros · estructura de alma llena y perfiles W · más de 7 m de altura libre · entrepiso privado ≈33% · cortina metálica motorizada</td></tr>
+      <tr><td class="k">Infraestructura</td><td><strong>Calles de hormigón de 10 m de calzada</strong> · red de incendios · cerco perimetral de 2,20 m · fibra óptica · <strong>potencia monofásica y trifásica</strong> · iluminación vial LED · <strong>pórtico de control de ingreso</strong> · barrera forestal Ley 13.744</td></tr>
+      <tr><td class="k">Predio</td><td>Garden block permeable · circulación diferenciada liviana / pesada · 64 cocheras y espacio para semirremolque (no se venden por separado) · retiros laterales 5/10 m y de frente 10 m</td></tr>
+      <tr><td class="k">Baja del proyecto</td><td>Las oficinas y el coworking (563 m²) <strong>se dan de baja</strong> y se reemplazan por otra nave. Pendiente actualizar brochure, anexo técnico y proyección de ventas, donde todavía figuran</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="num">03</span> Precios y condiciones</h2>
+  <div class="tw"><table>
+    <tbody>
+      <tr><td class="k">Precio de preventa</td><td><strong>USD 1.050 / m² de nave</strong> · <strong>USD 630 / m² de entrepiso</strong> (60% del valor de planta)</td></tr>
+      <tr><td class="k">Ticket mínimo</td><td>USD 260.820 (tipología J)</td></tr>
+      <tr><td class="k">Ticket máximo</td><td>USD 854.910 (tipología H)</td></tr>
+      <tr><td class="k">Ticket promedio</td><td>USD 350.478</td></tr>
+      <tr><td class="k">Forma de pago</td><td><strong>50% de anticipo + 18 cuotas</strong></td></tr>
+      <tr><td class="k">Reserva</td><td><strong>USD 10.000 de seña</strong>, vigencia 60 días, imputable a cuenta de precio</td></tr>
+      <tr><td class="k">Modalidad alternativa</td><td>Canje por materiales de construcción con saldo en dólares — ya operada</td></tr>
+      <tr><td class="k">Disponibilidad</td><td>Todo disponible salvo la <strong>unidad F, reservada</strong>. Una segunda operación en curso</td></tr>
+      <tr><td class="k">Expensas</td><td><strong>No definidas</strong></td></tr>
+      <tr><td class="k">Gastos de escritura</td><td>No definidos</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>Uso interno, no publicable.</strong> Existen proyecciones propias de USD 1.400/m² terminado y USD 10/m²/mes de alquiler. No tienen respaldo documental y no se comunican en ninguna pieza.</div>
+</section>
+
+<section>
+  <h2><span class="num">04</span> Objetivo comercial</h2>
+  <p>Vender el <strong>30% en preventa</strong>: entre <strong>5 y 6 unidades</strong>, aproximadamente <strong>USD 1.787.000</strong>, en <strong>4 meses</strong> desde el lanzamiento. La prioridad es cierre de ventas, no volumen de leads.</p>
+  <div class="tw"><table>
+    <caption>Embudo requerido — escenarios de cierre</caption>
+    <thead><tr><th>Cierre lead calificado → venta</th><th class="n">Leads calificados</th><th class="n">Leads totales</th></tr></thead>
+    <tbody>
+      <tr><td>10%</td><td class="n">50</td><td class="n">200</td></tr>
+      <tr><td>15% <em>— escenario de trabajo</em></td><td class="n">33</td><td class="n">133</td></tr>
+      <tr><td>20%</td><td class="n">25</td><td class="n">100</td></tr>
+    </tbody>
+  </table></div>
+  <p>Supone una tasa de calificación del 25% sobre leads totales. <strong>Meta de trabajo: ~130 leads, ~35 calificados, 5 ventas en 4 meses.</strong></p>
+</section>
+
+<section>
+  <h2><span class="num">05</span> Público objetivo</h2>
+  <div class="grid2">
+    <div><h4>1 · Inversores</h4><p>Prioritario en preventa. Capital en dólares, buscan resguardo de valor y renta futura. Compran por revalorización de pozo y por el respaldo de Hive 1.<span class="segment-tag">Ticket USD 260k – 855k</span></p></div>
+    <div><h4>2 · Usuarios finales</h4><p>Entran cerca de la entrega, cuando pueden operar. PyMEs, e-commerce, talleres, distribuidores y operadores logísticos. Deciden por altura, acceso de camión, trifásica y seguridad.<span class="segment-tag">Segunda mitad del ciclo</span></p></div>
+    <div><h4>3 · Proveedores de materiales</h4><p>Detectado y sin explotar. Fabricantes y distribuidores de insumos que integran precio en canje por producto. Resuelve la falta de dólares del comprador y baja el costo de obra. Ya hay un caso concreto.<span class="segment-tag">Canal: outbound, no Meta</span></p></div>
+  </div>
+  <h3>Objeciones conocidas</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Objeción</th><th>Origen</th><th>Respuesta disponible</th></tr></thead>
+    <tbody>
+      <tr><td>«Está cerca de villas de emergencia»</td><td><span class="chip c-alta">Reportada</span></td><td>Cerco perimetral, pórtico de control de ingreso, iluminación LED. <strong>Falta definir vigilancia, cámaras y monitoreo</strong></td></tr>
+      <tr><td>«Hay que pagar peaje para llegar»</td><td><span class="chip c-alta">Reportada</span></td><td>Costo total de operación y tiempo real de acceso al corredor logístico</td></tr>
+      <tr><td>Pozo largo con fideicomiso no conformado</td><td><span class="chip c-media">Anticipada</span></td><td>Guion comercial a preparar</td></tr>
+      <tr><td>50% de anticipo</td><td><span class="chip c-media">Anticipada</span></td><td>La reserva se hace con USD 10.000, igual que la competencia</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="num">06</span> Posición competitiva</h2>
+  <p>Ambos competidores los comercializa también Krak, de modo que los datos son propios y verificables.</p>
+  <div class="tw"><table>
+    <caption>Hive 2 frente a Arbox Norlog II y Logipark</caption>
+    <thead><tr><th>Variable</th><th>Hive 2</th><th>Arbox Norlog II</th><th>Logipark</th></tr></thead>
+    <tbody>
+      <tr><td class="k">USD / m² útil</td><td class="win">945</td><td>1.318 – 1.465</td><td>s/d</td></tr>
+      <tr><td class="k">Ticket de entrada</td><td>USD 260.820</td><td>USD 262.445</td><td>s/d</td></tr>
+      <tr><td class="k">Superficie por ese ticket</td><td class="win">276 m²</td><td>179 m²</td><td>s/d</td></tr>
+      <tr><td class="k">Seña para reservar</td><td>USD 10.000</td><td>USD 10.498</td><td>s/d</td></tr>
+      <tr><td class="k">Integración a 12 meses</td><td class="lose">83%</td><td>19%</td><td>50% + 12 cuotas</td></tr>
+      <tr><td class="k">Calles internas</td><td class="win">10 m</td><td>6,40 m</td><td>s/d</td></tr>
+      <tr><td class="k">Altura libre</td><td class="win">+7 m</td><td>s/d</td><td>s/d</td></tr>
+      <tr><td class="k">Ubicación</td><td class="lose">Camino del Buen Ayre</td><td>Panamericana / Norlog</td><td>Panamericana Km 24</td></tr>
+      <tr><td class="k">Entrega</td><td>feb-2028</td><td>20 meses</td><td>Entregado</td></tr>
+      <tr><td class="k">Seguridad publicada</td><td class="lose">Sin definir</td><td>Cámaras y control de acceso</td><td>24 hs, doble cordón</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="num">07</span> Propuesta de valor preliminar</h2>
+  <div class="claim"><p>El metro operativo más barato del corredor, con la altura y el acceso que el resto no tiene, del desarrollador cuyo proyecto anterior está 100% vendido y ocupado enfrente.</p></div>
+  <div class="grid2">
+    <div><h4>Precio</h4><p>USD 945/m² útil contra 1.318–1.465 de Arbox. Por el mismo ticket de entrada, <strong>54% más superficie</strong>.</p></div>
+    <div><h4>Producto</h4><p>Más de 7 m de altura libre, entrepiso privado sin costo de suelo, calles de 10 m para maniobra real de camión, trifásica y fibra óptica.</p></div>
+    <div><h4>Prueba</h4><p>Hive 1 está enfrente, es del mismo desarrollador y está 100% vendido y ocupado. Se vendió a USD 1.200/m² hace 18 meses siendo de menor calidad; hoy Hive 2 sale a 1.050.</p></div>
+  </div>
+  <div class="note"><strong>No se comunica</strong> ningún porcentaje de renta, ninguna proyección de revalorización y ninguna fecha de escrituración.</div>
+</section>
+
+<section>
+  <h2><span class="num">08</span> Recursos y activos</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Recurso</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Renders</td><td><span class="chip c-ok">Disponible</span> 18 archivos de Stark: exteriores, interiores con racks y operarios, pórtico, isométrico y tipología D</td></tr>
+      <tr><td class="k">Brochure</td><td><span class="chip c-alta">Desactualizado</span> Vende un coworking que ya no existe, y tiene erratas</td></tr>
+      <tr><td class="k">Masterplan</td><td><span class="chip c-ok">Disponible</span> Numerado 1 a 18</td></tr>
+      <tr><td class="k">Video, drone, planos comerciales</td><td><span class="chip c-alta">No existen</span></td></tr>
+      <tr><td class="k">Render del Compact 207 m²</td><td><span class="chip c-alta">No existe</span> Es la unidad de menor ticket, la puerta de entrada</td></tr>
+      <tr><td class="k">Instagram y Facebook</td><td><span class="chip c-media">De cero</span></td></tr>
+      <tr><td class="k">Landing</td><td><span class="chip c-media">De cero</span> La desarrolla y mantiene Krak</td></tr>
+      <tr><td class="k">Business Manager y cuenta publicitaria</td><td>A nombre de Krak</td></tr>
+      <tr><td class="k">Pixel, CAPI, Analytics</td><td><span class="chip c-media">Por instalar</span></td></tr>
+      <tr><td class="k">CRM</td><td><span class="chip c-ok">Tokko Broker</span> con carga automática de leads</td></tr>
+      <tr><td class="k">Vendedores</td><td>Equipo Industrial de Krak RE. Respuesta inmediata</td></tr>
+      <tr><td class="k">Vocero</td><td><span class="chip c-ok">Sí</span> Uno de los vendedores</td></tr>
+      <tr><td class="k">Filmación</td><td>Permitida en el predio. <strong>No permitida en Hive 1</strong></td></tr>
+      <tr><td class="k">Aprobaciones</td><td>Marce aprueba todos los materiales</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Bases propias — el motor de la campaña</h3>
+  <ul>
+    <li><strong>Los 18 compradores de Hive 1</strong>, vendidos y ocupados enfrente: referidos y segunda unidad.</li>
+    <li><strong>Compradores del Polo Buen Ayre 2</strong>: ya compraron en este mismo polo.</li>
+    <li>Base de contactos de Hive y de Arbox Norlog II.</li>
+    <li>Base propia de empresas industriales de Zona Norte y Oeste.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">09</span> Presupuesto y estrategia de canales</h2>
+  <p><strong>Meta Ads: USD 300 por mes.</strong> Decisión tomada: Meta cumple un rol acotado —captura de demanda latente, retargeting y prueba social— y <strong>el motor es la base propia</strong>: referidos de Hive 1, cartera de Krak Industrial y outbound del equipo.</p>
+  <div class="tw"><table>
+    <caption>Origen previsto de los leads</caption>
+    <thead><tr><th>Canal</th><th class="n">Peso</th></tr></thead>
+    <tbody>
+      <tr><td>Base propia, referidos y outbound</td><td class="n">60%</td></tr>
+      <tr><td>Meta — captura y retargeting</td><td class="n">25%</td></tr>
+      <tr><td>Portales, orgánico y directo</td><td class="n">15%</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Fundamento.</strong> Con USD 1.200 totales de pauta, Meta por sí sola rinde entre 0,5 y 2 ventas en 4 meses según CPL y tasa de cierre, contra un objetivo de 5 a 6. Para un ticket de USD 260.000 el comprador no llega desde un anuncio frío: llega desde una relación. Meta acelera y da credibilidad; no sustituye la cartera.</p>
+  <p>Producción de contenidos, landing y herramientas: presupuesto sin definir. Ejecuta Krak Studio.</p>
+</section>
+
+<section>
+  <h2><span class="num">10</span> Proceso comercial</h2>
+  <ol>
+    <li>Lead con <strong>carga automática en Tokko</strong>.</li>
+    <li>Contacto, con respuesta inmediata.</li>
+    <li>Entrega de información.</li>
+    <li>Seguimiento.</li>
+    <li><strong>Reunión con la desarrolladora.</strong></li>
+    <li>Cierre.</li>
+  </ol>
+  <div class="note"><strong>Dos cuellos identificados.</strong> El paso de reunión con la desarrolladora depende de la agenda de Stark. Y la aprobación de todos los materiales pasa por Marce, lo que replica el cuello conocido de la lista <em>En revisión</em> de Krak Studio.</div>
+</section>
+
+<section>
+  <h2><span class="num">11</span> Riesgos</h2>
+  <div class="tw"><table>
+    <thead><tr><th class="n">#</th><th>Riesgo</th><th>Severidad</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>50% de anticipo.</strong> 83% del ticket integrado en los primeros 12 meses, contra 19% de Arbox. Reduce fuertemente el universo de compradores</td><td><span class="chip c-alta">Alta</span></td></tr>
+      <tr><td class="n">2</td><td><strong>Fideicomiso no conformado</strong> y subdivisión sin registrar en Geodesia ni en el Registro de la Propiedad. No hay fecha de escritura</td><td><span class="chip c-alta">Alta</span></td></tr>
+      <tr><td class="n">3</td><td><strong>Brochure desactualizado</strong>: vende un coworking que ya no existe</td><td><span class="chip c-alta">Alta</span></td></tr>
+      <tr><td class="n">4</td><td><strong>Seguridad sin definir</strong>, siendo la objeción número uno de la zona</td><td><span class="chip c-alta">Alta</span></td></tr>
+      <tr><td class="n">5</td><td><strong>Expensas sin definir</strong>: primera pregunta del inversor que calcula renta neta</td><td><span class="chip c-media">Media</span></td></tr>
+      <tr><td class="n">6</td><td>Las 18 cuotas terminan diez meses antes de la entrega</td><td><span class="chip c-media">Media</span></td></tr>
+      <tr><td class="n">7</td><td>Fecha de entrega contradictoria entre documentos</td><td><span class="chip c-media">Media</span></td></tr>
+      <tr><td class="n">8</td><td>Distribución de tipologías: 17 identificadas de 18</td><td><span class="chip c-media">Media</span></td></tr>
+      <tr><td class="n">9</td><td>Posible categoría publicitaria especial de Meta para inmobiliario, a verificar antes de lanzar</td><td><span class="chip c-media">Media</span></td></tr>
+      <tr><td class="n">10</td><td>Cuellos de aprobación de materiales y de agenda de reuniones</td><td><span class="chip c-media">Media</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>No se puede afirmar sin respaldo:</strong> porcentajes de renta, revalorización, fechas de escrituración, «seguridad 24 horas» hasta que Stark lo confirme, y habilitaciones por rubro.</p>
+</section>
+
+<section>
+  <h2><span class="num">12</span> Pendientes</h2>
+  <h3>De Stark Desarrollos</h3>
+  <div class="tw"><table>
+    <tbody>
+      <tr><td class="n">1</td><td>Cuál es la 18ª unidad y a qué tipología corresponde</td></tr>
+      <tr><td class="n">2</td><td><strong>Seguridad</strong>: vigilancia física, cámaras, monitoreo 24/7, control de acceso</td></tr>
+      <tr><td class="n">3</td><td><strong>Horarios de acceso</strong> — ¿24/7 o acotado?</td></tr>
+      <tr><td class="n">4</td><td><strong>Usos permitidos y prohibidos</strong> y habilitación municipal por rubro</td></tr>
+      <tr><td class="n">5</td><td><strong>Expensas</strong> estimadas y qué incluyen</td></tr>
+      <tr><td class="n">6</td><td>Zonificación del predio</td></tr>
+      <tr><td class="n">7</td><td>Cronograma de obra con hitos y fecha de entrega definitiva</td></tr>
+      <tr><td class="n">8</td><td>Resistencia del piso en kg/m² y potencia eléctrica por unidad en KVA</td></tr>
+      <tr><td class="n">9</td><td>Brochure actualizado sin coworking</td></tr>
+    </tbody>
+  </table></div>
+  <h3>De Krak</h3>
+  <div class="tw"><table>
+    <tbody>
+      <tr><td class="n">10</td><td>Confirmar la comisión de comercialización — el borrador del acuerdo marco tiene una discrepancia entre el importe en letras y en números</td></tr>
+      <tr><td class="n">11</td><td>Presupuesto de producción de contenidos, landing y herramientas</td></tr>
+      <tr><td class="n">12</td><td>Fecha objetivo de lanzamiento</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="approve">
+  <h2><span class="num">→</span> Aprobación</h2>
+  <p>Este documento cierra la fase de brief. Los pendientes del punto 12 no bloquean el avance: se marcan como supuestos y se resuelven en paralelo.</p>
+  <p><strong>Una vez aprobado, se avanza en este orden:</strong></p>
+  <ul class="pipeline">
+    <li>1 · Brief ✓</li>
+    <li>2 · Estrategia y posicionamiento</li>
+    <li>3 · Embudo</li>
+    <li>4 · Meta Ads</li>
+    <li>5 · Creatividades</li>
+    <li>6 · Landing</li>
+    <li>7 · CRM y automatizaciones</li>
+    <li>8 · Tracking</li>
+    <li>9 · Modelo económico</li>
+    <li>10 · Roadmap 90 días</li>
+  </ul>
+</div>
+
+<footer>
+  <span>Hive 2 Storage Park · Ficha Maestra v1.0</span>
+  <span>Krak Real Estate — Área Industrial</span>
+  <span>7 de septiembre de 2026</span>
+</footer>
+
+</div>
