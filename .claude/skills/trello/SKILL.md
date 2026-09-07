@@ -27,6 +27,23 @@ python3 .claude/skills/trello/scripts/trello.py show "Krak Real Estate" "Nombre 
 `add-card`, `comment`, `move` y `label` también están disponibles en el script,
 pero ver la regla de alcance abajo antes de usarlos en este tablero.
 
+## Dashboard PM de Krak Studio
+
+Para el estado de gestión del tablero **Krak Studio** (vencidos, cola de
+revisión de Marce, carga por persona, clientes desatendidos, higiene del
+tablero) usar el dashboard en vez de leer listas a mano:
+
+```bash
+python3 .claude/skills/trello/scripts/pm_dashboard.py brief      # resumen en texto
+python3 .claude/skills/trello/scripts/pm_dashboard.py snapshot   # HTML autocontenido
+```
+
+La versión en vivo para el navegador es `dashboard/krak-studio-pm.html`.
+Ambas son de solo lectura. Los criterios de clasificación y las trampas del
+tablero están documentados en `dashboard/README.md` — leerlo antes de sacar
+conclusiones de conteos crudos (hay tarjetas con la fecha tildada que siguen
+pendientes, y una lista que mezcla fichas permanentes con publicaciones).
+
 ## Regla de alcance para este repo: Krak Real Estate = OBSERVAR, no operar
 
 Según `memory/context/trello-tableros.md`, el tablero **Krak Real Estate** es

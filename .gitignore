@@ -5,3 +5,6 @@
 # Python
 __pycache__/
 *.pyc
+
+# Snapshots generados del dashboard (datos, no código)
+dashboard/out/

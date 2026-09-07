@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krak Studio — Dashboard PM</title>
+<style>
+:root{
+  --azul:#08407C; --gris1:#4E586E; --gris2:#7C8594; --gris3:#C3C3C3;
+  --rojo:#B3261E; --ambar:#B26B00; --verde:#1E7A46;
+  --fondo:#F4F5F7; --panel:#FFFFFF; --borde:#E3E5EA; --texto:#1D2330;
+  --radio:10px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);
+  font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--azul)}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--borde);
+  background:#fff;color:var(--gris1);padding:7px 12px}
+button:hover{border-color:var(--gris2);color:var(--azul)}
+button.primary{background:var(--azul);border-color:var(--azul);color:#fff}
+button.primary:hover{background:#06356a;color:#fff}
+input,select{font:inherit;padding:8px 10px;border:1px solid var(--borde);
+  border-radius:8px;background:#fff;color:var(--texto);width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px 64px}
+
+/* ---------- Encabezado ---------- */
+header.top{background:var(--azul);color:#fff;padding:18px 0 16px}
+header.top .wrap{padding-bottom:0;display:flex;flex-wrap:wrap;gap:12px;
+  align-items:center;justify-content:space-between}
+header.top h1{font-size:18px}
+header.top .sub{color:#B9CBE2;font-size:12.5px;margin-top:2px}
+header.top .acciones{display:flex;gap:8px;flex-wrap:wrap}
+header.top button{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
+header.top button:hover{background:rgba(255,255,255,.22);color:#fff}
+
+/* ---------- Setup ---------- */
+#setup{max-width:640px;margin:48px auto;background:var(--panel);
+  border:1px solid var(--borde);border-radius:var(--radio);padding:28px}
+#setup h2{font-size:17px;margin-bottom:6px}
+#setup p{color:var(--gris1);font-size:13px}
+#setup label{display:block;margin:16px 0 6px;font-weight:600;font-size:12.5px;color:var(--gris1)}
+.aviso{background:#FFF7E6;border:1px solid #F0DCB4;color:#6B4E11;
+  padding:11px 13px;border-radius:8px;font-size:12.5px;margin-top:18px}
+.error{background:#FDECEA;border:1px solid #F3C4C0;color:var(--rojo);
+  padding:11px 13px;border-radius:8px;font-size:13px;margin-top:16px}
+
+/* ---------- KPIs ---------- */
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--borde);border-radius:var(--radio);
+  padding:14px 16px;border-left:3px solid var(--gris3)}
+.kpi .n{font-size:24px;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.kpi .t{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--gris2);margin-top:4px}
+.kpi .d{font-size:11.5px;color:var(--gris2);margin-top:5px}
+.kpi.rojo{border-left-color:var(--rojo)} .kpi.rojo .n{color:var(--rojo)}
+.kpi.ambar{border-left-color:var(--ambar)} .kpi.ambar .n{color:var(--ambar)}
+.kpi.azul{border-left-color:var(--azul)} .kpi.azul .n{color:var(--azul)}
+.kpi.verde{border-left-color:var(--verde)} .kpi.verde .n{color:var(--verde)}
+
+/* ---------- Tabs ---------- */
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--borde);margin-bottom:20px}
+nav.tabs button{border:0;background:none;border-bottom:2px solid transparent;
+  border-radius:0;padding:10px 14px;color:var(--gris2);font-weight:600}
+nav.tabs button:hover{color:var(--azul)}
+nav.tabs button[aria-selected="true"]{color:var(--azul);border-bottom-color:var(--azul)}
+
+/* ---------- Paneles y tarjetas ---------- */
+.panel{background:var(--panel);border:1px solid var(--borde);border-radius:var(--radio);
+  padding:18px 20px;margin-bottom:16px}
+.panel > h2{font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.panel > .lead{color:var(--gris2);font-size:12.5px;margin:4px 0 14px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;
+  background:#EEF1F6;color:var(--gris1);white-space:nowrap}
+.pill.rojo{background:#FDECEA;color:var(--rojo)}
+.pill.ambar{background:#FFF4E0;color:var(--ambar)}
+.pill.verde{background:#E7F4ED;color:var(--verde)}
+.pill.azul{background:#E7EFF8;color:var(--azul)}
+
+ul.cards{list-style:none;margin:0;padding:0}
+ul.cards li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;
+  border-top:1px solid var(--borde)}
+ul.cards li:first-child{border-top:0}
+ul.cards .idx{color:var(--gris3);font-variant-numeric:tabular-nums;font-weight:700;
+  min-width:20px;text-align:right;padding-top:1px}
+ul.cards .body{flex:1;min-width:0}
+ul.cards .nombre{font-weight:550}
+ul.cards .nombre a{text-decoration:none;color:var(--texto)}
+ul.cards .nombre a:hover{color:var(--azul);text-decoration:underline}
+ul.cards .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;
+  font-size:11.5px;color:var(--gris2);align-items:center}
+.vacio{color:var(--gris2);font-size:13px;font-style:italic;padding:6px 0}
+
+.cols{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.persona h3{font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.barra{height:6px;border-radius:3px;background:#EEF1F6;overflow:hidden;margin:10px 0 12px}
+.barra span{display:block;height:100%;background:var(--azul)}
+.barra.rojo span{background:var(--rojo)} .barra.ambar span{background:var(--ambar)}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--borde);vertical-align:top}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--gris2);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+
+textarea.agenda{width:100%;min-height:420px;font:12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;
+  padding:14px;border:1px solid var(--borde);border-radius:8px;background:#FAFBFC;color:var(--texto)}
+.filtros{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.filtros select,.filtros input{width:auto;min-width:170px}
+footer.pie{color:var(--gris2);font-size:12px;text-align:center;padding:26px 20px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <h1>Krak Studio — Dashboard PM</h1>
+      <div class="sub" id="sub">Conectando…</div>
+    </div>
+    <div class="acciones">
+      <button id="btn-recargar" hidden>Actualizar</button>
+      <button id="btn-config" hidden>Configuración</button>
+    </div>
+  </div>
+</header>
+
+<section id="setup" hidden>
+  <h2>Conectar con Trello</h2>
+  <p>El dashboard lee el tablero <strong>directamente desde tu navegador</strong>. La clave y
+     el token quedan guardados solo en este equipo (localStorage) — no se envían a ningún
+     servidor que no sea Trello, no viajan al repositorio ni al chat de Claude.</p>
+
+  <label for="in-key">TRELLO_API_KEY</label>
+  <input id="in-key" type="password" autocomplete="off" spellcheck="false" placeholder="Clave de API">
+
+  <label for="in-token">TRELLO_TOKEN</label>
+  <input id="in-token" type="password" autocomplete="off" spellcheck="false" placeholder="Token">
+
+  <label for="in-board">Tablero</label>
+  <input id="in-board" type="text" value="Krak Studio" spellcheck="false">
+
+  <div class="aviso">
+    Obtené ambos valores en <a href="https://trello.com/power-ups/admin" target="_blank"
+    rel="noopener">trello.com/power-ups/admin</a> → “Clave de API”. Es un acceso de solo
+    lectura desde acá: este dashboard nunca escribe en el tablero. Si alguna vez pegaste
+    el token en un chat o en un mail, regeneralo en ese mismo panel.
+  </div>
+  <div id="setup-error" class="error" hidden></div>
+  <p style="margin-top:18px"><button class="primary" id="btn-conectar">Conectar</button>
+     <button id="btn-borrar" hidden>Borrar credenciales de este equipo</button></p>
+</section>
+
+<main id="app" class="wrap" hidden>
+
+  <div class="kpis" id="kpis"></div>
+
+  <nav class="tabs" id="tabs" role="tablist">
+    <button role="tab" data-tab="foco" aria-selected="true">Foco</button>
+    <button role="tab" data-tab="revision" aria-selected="false">Esperan tu revisión</button>
+    <button role="tab" data-tab="personas" aria-selected="false">Equipo</button>
+    <button role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
+    <button role="tab" data-tab="higiene" aria-selected="false">Riesgos del tablero</button>
+    <button role="tab" data-tab="reunion" aria-selected="false">Reunión semanal</button>
+  </nav>
+
+  <section id="tab-foco" class="tab-panel">
+    <div class="panel">
+      <h2>Vencidas <span class="pill rojo" id="c-vencidas">0</span></h2>
+      <p class="lead">Lo primero que hay que destrabar. Ordenado por antigüedad del vencimiento.</p>
+      <ul class="cards" id="l-vencidas"></ul>
+    </div>
+    <div class="panel">
+      <h2>Vencen en los próximos 7 días <span class="pill ambar" id="c-semana">0</span></h2>
+      <p class="lead">La agenda comprometida de la semana.</p>
+      <ul class="cards" id="l-semana"></ul>
+    </div>
+    <div class="panel">
+      <h2>Prioridad por orden vertical</h2>
+      <p class="lead">Las 5 primeras de cada lista activa — en Krak Studio, más arriba = más
+        prioritario. Si algo importante no está acá arriba, el tablero está mintiendo.</p>
+      <div class="cols" id="l-prioridad"></div>
+    </div>
+  </section>
+
+  <section id="tab-revision" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>En revisión — esperan a Marce <span class="pill azul" id="c-revision">0</span></h2>
+      <p class="lead">El cuello de botella conocido de la agencia. Ordenado por días parada:
+        arriba lo que hace más tiempo que está frenado esperándote.</p>
+      <ul class="cards" id="l-revision"></ul>
+    </div>
+    <div class="panel">
+      <h2>Bloque de revisión sugerido</h2>
+      <p class="lead">Lo que podés cerrar en una sesión de 45 minutos: las 8 más viejas o de
+        clientes con más cosas frenadas.</p>
+      <ul class="cards" id="l-revision-bloque"></ul>
+    </div>
+  </section>
+
+  <section id="tab-personas" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Carga por persona</h2>
+      <p class="lead">Tarjetas activas asignadas. El WIP alto es la señal temprana de que
+        alguien va a incumplir una fecha — no la fecha vencida.</p>
+      <div class="cols" id="l-personas"></div>
+    </div>
+    <div class="panel">
+      <h2>Sin responsable <span class="pill ambar" id="c-huerfanas">0</span></h2>
+      <p class="lead">Tarea sin dueño = tarea que no avanza. Asignala en la reunión.</p>
+      <ul class="cards" id="l-huerfanas"></ul>
+    </div>
+  </section>
+
+  <section id="tab-clientes" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Carga por cliente</h2>
+      <p class="lead">Las etiquetas del tablero son los clientes. Sirve para ver dónde se está
+        yendo la capacidad del equipo y qué cuenta quedó sin movimiento.</p>
+      <div class="scroll"><table id="t-clientes">
+        <thead><tr>
+          <th>Cliente</th><th class="num">Activas</th><th class="num">Vencidas</th>
+          <th class="num">En revisión</th><th class="num">Días sin movimiento</th>
+        </tr></thead><tbody></tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <h2>Detalle</h2>
+      <div class="filtros">
+        <select id="f-cliente"></select>
+        <select id="f-persona"></select>
+        <input id="f-texto" type="search" placeholder="Buscar en el título…">
+      </div>
+      <ul class="cards" id="l-detalle"></ul>
+    </div>
+  </section>
+
+  <section id="tab-higiene" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Estancadas <span class="pill ambar" id="c-estancadas">0</span></h2>
+      <p class="lead">Activas sin ninguna actividad hace más de <span id="umbral-txt">14</span> días.
+        O están trabadas por algo, o ya no importan y hay que cerrarlas.</p>
+      <ul class="cards" id="l-estancadas"></ul>
+    </div>
+    <div class="panel">
+      <h2>Vencidas hace más de 30 días <span class="pill rojo" id="c-viejas">0</span></h2>
+      <p class="lead">Casi siempre son registro sucio, no trabajo pendiente: cosas que se
+        hicieron y nadie movió. Limpiarlas es lo que devuelve confianza al tablero.</p>
+      <ul class="cards" id="l-viejas"></ul>
+    </div>
+    <div class="panel">
+      <h2>Sin fecha de entrega <span class="pill" id="c-sinfecha">0</span></h2>
+      <p class="lead">Activas sin due date: no se pueden priorizar ni reclamar.</p>
+      <ul class="cards" id="l-sinfecha"></ul>
+    </div>
+    <div class="panel">
+      <h2>Calendario propio de Krak Studio <span class="pill rojo" id="c-publicaciones">0</span></h2>
+      <p class="lead">Las tarjetas “Publicar - …” de la lista de Generales van aparte: casi
+        todas figuran vencidas y muy probablemente se publicaron sin que nadie las moviera.
+        Hasta que se depure, este bloque no es carga de trabajo real — es deuda de registro.</p>
+      <ul class="cards" id="l-publicaciones"></ul>
+    </div>
+    <div class="panel">
+      <h2>Sin etiqueta de cliente <span class="pill" id="c-sinlabel">0</span></h2>
+      <p class="lead">Sin cliente no hay forma de medir cuánto cuesta cada cuenta.</p>
+      <ul class="cards" id="l-sinlabel"></ul>
+    </div>
+  </section>
+
+  <section id="tab-reunion" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Agenda de la reunión semanal</h2>
+      <p class="lead">Generada del estado real del tablero. Copiala y mandala antes de la
+        reunión con Agustina y Catalina — que lleguen con las respuestas preparadas.</p>
+      <p><button class="primary" id="btn-copiar">Copiar agenda</button>
+         <button id="btn-copiar-wpp">Copiar versión WhatsApp</button></p>
+      <textarea class="agenda" id="txt-agenda" readonly></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie" id="pie" hidden></footer>
+
+<script id="snapshot-data" type="application/json">null</script>
+<script>
+"use strict";
+/* ------------------------------------------------------------------ *
+ * Dashboard PM de Krak Studio — solo lectura sobre la API de Trello.
+ * Dos modos:
+ *   - vivo: pide key/token al usuario y consulta api.trello.com.
+ *   - snapshot: si #snapshot-data trae datos (los inyecta pm_dashboard.py),
+ *     se renderiza sin credenciales ni red.
+ * ------------------------------------------------------------------ */
+
+const API = "https://api.trello.com/1";
+const LS = { key: "krakpm.key", token: "krakpm.token", board: "krakpm.board" };
+const DIAS_ESTANCADA = 14;      // sin actividad => estancada
+const WIP_ALERTA = 8;           // tarjetas activas por persona
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const HOY = new Date(); HOY.setHours(0, 0, 0, 0);
+const DIA_MS = 86400000;
+const iso = (d) => d.toISOString().slice(0, 10);
+const diasDesde = (fecha) => fecha ? Math.round((HOY - new Date(fecha)) / DIA_MS) : null;
+const fechaCorta = (s) => s ? new Date(s).toLocaleDateString("es-AR",
+  { day: "2-digit", month: "short" }) : "";
+
+/* ---------------- Clasificación de listas y etiquetas ---------------- */
+/* Calibrado sobre el tablero real: Generales de cada cliente Activo | Tareas |
+   En proceso | En revisión | Stand By | Terminado.                            */
+const RX_DONE      = /termin|done|hecho|complet|archiv|cerrad/i;
+const RX_REVISION  = /revis|review|aprob/i;
+const RX_STANDBY   = /stand ?by|pausad|espera|frenad|congelad/i;
+const RX_GENERALES = /general|organizativ|permanente|recurso|material|banco|plantilla/i;
+/* Etiquetas que NO son clientes sino formato de pieza o archivo histórico:
+   mezclarlas con las de cliente rompe la lectura de carga por cuenta. */
+const FORMATOS = new Set(["HISTORIAL KRAK", "Carrusel", "REEL", "POST", "LINKEDIN",
+                          "STORIES", "PAUTA META"]);
+
+function tipoLista(nombre) {
+  if (RX_DONE.test(nombre)) return "done";
+  if (RX_REVISION.test(nombre)) return "revision";
+  if (RX_STANDBY.test(nombre)) return "standby";
+  if (RX_GENERALES.test(nombre)) return "generales";
+  return "work";
+}
+
+/* ---------------- Acceso a datos ---------------- */
+async function trello(path, params, cred) {
+  const q = new URLSearchParams({ ...params, key: cred.key, token: cred.token });
+  const r = await fetch(`${API}${path}?${q}`);
+  if (!r.ok) {
+    const txt = (await r.text()).slice(0, 160);
+    throw new Error(r.status === 401
+      ? "Trello rechazó la clave o el token (401). Revisalos o regenerá el token."
+      : `Trello respondió ${r.status}: ${txt}`);
+  }
+  return r.json();
+}
+
+async function traerTablero(cred, nombre) {
+  const boards = await trello("/members/me/boards", { fields: "name,closed" }, cred);
+  const abiertos = boards.filter((b) => !b.closed);
+  const match = abiertos.filter((b) => b.name.toLowerCase().includes(nombre.toLowerCase()));
+  if (!match.length) {
+    throw new Error(`No encontré el tablero "${nombre}". Abiertos: ` +
+      abiertos.map((b) => b.name).join(", "));
+  }
+  const board = match[0];
+  const [lists, members, cards] = await Promise.all([
+    trello(`/boards/${board.id}/lists`, { fields: "name,pos" }, cred),
+    trello(`/boards/${board.id}/members`, { fields: "fullName,username,initials" }, cred),
+    trello(`/boards/${board.id}/cards`, {
+      fields: "name,idList,due,dueComplete,labels,pos,idMembers,dateLastActivity,shortUrl",
+      limit: "1000",
+    }, cred),
+  ]);
+  return { board: { id: board.id, name: board.name }, lists, members, cards,
+           generado: new Date().toISOString() };
+}
+
+/* ---------------- Normalización ---------------- */
+function normalizar(raw) {
+  const listas = new Map(raw.lists.map((l) => [l.id, l]));
+  const miembros = new Map(raw.members.map((m) => [m.id, m.fullName || m.username]));
+  const hoyIso = iso(HOY);
+
+  const cards = raw.cards.map((c) => {
+    const lista = listas.get(c.idList) || { name: "(sin lista)", pos: 0 };
+    const tipo = tipoLista(lista.name);
+    const due = c.due ? c.due.slice(0, 10) : null;
+    /* La lista manda: el check de "fecha cumplida" aparece tildado en tarjetas
+       que ni siquiera tienen fecha, así que no sirve para dar algo por hecho. */
+    const cerrada = tipo === "done";
+    const etiquetas = (c.labels || []).map((l) => l.name).filter(Boolean);
+    const clientes = etiquetas.filter((e) => !FORMATOS.has(e));
+    const formatos = etiquetas.filter((e) => FORMATOS.has(e));
+
+    /* En la lista de Generales conviven dos cosas distintas:
+       la ficha permanente de cada cliente (sin fecha, no es tarea) y el
+       calendario de publicaciones propias "Publicar - ..." (con fecha). */
+    const ficha = tipo === "generales" && !due;
+    const publicacion = tipo === "generales" && !!due;
+
+    return {
+      id: c.id, nombre: c.name, url: c.shortUrl,
+      lista: lista.name, listaPos: lista.pos ?? 0, tipo, pos: c.pos ?? 0,
+      due, dueComplete: !!c.dueComplete,
+      vencida: !!due && due < hoyIso && !cerrada,
+      diasVencida: due ? Math.round((HOY - new Date(due + "T00:00:00")) / DIA_MS) : null,
+      clientes, formatos, ficha, publicacion,
+      responsables: (c.idMembers || []).map((id) => miembros.get(id)).filter(Boolean),
+      inactivaDias: diasDesde(c.dateLastActivity),
+      ultimaActividad: c.dateLastActivity ? c.dateLastActivity.slice(0, 10) : null,
+      /* "Activa" = trabajo real de la agencia. Deja afuera lo terminado, las
+         fichas permanentes y el calendario de publicaciones propias, que tiene
+         su propio circuito y taparía todo lo demás. */
+      activa: !cerrada && !ficha && !publicacion,
+    };
+  });
+
+  // Orden vertical del tablero = prioridad (regla de Marce).
+  cards.sort((a, b) => (a.listaPos - b.listaPos) || (a.pos - b.pos));
+
+  const activas   = cards.filter((c) => c.activa);
+  const trabajo   = activas.filter((c) => c.tipo !== "standby");
+  const revision  = activas.filter((c) => c.tipo === "revision");
+  const vencidas  = activas.filter((c) => c.vencida).sort((a, b) => b.diasVencida - a.diasVencida);
+  const limite    = iso(new Date(HOY.getTime() + 7 * DIA_MS));
+  const semana    = activas.filter((c) => c.due && !c.vencida && c.due <= limite)
+                           .sort((a, b) => a.due.localeCompare(b.due));
+  const estancadas = activas.filter((c) => (c.inactivaDias ?? 0) > DIAS_ESTANCADA && !c.vencida)
+                            .sort((a, b) => b.inactivaDias - a.inactivaDias);
+  const viejas    = vencidas.filter((c) => c.diasVencida > 30);
+  const sinFecha  = trabajo.filter((c) => !c.due);
+  const sinLabel  = activas.filter((c) => !c.clientes.length);
+  const huerfanas = activas.filter((c) => !c.responsables.length);
+  // Calendario de publicaciones propias: vencidas casi seguro por falta de registro.
+  const publicaciones = cards.filter((c) => c.publicacion && !c.dueComplete)
+                             .sort((a, b) => (b.diasVencida ?? 0) - (a.diasVencida ?? 0));
+
+  // Cobertura: sin responsable y sin fecha el tablero no se puede gestionar.
+  const cobertura = {
+    responsable: activas.length ? Math.round(100 * (activas.length - huerfanas.length) / activas.length) : 0,
+    fecha: trabajo.length ? Math.round(100 * (trabajo.length - sinFecha.length) / trabajo.length) : 0,
+  };
+
+  // Agrupaciones
+  const personas = new Map();
+  for (const nombre of raw.members.map((m) => m.fullName || m.username)) personas.set(nombre, []);
+  for (const c of activas) for (const p of c.responsables) {
+    if (!personas.has(p)) personas.set(p, []);
+    personas.get(p).push(c);
+  }
+
+  const clientes = new Map();
+  for (const c of activas) for (const cl of (c.clientes.length ? c.clientes : ["(sin cliente)"])) {
+    if (!clientes.has(cl)) clientes.set(cl, []);
+    clientes.get(cl).push(c);
+  }
+  // Las fichas permanentes marcan qué cuentas están abiertas aunque no tengan
+  // tarea viva: sirve para detectar el cliente sin nada en curso.
+  const fichas = new Map();
+  for (const c of cards.filter((x) => x.ficha)) {
+    for (const cl of (c.clientes.length ? c.clientes : [c.nombre])) fichas.set(cl, c);
+  }
+
+  const porLista = new Map();
+  for (const c of activas.filter((x) => x.tipo === "work")) {
+    if (!porLista.has(c.lista)) porLista.set(c.lista, []);
+    porLista.get(c.lista).push(c);
+  }
+
+  return { board: raw.board, generado: raw.generado, cards, activas, trabajo, revision,
+           vencidas, semana, estancadas, viejas, sinFecha, sinLabel, huerfanas,
+           publicaciones, cobertura, personas, clientes, fichas, porLista };
+}
+
+/* ---------------- Render ---------------- */
+function pills(c, omitir) {
+  const p = [];
+  if (c.vencida) p.push(`<span class="pill rojo">venció hace ${c.diasVencida} d</span>`);
+  else if (c.due) p.push(`<span class="pill ambar">${fechaCorta(c.due)}</span>`);
+  p.push(`<span class="pill">${esc(c.lista)}</span>`);
+  if (c.tipo === "standby") p.push(`<span class="pill">stand by</span>`);
+  for (const cl of c.clientes) p.push(`<span class="pill azul">${esc(cl)}</span>`);
+  for (const fo of c.formatos) p.push(`<span class="pill">${esc(fo)}</span>`);
+  // Dentro de la columna de una persona no repetimos su nombre en cada tarjeta.
+  const resto = c.responsables.filter((r) => r !== omitir);
+  if (!c.responsables.length) p.push(`<span class="pill ambar">sin responsable</span>`);
+  else if (resto.length) p.push(`<span class="pill verde">${esc(resto.join(", "))}</span>`);
+  if ((c.inactivaDias ?? 0) > DIAS_ESTANCADA) {
+    p.push(`<span class="pill">quieta ${c.inactivaDias} d</span>`);
+  }
+  return p.join(" ");
+}
+
+function lista(sel, cards, opts = {}) {
+  const el = $(sel);
+  const max = opts.max ?? 25;
+  if (!cards.length) {
+    el.innerHTML = `<li class="vacio">${esc(opts.vacio || "Nada por acá.")}</li>`;
+    return;
+  }
+  el.innerHTML = cards.slice(0, max).map((c, i) => `
+    <li>
+      <span class="idx">${i + 1}</span>
+      <span class="body">
+        <span class="nombre"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.nombre)}</a></span>
+        <span class="meta">${pills(c)}</span>
+      </span>
+    </li>`).join("") +
+    (cards.length > max ? `<li class="vacio">+ ${cards.length - max} más en el tablero.</li>` : "");
+}
+
+function renderKpis(d) {
+  const revDias = d.revision.map((c) => c.inactivaDias ?? 0);
+  const revProm = revDias.length ? Math.round(revDias.reduce((a, b) => a + b, 0) / revDias.length) : 0;
+  const kpis = [
+    { n: d.activas.length, t: "Activas", d: `${d.cards.length} tarjetas en el tablero`, k: "azul" },
+    { n: d.vencidas.length, t: "Vencidas", d: d.vencidas.length ? `la más vieja, ${d.vencidas[0].diasVencida} días` : "al día", k: d.vencidas.length ? "rojo" : "verde" },
+    { n: d.semana.length, t: "Vencen en 7 días", d: "compromisos de la semana", k: "ambar" },
+    { n: d.revision.length, t: "Esperan tu revisión", d: revProm ? `promedio ${revProm} días parada` : "sin cola", k: d.revision.length ? "rojo" : "verde" },
+    { n: d.huerfanas.length, t: "Sin responsable", d: "nadie las va a mover", k: d.huerfanas.length ? "ambar" : "verde" },
+    { n: d.estancadas.length, t: "Estancadas", d: `+${DIAS_ESTANCADA} días sin actividad`, k: d.estancadas.length ? "ambar" : "verde" },
+    { n: d.cobertura.fecha + "%", t: "Con fecha", d: `${d.sinFecha.length} activas sin vencimiento`,
+      k: d.cobertura.fecha < 60 ? "rojo" : d.cobertura.fecha < 85 ? "ambar" : "verde" },
+    { n: d.cobertura.responsable + "%", t: "Con responsable", d: `${d.huerfanas.length} sin dueño`,
+      k: d.cobertura.responsable < 60 ? "rojo" : d.cobertura.responsable < 85 ? "ambar" : "verde" },
+  ];
+  $("#kpis").innerHTML = kpis.map((x) => `
+    <div class="kpi ${x.k}"><div class="n">${x.n}</div><div class="t">${esc(x.t)}</div>
+    <div class="d">${esc(x.d)}</div></div>`).join("");
+}
+
+function renderFoco(d) {
+  $("#c-vencidas").textContent = d.vencidas.length;
+  $("#c-semana").textContent = d.semana.length;
+  lista("#l-vencidas", d.vencidas, { vacio: "Sin vencidas. Raro y muy bueno." });
+  lista("#l-semana", d.semana, { vacio: "Nada con fecha en los próximos 7 días." });
+
+  const bloques = [...d.porLista.entries()].map(([nombre, cards]) => `
+    <div class="panel persona" style="margin:0">
+      <h3>${esc(nombre)} <span class="pill">${cards.length}</span></h3>
+      <ul class="cards">${cards.slice(0, 5).map((c, i) => `
+        <li><span class="idx">${i + 1}</span><span class="body">
+          <span class="nombre"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.nombre)}</a></span>
+          <span class="meta">${pills(c)}</span></span></li>`).join("")}</ul>
+    </div>`).join("");
+  $("#l-prioridad").innerHTML = bloques || `<p class="vacio">No hay listas de trabajo activas.</p>`;
+}
+
+function renderRevision(d) {
+  const cola = [...d.revision].sort((a, b) => (b.inactivaDias ?? 0) - (a.inactivaDias ?? 0));
+  $("#c-revision").textContent = cola.length;
+  lista("#l-revision", cola, { max: 60, vacio: "No hay nada esperando tu revisión." });
+
+  // Bloque sugerido: primero lo más viejo, después lo que agrupa por cliente.
+  const porCliente = new Map();
+  for (const c of cola) for (const cl of (c.clientes.length ? c.clientes : ["(sin cliente)"])) {
+    porCliente.set(cl, (porCliente.get(cl) || 0) + 1);
+  }
+  const peso = (c) => (c.inactivaDias ?? 0) +
+    3 * Math.max(...(c.clientes.length ? c.clientes : ["(sin cliente)"]).map((cl) => porCliente.get(cl) || 0));
+  const bloque = [...cola].sort((a, b) => peso(b) - peso(a)).slice(0, 8);
+  lista("#l-revision-bloque", bloque, { max: 8, vacio: "Nada pendiente." });
+}
+
+function renderPersonas(d) {
+  const entradas = [...d.personas.entries()].sort((a, b) => b[1].length - a[1].length);
+  $("#l-personas").innerHTML = entradas.map(([nombre, cards]) => {
+    const venc = cards.filter((c) => c.vencida).length;
+    const pct = Math.min(100, Math.round((cards.length / Math.max(WIP_ALERTA, 1)) * 100));
+    const clase = cards.length > WIP_ALERTA ? "rojo" : cards.length === WIP_ALERTA ? "ambar" : "";
+    return `<div class="panel persona" style="margin:0">
+      <h3>${esc(nombre)}
+        <span class="pill ${clase === "rojo" ? "rojo" : clase === "ambar" ? "ambar" : "azul"}">
+          ${cards.length} activas</span></h3>
+      <div class="barra ${clase}"><span style="width:${pct}%"></span></div>
+      <div class="meta" style="font-size:12px;color:var(--gris2);margin-bottom:8px">
+        ${venc ? `<strong style="color:var(--rojo)">${venc} vencidas</strong> · ` : ""}
+        WIP recomendado hasta ${WIP_ALERTA}
+      </div>
+      <ul class="cards">${cards.slice(0, 6).map((c, i) => `
+        <li><span class="idx">${i + 1}</span><span class="body">
+          <span class="nombre"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.nombre)}</a></span>
+          <span class="meta">${pills(c, nombre)}</span></span></li>`).join("")}
+        ${cards.length > 6 ? `<li class="vacio">+ ${cards.length - 6} más.</li>` : ""}
+        ${cards.length ? "" : `<li class="vacio">Sin tarjetas activas asignadas.</li>`}</ul>
+    </div>`;
+  }).join("") || `<p class="vacio">El tablero no tiene miembros asignados.</p>`;
+
+  $("#c-huerfanas").textContent = d.huerfanas.length;
+  lista("#l-huerfanas", d.huerfanas, { max: 40, vacio: "Todas tienen dueño." });
+}
+
+function renderClientes(d) {
+  // Una cuenta con ficha abierta pero sin ninguna tarea viva es la señal más
+  // temprana de cliente desatendido: hay que verla aunque no tenga tarjetas.
+  const mapa = new Map(d.clientes);
+  for (const cl of d.fichas.keys()) if (!mapa.has(cl)) mapa.set(cl, []);
+  const filas = [...mapa.entries()].sort((a, b) => b[1].length - a[1].length);
+  $("#t-clientes tbody").innerHTML = filas.map(([cl, cards]) => {
+    const venc = cards.filter((c) => c.vencida).length;
+    const rev = cards.filter((c) => c.tipo === "revision").length;
+    const ficha = d.fichas.get(cl);
+    const quieto = cards.length
+      ? Math.min(...cards.map((c) => c.inactivaDias ?? 999))
+      : (ficha ? ficha.inactivaDias ?? 999 : 999);
+    return `<tr>
+      <td>${esc(cl)}${!cards.length && ficha ? ' <span class="pill ambar">sin tarea viva</span>' : ""}</td>
+      <td class="num">${cards.length}</td>
+      <td class="num" style="${venc ? "color:var(--rojo);font-weight:600" : ""}">${venc}</td>
+      <td class="num">${rev}</td>
+      <td class="num" style="${quieto > DIAS_ESTANCADA ? "color:var(--ambar);font-weight:600" : ""}">${quieto === 999 ? "—" : quieto}</td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="5" class="vacio">Sin etiquetas de cliente.</td></tr>`;
+
+  const opciones = (sel, valores, etiqueta) => {
+    $(sel).innerHTML = `<option value="">${etiqueta}</option>` +
+      valores.map((v) => `<option>${esc(v)}</option>`).join("");
+  };
+  opciones("#f-cliente", filas.map((f) => f[0]), "Todos los clientes");
+  opciones("#f-persona", [...d.personas.keys()], "Todo el equipo");
+  filtrarDetalle(d);
+}
+
+function filtrarDetalle(d) {
+  const cl = $("#f-cliente").value, pe = $("#f-persona").value;
+  const tx = $("#f-texto").value.trim().toLowerCase();
+  const r = d.activas.filter((c) =>
+    (!cl || (cl === "(sin cliente)" ? !c.clientes.length : c.clientes.includes(cl))) &&
+    (!pe || c.responsables.includes(pe)) &&
+    (!tx || c.nombre.toLowerCase().includes(tx)));
+  lista("#l-detalle", r, { max: 80, vacio: "Ninguna tarjeta con esos filtros." });
+}
+
+function renderHigiene(d) {
+  $("#umbral-txt").textContent = DIAS_ESTANCADA;
+  $("#c-estancadas").textContent = d.estancadas.length;
+  $("#c-viejas").textContent = d.viejas.length;
+  $("#c-sinfecha").textContent = d.sinFecha.length;
+  $("#c-sinlabel").textContent = d.sinLabel.length;
+  lista("#l-estancadas", d.estancadas, { max: 30, vacio: "Todo con movimiento reciente." });
+  lista("#l-viejas", d.viejas, { max: 30, vacio: "Sin deuda vieja." });
+  lista("#l-sinfecha", d.sinFecha, { max: 30, vacio: "Todas con fecha." });
+  lista("#l-sinlabel", d.sinLabel, { max: 30, vacio: "Todas etiquetadas." });
+  $("#c-publicaciones").textContent = d.publicaciones.filter((c) => c.vencida).length;
+  lista("#l-publicaciones", d.publicaciones, { max: 40, vacio: "Calendario propio al día." });
+}
+
+/* ---------------- Agenda de la reunión ---------------- */
+function linea(c) {
+  const quien = c.responsables.length ? c.responsables.join("/") : "SIN RESPONSABLE";
+  const cli = c.clientes.length ? ` [${c.clientes.join(", ")}]` : "";
+  const fecha = c.vencida ? ` — venció hace ${c.diasVencida} d`
+              : c.due ? ` — vence ${fechaCorta(c.due)}` : "";
+  return `- ${c.nombre}${cli} — ${quien}${fecha}`;
+}
+
+function agenda(d) {
+  const f = HOY.toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" });
+  const L = [];
+  L.push(`REUNIÓN SEMANAL — KRAK STUDIO`);
+  L.push(`${f} · tablero ${d.board.name}`);
+  L.push("");
+  L.push(`Estado: ${d.activas.length} activas · ${d.vencidas.length} vencidas · ` +
+         `${d.semana.length} vencen esta semana · ${d.revision.length} esperando revisión.`);
+  L.push("");
+
+  L.push("1) VENCIDAS — qué pasó y nueva fecha comprometida");
+  L.push(d.vencidas.length ? d.vencidas.slice(0, 10).map(linea).join("\n") : "- Nada vencido.");
+  L.push("");
+
+  L.push("2) LA SEMANA — compromisos con fecha en los próximos 7 días");
+  L.push(d.semana.length ? d.semana.slice(0, 12).map(linea).join("\n") : "- Nada con fecha esta semana.");
+  L.push("");
+
+  const cola = [...d.revision].sort((a, b) => (b.inactivaDias ?? 0) - (a.inactivaDias ?? 0));
+  L.push("3) MI COLA DE REVISIÓN — me comprometo a cerrar estas antes del próximo encuentro");
+  L.push(cola.length
+    ? cola.slice(0, 8).map((c) => `${linea(c)} — parada hace ${c.inactivaDias} d`).join("\n")
+    : "- Nada esperando revisión.");
+  L.push("");
+
+  L.push("4) CARGA DEL EQUIPO");
+  for (const [p, cards] of [...d.personas.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    const v = cards.filter((c) => c.vencida).length;
+    L.push(`- ${p}: ${cards.length} activas${v ? `, ${v} vencidas` : ""}` +
+           `${cards.length > WIP_ALERTA ? " — sobrecargada, hay que sacarle o repriorizar" : ""}`);
+  }
+  L.push("");
+
+  L.push("5) SALUD DEL TABLERO");
+  L.push(`- Cobertura: ${d.cobertura.fecha}% de las tarjetas de trabajo tienen fecha, ` +
+         `${d.cobertura.responsable}% tienen responsable.`);
+  const pubVenc = d.publicaciones.filter((c) => c.vencida).length;
+  if (pubVenc) L.push(`- Calendario propio: ${pubVenc} publicaciones figuran vencidas — depurar registro.`);
+  L.push("");
+
+  L.push("6) DECISIONES A TOMAR EN LA REUNIÓN");
+  if (d.huerfanas.length) L.push(`- Asignar responsable a ${d.huerfanas.length} tarjetas sin dueño.`);
+  if (d.sinFecha.length) L.push(`- Poner fecha a ${d.sinFecha.length} tarjetas activas sin vencimiento.`);
+  if (d.viejas.length) L.push(`- Depurar ${d.viejas.length} tarjetas vencidas hace más de 30 días (¿se hicieron y no se movieron?).`);
+  if (d.estancadas.length) L.push(`- Revisar ${d.estancadas.length} tarjetas sin movimiento hace más de ${DIAS_ESTANCADA} días: se destraban o se cierran.`);
+  if (d.sinLabel.length) L.push(`- Etiquetar por cliente ${d.sinLabel.length} tarjetas.`);
+  L.push("- Confirmar prioridad vertical de cada lista antes de cerrar la reunión.");
+  return L.join("\n");
+}
+
+function agendaWpp(d) {
+  const cola = [...d.revision].sort((a, b) => (b.inactivaDias ?? 0) - (a.inactivaDias ?? 0));
+  const L = [];
+  L.push("Chicas, repaso para la reunión:");
+  L.push("");
+  if (d.vencidas.length) {
+    L.push(`*Vencidas (${d.vencidas.length})* — necesito de cada una: qué pasó y nueva fecha.`);
+    L.push(d.vencidas.slice(0, 6).map((c) =>
+      `• ${c.nombre} (${c.responsables.join("/") || "sin responsable"}) — ${c.diasVencida} días`).join("\n"));
+    L.push("");
+  }
+  if (d.semana.length) {
+    L.push(`*Esta semana (${d.semana.length})*`);
+    L.push(d.semana.slice(0, 6).map((c) =>
+      `• ${c.nombre} — ${fechaCorta(c.due)} — ${c.responsables.join("/") || "sin responsable"}`).join("\n"));
+    L.push("");
+  }
+  if (cola.length) {
+    L.push(`*Mi revisión (${cola.length})* — arranco por las más viejas, las cierro antes del encuentro.`);
+    L.push("");
+  }
+  L.push("No se debe mover una tarjeta a Terminado sin fecha real de publicación cargada.");
+  L.push("No se debe dejar una tarjeta activa sin responsable ni sin fecha.");
+  return L.join("\n");
+}
+
+/* ---------------- App ---------------- */
+let DATA = null;
+
+function render(d) {
+  DATA = d;
+  renderKpis(d); renderFoco(d); renderRevision(d);
+  renderPersonas(d); renderClientes(d); renderHigiene(d);
+  $("#txt-agenda").value = agenda(d);
+  const gen = new Date(d.generado);
+  $("#sub").textContent = `${d.board.name} · ${d.activas.length} tarjetas activas · ` +
+    `datos del ${gen.toLocaleString("es-AR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`;
+  $("#pie").textContent = "Solo lectura: este dashboard no escribe nada en Trello. " +
+    "Prioridad = orden vertical de cada lista.";
+  $("#setup").hidden = true; $("#app").hidden = false; $("#pie").hidden = false;
+}
+
+function mostrarSetup(msg) {
+  $("#app").hidden = true; $("#pie").hidden = true; $("#setup").hidden = false;
+  $("#sub").textContent = "Sin conectar";
+  const e = $("#setup-error");
+  e.hidden = !msg; if (msg) e.textContent = msg;
+  $("#in-key").value = localStorage.getItem(LS.key) || "";
+  $("#in-token").value = localStorage.getItem(LS.token) || "";
+  $("#in-board").value = localStorage.getItem(LS.board) || "Krak Studio";
+  $("#btn-borrar").hidden = !localStorage.getItem(LS.key);
+}
+
+async function cargar(cred, nombre) {
+  $("#sub").textContent = "Consultando Trello…";
+  try {
+    render(normalizar(await traerTablero(cred, nombre)));
+  } catch (err) {
+    mostrarSetup(err.message + (/Failed to fetch|NetworkError/i.test(err.message)
+      ? " — si abriste el archivo con doble clic, probá servirlo con: python3 -m http.server 8000"
+      : ""));
+  }
+}
+
+function copiar(texto, boton) {
+  navigator.clipboard.writeText(texto).then(() => {
+    const t = boton.textContent; boton.textContent = "Copiado ✓";
+    setTimeout(() => (boton.textContent = t), 1600);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Tabs
+  $("#tabs").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-tab]"); if (!b) return;
+    for (const x of document.querySelectorAll("#tabs button")) {
+      x.setAttribute("aria-selected", String(x === b));
+    }
+    for (const p of document.querySelectorAll(".tab-panel")) {
+      p.hidden = p.id !== `tab-${b.dataset.tab}`;
+    }
+  });
+
+  for (const sel of ["#f-cliente", "#f-persona", "#f-texto"]) {
+    $(sel).addEventListener("input", () => DATA && filtrarDetalle(DATA));
+  }
+  $("#btn-copiar").addEventListener("click", (e) => DATA && copiar(agenda(DATA), e.target));
+  $("#btn-copiar-wpp").addEventListener("click", (e) => DATA && copiar(agendaWpp(DATA), e.target));
+
+  // Snapshot generado por pm_dashboard.py: no necesita credenciales.
+  let snap = null;
+  try { snap = JSON.parse($("#snapshot-data").textContent); } catch (_) { snap = null; }
+  if (snap) {
+    render(normalizar(snap));
+    $("#btn-recargar").hidden = true; $("#btn-config").hidden = true;
+    return;
+  }
+
+  $("#btn-recargar").hidden = false; $("#btn-config").hidden = false;
+  $("#btn-recargar").addEventListener("click", () => {
+    const key = localStorage.getItem(LS.key), token = localStorage.getItem(LS.token);
+    if (key && token) cargar({ key, token }, localStorage.getItem(LS.board) || "Krak Studio");
+  });
+  $("#btn-config").addEventListener("click", () => mostrarSetup(""));
+  $("#btn-conectar").addEventListener("click", () => {
+    const key = $("#in-key").value.trim(), token = $("#in-token").value.trim();
+    const board = $("#in-board").value.trim() || "Krak Studio";
+    if (!key || !token) return mostrarSetup("Faltan la clave o el token.");
+    localStorage.setItem(LS.key, key);
+    localStorage.setItem(LS.token, token);
+    localStorage.setItem(LS.board, board);
+    cargar({ key, token }, board);
+  });
+  $("#btn-borrar").addEventListener("click", () => {
+    for (const k of Object.values(LS)) localStorage.removeItem(k);
+    mostrarSetup("Credenciales borradas de este equipo.");
+  });
+
+  const key = localStorage.getItem(LS.key), token = localStorage.getItem(LS.token);
+  if (key && token) cargar({ key, token }, localStorage.getItem(LS.board) || "Krak Studio");
+  else mostrarSetup("");
+});
+</script>
+</body>
+</html>

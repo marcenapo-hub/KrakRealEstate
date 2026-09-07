@@ -52,6 +52,26 @@ Guía de cómo funciona cada tablero y qué se espera de Claude en cada uno.
 
 ## Krak Studio (tablero central de la agencia)
 
+> **Relevamiento 2026-09-07** (ver `dashboard/README.md`): 488 tarjetas, 90
+> activas, 361 terminadas. Listas: *Generales de cada cliente Activo* | *Tareas*
+> | *En proceso* | *En revisión* | *Stand By* | *Terminado*.
+> - **El equipo no son solo Agustina y Catalina**: en el tablero operan también
+>   **Facundo Ignacio Lanza** (11 activas, sobre todo capacitaciones y video) y
+>   la cuenta **Diseño Krak**.
+> - Solo el **19%** de las tarjetas de trabajo tiene fecha y el **76%** tiene
+>   responsable: el tablero todavía no sirve para priorizar por vencimiento.
+> - El check de "fecha cumplida" está tildado en tarjetas **sin fecha** que
+>   siguen abiertas: **la lista manda**, no el check.
+> - *Generales de cada cliente Activo* mezcla las fichas permanentes por cliente
+>   con el calendario propio de publicaciones (`Publicar - …`): 25 figuran
+>   vencidas y casi seguro son deuda de registro, no trabajo pendiente
+>   (confirma la sospecha que ya estaba anotada más abajo).
+> - Las etiquetas mezclan cliente con formato de pieza (Carrusel, REEL, POST,
+>   LINKEDIN, PAUTA META, HISTORIAL KRAK): hay que separarlas para leer carga
+>   por cuenta.
+> - Cuentas con ficha abierta y **ninguna tarea viva**: Compass (258 días sin
+>   movimiento) y Stark (218). China Fit, 55 días con una sola tarjeta.
+
 - Seguimiento de TODAS las tareas de la agencia. Krak RE aparece como un
   cliente más (etiquetas = cliente).
 - **Operan**: todo el equipo.
