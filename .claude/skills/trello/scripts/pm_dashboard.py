@@ -3,6 +3,9 @@
 
 Lee el tablero con las credenciales de trello.py (entorno o .env.trello) y:
 
+  artifact [tablero]   igual que snapshot pero sin el esqueleto html/head/body ni
+                       el formulario de credenciales: el formato que pide la
+                       herramienta de Artifacts para publicarlo en el chat.
   snapshot [tablero]   genera dashboard/out/<tablero>-<fecha>.html — un archivo
                        autocontenido, con los datos adentro, que se abre con
                        doble clic y no pide credenciales ni red.
@@ -168,7 +171,8 @@ def brief(d):
     return "\n".join(out)
 
 
-def snapshot(raw, nombre_tablero):
+def snapshot_html(raw):
+    """La plantilla con los datos del tablero incrustados."""
     if not PLANTILLA.is_file():
         sys.exit(f"No encontré la plantilla {PLANTILLA}")
     html = PLANTILLA.read_text()
@@ -176,7 +180,11 @@ def snapshot(raw, nombre_tablero):
     if marca not in html:
         sys.exit("La plantilla no tiene el bloque snapshot-data.")
     datos = json.dumps(raw, ensure_ascii=False).replace("</", "<\\/")
-    html = html.replace(marca, f'<script id="snapshot-data" type="application/json">{datos}</script>')
+    return html.replace(marca, f'<script id="snapshot-data" type="application/json">{datos}</script>')
+
+
+def snapshot(raw, nombre_tablero):
+    html = snapshot_html(raw)
     SALIDA.mkdir(parents=True, exist_ok=True)
     slug = re.sub(r"[^a-z0-9]+", "-", nombre_tablero.lower()).strip("-")
     destino = SALIDA / f"{slug}-{date.today().isoformat()}.html"
@@ -184,14 +192,37 @@ def snapshot(raw, nombre_tablero):
     return destino
 
 
+def artifact(raw, nombre_tablero):
+    """Versión para publicar como Artifact: sin wrappers ni modo en vivo.
+
+    La herramienta de Artifacts envuelve el archivo en su propio esqueleto, y su
+    CSP bloquea las llamadas a api.trello.com — así que la página publicada es
+    siempre la foto, sin el formulario de credenciales.
+    """
+    html = snapshot_html(raw)
+    head = html[html.index("<head>") + 6:html.index("</head>")]
+    head = "\n".join(l for l in head.splitlines() if "<meta" not in l).strip()
+    cuerpo = html[html.index("<body>") + 6:html.index("</body>")]
+    ini = cuerpo.index('<section id="setup"')
+    fin = cuerpo.index("</section>", ini) + len("</section>")
+    cuerpo = cuerpo[:ini].rstrip() + "\n" + cuerpo[fin:].lstrip()
+    SALIDA.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^a-z0-9]+", "-", nombre_tablero.lower()).strip("-")
+    destino = SALIDA / f"{slug}-artifact.html"
+    destino.write_text(head + "\n" + cuerpo)
+    return destino
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     tablero = sys.argv[2] if len(sys.argv) > 2 else "Krak Studio"
-    if cmd not in ("snapshot", "brief"):
+    if cmd not in ("snapshot", "brief", "artifact"):
         sys.exit(__doc__)
     raw = traer(tablero)
     if cmd == "brief":
         print(brief(normalizar(raw)))
+    elif cmd == "artifact":
+        print(f"Artifact listo: {artifact(raw, tablero)}")
     else:
         destino = snapshot(raw, tablero)
         d = normalizar(raw)

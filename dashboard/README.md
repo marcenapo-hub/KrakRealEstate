@@ -30,6 +30,18 @@ los datos adentro, que se abre con doble clic y no pide nada. Sirve para
 compartir la foto del tablero con un socio o guardar el estado de una semana.
 La carpeta `out/` está gitignoreada — son datos, no código.
 
+**3. Publicado en el chat de Claude**
+
+```bash
+python3 .claude/skills/trello/scripts/pm_dashboard.py artifact
+```
+
+Genera `dashboard/out/krak-studio-artifact.html`, la misma foto pero sin el
+esqueleto `html/head/body` ni el formulario de credenciales — el formato que
+pide la herramienta de Artifacts. Se publica desde Claude y queda como una
+página privada que se abre desde el chat. La versión publicada es siempre
+estática: el navegador de Artifacts bloquea las llamadas a `api.trello.com`.
+
 **Brief de texto** (terminal, mail o WhatsApp):
 
 ```bash
