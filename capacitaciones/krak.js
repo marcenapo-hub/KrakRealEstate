@@ -1,37 +1,60 @@
 /*
  * Sistema visual de las capacitaciones de Krak Real Estate.
- * Paleta y layout tomados del deck "Home y Warehouse Staging": rail izquierdo
- * con isotipo, tarjetas redondeadas azul/gris y ondas de marca de fondo.
  *
- * Se comparte entre los generadores para que todas las capacitaciones salgan
- * del mismo molde. Uso: const K = require("./krak"); const d = K.deck("Título");
+ * Los tokens salen del Manual de Marca Krak Real Estate 2025 (Drive):
+ * paleta institucional, escalas de tinte y tipografía Inter. El layout
+ * —rail izquierdo con isotipo, tarjetas redondeadas y ondas de fondo—
+ * viene del deck "Home y Warehouse Staging".
+ *
+ * Se comparte entre todos los generadores para que la marca tenga una sola
+ * fuente de verdad: si cambia el manual, se toca solo este archivo.
+ *
+ * Uso:  const K = require("../krak");
+ *       const d = K.deck("Título", __dirname);   // __dirname = donde viven brand/ e img/
  */
 const pptxgen = require("pptxgenjs");
 const path = require("path");
 
-// Paleta muestreada de los decks de referencia de Krak
-const BLUE = "08407C"; // azul Krak: títulos, tarjetas, callouts
-const BLUE2 = "0A5296"; // azul un tono más claro, para bloques dentro de una tarjeta azul
-const SLATE = "4E586E"; // barra del rail
-const GRAYC = "7C8594"; // tarjetas grises
+/* --- Paleta institucional (manual, pág. 9) --------------------------------- */
+const BLUE = "08407C"; // azul Krak · RGB 8,64,124 · títulos, tarjetas, franjas
+const GRAYC = "7C8594"; // gris · RGB 125,132,148 · tarjetas secundarias
+const SLATE = "4E586E"; // slate · RGB 78,88,110 · barra del rail
+const GRAYL = "C3C3C3"; // gris claro · RGB 195,195,195 · separadores y bordes
+
+/* --- Escalas de tinte del manual ------------------------------------------- */
+const AZUL = ["396696", "6A8CB0", "9CB2CA", "CDD8E4"];
+const GRIS = ["969DA9", "B0B5BE", "CACED4", "E4E6E9"];
+const PIZARRA = ["5F687C", "838A99", "A6ABB6", "C9CCD3"];
+const NEUTRO = ["CFCFCF", "DBDBDB", "E7E7E7", "F3F3F3"];
+
+/* --- Derivados de trabajo --------------------------------------------------- */
+const BLUE2 = AZUL[0]; // azul más claro, para bloques dentro de una tarjeta azul
+const INK = "2E4258"; // cuerpo sobre blanco
+const MUTED = "6A7686"; // texto secundario
+const LIGHT = NEUTRO[3]; // tarjetas claras sobre blanco
+const ONBLUE = AZUL[3]; // cuerpo sobre azul
+const ONGRAY = GRIS[3]; // cuerpo sobre gris
+const W = "FFFFFF";
+
+/* --- Señalética (fuera de paleta: solo para sí/no y alertas) ---------------- */
 const GREEN = "26AE60";
 const RED = "E74B3C";
-const INK = "2E4258"; // cuerpo sobre blanco
-const MUTED = "6A7686";
-const LIGHT = "F2F4F7"; // tarjetas claras sobre blanco
-const ONBLUE = "DCE6F2"; // cuerpo sobre azul
-const ONGRAY = "F0F2F5"; // cuerpo sobre gris
-const W = "FFFFFF";
-const F = "Arial";
+
+/* --- Tipografía (manual, pág. 10): Inter -----------------------------------
+ * Si la máquina que abre el .pptx no tiene Inter instalada, PowerPoint la
+ * sustituye. Los TTF están en Drive, en "Manual de Marca Krak 2025/manual_Carpeta/Fonts".
+ */
+const F = "Inter";
 
 const RAIL = 0.45; // ancho del rail izquierdo
 const L = 0.66; // margen izquierdo del contenido
 const CW = 8.84; // ancho útil (de 0.66 a 9.5)
 const H = 5.625; // alto del slide
 
-function deck(titulo) {
-  const A = (f) => path.join(__dirname, "brand", f);
-  const IMG = (f) => path.join(__dirname, "img", f);
+function deck(titulo, baseDir) {
+  const base = baseDir || __dirname;
+  const A = (f) => path.join(base, "brand", f);
+  const IMG = (f) => path.join(base, "img", f);
 
   const pres = new pptxgen();
   pres.layout = "LAYOUT_16x9"; // 10 x 5.625
@@ -169,6 +192,9 @@ function deck(titulo) {
 }
 
 module.exports = {
-  deck, BLUE, BLUE2, SLATE, GRAYC, GREEN, RED, INK, MUTED, LIGHT, ONBLUE, ONGRAY, W, F,
+  deck,
+  BLUE, GRAYC, SLATE, GRAYL, BLUE2, INK, MUTED, LIGHT, ONBLUE, ONGRAY, W,
+  GREEN, RED, F,
+  AZUL, GRIS, PIZARRA, NEUTRO,
   RAIL, L, CW, H,
 };

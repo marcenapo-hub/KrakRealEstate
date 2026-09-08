@@ -1,77 +1,16 @@
 /*
  * Capacitación de impuestos para agentes inmobiliarios — Krak Real Estate.
- * Sistema visual tomado del deck "Home y Warehouse Staging": paleta, rail
- * izquierdo con isotipo, tarjetas redondeadas y ondas de marca.
+ * Contenido basado en el Manual de Impuestos para Administrativos en Argentina.
+ *
+ * La marca (paleta, tipografía y layout) viene del módulo compartido ../krak,
+ * que implementa el Manual de Marca Krak Real Estate 2025.
  */
-const pptxgen = require("pptxgenjs");
-const path = require("path");
+const K = require("../krak");
+const { BLUE, SLATE, GRAYC, GREEN, RED, INK, MUTED, W, F, L, CW } = K;
 
-const A = (f) => path.join(__dirname, "brand", f);
-
-// Paleta muestreada del deck de referencia de Krak
-const BLUE = "08407C"; // azul Krak: títulos, tarjetas, callouts
-const SLATE = "4E586E"; // barra del rail
-const GRAYC = "7C8594"; // tarjetas grises
-const GREEN = "26AE60";
-const RED = "E74B3C";
-const INK = "2E4258"; // cuerpo sobre blanco
-const MUTED = "6A7686";
-const W = "FFFFFF";
-const F = "Arial";
-
-const pres = new pptxgen();
-pres.layout = "LAYOUT_16x9"; // 10 x 5.625
-pres.author = "Krak Real Estate";
-pres.title = "Impuestos para Agentes Inmobiliarios";
-
-const RAIL = 0.45; // ancho del rail izquierdo
-const L = 0.66; // margen izquierdo del contenido
-const CW = 8.84; // ancho útil (hasta 9.5)
-
-const round = (s, o) => {
-  const fill = (o.fill && o.fill.color) || W;
-  return s.addShape(pres.ShapeType.roundRect, {
-    rectRadius: 0.09, ...o, line: { color: fill, width: 0 },
-  });
-};
-
-// Slide de contenido: fondo de ondas + rail con isotipo + título
-function contentSlide(title, subtitle) {
-  const s = pres.addSlide();
-  s.background = { path: A("bg_content.png") };
-  s.addShape(pres.ShapeType.rect, {
-    x: 0, y: 0, w: RAIL, h: 5.625, fill: { color: SLATE }, line: { color: SLATE, width: 0 },
-  });
-  s.addShape(pres.ShapeType.rect, {
-    x: 0, y: 0, w: RAIL, h: 0.44, fill: { color: BLUE }, line: { color: BLUE, width: 0 },
-  });
-  s.addImage({ path: A("iso_white.png"), x: 0.135, y: 0.075, w: 0.18, h: 0.238 });
-  s.addText(title, {
-    x: L, y: 0.28, w: CW, h: 0.52, margin: 0, valign: "middle",
-    fontFace: F, fontSize: 27, bold: true, color: BLUE,
-  });
-  if (subtitle) {
-    s.addText(subtitle, {
-      x: L, y: 0.82, w: CW, h: 0.3, margin: 0, valign: "middle",
-      fontFace: F, fontSize: 12, italic: true, color: MUTED,
-    });
-  }
-  return s;
-}
-
-// Franja azul de cierre de slide, como el "Clave:" del deck de referencia
-function keyBar(s, y, label, text, color) {
-  const fill = color || BLUE;
-  round(s, { x: L, y, w: CW, h: 0.72, fill: { color: fill } });
-  s.addText(label, {
-    x: L + 0.26, y: y + 0.08, w: CW - 0.5, h: 0.22, margin: 0, valign: "middle",
-    fontFace: F, fontSize: 9.5, bold: true, color: W, charSpacing: 1.2,
-  });
-  s.addText(text, {
-    x: L + 0.26, y: y + 0.29, w: CW - 0.52, h: 0.36, margin: 0, valign: "middle",
-    fontFace: F, fontSize: 11.5, color: W, lineSpacing: 14,
-  });
-}
+const d = K.deck("Impuestos para Agentes Inmobiliarios", __dirname);
+const { pres, A, round, keyBar } = d;
+const contentSlide = d.slide; // mismo helper, nombre histórico de este generador
 
 /* ============================================================ 1. CARÁTULA */
 {
@@ -719,4 +658,4 @@ function keyBar(s, y, label, text, color) {
   );
 }
 
-pres.writeFile({ fileName: process.argv[2] }).then((f) => console.log("OK:", f));
+d.save(process.argv[2] || "Capacitacion-Impuestos-Agentes-Inmobiliarios.pptx");

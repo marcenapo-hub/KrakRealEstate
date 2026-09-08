@@ -3,10 +3,10 @@
  * Mismo contenido que la versión original en Canva, rearmado con el sistema
  * visual nuevo (el de Home y Warehouse Staging).
  */
-const K = require("./krak");
+const K = require("../krak");
 const { BLUE, BLUE2, SLATE, GRAYC, INK, MUTED, LIGHT, ONBLUE, ONGRAY, W, F, L, CW } = K;
 
-const d = K.deck("Prospección");
+const d = K.deck("Prospección", __dirname);
 const { pres, IMG, round, slide, keyBar, bandHeader, defRows, cover, closing } = d;
 
 /* ============================================================ 1. CARÁTULA */
@@ -51,20 +51,20 @@ cover("Prospección", "El primer eslabón del proceso de captación.").addNotes(
   ];
   corto.forEach((t, i) => {
     const x = L + (i % 2) * 2.83;
-    const y = 1.9 + Math.floor(i / 2) * 0.62;
-    round(s, { x, y, w: 2.72, h: 0.54, fill: { color: LIGHT } });
+    const y = 1.9 + Math.floor(i / 2) * 0.64;
+    round(s, { x, y, w: 2.72, h: 0.58, fill: { color: LIGHT } });
     s.addText(t, {
-      x: x + 0.16, y, w: 2.4, h: 0.54, margin: 0, valign: "middle",
+      x: x + 0.16, y, w: 2.42, h: 0.58, margin: 0, valign: "middle",
       fontFace: F, fontSize: 10.5, color: INK, lineSpacing: 12,
     });
   });
-  round(s, { x: L, y: 3.76, w: 5.55, h: 0.54, fill: { color: LIGHT } });
+  round(s, { x: L, y: 3.86, w: 5.55, h: 0.58, fill: { color: LIGHT } });
   s.addText("Alianzas", {
-    x: L + 0.16, y: 3.76, w: 1.2, h: 0.54, margin: 0, valign: "middle",
+    x: L + 0.16, y: 3.86, w: 1.2, h: 0.58, margin: 0, valign: "middle",
     fontFace: F, fontSize: 10.5, bold: true, color: INK,
   });
   s.addText("Estratégicas  ·  Profesionales", {
-    x: L + 1.4, y: 3.76, w: 4.0, h: 0.54, margin: 0, valign: "middle",
+    x: L + 1.4, y: 3.86, w: 4.0, h: 0.58, margin: 0, valign: "middle",
     fontFace: F, fontSize: 10.5, color: MUTED,
   });
 

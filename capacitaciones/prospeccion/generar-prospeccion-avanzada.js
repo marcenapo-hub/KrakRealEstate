@@ -3,10 +3,10 @@
  * Mismo contenido que la versión original en Canva, rearmado con el sistema
  * visual nuevo (el de Home y Warehouse Staging).
  */
-const K = require("./krak");
+const K = require("../krak");
 const { BLUE, BLUE2, SLATE, GRAYC, GREEN, RED, INK, MUTED, LIGHT, ONBLUE, ONGRAY, W, F, L, CW } = K;
 
-const d = K.deck("Técnicas Avanzadas de Prospección Inmobiliaria");
+const d = K.deck("Técnicas Avanzadas de Prospección Inmobiliaria", __dirname);
 const { pres, IMG, round, slide, keyBar, cover, closing } = d;
 
 /* ============================================================ 1. CARÁTULA */
