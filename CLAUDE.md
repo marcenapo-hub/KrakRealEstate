@@ -13,3 +13,6 @@ workspace de Marce, con foco en el tablero **Krak Real Estate**.
 En este repo, el tablero de Trello **Krak Real Estate** es de solo lectura
 para Claude (ver la regla de alcance en la skill) — es el calendario de
 contenido operado por el equipo de la agencia.
+
+Todo documento que se cree en Google Drive (Docs, hojas de cálculo, etc.)
+debe crearse con la cuenta **marcelo@krak.com.ar**.
