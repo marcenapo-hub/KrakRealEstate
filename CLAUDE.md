@@ -7,6 +7,8 @@ workspace de Marce, con foco en el tablero **Krak Real Estate**.
 - Skill de Trello: `.claude/skills/trello/SKILL.md`
 - Reglas de operación por tablero: `memory/context/trello-tableros.md`
 - Contexto de proyectos por empresa: `memory/projects/empresas.md`
+- Formato de documentos legales (boletos, cesiones, reservas, contratos,
+  mutuos, etc.): `memory/context/formato-documentos.md`
 
 En este repo, el tablero de Trello **Krak Real Estate** es de solo lectura
 para Claude (ver la regla de alcance en la skill) — es el calendario de
