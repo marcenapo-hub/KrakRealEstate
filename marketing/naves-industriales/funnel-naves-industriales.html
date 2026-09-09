@@ -1,0 +1,609 @@
+<title>Embudo Naves Industriales GBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#10161F; --ink-2:#414B5C; --ink-3:#6B7686;
+  --rule:#DCE2EA; --rule-soft:#EBEFF4;
+  --surface:#FFFFFF; --ground:#F4F7FA; --raise:#FFFFFF;
+  --brand:#08407C; --brand-2:#4E586E; --brand-soft:#E6EEF8;
+  --ok:#15683A; --ok-soft:#E3F1E8;
+  --warn:#9A5A10; --warn-soft:#F8EEDF;
+  --risk:#A8201C; --risk-soft:#F9E6E5;
+  --shadow:0 1px 2px rgba(16,22,31,.05),0 8px 24px -18px rgba(16,22,31,.35);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E7ECF3; --ink-2:#AAB5C4; --ink-3:#7E8896;
+  --rule:#26313F; --rule-soft:#1C2531;
+  --surface:#141C27; --ground:#0C1219; --raise:#18212D;
+  --brand:#84B6EA; --brand-2:#9AA6B8; --brand-soft:#16283C;
+  --ok:#6BCE90; --ok-soft:#12291C;
+  --warn:#E2A85E; --warn-soft:#2A2013;
+  --risk:#F19191; --risk-soft:#2B1616;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -18px rgba(0,0,0,.8);
+}}
+:root[data-theme="dark"]{
+  --ink:#E7ECF3; --ink-2:#AAB5C4; --ink-3:#7E8896;
+  --rule:#26313F; --rule-soft:#1C2531;
+  --surface:#141C27; --ground:#0C1219; --raise:#18212D;
+  --brand:#84B6EA; --brand-2:#9AA6B8; --brand-soft:#16283C;
+  --ok:#6BCE90; --ok-soft:#12291C;
+  --warn:#E2A85E; --warn-soft:#2A2013;
+  --risk:#F19191; --risk-soft:#2B1616;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.page{max-width:1140px;margin:0 auto;padding:0 28px 96px}
+.prose{max-width:70ch}
+h1,h2,h3,h4,.ui{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+h2,h3,h4{text-wrap:balance}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+/* ---- memo header ---- */
+header.memo{border-bottom:2px solid var(--brand);padding:44px 0 20px;margin-bottom:8px}
+.kicker{font-family:Archivo;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand-2);font-weight:600}
+h1{font-size:clamp(30px,4.6vw,46px);line-height:1.06;font-weight:700;margin:14px 0 10px;
+  letter-spacing:-.02em;color:var(--ink)}
+.dek{font-size:19px;color:var(--ink-2);max-width:62ch;margin:0}
+dl.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px 26px;
+  margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft)}
+dl.meta div{display:flex;flex-direction:column;gap:3px}
+dl.meta dt{font-family:Archivo;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600}
+dl.meta dd{margin:0;font-family:Archivo;font-size:14.5px;font-weight:500;color:var(--ink)}
+
+/* ---- sections ---- */
+section{margin-top:64px;scroll-margin-top:20px}
+h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+  color:var(--brand);margin:0 0 6px;display:flex;align-items:baseline;gap:12px}
+h2 .num{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);font-weight:400}
+.h2sub{font-family:Archivo;font-size:clamp(22px,2.9vw,30px);font-weight:600;line-height:1.18;
+  letter-spacing:-.015em;margin:0 0 22px;color:var(--ink);max-width:24ch}
+h3{font-size:18.5px;font-weight:600;margin:34px 0 8px;letter-spacing:-.01em}
+h4{font-size:14px;font-weight:600;margin:22px 0 6px;color:var(--ink-2)}
+p{margin:0 0 15px}
+ul,ol{margin:0 0 15px;padding-left:22px}
+li{margin-bottom:7px}
+strong{font-weight:600}
+a{color:var(--brand);text-underline-offset:3px}
+
+/* ---- thesis callout ---- */
+.thesis{background:var(--brand-soft);border-left:3px solid var(--brand);
+  padding:24px 26px;margin:0 0 30px;border-radius:0 6px 6px 0}
+.thesis p:last-child{margin-bottom:0}
+.thesis .lead{font-family:Archivo;font-size:19px;font-weight:600;line-height:1.4;
+  letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+
+/* ---- tables ---- */
+.scroll{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:8px;
+  background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-family:Archivo;font-size:14px;
+  line-height:1.48;min-width:640px}
+th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--rule-soft);
+  vertical-align:top}
+thead th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;background:var(--ground);border-bottom:1px solid var(--rule);
+  position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+td.mono,th.mono{font-family:"IBM Plex Mono";font-size:12.5px}
+tbody th{font-weight:600;color:var(--ink);width:1%;white-space:nowrap}
+.num-col{font-variant-numeric:tabular-nums}
+
+/* ---- status chips ---- */
+.chip{display:inline-block;font-family:Archivo;font-size:10.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;padding:2.5px 8px;border-radius:3px;
+  white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.hyp{background:var(--warn-soft);color:var(--warn)}
+.chip.gap{background:var(--risk-soft);color:var(--risk)}
+.chip.neutral{background:var(--rule-soft);color:var(--ink-2)}
+
+/* ---- architecture comparison ---- */
+.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:18px;margin:24px 0}
+.arch article{background:var(--surface);border:1px solid var(--rule);border-radius:8px;
+  padding:20px 20px 18px;display:flex;flex-direction:column;gap:10px}
+.arch article.pick{border-color:var(--ok);box-shadow:var(--shadow)}
+.arch .tag{font-family:Archivo;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;color:var(--ink-3)}
+.arch .pick .tag{color:var(--ok)}
+.arch h3{font-family:Archivo;font-size:17px;margin:0;font-weight:600;line-height:1.28}
+.arch p{font-size:15px;margin:0;color:var(--ink-2)}
+.arch dl{margin:2px 0 0;font-family:Archivo;font-size:13.5px;display:grid;gap:9px}
+.arch dt{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;margin-bottom:2px}
+.arch dd{margin:0;color:var(--ink-2)}
+
+/* ---- funnel stages ---- */
+.stage{border-top:1px solid var(--rule);padding-top:20px;margin-top:26px}
+.stage-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:4px}
+.stage-head h3{margin:0;font-family:Archivo;font-size:20px}
+.stage-head .role{font-family:Archivo;font-size:13px;color:var(--ink-3)}
+
+/* ---- audit findings ---- */
+.finding{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--warn);
+  border-radius:0 8px 8px 0;padding:16px 20px;margin:14px 0}
+.finding.crit{border-left-color:var(--risk)}
+.finding.keep{border-left-color:var(--ok)}
+.finding h4{margin:0 0 6px;font-size:15.5px;font-family:Archivo;color:var(--ink);
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.finding p{font-size:15px;margin:0 0 8px;color:var(--ink-2)}
+.finding p:last-child{margin-bottom:0}
+.evidence{font-family:"IBM Plex Mono";font-size:12.5px;color:var(--ink-3);
+  background:var(--ground);padding:8px 11px;border-radius:4px;display:block;
+  overflow-x:auto;white-space:pre-wrap;line-height:1.55}
+
+/* ---- phases ---- */
+ol.phases{list-style:none;padding:0;margin:22px 0;counter-reset:ph}
+ol.phases>li{counter-increment:ph;display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:18px 0;border-bottom:1px solid var(--rule-soft)}
+ol.phases>li::before{content:"F" counter(ph);font-family:"IBM Plex Mono";font-size:13px;
+  font-weight:500;color:var(--brand);background:var(--brand-soft);border-radius:4px;
+  width:34px;height:26px;display:grid;place-items:center}
+ol.phases h4{margin:0 0 5px;font-size:16px;font-family:Archivo;color:var(--ink)}
+ol.phases p{font-size:15px;margin:0 0 6px;color:var(--ink-2)}
+ol.phases .gate{font-family:Archivo;font-size:13px;color:var(--ink-3)}
+ol.phases .gate b{color:var(--ink-2);font-weight:600}
+
+/* ---- questions ---- */
+ol.qs{list-style:none;padding:0;counter-reset:q;margin:20px 0}
+ol.qs li{counter-increment:q;display:grid;grid-template-columns:auto 1fr;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--rule-soft);font-size:15.5px}
+ol.qs li::before{content:"Q" counter(q);font-family:"IBM Plex Mono";font-size:12px;
+  color:var(--ink-3);padding-top:3px}
+ol.qs b{font-family:Archivo;font-weight:600;font-size:15px}
+ol.qs span{display:block;color:var(--ink-3);font-size:14px;font-family:Archivo;margin-top:2px}
+
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:Archivo;font-size:13.5px;color:var(--ink-3)}
+footer a{color:var(--brand)}
+footer ul{padding-left:20px;margin:8px 0 0}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){body{font-size:16px}.page{padding:0 18px 64px}}
+</style>
+
+<div class="page">
+
+<header class="memo">
+  <div class="kicker">Krak Real Estate &middot; Documento de trabajo</div>
+  <h1>Embudo de captación para naves industriales en GBA</h1>
+  <p class="dek">Auditoría del borrador v1, comparación de tres arquitecturas de adquisición y rediseño del funnel con lógica de nodos y flujos medibles.</p>
+  <dl class="meta">
+    <div><dt>Para</dt><dd>Socios y equipo comercial</dd></div>
+    <div><dt>Alcance</dt><dd>Zona Norte, Sur y Oeste</dd></div>
+    <div><dt>Fecha</dt><dd>9 de septiembre de 2026</dd></div>
+    <div><dt>Estado</dt><dd>Borrador para discusión</dd></div>
+    <div><dt>Insumo auditado</dt><dd>embudoalquileres.excalidraw</dd></div>
+  </dl>
+</header>
+
+<section id="diagnostico">
+  <h2><span class="num">01</span> Diagnóstico ejecutivo</h2>
+  <p class="h2sub">El eje de segmentación correcto no es la zona</p>
+
+  <div class="thesis prose">
+    <p class="lead">La zona es un filtro de factibilidad, no un segmento de audiencia. El eje que realmente predice si una consulta se convierte en contrato es la combinación de metros cuadrados requeridos y el momento en que vence el contrato actual del inquilino.</p>
+    <p>Un usuario que busca 800 m² en Zona Norte se parece mucho más, comercialmente, a uno que busca 800 m² en Oeste que a uno que busca 6.000 m² en Norte. El primer par comparte presupuesto, tipo de operación, perfil de decisor y ciclo. El segundo par sólo comparte el mapa.</p>
+  </div>
+
+  <div class="prose">
+    <p>De eso se desprenden tres consecuencias que atraviesan todo el documento:</p>
+    <ul>
+      <li><strong>El universo de demanda es finito y chico.</strong> La cantidad de empresas que en un mes dado están efectivamente buscando una nave en GBA se cuenta en cientos, no en millones. Con audiencias así, fragmentar la adquisición en tres campañas frías reparte una señal ya escasa entre tres algoritmos que nunca terminan de aprender.</li>
+      <li><strong>El problema no es "generar demanda", es capturar la que ya existe y sostener presencia sobre el resto.</strong> Casi nadie decide mudar una planta porque vio un anuncio. Decide porque le vence el contrato, porque creció, o porque el dueño de la propiedad le pidió el inmueble. El marketing no crea ese disparador: hace que cuando ocurra, Krak sea la primera llamada.</li>
+      <li><strong>La diferenciación por zona debe ocurrir donde el usuario la declara, no donde nosotros la inferimos.</strong> El clic en un selector de zona vale más que cualquier segmentación geográfica de plataforma, porque el que busca nave rara vez busca cerca de donde está sentado cuando ve el anuncio.</li>
+    </ul>
+    <p>La hipótesis inicial del brief —arrancar unificado y diferenciar después en MOFU y BOFU— es <strong>direccionalmente correcta</strong>. Lo que propongo corregir no es esa decisión sino tres cosas: qué canal la exceptúa (Google Search), qué señal dispara la diferenciación (declaración, no geolocalización), y cuál es el segundo eje que hoy no está en ningún lado del borrador (los m²).</p>
+  </div>
+</section>
+
+<section id="base">
+  <h2><span class="num">02</span> Base de información</h2>
+  <p class="h2sub">Qué sabemos, qué suponemos y qué falta</p>
+  <p class="prose">Todo lo que sigue se apoya en esta separación. Los supuestos están marcados y son revisables; los faltantes son las preguntas que hay que responder antes de comprometer presupuesto, no antes de empezar a trabajar.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Variable</th><th style="width:88px">Estado</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td>Zonas en cartera</td><td><span class="chip ok">Confirmado</span></td><td>Norte, Sur y Oeste de la provincia de Buenos Aires.</td></tr>
+        <tr><td>Cobertura del borrador v1</td><td><span class="chip ok">Confirmado</span></td><td>Los recorridos concretos del borrador cubren Norte y Oeste. Sur aparece sólo en una idea de contenido comparativa.</td></tr>
+        <tr><td>Activos audiovisuales</td><td><span class="chip ok">Confirmado</span></td><td>El borrador anota que el recorrido de Zona Oeste "ya está medio que hecho".</td></tr>
+        <tr><td>CRM</td><td><span class="chip ok">Confirmado</span></td><td>Tokko Broker, con pipeline de 7 estados, SLAs y lógica de colores ya definidos.</td></tr>
+        <tr><td>Base outbound industrial</td><td><span class="chip ok">Confirmado</span></td><td>Scraping de Google Maps sobre Zona Norte y Oeste. Es un activo de adquisición, no sólo un contacto en frío.</td></tr>
+        <tr><td>Nomenclatura de campañas</td><td><span class="chip ok">Confirmado</span></td><td>Convención vigente <code>[Propiedad] | [Objetivo]</code> en Meta Ads.</td></tr>
+        <tr><td>Ciclo de decisión</td><td><span class="chip hyp">Hipótesis</span></td><td>Meses, no semanas: la mudanza industrial se ata al vencimiento del contrato vigente. Determina las ventanas de retargeting y de atribución.</td></tr>
+        <tr><td>Elasticidad geográfica</td><td><span class="chip hyp">Hipótesis</span></td><td>Norte y Oeste compiten entre sí para buena parte de la demanda; Sur es un mercado casi independiente por accesos y perfil logístico. Verificable con datos propios.</td></tr>
+        <tr><td>Decisor</td><td><span class="chip hyp">Hipótesis</span></td><td>En PyME, dueño o gerente general. En operador logístico o multinacional, jefe de operaciones o facility manager. Cambia el canal y el mensaje.</td></tr>
+        <tr><td>Presupuesto mensual</td><td><span class="chip gap">Falta</span></td><td>Define si alcanza para una campaña o para tres. Es el dato que más condiciona la recomendación.</td></tr>
+        <tr><td>Cartera por zona</td><td><span class="chip gap">Falta</span></td><td>Cantidad de naves, rango de m², rango de valor de alquiler y antigüedad de publicación por zona.</td></tr>
+        <tr><td>Capacidad comercial</td><td><span class="chip gap">Falta</span></td><td>Cuántas consultas por semana puede atender el equipo <em>bien</em>. Es el techo real del funnel; generar por encima destruye valor.</td></tr>
+        <tr><td>Histórico de consultas</td><td><span class="chip gap">Falta</span></td><td>Consultas de los últimos 12 meses por zona, por m² y por canal de origen. Está en Tokko y responde sola la mitad de este documento.</td></tr>
+        <tr><td>Tasa consulta &rarr; visita &rarr; firma</td><td><span class="chip gap">Falta</span></td><td>Sin esto no hay forma de valuar un lead ni de decidir cuánto se puede pagar por él.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="font-size:15px;color:var(--ink-3)">Los cinco faltantes no bloquean el arranque: se resuelven en la Fase 0 con una extracción de Tokko y una conversación de una hora con los socios.</p>
+</section>
+
+<section id="arquitecturas">
+  <h2><span class="num">03</span> Comparación de arquitecturas</h2>
+  <p class="h2sub">Tres formas de estructurar la adquisición en frío</p>
+
+  <div class="arch">
+    <article>
+      <div class="tag">Opción A</div>
+      <h3>Campaña fría unificada, diferenciación posterior</h3>
+      <p>Una sola campaña de público frío para todo GBA. La segmentación por zona aparece recién en MOFU y BOFU.</p>
+      <dl>
+        <div><dt>A favor</dt><dd>Concentra toda la señal de conversión en un solo lugar; sale antes de la fase de aprendizaje; sin fragmentación de datos; presupuesto no diluido.</dd></div>
+        <div><dt>En contra</dt><dd>El mensaje pierde filo. Y hay un riesgo silencioso: la entrega se sesga sola hacia la zona más barata o más demandada, y podés terminar sin cobertura en una zona donde justamente tenés cartera parada.</dd></div>
+      </dl>
+    </article>
+
+    <article>
+      <div class="tag">Opción B</div>
+      <h3>Campañas frías separadas por zona</h3>
+      <p>Norte, Sur y Oeste como campañas independientes, con creativo, presupuesto y medición propios.</p>
+      <dl>
+        <div><dt>A favor</dt><dd>Relevancia máxima del mensaje, control presupuestario por zona y lectura limpia de dónde está la demanda.</dd></div>
+        <div><dt>En contra</dt><dd>Tres campañas compitiendo por un presupuesto chico, ninguna con eventos suficientes para optimizar. En AMBA los radios de Norte y Oeste se tocan: las campañas compiten entre sí en la subasta y encarecen su propio inventario. Además triplica creativos y landings.</dd></div>
+      </dl>
+    </article>
+
+    <article class="pick">
+      <div class="tag">Opción C &middot; Recomendada</div>
+      <h3>Híbrida: adquisición unificada, segmentación declarada</h3>
+      <p>Una campaña fría con presupuesto a nivel campaña y ad sets zonales por debajo, que comparten la fase de aprendizaje. Google Search sí va separado por zona. La diferenciación real ocurre en el sitio y en el CRM.</p>
+      <dl>
+        <div><dt>A favor</dt><dd>Conserva la señal concentrada de A y la relevancia de mensaje de B. Permite reporte por zona sin pagar el costo de aprendizaje de B. Y separa correctamente los canales: donde el usuario ya declaró la zona (una búsqueda), segmentar es gratis.</dd></div>
+        <div><dt>En contra</dt><dd>Exige que el sitio y el CRM estén instrumentados antes de escalar. Sin eventos ni campos de zona y m² en Tokko, la arquitectura no se sostiene: es la que más depende de la Fase 0.</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <h3>Comparación en las dimensiones que importan</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Dimensión</th><th>A · Unificada</th><th>B · Por zona</th><th>C · Híbrida</th></tr></thead>
+      <tbody>
+        <tr><th>Aprendizaje de plataforma</th><td>Alto</td><td>Bajo: la señal se divide en tres</td><td>Alto: el presupuesto a nivel campaña comparte el aprendizaje</td></tr>
+        <tr><th>Relevancia del mensaje</th><td>Baja</td><td>Alta</td><td>Alta vía creativo, sin fragmentar la optimización</td></tr>
+        <tr><th>Calidad de lead</th><td>Media: entra ruido de zonas sin cartera</td><td>Alta, si hay volumen para sostenerla</td><td>Alta: califica el selector del sitio, no la plataforma</td></tr>
+        <tr><th>Riesgo de cobertura desigual</th><td>Alto</td><td>Nulo</td><td>Medio, controlable con pisos por ad set</td></tr>
+        <tr><th>Complejidad operativa</th><td>Baja</td><td>Alta</td><td>Media, concentrada en el sitio</td></tr>
+        <tr><th>Fragmentación de datos</th><td>Nula</td><td>Alta</td><td>Baja</td></tr>
+        <tr><th>Competencia interna en subasta</th><td>Nula</td><td>Alta entre Norte y Oeste</td><td>Nula: un solo dueño de la subasta</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="recomendacion">
+  <h2><span class="num">04</span> Recomendación y criterios de cambio</h2>
+  <p class="h2sub">Arrancar en C, y tener escrito de antemano qué hace pasar a B</p>
+
+  <div class="prose">
+    <p>La recomendación es la <strong>Opción C</strong>, con una excepción explícita: <strong>Google Search se separa por zona desde el día uno</strong>. La razón es estructural, no de preferencia. En Search la zona ya viene declarada en la consulta del usuario —quien escribe "alquiler galpón Pilar" ya se segmentó solo—, de modo que separar campañas no cuesta señal: sólo ordena presupuesto y anuncios. En Meta, en cambio, la zona la infiere el algoritmo a partir de dónde está el usuario, que es exactamente la señal menos confiable en este negocio.</p>
+
+    <h3>El criterio para pasar de C a B</h3>
+    <p>No conviene decidirlo por intuición ni por "sensación de que Norte anda mejor". El umbral es operativo y está documentado por la propia plataforma: Meta indica que un conjunto de anuncios necesita del orden de <strong>50 eventos de optimización cada 7 días</strong> para salir de la fase de aprendizaje. La regla práctica que se desprende:</p>
+    <ul>
+      <li><strong>Separar una zona</strong> cuando esa zona sola, sostenidamente, produce por sí misma el volumen de eventos que la plataforma necesita para optimizar. Antes de eso, separarla es pagar por no aprender.</li>
+      <li><strong>Separar antes de tiempo</strong>, aun sin ese volumen, si aparece una razón comercial que lo justifique: cartera parada en una zona que la campaña unificada no está cubriendo, o un perfil de inquilino genuinamente distinto en Sur (logística pesada y proximidad portuaria frente a producción liviana en Oeste).</li>
+      <li><strong>Volver a unificar</strong> si una campaña zonal separada queda meses en fase de aprendizaje o si su costo por consulta calificada se despega del promedio sin explicación de oferta.</li>
+    </ul>
+    <p>Un matiz sobre el evento de optimización: si se optimiza por "lead", en este negocio el volumen no va a alcanzar nunca. Por eso la arquitectura de medición de la sección 07 propone optimizar sobre una <strong>microconversión de calidad</strong> —la descarga de ficha técnica o la selección de zona y m²— y reservar el lead y el contrato para la retroalimentación diferida.</p>
+  </div>
+</section>
+
+<section id="funnel">
+  <h2><span class="num">05</span> Mapa del funnel</h2>
+  <p class="h2sub">Qué hace cada etapa y cuándo entrega el usuario</p>
+
+  <div class="stage">
+    <div class="stage-head"><h3>TOFU · Adquisición</h3><span class="role">Capturar la demanda activa y sostener presencia sobre la latente</span></div>
+    <div class="prose">
+      <p><strong>Función.</strong> Dos trabajos distintos que suelen confundirse. Google Search y los portales capturan al que ya está buscando: son el motor de volumen calificado. Meta, LinkedIn y el outbound siembran sobre el universo que todavía no busca pero va a buscar: son el motor de que, cuando llegue el disparador, Krak ya sea conocido.</p>
+      <p><strong>Estructura.</strong> Una campaña fría unificada en Meta con presupuesto a nivel campaña y ad sets por zona debajo. Campañas de Search separadas por zona, con términos genéricos ("alquiler galpón zona norte") y por partido. LinkedIn y outbound segmentan por rubro, tamaño de empresa y metros ocupados, nunca por zona.</p>
+      <p><strong>Señal de salida.</strong> Ver más del 50% de un video, entrar a una ficha, o usar el selector de zona y m².</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-head"><h3>MOFU · Consideración</h3><span class="role">Convertir "mirando" en "evaluando", y capturar la declaración</span></div>
+    <div class="prose">
+      <p><strong>Función.</strong> Acá el usuario compara. Y compara con criterios técnicos que casi ninguna inmobiliaria le resuelve: altura libre, capacidad de piso, energía instalada, playa de maniobras, radio de giro para semi, habilitación municipal y uso de suelo. El activo que gana esta etapa no es un anuncio, es una <strong>ficha técnica completa y un contenido que le enseñe a elegir</strong>. Es la etapa donde Krak Studio puede construir una ventaja difícil de copiar.</p>
+      <p><strong>Estructura.</strong> Remarketing segmentado por zona <em>y</em> m² declarados. Activos: checklist técnico de elección de nave, comparador de corredores, calculadora de metros necesarios según operación.</p>
+      <p><strong>Señal de salida.</strong> Descarga de ficha técnica, dos o más fichas vistas, o inicio de formulario.</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-head"><h3>BOFU · Consulta calificada</h3><span class="role">Consulta → visita → oferta → firma</span></div>
+    <div class="prose">
+      <p><strong>Función.</strong> Que la consulta llegue al comercial ya calificada. Cuatro datos alcanzan: metros requeridos, zona o zonas de interés, actividad, y cuándo necesita mudarse. Sin ese timing, el pipeline de Tokko no se puede priorizar y los SLAs ya definidos se aplican sobre leads que no lo merecen.</p>
+      <p><strong>Estructura.</strong> WhatsApp calificador con esas cuatro preguntas antes del handoff —hay experiencia interna con este patrón por el bot de Rebis—, formulario corto equivalente, y reserva directa de visita para quien ya está listo.</p>
+      <p><strong>Señal de salida.</strong> Visita agendada. Ese, y no el lead, es el evento que hay que devolverle a las plataformas.</p>
+    </div>
+  </div>
+</section>
+
+<section id="zonas">
+  <h2><span class="num">06</span> Diferenciación por zona</h2>
+  <p class="h2sub">Señales que la disparan, y por qué nunca es excluyente</p>
+  <p class="prose">La zona entra al funnel como <strong>atributo del contacto</strong>, no como un carril paralelo. Un usuario puede estar simultáneamente en la audiencia de Norte y en la de Oeste, y de hecho eso es información comercial valiosa: significa que su restricción real son los metros o el precio, no la ubicación, y que se le puede ofrecer la cartera cruzada.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Señal</th><th style="width:96px">Fuerza</th><th>Qué activa</th><th>Advertencia</th></tr></thead>
+      <tbody>
+        <tr><td>Selector de zona y m² en el hub</td><td><span class="chip ok">Alta</span></td><td>Asignación directa a audiencia y a campo de Tokko</td><td>Es la señal a maximizar: hay que hacer el selector imposible de evitar</td></tr>
+        <tr><td>Descarga de ficha técnica de una nave</td><td><span class="chip ok">Alta</span></td><td>Audiencia de zona + rango de m² de esa nave</td><td>Requiere formulario mínimo o identificación previa</td></tr>
+        <tr><td>Dos o más fichas vistas de la misma zona</td><td><span class="chip hyp">Media</span></td><td>Audiencia de zona por comportamiento</td><td>Una sola visita no es interés: puede ser curiosidad o un competidor</td></tr>
+        <tr><td>Término de búsqueda con topónimo</td><td><span class="chip ok">Alta</span></td><td>Campaña de Search zonal, sin inferencia</td><td>Cuidar los partidos que se leen ambiguos entre corredores</td></tr>
+        <tr><td>Geolocalización del usuario</td><td><span class="chip gap">Baja</span></td><td>Nada, por sí sola</td><td>El decisor puede vivir en Núñez y buscar nave en Ezeiza. Usarla como señal principal es el error más común</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="prose"><strong>Regla de prioridad</strong> cuando hay señales de más de una zona: gana la más reciente para el mensaje, pero el contacto permanece en ambas audiencias, y el CRM registra las dos como interés. Nunca se excluye a un usuario de una zona por haber mostrado interés en otra.</p>
+</section>
+
+<section id="matriz">
+  <h2><span class="num">07</span> Matriz de audiencias, mensajes y activos</h2>
+  <p class="h2sub">Qué se le dice a quién, dónde y con qué se lo mide</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Etapa</th><th>Audiencia</th><th>Canal</th><th>Mensaje / activo</th><th class="mono">Evento</th></tr></thead>
+      <tbody>
+        <tr><th rowspan="4">TOFU</th><td>Búsqueda activa</td><td>Google Search por zona</td><td>Anuncio directo a landing zonal o a ficha</td><td class="mono">view_ficha</td></tr>
+        <tr><td>Prospecting amplio GBA</td><td>Meta, campaña unificada</td><td>Video de recorrido, comparativa de corredores, errores al alquilar</td><td class="mono">video_50</td></tr>
+        <tr><td>Decisor por cargo y rubro</td><td>LinkedIn</td><td>Contenido técnico, no oferta directa</td><td class="mono">view_ficha</td></tr>
+        <tr><td>Base propia de empresas</td><td>Outbound + audiencia cargada</td><td>Contacto directo con oferta pertinente al rubro</td><td class="mono">whatsapp_click</td></tr>
+
+        <tr><th rowspan="3">MOFU</th><td>Vieron video &ge;50% (ventana 30-90 días)</td><td>Meta remarketing</td><td>Recorrido de nave por zona: m², altura, accesos, portones</td><td class="mono">select_zona_m2</td></tr>
+        <tr><td>Vieron ficha sin convertir</td><td>Meta + Google Display</td><td>Carrusel comparativo dentro de la misma zona</td><td class="mono">download_ficha</td></tr>
+        <tr><td>Declararon zona y m²</td><td>Meta + email</td><td>Checklist técnico, comparador de zonas, calculadora de m²</td><td class="mono">form_start</td></tr>
+
+        <tr><th rowspan="3">BOFU</th><td>Descargaron ficha técnica</td><td>Meta + WhatsApp</td><td>Disponibilidad real de esa nave, invitación a visitar</td><td class="mono">visit_scheduled</td></tr>
+        <tr><td>Abandonaron el formulario</td><td>Meta remarketing corto</td><td>Recuperación con CTA directo a WhatsApp</td><td class="mono">lead_submit</td></tr>
+        <tr><td>Lead en Tokko, etapa temprana</td><td>Email + WhatsApp comercial</td><td>Seguimiento humano, no publicitario</td><td class="mono">visit_done</td></tr>
+
+        <tr><th>Exclusiones</th><td colspan="3">Leads en etapa avanzada del pipeline, contratos ya firmados, equipo propio, competencia identificada, y toda persona que ya agendó visita (sale del remarketing publicitario y pasa a seguimiento comercial).</td><td class="mono">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Sobre los canales: no todos corresponden</h3>
+  <div class="prose">
+    <ul>
+      <li><strong>Portales inmobiliarios</strong> — probablemente la primera fuente de consulta calificada del rubro en Argentina. No son un canal publicitario a optimizar sino una fuente de intención a instrumentar: hay que poder atribuir su volumen para no sobreestimar lo que aporta la campaña paga.</li>
+      <li><strong>Google Search</strong> — motor de captura. Presupuesto prioritario mientras haya volumen de consultas disponible.</li>
+      <li><strong>Meta</strong> — buen alcance a costo bajo sobre dueños de PyME industrial, que están ahí aunque el producto sea B2B. Su rol es siembra y remarketing, no captura directa.</li>
+      <li><strong>LinkedIn</strong> — el único canal que segmenta por cargo y tamaño de empresa. Caro por impresión: se justifica sólo si el objetivo son operadores logísticos y multinacionales de m² grandes.</li>
+      <li><strong>YouTube / Demand Gen</strong> — soporte natural del recorrido de nave, que es el activo más persuasivo del rubro. Vale la pena si el inventario de video ya existe, no como razón para producirlo.</li>
+      <li><strong>Email</strong> — subestimado y barato. Con ciclos de meses, es el canal que sostiene el contacto sin costo de medios.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="medicion">
+  <h2><span class="num">08</span> Medición y optimización</h2>
+  <p class="h2sub">Conectar la inversión con el contrato, no con el formulario</p>
+
+  <h3>Capa de eventos</h3>
+  <p class="prose">Tres niveles, con jerarquía explícita. Los de plataforma se optimizan; los comerciales se devuelven diferidos.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th class="mono">Evento</th><th style="width:110px">Nivel</th><th>Parámetros</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">video_50</td><td><span class="chip neutral">Micro</span></td><td class="mono">zona_creativo</td><td>Audiencia de remarketing</td></tr>
+        <tr><td class="mono">view_ficha</td><td><span class="chip neutral">Micro</span></td><td class="mono">id_nave, zona, m2_rango</td><td>Audiencia + interés declarado por comportamiento</td></tr>
+        <tr><td class="mono">select_zona_m2</td><td><span class="chip hyp">Optimización</span></td><td class="mono">zona[], m2_rango</td><td>Señal de calidad. Candidato principal a evento de optimización</td></tr>
+        <tr><td class="mono">download_ficha</td><td><span class="chip hyp">Optimización</span></td><td class="mono">id_nave, zona, m2_rango</td><td>Señal más fuerte disponible con volumen suficiente</td></tr>
+        <tr><td class="mono">form_start</td><td><span class="chip neutral">Micro</span></td><td class="mono">origen</td><td>Diagnóstico de fricción del formulario</td></tr>
+        <tr><td class="mono">lead_submit</td><td><span class="chip ok">Comercial</span></td><td class="mono">zona[], m2, actividad, timing</td><td>Conversión primaria reportada</td></tr>
+        <tr><td class="mono">lead_qualified</td><td><span class="chip ok">Comercial</span></td><td class="mono">id_tokko, motivo</td><td>Offline. Métrica de calidad real por canal</td></tr>
+        <tr><td class="mono">visit_scheduled</td><td><span class="chip ok">Comercial</span></td><td class="mono">id_tokko, id_nave</td><td>Offline. El mejor predictor de cierre</td></tr>
+        <tr><td class="mono">visit_done</td><td><span class="chip ok">Comercial</span></td><td class="mono">id_tokko</td><td>Offline</td></tr>
+        <tr><td class="mono">contract_signed</td><td><span class="chip ok">Comercial</span></td><td class="mono">id_tokko, valor</td><td>Offline. Cierra el bucle económico</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Nomenclatura y trazabilidad</h3>
+  <div class="prose">
+    <p>Extendiendo la convención vigente <code>[Propiedad] | [Objetivo]</code> a una estructura que soporte zona y etapa:</p>
+    <p><code class="mono">KRE_IND | [zona] | [etapa] | [objetivo]</code> &nbsp;→&nbsp; <code class="mono">KRE_IND | GBA | TOFU | video</code></p>
+    <p>En UTM, además de los cinco parámetros estándar, dos propios que viajan hasta Tokko como campos ocultos del formulario:</p>
+    <p><code class="mono">?utm_source=meta&amp;utm_medium=paid&amp;utm_campaign=kre_ind_gba_tofu&amp;utm_content=video_recorrido_oeste&amp;zona=oeste&amp;m2=500-1500</code></p>
+    <p>En Tokko, cinco campos obligatorios en la carga de todo lead: <strong>zona o zonas de interés, m² requeridos, actividad, timing de mudanza y origen</strong>. Sin esos campos completos, ninguna de las decisiones de este documento se puede tomar con evidencia.</p>
+  </div>
+
+  <h3>Atribución con ciclo largo</h3>
+  <div class="prose">
+    <p>Dos cosas hay que aceptar de entrada. La primera: con volúmenes bajos, los modelos de atribución basados en datos no van a tener con qué entrenar, así que la lectura principal debe ser el <strong>origen declarado en el CRM más un análisis por cohortes</strong>, y no el dashboard de la plataforma. La segunda: las ventanas de importación tienen límite. Google documenta que las conversiones offline importadas con GCLID se aceptan hasta 90 días después del clic, y las conversiones mejoradas para clientes potenciales hasta 63 días. Si el ciclo real de un alquiler industrial supera esos plazos —y es probable que a veces los supere—, el contrato firmado no va a poder devolverse a la plataforma.</p>
+    <p><strong>Consecuencia práctica:</strong> el evento que se devuelve a las plataformas para optimizar no debe ser el contrato sino <strong>la visita agendada</strong>, que ocurre dentro de la ventana y correlaciona fuerte con el cierre. El contrato se mide internamente, contra la inversión del período, no contra el clic.</p>
+  </div>
+
+  <h3>Plan de experimentación</h3>
+  <div class="prose">
+    <p>El orden importa: cada test necesita que el anterior haya estabilizado la medición.</p>
+    <ol>
+      <li><strong>Eje de mensaje</strong> — el test de mayor valor y el que nadie corre. Comparar tres promesas: la zona ("el polo industrial que crece en X"), los metros ("naves de 500 a 1.500 m² disponibles") y el beneficio operativo ("altura y accesos para operar sin reformas"). La hipótesis a refutar es la del propio documento: que los metros venden mejor que la zona.</li>
+      <li><strong>Fricción de captura</strong> — ficha técnica abierta contra ficha detrás de formulario. Mide volumen contra calidad, y define si el modelo es de captura o de contenido abierto.</li>
+      <li><strong>Canal de conversión</strong> — WhatsApp contra formulario, midiendo hasta visita agendada y no hasta lead. Es habitual que WhatsApp gane en volumen y pierda en calificación.</li>
+      <li><strong>Separación zonal</strong> — recién cuando una zona alcance por sí sola el volumen de eventos necesario. Correr este test antes es gastar en confirmar ruido.</li>
+    </ol>
+    <p>Criterio de corte transversal: la métrica de decisión es el <strong>costo por visita agendada</strong>, con el costo por lead como diagnóstico y nunca como objetivo. Ninguna decisión de reasignación de presupuesto debería tomarse sobre una diferencia que no se sostenga durante al menos dos ciclos de medición completos.</p>
+  </div>
+</section>
+
+<section id="auditoria">
+  <h2><span class="num">09</span> Auditoría del borrador v1</h2>
+  <p class="h2sub">Qué se conserva, qué se corrige y qué falta por completo</p>
+
+  <p class="prose">El archivo contiene 80 elementos: 50 textos, 20 flechas y 10 rectángulos. Está organizado como una <strong>grilla de tres filas</strong> —Público Frío (14-30 días), Retargeting Tibio (7-14 días) y Caliente/Conversión— por cuatro columnas: público, creativos, estilo de copy y presupuesto, más una columna ancha de ideas de contenido. Los 10 rectángulos vacíos, de 251×272 px, son placeholders de video: cinco en la primera fila, tres en la segunda, dos en la tercera, que coinciden exactamente con las cantidades anotadas.</p>
+
+  <div class="finding keep">
+    <h4>Se conserva <span class="chip ok">Activo</span></h4>
+    <p>La biblioteca de contenido es genuinamente buena y está a nivel de ejecución, no de idea. "5 errores al alquilar una nave industrial", la comparativa de corredores, el FAQ de expensas y plazos, y sobre todo los recorridos de nave con m², altura, accesos y portones: eso es exactamente el activo MOFU que gana este mercado. Migra completo al diagrama v2 como biblioteca mapeada a etapas.</p>
+    <p>También se conserva la progresión de tres temperaturas y el criterio de audiencia por profundidad de visualización (50-75% del video), que es la señal correcta.</p>
+  </div>
+
+  <div class="finding crit">
+    <h4>Corrección crítica: la asignación presupuestaria está invertida <span class="chip gap">Riesgo</span></h4>
+    <p>El borrador asigna al público frío <strong>el 20-25% del presupuesto</strong>, y es el único nivel donde hay asignación explícita.</p>
+    <span class="evidence">Etapa 1 · Presupuesto: "Menor % del total (20-25%)"
+Etapa 2 · Presupuesto: (sin definir)
+Etapa 3 · Presupuesto: (sin definir)</span>
+    <p>Sin audiencias previas construidas, destinar tres cuartas partes de la inversión a retargeting agota el pool: frecuencia alta sobre una audiencia chica que nadie está alimentando. En un universo tan acotado como el de empresas buscando nave en GBA, el frío no es el resto del presupuesto: es el piso que define el tamaño de todo lo demás. La proporción debería invertirse al arrancar y sólo desplazarse hacia remarketing cuando las audiencias tibias tengan tamaño propio.</p>
+  </div>
+
+  <div class="finding crit">
+    <h4>Contradicción con la hipótesis del brief <span class="chip gap">Riesgo</span></h4>
+    <p>El brief plantea arrancar con una campaña unificada. El borrador, en cambio, ya segmenta por zona en el público frío:</p>
+    <span class="evidence">Etapa 1 · Público: "Público apuntado a las zonas, edad amplia"
+                    "Radio comercial lógico. No hiper segementado"</span>
+    <p>Son dos arquitecturas distintas conviviendo en el mismo documento. Hay que resolverlo antes de armar la campaña, porque determina la estructura de cuentas. La recomendación de la sección 04 va por unificar en Meta y segmentar sólo en Search.</p>
+  </div>
+
+  <div class="finding">
+    <h4>Las ventanas temporales son ambiguas y demasiado cortas <span class="chip hyp">Corregir</span></h4>
+    <p>"14-30 días" y "7-14 días" aparecen sin aclarar si son duración de la fase o ventana de la audiencia. Si son ventanas de retargeting, quedan cortísimas para un ciclo de decisión que se mide en meses: alguien que vio el recorrido de una nave hace tres semanas sigue siendo un prospecto vivo. La v2 propone ventanas de 30 a 90 días en MOFU.</p>
+  </div>
+
+  <div class="finding">
+    <h4>Duplicación de la definición de audiencia <span class="chip hyp">Corregir</span></h4>
+    <p>La audiencia de cada etapa está definida dos veces, en la columna de público y otra vez suelta en la columna de videos, con redacciones que no coinciden: "más del 50-70%" en un lado y "≥50-75%" en el otro. Es el tipo de discrepancia que después se traduce en dos audiencias distintas creadas en la plataforma.</p>
+  </div>
+
+  <div class="finding">
+    <h4>Las flechas no representan flujo de usuarios <span class="chip hyp">Corregir</span></h4>
+    <p>De las 20 flechas, sólo 4 tienen vínculo con un elemento, y ninguna conecta dos nodos: tienen origen o destino, nunca ambos. Las 16 restantes son llaves tipográficas y subrayados de 1-2 px de alto. En términos de diagrama, <strong>no hay ninguna conexión real</strong>: el archivo es una grilla de contenido, no un funnel. Las tres conexiones que sí existen unen bloques de creativos entre filas, es decir, encadenan piezas de producción, no estados del usuario.</p>
+  </div>
+
+  <div class="finding crit">
+    <h4>Ausencias completas <span class="chip gap">Falta</span></h4>
+    <p>No figura, en ninguna forma, ninguno de los siguientes: landing pages o hub como nodo; fichas de propiedad; eventos, píxel o microconversiones; formularios; WhatsApp como nodo (aparece sólo mencionado dentro de un texto de copy); CRM y pipeline de Tokko; visitas; exclusiones; Google Search; portales inmobiliarios; y cualquier bucle de retroalimentación hacia las plataformas.</p>
+    <p>Dicho de otro modo: el borrador cubre bien <strong>qué se publica</strong> y no cubre <strong>qué pasa después del clic</strong>, que es donde se decide el negocio.</p>
+  </div>
+
+  <div class="finding">
+    <h4>Zona Sur está prácticamente ausente <span class="chip gap">Falta</span></h4>
+    <p>Los recorridos concretos cubren Norte y Oeste. Sur aparece una sola vez, dentro de una idea de contenido comparativa. Si Sur está en cartera, hoy no tiene ni creativo ni audiencia asignada.</p>
+  </div>
+
+  <div class="finding">
+    <h4>Riesgo de escasez declarada <span class="chip hyp">Atención</span></h4>
+    <p>El copy de etapa 3 usa "Quedan X naves disponibles" con contador. El propio borrador aclara "urgencia real", que es el criterio correcto. Vale sostenerlo como regla escrita: en B2B, con un decisor que va a verificar disponibilidad en la primera llamada, una escasez inventada cuesta la operación y la reputación. El contador debe leer disponibilidad real de Tokko o no existir.</p>
+  </div>
+</section>
+
+<section id="diagrama">
+  <h2><span class="num">10</span> Diagrama v2</h2>
+  <p class="h2sub">Mapa de recorrido con lógica Funnelytics</p>
+
+  <div class="prose">
+    <p>El archivo editable está en <code class="mono">marketing/naves-industriales/funnel-naves-industriales-v2.excalidraw</code>, listo para abrir en Excalidraw. Sigue las tres convenciones que hacen legible un mapa de Funnelytics y que el borrador v1 no tenía:</p>
+    <ol>
+      <li><strong>Cada nodo tiene un tipo, y el tipo se ve.</strong> Fuente de tráfico, campaña, anuncio, página, evento, acción y offline/CRM tienen forma y color propios, con leyenda en el canvas. Leer el mapa no exige leer el texto de cada caja.</li>
+      <li><strong>Cada nodo tiene su slot de datos.</strong> Debajo de cada uno hay una caja con <code class="mono">pers. —  conv. —</code>, hoy vacía a propósito. Ese es el corazón del método: el mapa no es un organigrama, es el soporte donde después se apoyan los números reales de cuántas personas entraron, cuántas siguieron y dónde se cayeron. Se completan al cerrar la Fase 1, y ahí el mapa empieza a mostrar dónde está la fuga.</li>
+      <li><strong>Toda conexión es una flecha con origen y destino vinculados</strong>, así que los nodos se pueden mover sin romper el flujo, y cada flecha representa un tránsito real de personas y no una relación conceptual.</li>
+    </ol>
+    <p>El recorrido se lee de izquierda a derecha en siete columnas, con las bifurcaciones donde efectivamente ocurren.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:150px">Columna</th><th>Nodos</th><th>Bifurcación o convergencia</th></tr></thead>
+      <tbody>
+        <tr><th>1 · Fuentes</th><td>Google Search · Meta Ads · Portales · LinkedIn · Outbound</td><td>Portales entra directo a ficha: no pasa por campaña, y por eso hay que medirlo aparte</td></tr>
+        <tr><th>2 · Campañas</th><td>Search × zona (3) · 1 campaña fría GBA · LinkedIn por rubro y m² · Secuencia outbound</td><td>Único punto donde la arquitectura A/B/C se materializa</td></tr>
+        <tr><th>3 · Anuncios</th><td>Anuncios de búsqueda por partido · Video recorrido, comparativa de zonas, 5 errores · Contenido técnico · WhatsApp y mail 1:1</td><td>Acá vive la diferenciación zonal en Meta: en el creativo, no en la campaña</td></tr>
+        <tr><th>4 · Páginas</th><td>Landing zonal · Hub con selector zona × m² × uso · Ficha de propiedad · Guía técnica</td><td>Landing y ficha convergen en el hub, que es donde se captura la declaración</td></tr>
+        <tr><th>5 · Decisión y eventos</th><td>Rombo "¿declaró zona y m²?" · select_zona_m2 · download_ficha · video_50 / view_ficha · form_start / whatsapp_click</td><td>La bifurcación central: sí va a audiencia segmentada, no vuelve al pool general sin excluirse de nada</td></tr>
+        <tr><th>6 · Acciones</th><td>Remarketing zona × m² · Activos MOFU · WhatsApp calificador · Formulario corto · Agenda de visita</td><td>Agenda de visita es el nodo destacado: es el evento que se devuelve a las plataformas</td></tr>
+        <tr><th>7 · CRM Tokko</th><td>Lead → Calificado → Visita realizada → Oferta → Contrato firmado</td><td>Cadena offline. El slot de contrato mide contratos y valor, no personas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Cerrando el mapa, dos elementos que el v1 no tenía en ninguna forma: el <strong>bucle de retroalimentación</strong>, que devuelve la visita agendada a Meta y Google y desde ahí reasigna presupuesto y audiencias sobre la campaña fría; y el <strong>nodo de exclusiones</strong>, que retira del remarketing pagado a quien ya agendó visita, ya firmó, o pertenece al equipo o a la competencia.</p>
+  </div>
+</section>
+
+<section id="fases">
+  <h2><span class="num">11</span> Implementación por fases</h2>
+  <p class="h2sub">Cada fase tiene una condición de salida explícita</p>
+
+  <ol class="phases">
+    <li><div>
+      <h4>Instrumentación</h4>
+      <p>Hub con selector de zona × m² × tipo de uso. Fichas con URL propia. Capa de eventos completa con sus parámetros. Cinco campos obligatorios en Tokko. UTMs capturados como campos ocultos. Extracción del histórico de consultas de los últimos 12 meses.</p>
+      <p class="gate"><b>Salida:</b> un lead de prueba recorre el circuito completo y llega a Tokko con zona, m², timing y origen correctos.</p>
+    </div></li>
+    <li><div>
+      <h4>Descubrimiento</h4>
+      <p>Campaña fría unificada en Meta más Search por zona, con la biblioteca de creativos existente. Presupuesto mayoritario en frío. Sin optimizar todavía por lead: optimizar por descarga de ficha o selección de zona y m².</p>
+      <p class="gate"><b>Salida:</b> distribución real de demanda por zona y por rango de m², y una primera lectura de costo por visita agendada.</p>
+    </div></li>
+    <li><div>
+      <h4>Remarketing y calificación</h4>
+      <p>Audiencias MOFU sobre intención declarada, ventana de 30 a 90 días. Activos de consideración publicados. WhatsApp calificador operativo. Exclusiones activas. Conversiones offline devolviendo la visita agendada a las plataformas.</p>
+      <p class="gate"><b>Salida:</b> el costo por visita agendada se puede leer por canal y por zona con dos ciclos de datos.</p>
+    </div></li>
+    <li><div>
+      <h4>Experimentación</h4>
+      <p>Test de eje de mensaje —zona contra metros contra beneficio operativo—, después fricción de captura y canal de conversión.</p>
+      <p class="gate"><b>Salida:</b> queda definido cuál es el eje de mensaje que gobierna los creativos de aquí en adelante.</p>
+    </div></li>
+    <li><div>
+      <h4>Escala o separación</h4>
+      <p>Se separa una zona sólo si alcanza por sí sola el volumen de eventos que la plataforma necesita, o si hay una razón comercial de cobertura de cartera que lo justifique.</p>
+      <p class="gate"><b>Salida:</b> arquitectura estabilizada y presupuesto asignado por evidencia, no por hipótesis.</p>
+    </div></li>
+  </ol>
+</section>
+
+<section id="proximos">
+  <h2><span class="num">12</span> Próximos pasos y preguntas abiertas</h2>
+  <p class="h2sub">Lo que hay que responder antes de comprometer presupuesto</p>
+
+  <div class="prose">
+    <p>Los tres primeros pasos no dependen de ninguna respuesta y se pueden empezar ya: <strong>extraer el histórico de consultas de Tokko</strong>, <strong>agregar los cinco campos obligatorios al alta de lead</strong> y <strong>definir la estructura del hub con el selector</strong>. Todo lo demás depende de esto:</p>
+  </div>
+
+  <ol class="qs">
+    <li><div><b>¿Cuántas consultas semanales puede atender bien el equipo?</b><span>Es el techo del funnel. Generar por encima de esa capacidad no agrega operaciones: quema leads y desgasta la marca.</span></div></li>
+    <li><div><b>¿Cuál es la distribución real de la cartera por zona y por rango de m²?</b><span>Define dónde tiene sentido invertir y dónde generar demanda sería irresponsable por falta de producto.</span></div></li>
+    <li><div><b>¿Cuánto vale una operación de alquiler cerrada para Krak?</b><span>Sin ese número, cualquier costo por lead es una opinión. Con él, se puede calcular cuánto se puede pagar por una visita agendada.</span></div></li>
+    <li><div><b>¿Cuánto tarda hoy, en promedio, de primera consulta a firma?</b><span>Determina las ventanas de retargeting, el modelo de atribución y si el contrato entra o no en la ventana de importación de conversiones.</span></div></li>
+    <li><div><b>¿Zona Sur entra en esta campaña?</b><span>Hoy no tiene creativos ni audiencia asignada. Si entra, hay producción pendiente; si no, conviene decirlo explícitamente y no diluir.</span></div></li>
+    <li><div><b>¿Qué porcentaje de las consultas actuales viene de portales?</b><span>Si es dominante, el rol de la campaña paga cambia: pasa de generar consultas a mejorar las que ya llegan y a construir marca sobre la demanda latente.</span></div></li>
+  </ol>
+
+  <div class="prose">
+    <h3>Una oportunidad adyacente</h3>
+    <p>Los activos que este funnel exige —ficha técnica completa, comparador de corredores, calculadora de metros, biblioteca de recorridos filmados— son, en conjunto, un <strong>producto de contenido con valor propio</strong> para el mercado industrial de GBA, un segmento donde prácticamente nadie publica información técnica ordenada. Construidos una vez, sirven a la captación de inquilinos, al posicionamiento de Krak como referente del segmento, y como material vendible por Krak Studio a otros actores del rubro. Vale considerarlos inversión en activo, no gasto de campaña, y presupuestarlos en consecuencia.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Datos verificados en fuentes oficiales</strong> (todo lo demás es recomendación fundamentada, no dato):</p>
+  <ul>
+    <li>Umbral de ~50 eventos de optimización cada 7 días por conjunto de anuncios para salir de la fase de aprendizaje — <a href="https://www.facebook.com/business/help/112167992830700/">Meta Business Help Centre, "About the learning phase"</a></li>
+    <li>Ventanas de importación de conversiones offline: 90 días con GCLID, 63 días para conversiones mejoradas para clientes potenciales — <a href="https://support.google.com/google-ads/answer/10029210?hl=en">Google Ads Help, "Offline conversion imports FAQs"</a> y <a href="https://support.google.com/google-ads/answer/2998031?hl=en">"About offline conversion imports"</a></li>
+  </ul>
+  <p style="margin-top:14px">No se incluyen cifras de presupuesto, cantidad de propiedades, precios, superficies ni resultados históricos de Krak Real Estate: ninguno de esos datos fue provisto.</p>
+</footer>
+
+</div>
