@@ -1,0 +1,1528 @@
+<title>Kit de Campaña Krak Industrial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#14181E; --ink-2:#4E586E; --ink-3:#7C8594;
+  --rule:#D8DCE2; --rule-soft:#E9ECF0;
+  --surface:#FFFFFF; --ground:#F2F4F6; --raise:#FAFBFC;
+  --brand:#08407C; --brand-soft:#E5EDF7; --steel:#4E586E;
+  --ok:#15683A; --ok-soft:#E2F0E7;
+  --warn:#8A5310; --warn-soft:#F6EEE1;
+  --risk:#9E1F1B; --risk-soft:#F7E5E4;
+  --code-bg:#F5F6F8; --code-ink:#1D2530;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A; --steel:#9AA4B4;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --warn:#DDA55F; --warn-soft:#281F12;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A; --steel:#9AA4B4;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --warn:#DDA55F; --warn-soft:#281F12;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.page{max-width:1180px;margin:0 auto;padding:0 26px 110px}
+.prose{max-width:72ch}
+code,.mono,pre{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+/* header */
+header.top{padding:46px 0 22px;border-bottom:3px solid var(--brand);margin-bottom:10px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);font-weight:700}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.05;font-weight:800;letter-spacing:-.028em;
+  margin:12px 0 12px;text-wrap:balance}
+.dek{font-size:18px;color:var(--ink-2);max-width:64ch;margin:0}
+dl.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px 24px;
+  margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft)}
+dl.meta div{display:flex;flex-direction:column;gap:2px}
+dl.meta dt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+dl.meta dd{margin:0;font-size:14px;font-weight:600}
+
+/* sections */
+section{margin-top:66px;scroll-margin-top:16px}
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--brand);
+  margin:0 0 8px;display:flex;align-items:baseline;gap:12px}
+h2 .num{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);font-weight:500}
+.h2sub{font-size:clamp(22px,2.8vw,30px);font-weight:700;letter-spacing:-.022em;line-height:1.16;
+  margin:0 0 20px;max-width:26ch;text-wrap:balance}
+h3{font-size:19px;font-weight:700;letter-spacing:-.014em;margin:38px 0 10px}
+h4{font-size:14.5px;font-weight:700;margin:22px 0 6px;color:var(--ink-2)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:21px}
+li{margin-bottom:6px}
+a{color:var(--brand);text-underline-offset:3px}
+
+/* thesis */
+.thesis{background:var(--brand-soft);border-left:3px solid var(--brand);padding:22px 24px;
+  margin:0 0 28px;border-radius:0 5px 5px 0}
+.thesis .lead{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.38;margin-bottom:10px}
+.thesis p:last-child{margin-bottom:0}
+
+/* tables */
+.scroll{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:7px;
+  background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.45;min-width:660px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  background:var(--raise);border-bottom:1px solid var(--rule);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+tbody th{font-weight:700;width:1%;white-space:nowrap}
+.tnum{font-variant-numeric:tabular-nums;text-align:right}
+td.mono,th.mono{font-family:"IBM Plex Mono";font-size:12px}
+
+/* PIECE CARD — the spine of this document */
+.piece{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:22px 0;
+  overflow:hidden}
+.piece-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;
+  padding:14px 20px;background:var(--raise);border-bottom:1px solid var(--rule)}
+.piece-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px;letter-spacing:.02em}
+.piece-name{font-size:16.5px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:180px}
+.piece-spec{font-family:"IBM Plex Mono";font-size:11.5px;color:var(--ink-3)}
+.piece-body{padding:18px 20px 20px;display:grid;gap:16px}
+.field{display:grid;gap:5px}
+.field-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.copy{font-family:"IBM Plex Mono";font-size:13px;line-height:1.62;background:var(--code-bg);
+  color:var(--code-ink);padding:12px 14px;border-radius:5px;border-left:2px solid var(--steel);
+  white-space:pre-wrap;overflow-x:auto;margin:0}
+.copy.cta{border-left-color:var(--ok)}
+.note{font-size:13.5px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+
+/* chips */
+.chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:2.5px 8px;border-radius:3px;white-space:nowrap}
+.chip.tofu{background:var(--brand-soft);color:var(--brand)}
+.chip.mofu{background:var(--warn-soft);color:var(--warn)}
+.chip.bofu{background:var(--ok-soft);color:var(--ok)}
+.chip.risk{background:var(--risk-soft);color:var(--risk)}
+.chip.neutral{background:var(--rule-soft);color:var(--ink-2)}
+
+/* finding */
+.finding{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--warn);
+  border-radius:0 7px 7px 0;padding:15px 19px;margin:14px 0}
+.finding.crit{border-left-color:var(--risk)}
+.finding.keep{border-left-color:var(--ok)}
+.finding h4{margin:0 0 5px;font-size:15.5px;color:var(--ink);display:flex;gap:10px;
+  align-items:baseline;flex-wrap:wrap}
+.finding p{font-size:14.5px;margin:0 0 7px;color:var(--ink-2)}
+.finding p:last-child{margin-bottom:0}
+
+/* wireframe */
+.wire{background:var(--code-bg);border:1px solid var(--rule);border-radius:7px;padding:16px 18px;
+  margin:18px 0;overflow-x:auto}
+.wire-block{border:1px dashed var(--ink-3);border-radius:4px;padding:11px 14px;margin-bottom:9px;
+  background:var(--surface)}
+.wire-block:last-child{margin-bottom:0}
+.wire-tag{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;display:block;margin-bottom:5px}
+.wire-block p{font-size:14px;margin:0 0 5px}
+.wire-block p:last-child{margin:0}
+
+/* script table */
+.script{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+.script th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:700;padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left}
+.script td{padding:10px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.script td:first-child{font-family:"IBM Plex Mono";font-size:12px;color:var(--brand);white-space:nowrap;
+  font-weight:600}
+.script tr:last-child td{border-bottom:none}
+
+/* phases */
+ol.phases{list-style:none;padding:0;margin:22px 0;counter-reset:ph}
+ol.phases>li{counter-increment:ph;display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:17px 0;border-bottom:1px solid var(--rule-soft)}
+ol.phases>li::before{content:"F" counter(ph);font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;
+  color:var(--brand);background:var(--brand-soft);border-radius:4px;width:34px;height:25px;
+  display:grid;place-items:center}
+ol.phases h4{margin:0 0 4px;font-size:16px;color:var(--ink)}
+ol.phases p{font-size:14.5px;margin:0 0 5px;color:var(--ink-2)}
+ol.phases .gate{font-size:13px;color:var(--ink-3)}
+ol.phases .gate b{color:var(--ink-2)}
+
+footer{margin-top:76px;padding-top:22px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){.page{padding:0 16px 70px}body{font-size:15.5px}}
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow">Krak Industrial · Kit de producción</div>
+  <h1>Campaña de alquiler de naves industriales</h1>
+  <p class="dek">Plataforma de mensaje, especificación de landing y las 34 piezas listas para producir, con copy literal, brief visual y guion de rodaje.</p>
+  <dl class="meta">
+    <div><dt>Para</dt><dd>Equipo de Krak Studio</dd></div>
+    <div><dt>Producto</dt><dd>Alquiler de naves</dd></div>
+    <div><dt>Cartera</dt><dd>9 naves en exclusiva</dd></div>
+    <div><dt>Canales</dt><dd>Search · Meta · LinkedIn</dd></div>
+    <div><dt>Fecha</dt><dd>12 de septiembre de 2026</dd></div>
+    <div><dt>Estado</dt><dd>Listo para producir</dd></div>
+  </dl>
+</header>
+
+<section id="cambio">
+  <h2><span class="num">01</span> Lo que cambió del brief</h2>
+  <p class="h2sub">Nadie se enamora de una nave</p>
+
+  <div class="thesis prose">
+    <p class="lead">El residencial vende un lugar donde querés estar. El industrial resuelve un problema de operación con fecha de vencimiento. El cliente no busca: necesita, y necesita ya.</p>
+    <p>Entra con tres parámetros cerrados —<strong>metros, actividad y zona</strong>— y quiere una sola cosa: que alguien le mande lo que hay. Toda la comunicación tiene que estar construida sobre esa impaciencia, no contra ella.</p>
+  </div>
+
+  <div class="prose">
+    <p>Eso tiene consecuencias concretas sobre cada pieza, y son las que ordenan este kit:</p>
+    <ul>
+      <li><strong>Nada de seducción.</strong> Ni "descubrí", ni "imaginate", ni drone al atardecer. Datos arriba: metros, altura libre, accesos, valor. La estética es la del dato ordenado, no la del inmueble soñado.</li>
+      <li><strong>El formulario es el producto, no el peaje.</strong> Pedirle los tres parámetros no es fricción: es exactamente lo que vino a hacer. Un formulario de requerimiento bien hecho convierte mejor que un "consultá sin compromiso".</li>
+      <li><strong>La velocidad es la promesa.</strong> Si el diferencial es que se la conseguimos, el tiempo de respuesta es el producto. Esto obliga a un compromiso operativo, no solo publicitario.</li>
+      <li><strong>Cartera y búsqueda no son dos promesas, son una sola en dos tiempos.</strong> Tu corrección al brief es la que ordena todo el mensaje, y va abajo.</li>
+    </ul>
+  </div>
+
+  <h3>La secuencia del mensaje</h3>
+  <p class="prose">Mostrar cartera sin ofrecer búsqueda deja afuera al que necesita algo que no tenemos. Ofrecer búsqueda sin mostrar cartera no tiene con qué probar que somos los indicados para buscar. El orden correcto es <strong>prueba primero, oferta después</strong>, y se repite idéntico en cada pieza:</p>
+
+  <div class="wire">
+    <div class="wire-block">
+      <span class="wire-tag">1 · Prueba — la cartera</span>
+      <p>Nueve naves propias en exclusiva, de 1.325 a 9.000 m², entre 25 y 40 minutos de CABA. Con metros, valor y accesos a la vista.</p>
+    </div>
+    <div class="wire-block">
+      <span class="wire-tag">2 · Puente — el reconocimiento del problema</span>
+      <p>"Si ninguna te sirve, no es un problema."</p>
+    </div>
+    <div class="wire-block">
+      <span class="wire-tag">3 · Oferta — la búsqueda</span>
+      <p>Decinos los metros que necesitás, tu actividad y la zona, y te armamos el comparativo con lo que haya en el mercado.</p>
+    </div>
+  </div>
+
+  <p class="prose">El bloque 1 es lo que te hace creíble. El bloque 3 es lo que te hace útil al que no entra en el bloque 1 — que es la mayoría. Ninguna pieza de este kit lleva uno sin el otro.</p>
+
+  <h3>Tres hallazgos del CRM que condicionan la campaña</h3>
+
+  <div class="finding crit">
+    <h4>El pipeline histórico se murió solo <span class="chip risk">Condición de arranque</span></h4>
+    <p>En el export de contactos, la enorme mayoría de los leads figura <code>Cerrado</code> con motivo <code>Busqueda suspendida</code> o <code>Fantasma</code>, y las fechas de cierre se concentran en el 8 y el 13 de julio de 2026: registros de 2020, 2021 y 2022 cerrados en lote, años después de entrar.</p>
+    <p>El cuello de botella no es la generación. Es que el lead entra y nadie lo trabaja hasta que se lo cierra en masa. <b>Meterle tráfico pago a ese embudo es tirar plata.</b> Por eso el calificador de WhatsApp (pieza W-01) y el compromiso de respuesta no son accesorios del plan: son la condición para que la inversión tenga sentido.</p>
+  </div>
+
+  <div class="finding">
+    <h4>El CRM piensa en parques, no en zonas <span class="chip neutral">Confirma la arquitectura</span></h4>
+    <p>El campo <code>Ubicación De La Consulta</code> no registra norte, sur ni oeste: registra <code>BuenAyre2</code>, <code>Polo 25</code>, <code>Polo Gral Rodriguez</code>, <code>Panamericana</code>. La unidad mental del negocio ya es el parque específico. Confirma que la zona no debe separar campañas, y sugiere que el selector de la landing ofrezca corredor y parque, no una región abstracta.</p>
+  </div>
+
+  <div class="finding keep">
+    <h4>Los campos que hacen falta ya existen <span class="chip bofu">Ahorra trabajo</span></h4>
+    <p>Tokko ya tiene <code>Rubro Del Consultante</code>, escalas de inversión, capacidad constructiva en rangos de m² y un <code>Origen De Contacto</code> con taxonomía propia (<code>Campañas IG FB</code>, <code>Mensaje directo Meta/Instagram</code>, <code>Landing Page</code>, <code>Whatsapp</code>, <code>zonaprop</code>). No hay que crear nada: hay que volverlos obligatorios y mapearlos a los campos del formulario.</p>
+    <p><b>Salvedad:</b> ese histórico es de <b>venta de lotes en parques</b> (<code>Tipo De Operacion: Venta</code>, <code>Tipo De Producto: Lote Industrial</code>), no de alquiler de naves. Sirve como aprendizaje de canal y como prueba de que Meta genera volumen en este rubro, pero esa base <b>no es audiencia</b> para esta campaña: es otro producto y otro decisor.</p>
+  </div>
+</section>
+
+<section id="cartera">
+  <h2><span class="num">02</span> La cartera como activo</h2>
+  <p class="h2sub">Nueve naves, y lo que dicen de a quién le hablamos</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>#</th><th>Ubicación</th><th>Corredor</th><th class="tnum">Sup. cubierta</th><th class="tnum">Valor mensual</th><th class="tnum">USD/m²</th><th>Estado</th><th class="tnum">A CABA</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">01</td><td>Parque Industrial Ezeiza</td><td>Sur</td><td class="tnum">6.000 m² + 350 ofic.</td><td class="tnum">USD 30.000</td><td class="tnum">5,50</td><td>Disponible</td><td class="tnum">30 min</td></tr>
+        <tr><td class="mono">02</td><td>Parque Industrial Hurlingham</td><td>Oeste</td><td class="tnum">5.530 m²</td><td class="tnum">USD 28.400</td><td class="tnum">5,50</td><td>Disponible</td><td class="tnum">25 min</td></tr>
+        <tr><td class="mono">03</td><td>Polo Industrial Ezeiza</td><td>Sur</td><td class="tnum">6.000 m²</td><td class="tnum">USD 36.000</td><td class="tnum">6,00</td><td>A estrenar</td><td class="tnum">30 min</td></tr>
+        <tr><td class="mono">04</td><td>Arbox Park Escobar</td><td>Norte</td><td class="tnum">5.000 m²</td><td class="tnum">USD 32.500</td><td class="tnum">6,50</td><td>A estrenar</td><td class="tnum">40 min</td></tr>
+        <tr><td class="mono">05</td><td>Arbox Park Escobar</td><td>Norte</td><td class="tnum">4 mód. de 1.325 m²</td><td class="tnum">USD 8.612 /mód.</td><td class="tnum">6,50</td><td>Disponible</td><td class="tnum">40 min</td></tr>
+        <tr><td class="mono">06</td><td>Parque Industrial Reconquista</td><td>Oeste</td><td class="tnum">9.000 m²</td><td class="tnum">USD 67.500</td><td class="tnum">7,50</td><td>Disponible</td><td class="tnum">30 min</td></tr>
+        <tr><td class="mono">07</td><td>Centro Multicliente Pablo Podestá</td><td>Oeste</td><td class="tnum">4.927 m²</td><td class="tnum">USD 39.416</td><td class="tnum">8,00</td><td>Disponible</td><td class="tnum">25 min</td></tr>
+        <tr><td class="mono">08</td><td>Norlog</td><td>Norte</td><td class="tnum">6.000 m²</td><td class="tnum">Consultar</td><td class="tnum">8,50</td><td>Final de obra</td><td class="tnum">30 min</td></tr>
+        <tr><td class="mono">09</td><td>El Triángulo · Malvinas Argentinas</td><td>Norte</td><td class="tnum">6.447 m²</td><td class="tnum">USD 57.000</td><td class="tnum">8,84</td><td>Disponible</td><td class="tnum">25 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Lo que la cartera define sobre la audiencia</h3>
+  <div class="prose">
+    <ul>
+      <li><strong>No es una cartera para PyME chica.</strong> Ocho de las nueve naves están entre 4.900 y 9.000 m². El único acceso por debajo de eso es el módulo de 1.325 m² de Arbox, que además es divisible. El interlocutor real es un operador logístico, un distribuidor con volumen o una industria mediana — no el taller que busca 400 m².</li>
+      <li><strong>La segmentación de LinkedIn se desprende de ahí</strong>, y también el tono: a esa escala el decisor es gerente de operaciones, director de logística o dueño de empresa mediana, y evalúa con números.</li>
+      <li><strong>El rango de precio es la munición del anuncio.</strong> USD 5,50 a 8,84 por m² por mes es un dato duro, verificable y comparable. Decirlo de entrada filtra al que no puede y atrae al que está comparando.</li>
+      <li><strong>La distancia a CABA es el criterio ordenador, no la zona.</strong> El propio informe de búsqueda se tituló "30 min CABA": el cliente no pidió una zona, pidió un tiempo de viaje. Todas las piezas deben hablar en minutos, no en puntos cardinales.</li>
+      <li><strong>El hueco es el tramo chico.</strong> Debajo de 1.300 m² no hay producto propio. Es justamente donde la oferta de búsqueda tiene que hacer todo el trabajo — y probablemente donde esté el mayor volumen de consultas.</li>
+    </ul>
+  </div>
+
+  <h3>Regla de disponibilidad</h3>
+  <p class="prose">Ningún anuncio dice "últimas unidades" ni lleva contador salvo que el dato salga de Tokko ese día. El decisor industrial verifica disponibilidad en la primera llamada, y una escasez inventada cuesta la operación y la reputación. Cuando una nave se alquila, su anuncio se pausa el mismo día: <strong>la nave alquilada es prueba, no oferta</strong>, y pasa a la biblioteca de casos.</p>
+</section>
+
+<section id="mensaje">
+  <h2><span class="num">03</span> Plataforma de mensaje</h2>
+  <p class="h2sub">Qué decimos, cómo lo decimos y qué no decimos nunca</p>
+
+  <div class="grid2">
+    <div class="piece">
+      <div class="piece-head"><span class="piece-name">Se dice</span></div>
+      <div class="piece-body">
+        <ul style="margin:0">
+          <li>Metros, altura libre, accesos, energía, valor por m².</li>
+          <li>Minutos a CABA y accesos por nombre de ruta.</li>
+          <li>"Cartera propia en exclusiva."</li>
+          <li>"Decinos qué necesitás."</li>
+          <li>Estado real: disponible, a estrenar, en final de obra.</li>
+          <li>El plazo de respuesta, si lo vamos a cumplir.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="piece">
+      <div class="piece-head"><span class="piece-name">No se dice</span></div>
+      <div class="piece-body">
+        <ul style="margin:0">
+          <li>No se debe usar "tu lugar ideal", "el espacio de tus sueños" ni ninguna variante emocional.</li>
+          <li>No se debe prometer escasez que no esté en Tokko.</li>
+          <li>No se debe publicar una nave sin metros y sin valor o rango.</li>
+          <li>No se debe usar "consultá sin compromiso" como CTA: no dice qué pasa después.</li>
+          <li>No se debe mostrar render de una nave que existe. Foto real o nada.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Tono</h3>
+  <p class="prose">Profesional y directo, como habla un broker industrial con un gerente de operaciones: sin adjetivos de más, sin signos de admiración, tuteo argentino, números concretos. Si una frase podría estar en un aviso de departamento, está mal escrita para esta campaña.</p>
+
+  <h3>Sistema visual</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Elemento</th><th>Definición</th><th>Origen</th></tr></thead>
+      <tbody>
+        <tr><th>Tipografía</th><td>Inter. Titulares en Bold/Black con tracking cerrado; datos en Semibold; cuerpo en Regular.</td><td>Manual de Marca Krak RE 2025</td></tr>
+        <tr><th>Color base</th><td>Gama de grises: <code>#4E586E</code>, <code>#7C8594</code>, <code>#C3C3C3</code>, sobre blanco o gris claro.</td><td>Unidad Industrial (propuesta de ecosistema web)</td></tr>
+        <tr><th>Acento</th><td><code>#08407C</code> azul Krak, reservado para el dato clave y el CTA. Nunca como fondo de pieza completa.</td><td>Manual 2025</td></tr>
+        <tr><th>Logo</th><td>Krak Industrial, versión vertical sobre fondo gris. Mínimo 90 px de ancho en digital.</td><td>Manual 2025 · archivo en Drive</td></tr>
+        <tr><th>Fotografía</th><td>Luz natural, sin filtros, sin gente posando. La nave vacía y limpia es la foto correcta. Se permite operario en actividad real; no se permite estética de stock.</td><td>Manual 2025, sección Fotografía</td></tr>
+        <tr><th>Dato en placa</th><td>Los m² siempre en el mayor cuerpo tipográfico de la pieza. Es el titular real, aunque haya una frase arriba.</td><td>Definición de esta campaña</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="landing">
+  <h2><span class="num">04</span> La landing</h2>
+  <p class="h2sub">Especificación para el desarrollo web</p>
+
+  <p class="prose">Vive en <code>krak.com.ar/industrial/naves-en-alquiler</code>, dentro del ecosistema que está desarrollando el proveedor web, y aprovecha el píxel y la integración con el CRM ya contemplados en ese proyecto. Esta sección está escrita para pasarse tal cual a desarrollo.</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">L-01</span>
+      <span class="piece-name">Landing de requerimiento + cartera</span>
+      <span class="piece-spec">Desktop y mobile · destino de todo el tráfico frío</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Principio rector</span>
+        <p class="note">El formulario va <b>arriba de todo, no al final</b>. El que llega sabe lo que necesita: hacerlo scrollear tres pantallas antes de dejarle pedir es castigarlo por tener claro el requerimiento. La cartera va abajo del formulario, como prueba de que sabemos de qué hablamos.</p>
+      </div>
+
+      <div class="wire">
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 1 · Hero con formulario a la derecha</span>
+          <p><b>H1:</b> Naves industriales en alquiler en GBA</p>
+          <p><b>Bajada:</b> Nueve naves propias en exclusiva, de 1.325 a 9.000 m², entre 25 y 40 minutos de CABA. Si ninguna te sirve, te la conseguimos.</p>
+          <p><b>Fondo:</b> foto real de nave vacía, gris, luz natural. Sin texto encima.</p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 1b · Formulario (columna derecha, visible sin scroll)</span>
+          <p><b>Título del formulario:</b> Decinos qué necesitás</p>
+          <p><b>Campo 1 — Metros que necesitás:</b> selector de rango · Hasta 1.000 / 1.000 a 3.000 / 3.000 a 5.000 / 5.000 a 8.000 / Más de 8.000</p>
+          <p><b>Campo 2 — Actividad:</b> selector · Logística y distribución / Producción / Almacenamiento / Depósito fiscal / E-commerce / Otra</p>
+          <p><b>Campo 3 — Zona o corredor:</b> selección múltiple · Norte (Panamericana / Ruta 9) / Oeste (Acceso Oeste / Buen Ayre / Ruta 8) / Sur (Riccheri / Ezeiza-Cañuelas) / Me da igual, priorizo tiempo a CABA</p>
+          <p><b>Campo 4 — Cuándo necesitás mudarte:</b> selector · Ya / En 1 a 3 meses / En 3 a 6 meses / Más de 6 meses / Estoy relevando</p>
+          <p><b>Campo 5 y 6:</b> Nombre y empresa · Email o WhatsApp</p>
+          <p><b>Botón:</b> Ver las opciones disponibles</p>
+          <p><b>Microcopy bajo el botón:</b> Te respondemos en horario hábil con lo que tenemos y lo que consigamos.</p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 2 · Prueba — la cartera</span>
+          <p><b>Título:</b> Lo que tenemos disponible hoy</p>
+          <p>Grilla de 9 fichas. Cada una: foto, ubicación, corredor, m² cubiertos, valor mensual, USD/m², estado, accesos por nombre de ruta, minutos a CABA. Filtro superior por metros y por corredor que <b>escribe el evento</b> <code>select_zona_m2</code>.</p>
+          <p><b>CTA por ficha:</b> Ver ficha técnica &nbsp;·&nbsp; <b>CTA secundario:</b> Consultar por WhatsApp</p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 3 · Puente</span>
+          <p><b>Título:</b> ¿Ninguna te sirve?</p>
+          <p><b>Texto:</b> Es lo más común. Las nueve de arriba son nuestras; el resto del mercado lo relevamos nosotros. Nos decís metros, actividad y zona, y te armamos un comparativo con todo lo que haya, no solo con lo nuestro.</p>
+          <p><b>CTA:</b> Pedir el comparativo (ancla al formulario del hero)</p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 4 · Cómo trabajamos</span>
+          <p>Tres pasos, sin ilustraciones cursis: <b>1.</b> Nos pasás los parámetros. <b>2.</b> Relevamos cartera propia y mercado. <b>3.</b> Te mandamos un comparativo con metros, valores, accesos y estado de cada opción.</p>
+          <p><b>Prueba visual:</b> captura real del informe comparativo entregado a un cliente, con los datos sensibles tapados. Es el activo más persuasivo que tenemos y hoy no se muestra en ningún lado.</p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 5 · Qué mirar antes de firmar</span>
+          <p>Seis criterios técnicos en tarjetas cortas: altura libre · capacidad de piso · energía instalada · playa de maniobras y radio de giro · habilitación municipal y uso de suelo · expensas y gastos del parque. Cada uno con dos líneas de explicación real.</p>
+          <p><b>CTA:</b> Descargar el checklist completo &nbsp;→ dispara <code>download_ficha</code></p>
+        </div>
+        <div class="wire-block">
+          <span class="wire-tag">Bloque 6 · Cierre</span>
+          <p><b>Título:</b> Hablá con el equipo industrial</p>
+          <p>Contacto directo del broker a cargo, WhatsApp <code>+54 9 11 3888 2095</code>, <code>info@krak.com.ar</code>, Dardo Rocha 2070, 1er piso, Martínez.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Eventos a instrumentar</span>
+        <p class="copy">view_landing          · al cargar
+select_zona_m2        · al usar el filtro o completar campos 1-3
+view_ficha            · al abrir una ficha de nave    { id_nave, m2, corredor }
+download_ficha        · al bajar ficha o checklist
+form_start            · al tocar el primer campo
+lead_submit           · al enviar        { m2, actividad, zona[], timing, origen }
+whatsapp_click        · en cualquier botón de WhatsApp
+visit_scheduled       · desde CRM, offline</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Mapeo a Tokko (campos que ya existen)</span>
+        <p class="copy">Campo 1 · Metros        →  Capacidad constructiva (rangos)
+Campo 2 · Actividad     →  Rubro Del Consultante
+Campo 3 · Zona          →  Ubicación De La Consulta
+Campo 4 · Timing        →  campo nuevo, o etiqueta
+UTM + parámetros        →  Origen De Contacto
+Tipo de operación       →  Alquiler   (fijo en esta campaña)
+Tipo de producto        →  Nave       (fijo en esta campaña)</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Requisito no negociable</span>
+        <p class="note">Todo lead que entra por acá debe <b>notificar al broker en el momento</b>, no quedar esperando revisión. Dado lo que muestra el histórico del CRM, si esto no está resuelto, la campaña no debería salir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="search">
+  <h2><span class="num">05</span> Google Search</h2>
+  <p class="h2sub">Tres campañas, captura de intención declarada</p>
+
+  <p class="prose">Es el único canal que se separa por zona, porque la consulta del usuario ya declara el corredor y segmentar no cuesta señal de aprendizaje. Títulos de hasta 30 caracteres y descripciones de hasta 90, ya verificados.</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">GS-01</span>
+      <span class="piece-name">Naves por corredor · 3 grupos de anuncios</span>
+      <span class="piece-spec">Búsqueda · responsive · Norte / Oeste / Sur</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Palabras clave — Norte</span>
+        <p class="copy">alquiler nave industrial escobar
+galpon en alquiler escobar
+nave industrial malvinas argentinas
+deposito en alquiler panamericana
+parque industrial escobar alquiler
+alquiler galpon ruta 9
+nave logistica zona norte alquiler</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Palabras clave — Oeste</span>
+        <p class="copy">alquiler nave industrial hurlingham
+galpon en alquiler san martin
+nave industrial camino del buen ayre
+deposito alquiler acceso oeste
+parque industrial reconquista alquiler
+alquiler galpon ruta 8
+nave industrial pablo podesta</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Palabras clave — Sur</span>
+        <p class="copy">alquiler nave industrial ezeiza
+galpon en alquiler ezeiza
+parque industrial ezeiza alquiler
+deposito alquiler autopista riccheri
+nave industrial canuelas alquiler
+alquiler galpon zona sur gba</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Títulos — Norte (máx. 30)</span>
+        <p class="copy">Naves en Alquiler Zona Norte
+Nave Industrial en Escobar
+5.000 a 6.447 m2 Disponibles
+A 25 min de CABA por Panam.
+Cartera Propia en Exclusiva
+Desde USD 6,50 el m2
+Ficha Tecnica Completa
+Krak Industrial</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Títulos — Oeste (máx. 30)</span>
+        <p class="copy">Naves en Alquiler Zona Oeste
+Nave en Hurlingham o S. Martin
+4.927 a 9.000 m2 Disponibles
+Buen Ayre, Ruta 8 y Acc. Oeste
+A 25 min de CABA
+Desde USD 5,50 el m2
+Cartera Propia en Exclusiva
+Krak Industrial</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Títulos — Sur (máx. 30)</span>
+        <p class="copy">Naves en Alquiler Zona Sur
+Nave en Parque Ind. Ezeiza
+6.000 m2 + 350 m2 de Oficina
+Riccheri y Ezeiza-Canuelas
+A 30 min de CABA
+Desde USD 5,50 el m2
+Disponible y A Estrenar
+Krak Industrial</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Descripciones — las tres (máx. 90)</span>
+        <p class="copy">Naves propias en exclusiva. Metros, altura, accesos y valor a la vista. Entra ya.
+Decinos metros, actividad y zona. Te mandamos lo disponible y lo que consigamos.
+Ficha tecnica con altura libre, energia instalada y accesos para semi. Pedila.
+Brokers industriales. Comparamos cartera propia y mercado para tu requerimiento.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Recursos de anuncio</span>
+        <p class="copy">Enlaces de sitio:  Ver las 9 naves · Ficha tecnica · Como trabajamos · Checklist
+Textos destacados: Cartera propia · 1.325 a 9.000 m2 · 25 a 40 min de CABA · Respuesta en horario habil
+Fragmento:         Corredores — Norte, Oeste, Sur
+Llamada:           +54 9 11 3888 2095</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Nota de compra de medios</span>
+        <p class="note">Concordancia de frase y exacta, no amplia: el tráfico amplio en inmuebles trae curiosos y estudiantes. <b>Palabras clave negativas obligatorias:</b> venta, comprar, terreno, lote, precio m2 construccion, alquiler galpon particular, cochera, deposito de muebles, mudanza, guardamuebles, empleo, trabajo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">GS-02</span>
+      <span class="piece-name">Requerimiento genérico · sin zona</span>
+      <span class="piece-spec">Búsqueda · captura al que todavía no eligió corredor</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Palabras clave</span>
+        <p class="copy">busco nave industrial en alquiler
+alquiler nave industrial gba
+alquilar galpon buenos aires
+nave logistica en alquiler
+deposito logistico alquiler gba
+alquiler nave industrial 5000 m2
+inmobiliaria industrial buenos aires
+broker industrial naves</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Títulos (máx. 30)</span>
+        <p class="copy">Naves Industriales en Alquiler
+1.325 a 9.000 m2 en GBA
+Decinos los m2 que Necesitas
+9 Naves Propias Disponibles
+25 a 40 Minutos de CABA
+Desde USD 5,50 el m2
+Te Armamos el Comparativo
+Brokers Industriales</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Descripciones (máx. 90)</span>
+        <p class="copy">Nueve naves propias de 1.325 a 9.000 m2 en GBA. Y si ninguna sirve, la buscamos.
+Metros, actividad y zona: con eso te armamos un comparativo del mercado completo.
+Valores desde USD 5,50 el m2 por mes. Altura, accesos y estado de cada nave.
+No vendemos un lugar lindo. Resolvemos un requerimiento con datos y plazos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">GS-03</span>
+      <span class="piece-name">Marca</span>
+      <span class="piece-spec">Búsqueda · defensiva, presupuesto mínimo</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Palabras clave</span>
+        <p class="copy">krak industrial
+krak real estate industrial
+krak naves industriales
+krak real estate alquiler galpon</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Títulos y descripciones</span>
+        <p class="copy">Krak Industrial — Oficial
+Naves y Galpones en Alquiler
+Cartera Propia en Exclusiva
+
+Sitio oficial de Krak Industrial. Naves en alquiler en GBA, cartera propia.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Por qué existe</span>
+        <p class="note">Cuesta muy poco y evita que un competidor compre tu marca. Además captura al que vio un video y después buscó el nombre en Google, que es tráfico de la campaña de Meta mal atribuido a Search si no está.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="meta">
+  <h2><span class="num">06</span> Meta</h2>
+  <p class="h2sub">Una campaña fría, creativos por corredor, remarketing por intención</p>
+
+  <p class="prose">Estructura: <strong>una sola campaña fría</strong> con presupuesto a nivel campaña y ad sets por corredor debajo, para que compartan la fase de aprendizaje. Nomenclatura, extendiendo la convención vigente: <code class="mono">KRE_IND | [corredor] | [etapa] | [objetivo]</code>. En los copies, las dos primeras líneas son lo único que se ve antes del "ver más": ahí van los metros y el valor, siempre.</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-01</span>
+      <span class="piece-name">Carrusel de cartera</span>
+      <span class="piece-spec">1:1 · 9 tarjetas + portada · frío</span>
+      <span class="chip tofu">TOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Copy primario</span>
+        <p class="copy">Nueve naves industriales en alquiler en GBA, de 1.325 a 9.000 m2.
+Desde USD 5,50 el m2 por mes, entre 25 y 40 minutos de CABA.
+
+Todas son cartera propia en exclusiva: los metros, el valor y los accesos estan a la vista en cada una. Desliza para verlas.
+
+Si ninguna sirve para tu operacion, decinos cuantos metros necesitas, de que actividad y en que zona, y te armamos el comparativo con lo que haya en el mercado.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Tarjetas · una por nave (texto sobre placa)</span>
+        <p class="copy">Portada  ·  9 NAVES DISPONIBLES  /  1.325 a 9.000 m2  /  GBA
+Tarjeta 1 ·  6.000 m2 + 350 de oficina  /  P. I. Ezeiza  /  USD 30.000  /  30 min
+Tarjeta 2 ·  5.530 m2  /  P. I. Hurlingham  /  USD 28.400  /  25 min
+Tarjeta 3 ·  6.000 m2  /  Polo Ind. Ezeiza  /  USD 36.000  /  A estrenar
+Tarjeta 4 ·  5.000 m2  /  Arbox Park Escobar  /  USD 32.500  /  A estrenar
+Tarjeta 5 ·  1.325 m2 por modulo  /  Arbox Park Escobar  /  USD 8.612  /  40 min
+Tarjeta 6 ·  9.000 m2  /  P. I. Reconquista  /  USD 67.500  /  30 min
+Tarjeta 7 ·  4.927 m2  /  C. M. Pablo Podesta  /  USD 39.416  /  25 min
+Tarjeta 8 ·  6.000 m2  /  Norlog  /  Final de obra  /  30 min
+Tarjeta 9 ·  6.447 m2  /  El Triangulo  /  USD 57.000  /  25 min</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Titular y descripción</span>
+        <p class="copy">Titular:      Cartera propia en exclusiva
+Descripcion:  Metros, valor y accesos a la vista</p>
+      </div>
+      <div class="field">
+        <span class="field-label">CTA</span>
+        <p class="copy cta">Mas informacion  →  krak.com.ar/industrial/naves-en-alquiler</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Brief visual</span>
+        <p class="note">Foto real de cada nave, sin filtro, ocupando toda la tarjeta. Franja inferior gris <code>#4E586E</code> al 90% de opacidad con el dato. <b>Los m² en Inter Black, el cuerpo tipográfico más grande de la tarjeta</b> — más grande que el nombre del parque. Valor y minutos en Semibold debajo. Logo Krak Industrial chico, esquina superior derecha. Sin íconos decorativos, sin degradados, sin sombras.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-02</span>
+      <span class="piece-name">Video manifiesto · el problema, no el sueño</span>
+      <span class="piece-spec">9:16 y 1:1 · 45 s · frío</span>
+      <span class="chip tofu">TOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Copy primario</span>
+        <p class="copy">Nadie se enamora de una nave industrial.
+
+Cuando una empresa busca galpon es porque se le vence el contrato, porque crecio, o porque el dueno le pidio el inmueble. No hay tiempo para enamorarse: hay metros que se necesitan, una actividad que tiene que entrar y una fecha.
+
+Por eso trabajamos distinto. Nos pasas los metros, la actividad y la zona, y te devolvemos un comparativo con lo que tenemos y lo que hay en el mercado.
+
+Nueve naves propias de 1.325 a 9.000 m2, y el resto lo buscamos.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Titular · descripción · CTA</span>
+        <p class="copy">Titular:      Decinos los metros que necesitas
+Descripcion:  Cartera propia + busqueda de mercado
+CTA:          Mas informacion</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Guion — ver V-01</span>
+        <p class="note">El guion completo con tiempos, planos y texto en pantalla está en la sección 08.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-03</span>
+      <span class="piece-name">Placa de dato · una por corredor</span>
+      <span class="piece-spec">1:1 y 9:16 · 3 versiones · frío</span>
+      <span class="chip tofu">TOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Copy primario — Norte</span>
+        <p class="copy">Naves en alquiler sobre Panamericana y Ruta 9, de 1.325 a 6.447 m2.
+
+Escobar, Malvinas Argentinas y Norlog. Entre 25 y 40 minutos de CABA, con accesos preparados para semi.
+
+Valores desde USD 6,50 el m2 por mes. Te pasamos la ficha tecnica completa: altura libre, energia instalada, playa de maniobras y estado de habilitacion.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Copy primario — Oeste</span>
+        <p class="copy">Naves en alquiler sobre Buen Ayre, Acceso Oeste y Ruta 8, de 4.927 a 9.000 m2.
+
+Hurlingham, Reconquista y Pablo Podesta. A 25 y 30 minutos de CABA.
+
+Valores desde USD 5,50 el m2 por mes. Pedinos la ficha tecnica con altura, accesos y energia de cada una.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Copy primario — Sur</span>
+        <p class="copy">Naves en alquiler sobre Riccheri y Ezeiza-Canuelas, de 6.000 m2.
+
+Parque Industrial Ezeiza y Polo Industrial Ezeiza, una disponible y una a estrenar. A 30 minutos de CABA.
+
+Desde USD 5,50 el m2 por mes, con 350 m2 de oficinas en una de ellas.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Brief visual</span>
+        <p class="note">Fondo gris claro <code>#C3C3C3</code> o foto de nave desaturada. El rango de metros ocupa el <b>40% del alto de la pieza</b>, en Inter Black azul <code>#08407C</code>. Debajo, en gris oscuro: el nombre de las rutas de acceso. Abajo a la derecha, el valor desde. Es una placa de dato, no un aviso: cero adjetivos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-04</span>
+      <span class="piece-name">Reel · 5 errores al alquilar una nave</span>
+      <span class="piece-spec">9:16 · 60 s · frío</span>
+      <span class="chip tofu">TOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Copy primario</span>
+        <p class="copy">Cinco errores que vemos todas las semanas cuando una empresa alquila una nave.
+
+1. Mirar los metros cubiertos y no la altura libre. Si no entra el rack, los metros no sirven.
+2. No preguntar la capacidad de piso antes de traer la maquinaria.
+3. Descubrir la potencia electrica instalada despues de firmar.
+4. No medir la playa de maniobras con el camion real que van a usar.
+5. Asumir que el uso de suelo esta habilitado para la actividad.
+
+Los cinco se evitan con una ficha tecnica completa antes de visitar. Te la mandamos de cualquier nave de nuestra cartera.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Titular · CTA</span>
+        <p class="copy">Titular:  Pedi la ficha tecnica antes de visitar
+CTA:      Descargar</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Nota</span>
+        <p class="note">Rescatado del borrador original, que ya lo tenía identificado. Es la mejor pieza de siembra del kit: da valor real, no vende nada y construye la autoridad que después sostiene la oferta de búsqueda.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-05</span>
+      <span class="piece-name">Remarketing · recorrido de la nave que miró</span>
+      <span class="piece-spec">9:16 y 1:1 · 45 s · una versión por nave</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Audiencia</span>
+        <p class="copy">view_ficha  con  { id_nave }  ·  ventana 30 a 90 dias
+Excluye:  lead_submit, whatsapp_click, visit_scheduled</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Copy primario (plantilla)</span>
+        <p class="copy">[SUPERFICIE] m2 en [PARQUE], a [MINUTOS] minutos de CABA.
+
+Altura libre de [X] m, [N] portones, playa de maniobras para semi y [X] kVA instalados. Accesos por [RUTAS].
+
+USD [VALOR] por mes mas IVA. Esta [ESTADO].
+
+Si queres verla, coordinamos la visita esta semana.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">CTA</span>
+        <p class="copy cta">Enviar mensaje  →  WhatsApp con mensaje prellenado:
+"Hola, me interesa la nave de [SUPERFICIE] m2 en [PARQUE]."</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Dato faltante</span>
+        <p class="note">Altura libre, cantidad de portones y kVA instalados no están en el informe de búsqueda que tengo. <b>Hay que completarlos por nave antes de producir</b> — son justamente los datos que diferencian esta campaña de un aviso de portal.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-06</span>
+      <span class="piece-name">Remarketing · el comparativo como producto</span>
+      <span class="piece-spec">1:1 · imagen única · intención declarada</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Audiencia</span>
+        <p class="copy">select_zona_m2  o  download_ficha  ·  sin lead_submit  ·  30 a 90 dias</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Copy primario</span>
+        <p class="copy">Asi entregamos una busqueda de nave.
+
+Una tabla con cada opcion, los metros cubiertos, el valor mensual, el USD por m2, el estado, los accesos y los minutos a CABA. Cartera propia y mercado, en la misma hoja, para que compares de verdad.
+
+Nos decis metros, actividad y zona. El resto lo hacemos nosotros.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Brief visual</span>
+        <p class="note">La pieza <b>es</b> el informe: captura real de la tabla comparativa con los datos sensibles tapados, apenas inclinada, sobre fondo gris. Nada más. Es la prueba más fuerte que tiene Krak y hoy no se muestra en ningún lado.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">CTA</span>
+        <p class="copy cta">Obtener oferta  →  landing, ancla al formulario</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-07</span>
+      <span class="piece-name">Remarketing · recuperación de formulario</span>
+      <span class="piece-spec">1:1 · imagen única · 7 días</span>
+      <span class="chip bofu">BOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Audiencia</span>
+        <p class="copy">form_start  sin  lead_submit  ·  ventana 7 dias</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Copy primario</span>
+        <p class="copy">Empezaste a cargar tu requerimiento y quedo por la mitad.
+
+Son cuatro datos: metros, actividad, zona y para cuando lo necesitas. Con eso alcanza para armarte el comparativo.
+
+Si preferis contarlo por WhatsApp, escribinos y lo cargamos nosotros.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">CTA</span>
+        <p class="copy cta">Enviar mensaje  →  WhatsApp</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">MT-08</span>
+      <span class="piece-name">Anuncio de clientes potenciales</span>
+      <span class="piece-spec">Formulario instantáneo · solo si el sitio no está listo</span>
+      <span class="chip bofu">BOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Preguntas del formulario</span>
+        <p class="copy">1. Cuantos metros cubiertos necesitas?   (opciones, mismos rangos que la landing)
+2. Que actividad vas a desarrollar?      (opciones)
+3. En que zona o corredor?               (multiple)
+4. Para cuando lo necesitas?             (opciones)
+5. Nombre y empresa
+6. WhatsApp</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Pantalla final</span>
+        <p class="copy">Titulo:  Listo. Te escribimos por WhatsApp.
+Texto:   Con esos datos ya podemos armarte el comparativo. Si querés adelantarlo,
+         escribinos ahora y lo vemos en el momento.
+Boton:   Abrir WhatsApp</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Advertencia</span>
+        <p class="note">Usar el formulario instantáneo <b>solo como puente</b> hasta que la landing esté publicada. Convierte más barato pero califica peor, y sobre todo no deja rastro de navegación para el remarketing. Si se usa, el tipo de formulario debe ser <b>de intención más alta</b>, no volumen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="linkedin">
+  <h2><span class="num">07</span> LinkedIn</h2>
+  <p class="h2sub">El único canal que llega al decisor por cargo</p>
+
+  <p class="prose">Se justifica porque la cartera es de naves grandes: a esa escala el que decide tiene un cargo identificable. Es caro por impresión, así que va con presupuesto acotado y objetivo de tráfico o conversación, nunca de alcance.</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">LI-01</span>
+      <span class="piece-name">Segmentación</span>
+      <span class="piece-spec">Base para todos los anuncios de LinkedIn</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Definición</span>
+        <p class="copy">Ubicacion:   AMBA y Provincia de Buenos Aires
+Empresa:     51 a 200 / 201 a 500 / 501 a 1000 empleados
+Sector:      Logistica y cadena de suministro · Transporte y almacenamiento
+             Manufactura · Alimentos y bebidas · Envases y embalaje
+             Quimicos · Plasticos · Comercio mayorista · Retail y e-commerce
+Cargo:       Director / Gerente / Jefe de:
+             Operaciones · Logistica · Supply Chain · Planta · Industrial
+             Administracion y Finanzas · Facility / Infraestructura
+             Dueno, Socio, Gerente General, Director General (empresa mediana)
+Antiguedad:  Director, VP, Owner, CXO, Manager
+Excluir:     Inmobiliaria, Servicios inmobiliarios, Corretaje
+             (competencia y curiosos del rubro)</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Nota</span>
+        <p class="note">Los sectores salen del propio CRM: en <code>Rubro Del Consultante</code> ya aparecen Alimentos, Químicos y Plásticos. Es segmentación basada en clientes reales, no en suposición.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">LI-02</span>
+      <span class="piece-name">Imagen única · el dato como anuncio</span>
+      <span class="piece-spec">1200 × 627 · tráfico</span>
+      <span class="chip tofu">TOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Texto introductorio</span>
+        <p class="copy">Si tu contrato de alquiler vence en los proximos seis meses, el momento de empezar a buscar es ahora.
+
+Una mudanza industrial no se resuelve en treinta dias: hay que verificar altura libre, capacidad de piso, potencia instalada, playa de maniobras y habilitacion de uso de suelo. Y despues hay que mudar la operacion sin frenarla.
+
+Tenemos nueve naves propias en GBA, de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA. Y si ninguna encaja con tu operacion, relevamos el mercado y te armamos el comparativo.
+
+Metros, actividad y zona. Con eso arrancamos.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Titular · CTA</span>
+        <p class="copy">Titular:  Naves industriales en alquiler en GBA — 1.325 a 9.000 m2
+CTA:      Mas informacion</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">LI-03</span>
+      <span class="piece-name">Documento · el checklist técnico</span>
+      <span class="piece-spec">PDF 8 páginas · generación de contactos</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Texto introductorio</span>
+        <p class="copy">Las seis verificaciones tecnicas que conviene hacer antes de firmar un alquiler industrial.
+
+Altura libre util. Capacidad de piso en toneladas por m2. Potencia electrica instalada en kVA. Playa de maniobras y radio de giro real del camion que vas a usar. Habilitacion municipal y uso de suelo para tu actividad. Expensas y gastos del parque.
+
+Son las seis que mas veces vimos descubrir tarde. Dejamos el detalle de cada una, con lo que hay que pedir y a quien.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Estructura del documento</span>
+        <p class="copy">p1  Portada: Checklist tecnico para alquilar una nave industrial
+p2  Por que la mayoria de los problemas aparecen despues de firmar
+p3  Altura libre — que medir y por que el rack manda
+p4  Capacidad de piso y potencia instalada — como pedir el dato
+p5  Playa de maniobras — la prueba del camion real
+p6  Habilitacion y uso de suelo — quien lo verifica y cuando
+p7  Expensas y gastos del parque — que entra y que no
+p8  Como trabajamos en Krak Industrial + contacto</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Nota</span>
+        <p class="note">El mismo PDF es el <code>download_ficha</code> de la landing y el lead magnet de Meta. Se produce una vez y se usa en los tres canales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">LI-04</span>
+      <span class="piece-name">Mensaje de conversación</span>
+      <span class="piece-spec">Mensaje directo · solo a cargos de operaciones</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Mensaje</span>
+        <p class="copy">Asunto: Naves en alquiler en GBA, 1.325 a 9.000 m2
+
+Hola [NOMBRE],
+
+Somos brokers industriales en GBA. Tenemos nueve naves propias en alquiler, entre 1.325 y 9.000 m2, en los corredores de Panamericana, Acceso Oeste y Riccheri, a 25 a 40 minutos de CABA.
+
+Te dejo el listado con metros, valores y accesos por si les sirve ahora o mas adelante.
+
+Y si estan buscando algo puntual que no esta en esa lista, decime metros, actividad y zona y te armo el comparativo con lo que haya en el mercado.
+
+[BOTON]  Ver el listado          [BOTON]  Contarte mi requerimiento</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Regla</span>
+        <p class="note">No se debe enviar más de un mensaje por persona por trimestre. No se debe insistir sin respuesta. El canal se quema rápido y la marca paga el costo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <h2><span class="num">08</span> Video</h2>
+  <p class="h2sub">Seis guiones de rodaje y el criterio de re-edición</p>
+
+  <p class="prose">Cada guion se rueda una vez en <strong>16:9</strong> con encuadre holgado y se exporta en tres formatos: <strong>9:16</strong> para reels e historias, <strong>1:1</strong> para feed, <strong>16:9</strong> para YouTube y LinkedIn. Todo el texto en pantalla se compone en Inter, porque más del 80% se va a ver sin sonido: <strong>el video tiene que funcionar mudo</strong>.</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-01</span>
+      <span class="piece-name">Manifiesto · Nadie se enamora de una nave</span>
+      <span class="piece-spec">45 s · pieza insignia del frío · alimenta MT-02</span>
+    </div>
+    <div class="piece-body">
+      <div class="scroll">
+        <table class="script">
+          <thead><tr><th>Tiempo</th><th>Imagen</th><th>Locución</th><th>Texto en pantalla</th></tr></thead>
+          <tbody>
+            <tr><td>0:00–0:04</td><td>Nave vacía, plano general fijo. Sin música todavía.</td><td>—</td><td>NADIE SE ENAMORA<br>DE UNA NAVE INDUSTRIAL</td></tr>
+            <tr><td>0:04–0:12</td><td>Travelling lento por el interior vacío. Entra base rítmica seca.</td><td>Nadie se enamora de una nave industrial. Cuando una empresa busca galpón, es porque se le vence el contrato, porque creció, o porque le pidieron el inmueble.</td><td>—</td></tr>
+            <tr><td>0:12–0:18</td><td>Corte a detalle: portón abriéndose, camión entrando a playa de maniobras.</td><td>No hay tiempo para enamorarse. Hay metros que se necesitan, una actividad que tiene que entrar y una fecha.</td><td>METROS · ACTIVIDAD · ZONA</td></tr>
+            <tr><td>0:18–0:28</td><td>Pantalla partida: tres fichas de nave apareciendo en secuencia con sus datos.</td><td>Por eso trabajamos distinto. Nos pasás los metros, la actividad y la zona.</td><td>6.000 m² · Ezeiza<br>5.530 m² · Hurlingham<br>9.000 m² · Reconquista</td></tr>
+            <tr><td>0:28–0:36</td><td>Plano cenital del informe comparativo impreso sobre mesa. Mano señalando una fila.</td><td>Y te devolvemos un comparativo con lo que tenemos y con lo que hay en el mercado.</td><td>CARTERA PROPIA + MERCADO</td></tr>
+            <tr><td>0:36–0:45</td><td>Placa final sobre gris. Logo Krak Industrial.</td><td>Nueve naves propias, de mil trescientos a nueve mil metros. Y si ninguna sirve, la buscamos.</td><td>9 NAVES PROPIAS<br>1.325 a 9.000 m²<br>krak.com.ar/industrial</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="field">
+        <span class="field-label">Dirección</span>
+        <p class="note">Sin música épica, sin drone al atardecer, sin lens flare. Sonido ambiente real —portón, camión, eco de la nave vacía— con una base rítmica mínima debajo. El primer plano fijo de cuatro segundos sin música es deliberado: en un feed donde todo arranca con movimiento, la quietud frena el pulgar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-02</span>
+      <span class="piece-name">Recorrido de nave · plantilla repetible</span>
+      <span class="piece-spec">45 s · una versión por nave · 9 piezas</span>
+    </div>
+    <div class="piece-body">
+      <div class="scroll">
+        <table class="script">
+          <thead><tr><th>Tiempo</th><th>Imagen</th><th>Locución</th><th>Texto en pantalla</th></tr></thead>
+          <tbody>
+            <tr><td>0:00–0:03</td><td>Fachada de la nave. Plano fijo.</td><td>—</td><td>[SUPERFICIE] m²<br>[PARQUE]</td></tr>
+            <tr><td>0:03–0:10</td><td>Entrada por el portón, cámara al hombro, avanzando.</td><td>[Superficie] metros cubiertos en [parque], a [minutos] minutos de CABA por [ruta principal].</td><td>A [MIN] MIN DE CABA</td></tr>
+            <tr><td>0:10–0:20</td><td>Plano contrapicado midiendo la altura. Referencia humana al pie.</td><td>Altura libre de [X] metros, con [N] portones y capacidad de piso de [X] toneladas por metro.</td><td>ALTURA LIBRE [X] m<br>PISO [X] t/m²</td></tr>
+            <tr><td>0:20–0:28</td><td>Playa de maniobras desde arriba o desde la cabina del camión.</td><td>Playa de maniobras para semi con radio de giro completo.</td><td>MANIOBRA PARA SEMI</td></tr>
+            <tr><td>0:28–0:35</td><td>Tablero eléctrico, detalle. Oficinas si las hay.</td><td>[X] kVA instalados[, y trescientos cincuenta metros de oficinas].</td><td>[X] kVA INSTALADOS</td></tr>
+            <tr><td>0:35–0:45</td><td>Plano general de salida + placa de datos.</td><td>Está [estado]. [Valor] dólares por mes más IVA. Te mandamos la ficha técnica completa.</td><td>USD [VALOR] /mes + IVA<br>[ESTADO]<br>Ficha técnica → link</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="field">
+        <span class="field-label">Producción</span>
+        <p class="note">Una jornada por nave, dos naves por día si están en el mismo corredor. Se rueda con luz natural, mediodía, portones abiertos. <b>Nunca con la nave ocupada por otro inquilino.</b> Este es el activo que más rinde del kit: alimenta MT-05, la ficha de la landing, el portal y el canal de YouTube.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-03</span>
+      <span class="piece-name">Cómo elegir una nave industrial</span>
+      <span class="piece-spec">90 s · educativo · YouTube y LinkedIn</span>
+    </div>
+    <div class="piece-body">
+      <div class="scroll">
+        <table class="script">
+          <thead><tr><th>Tiempo</th><th>Imagen</th><th>Locución</th><th>Texto en pantalla</th></tr></thead>
+          <tbody>
+            <tr><td>0:00–0:08</td><td>Broker a cámara, dentro de una nave vacía. Plano medio.</td><td>La mayoría compara naves por metros cubiertos y por precio. Son los dos datos que menos te dicen si la nave sirve para tu operación.</td><td>—</td></tr>
+            <tr><td>0:08–0:25</td><td>Detalle de altura con rack de referencia.</td><td>Lo primero es la altura libre útil, medida desde el piso hasta lo más bajo de la estructura. Si tu rack es de ocho metros y la altura útil es siete y medio, los metros cuadrados no importan: no entra.</td><td>1 · ALTURA LIBRE ÚTIL</td></tr>
+            <tr><td>0:25–0:40</td><td>Piso de hormigón, detalle. Autoelevador pasando.</td><td>Segundo, la capacidad de piso en toneladas por metro cuadrado. Determina qué podés estibar y qué maquinaria podés instalar. Se pide por escrito, no se estima a ojo.</td><td>2 · CAPACIDAD DE PISO</td></tr>
+            <tr><td>0:40–0:55</td><td>Tablero eléctrico. Plano fijo.</td><td>Tercero, la potencia instalada en kVA. Ampliar la potencia de un parque puede llevar meses y costar más que la diferencia de alquiler entre dos naves.</td><td>3 · POTENCIA INSTALADA</td></tr>
+            <tr><td>0:55–1:10</td><td>Camión maniobrando, desde arriba.</td><td>Cuarto, la playa de maniobras. La prueba real es traer el camión que vas a usar y hacerlo girar. No alcanza con mirar el plano.</td><td>4 · PLAYA DE MANIOBRAS</td></tr>
+            <tr><td>1:10–1:22</td><td>Broker a cámara otra vez.</td><td>Y quinto, la habilitación municipal y el uso de suelo para tu actividad puntual. Que el parque sea industrial no significa que tu rubro esté habilitado ahí.</td><td>5 · USO DE SUELO</td></tr>
+            <tr><td>1:22–1:30</td><td>Placa final.</td><td>Los cinco datos están en la ficha técnica de cada nave de nuestra cartera. Pedíla antes de ir a visitar.</td><td>Ficha técnica<br>krak.com.ar/industrial</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-04</span>
+      <span class="piece-name">5 errores al alquilar una nave</span>
+      <span class="piece-spec">60 s · 9:16 · corte rápido · alimenta MT-04</span>
+    </div>
+    <div class="piece-body">
+      <div class="scroll">
+        <table class="script">
+          <thead><tr><th>Tiempo</th><th>Imagen</th><th>Locución</th><th>Texto en pantalla</th></tr></thead>
+          <tbody>
+            <tr><td>0:00–0:05</td><td>Broker a cámara, directo, sin preámbulo.</td><td>Cinco errores que vemos todas las semanas cuando una empresa alquila una nave.</td><td>5 ERRORES</td></tr>
+            <tr><td>0:05–0:16</td><td>Rack que no entra. Plano de la estructura.</td><td>Uno: mirar los metros cubiertos y no la altura libre. Si no entra el rack, los metros no sirven.</td><td>1 · Mirar m² y no altura</td></tr>
+            <tr><td>0:16–0:27</td><td>Maquinaria pesada sobre piso.</td><td>Dos: no preguntar la capacidad de piso antes de traer la maquinaria. Después el piso se raja y la discusión es con el propietario.</td><td>2 · No preguntar el piso</td></tr>
+            <tr><td>0:27–0:38</td><td>Tablero eléctrico.</td><td>Tres: descubrir la potencia instalada después de firmar. Ampliarla puede llevar meses.</td><td>3 · La potencia, tarde</td></tr>
+            <tr><td>0:38–0:48</td><td>Camión trabado maniobrando.</td><td>Cuatro: no medir la playa de maniobras con el camión real. El plano dice que entra; el camión dice otra cosa.</td><td>4 · No probar el camión</td></tr>
+            <tr><td>0:48–0:56</td><td>Documento de habilitación, detalle.</td><td>Y cinco: asumir que el uso de suelo está habilitado para tu actividad. Se verifica antes de la seña, no después.</td><td>5 · Asumir el uso de suelo</td></tr>
+            <tr><td>0:56–1:00</td><td>Placa final.</td><td>Los cinco se evitan con una ficha técnica completa.</td><td>Pedí la ficha técnica</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-05</span>
+      <span class="piece-name">Comparativa de corredores</span>
+      <span class="piece-spec">90 s · educativo · el más compartible</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Estructura</span>
+        <p class="copy">0:00  Apertura:  "Norte, Oeste o Sur no es una cuestion de gusto.
+                  Depende de donde esta tu cliente y por donde entra tu mercaderia."
+0:10  NORTE  ·  Panamericana y Ruta 9 · Escobar, Malvinas, Norlog
+                Perfil: logistica liviana, distribucion, e-commerce
+                Nuestra cartera: 1.325 a 6.447 m2 · desde USD 6,50
+0:35  OESTE  ·  Buen Ayre, Acceso Oeste y Ruta 8 · Hurlingham, Reconquista, P. Podesta
+                Perfil: produccion y manufactura, buena conexion transversal
+                Nuestra cartera: 4.927 a 9.000 m2 · desde USD 5,50
+1:00  SUR    ·  Riccheri y Ezeiza-Canuelas · Parque y Polo Industrial Ezeiza
+                Perfil: logistica pesada, cercania a Ezeiza y al puerto
+                Nuestra cartera: 6.000 m2 · desde USD 5,50
+1:20  Cierre:   "El criterio no es la zona: es a cuantos minutos esta tu operacion
+                 de donde tenes que entregar. Decinos eso y te armamos el comparativo."</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Dirección</span>
+        <p class="note">Mapa animado simple en gris con los corredores marcados en azul <code>#08407C</code> a medida que se nombran, alternando con imagen real de cada nave. Es la pieza que mejor funciona para compartir entre colegas y la que más autoridad construye. Rescatada del borrador original, que ya la tenía identificada como idea.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-06</span>
+      <span class="piece-name">Testimonio de inquilino</span>
+      <span class="piece-spec">45 s · producir cuando haya un caso cerrado</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Preguntas de entrevista (se edita sin preguntas a la vista)</span>
+        <p class="copy">1. Que los llevo a mudarse? Que paso con la nave anterior?
+2. Que era lo que no podian negociar: metros, altura, ubicacion?
+3. Cuanto tiempo tenian para resolverlo?
+4. Que parte del proceso resulto mas dificil de lo que esperaban?
+5. Como fue mudar la operacion sin frenarla?
+6. Que le dirian a alguien que esta arrancando la busqueda ahora?</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Regla</span>
+        <p class="note">Se rueda en la nave, en actividad, con la operación funcionando. Un testimonio sentado en una oficina no prueba nada. No se debe pedir que elogien a Krak: que cuenten el problema y cómo lo resolvieron alcanza y es más creíble.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">V-00</span>
+      <span class="piece-name">Re-edición del material existente</span>
+      <span class="piece-spec">Criterio aplicable a cualquier video del canal</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Criterio de selección</span>
+        <p class="copy">SIRVE si el video:
+  · muestra el interior de una nave o parque que hoy sigue en cartera
+  · tiene planos de altura, portones, playa de maniobras o tablero
+  · tiene a un socio explicando un criterio tecnico a camara
+  · muestra un parque industrial que seguimos comercializando
+
+NO SIRVE si el video:
+  · muestra una nave ya alquilada o fuera de cartera  → pasa a biblioteca de casos
+  · tiene valores desactualizados en pantalla          → re-rotular o descartar
+  · es de producto residencial                          → fuera de esta campana
+  · es de VENTA de lotes en parques                     → otra campana, no esta</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Receta de re-corte</span>
+        <p class="copy">1. Cortar los primeros 3 segundos de presentacion y arrancar por el plano mas fuerte.
+2. Primer frame: placa de metros y parque, fija, 2 segundos, sin musica.
+3. Sobreimprimir los datos duros donde aparece cada elemento
+   (altura sobre el plano de altura, kVA sobre el tablero).
+4. Reencuadrar a 9:16 priorizando el eje vertical de la nave: la altura se luce en vertical.
+5. Cerrar con placa: valor, estado y CTA a la landing.
+6. Subtitular el 100%. Se ve sin sonido.
+7. Duracion objetivo: 45 s. Si el original da para 90, sacar dos piezas y no una.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Estado</span>
+        <p class="note">No pude ver el canal de YouTube: el dominio está bloqueado por la política de red de esta sesión, así que no pude auditar video por video. El criterio de arriba es aplicable tal cual por el equipo. Si me pasás el listado —título, duración y qué se ve en cada uno— te devuelvo la selección concreta con el corte pieza por pieza, y ahí V-00 deja de ser un criterio y pasa a ser una lista de tareas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2><span class="num">09</span> WhatsApp, email y documentos</h2>
+  <p class="h2sub">Donde la consulta se vuelve calificada</p>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">W-01</span>
+      <span class="piece-name">Script del calificador de WhatsApp</span>
+      <span class="piece-spec">4 preguntas antes de pasar al broker</span>
+      <span class="chip bofu">BOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Secuencia</span>
+        <p class="copy">BIENVENIDA
+"Hola, soy [NOMBRE] de Krak Industrial. Para mandarte lo que mejor encaje,
+necesito cuatro datos rapidos."
+
+P1  "Cuantos metros cubiertos necesitas?"
+    [ Hasta 1.000 ] [ 1.000-3.000 ] [ 3.000-5.000 ] [ 5.000-8.000 ] [ +8.000 ]
+
+P2  "Que actividad vas a desarrollar ahi?"
+    [ Logistica ] [ Produccion ] [ Almacenamiento ] [ E-commerce ] [ Otra ]
+
+P3  "En que zona o corredor la necesitas?"
+    [ Norte ] [ Oeste ] [ Sur ] [ Me da igual, priorizo tiempo a CABA ]
+
+P4  "Para cuando la necesitas?"
+    [ Ya ] [ 1-3 meses ] [ 3-6 meses ] [ +6 meses ] [ Estoy relevando ]
+
+CIERRE CON MATCH
+"Tenemos [N] opciones que entran en lo que necesitas. Te las paso ahora y
+coordinamos una visita cuando quieras."   → deriva al broker
+
+CIERRE SIN MATCH
+"Hoy no tengo nada propio en ese rango, pero es exactamente el tipo de
+busqueda que hacemos. Con estos datos armo el comparativo del mercado y
+te lo mando. Te sirve?"                    → deriva al broker con la busqueda abierta</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Reglas</span>
+        <p class="note">No se debe hacer más de cuatro preguntas antes de derivar. No se debe dar valores de naves que no están publicadas. No se debe prometer un plazo de respuesta que el equipo no pueda sostener. <b>No se debe dejar una conversación sin derivar a una persona</b>: el histórico del CRM muestra exactamente cómo termina eso.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Antecedente interno</span>
+        <p class="note">Krak ya resolvió este patrón para Rebis —router simple primero, agente conversacional después— y tiene el brief entregado a un desarrollador. Conviene reusar ese camino en vez de empezar de cero.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">E-01</span>
+      <span class="piece-name">Secuencia de email post-requerimiento</span>
+      <span class="piece-spec">4 envíos · se corta apenas hay respuesta</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">E-01 · Inmediato — entrega de valor, no acuse de recibo</span>
+        <p class="copy">Asunto: Tu busqueda: [M2] m2 en [ZONA]
+
+Hola [NOMBRE],
+
+Registramos tu requerimiento: [M2] metros para [ACTIVIDAD] en [ZONA],
+para [TIMING].
+
+Te adjunto las opciones de nuestra cartera que entran en ese rango, con
+metros, valor, accesos y estado de cada una.
+
+Estoy armando el comparativo con lo que hay en el mercado para tu
+requerimiento. Te lo mando apenas lo tenga.
+
+Si queres adelantarme algo puntual —altura minima, potencia, tipo de
+camion que entra— escribime y lo incorporo.
+
+[FIRMA BROKER]</p>
+      </div>
+      <div class="field">
+        <span class="field-label">E-02 · Con el comparativo</span>
+        <p class="copy">Asunto: Comparativo de naves para [EMPRESA]
+
+Hola [NOMBRE],
+
+Te mando el comparativo. Son [N] opciones ordenadas por USD por m2, con
+metros cubiertos, valor mensual, estado, accesos y minutos a CABA.
+
+Tres comentarios sobre lo que vi:
+  · [OBSERVACION SOBRE LA MEJOR RELACION METROS/VALOR]
+  · [OBSERVACION SOBRE ACCESOS O TIEMPO A CABA]
+  · [ADVERTENCIA TECNICA SI LA HAY: altura, potencia, habilitacion]
+
+Si hay dos o tres que te cierran, coordinamos las visitas el mismo dia
+para que compares en caliente.
+
+[FIRMA BROKER]</p>
+      </div>
+      <div class="field">
+        <span class="field-label">E-03 · A los 7 días sin respuesta</span>
+        <p class="copy">Asunto: Sigue en pie lo de [M2] m2?
+
+Hola [NOMBRE],
+
+Te escribo para saber si la busqueda sigue activa o quedo en pausa.
+
+Si quedo en pausa no hay problema: te aviso cuando entre algo que encaje
+con lo que buscabas, sin que tengas que estar mirando.
+
+Si sigue activa, decime y coordinamos las visitas.
+
+[FIRMA BROKER]</p>
+      </div>
+      <div class="field">
+        <span class="field-label">E-04 · Mensual, solo para búsquedas en pausa</span>
+        <p class="copy">Asunto: Entro una nave de [M2] m2 en [ZONA]
+
+Hola [NOMBRE],
+
+Me acorde de tu busqueda porque entro esto: [M2] m2 en [PARQUE],
+USD [VALOR] por mes, [ESTADO].
+
+Te dejo la ficha por si sigue teniendo sentido. Si ya resolviste,
+avisame y lo saco de la lista.
+
+[FIRMA BROKER]</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Por qué esta secuencia existe</span>
+        <p class="note">Es la respuesta directa al hallazgo del CRM: el E-04 mensual es lo que evita que una búsqueda activa termine cerrada como <code>Busqueda suspendida</code> dos años después sin que nadie la haya tocado. Cuesta casi nada y es probablemente la pieza de mayor retorno de todo el kit.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">D-01</span>
+      <span class="piece-name">Ficha técnica por nave</span>
+      <span class="piece-spec">PDF A4 · 2 páginas · 9 versiones</span>
+      <span class="chip mofu">MOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Contenido obligatorio</span>
+        <p class="copy">PAGINA 1
+  Foto principal de la nave (1/2 pagina superior)
+  Titular:  [SUPERFICIE] m2 · [PARQUE] · [PARTIDO]
+  Bloque de datos duros, en dos columnas:
+     Superficie cubierta          Altura libre util
+     Superficie de oficinas       Capacidad de piso (t/m2)
+     Superficie de terreno        Potencia instalada (kVA)
+     Cantidad de portones         Tipo de acceso (dock / a nivel)
+     Playa de maniobras           Radio de giro
+     Estado                       Disponibilidad
+  Valor:  USD [X] /mes + IVA   ·   USD [Y] /m2
+  Expensas y gastos del parque:  [detalle de que incluye]
+
+PAGINA 2
+  Plano o croquis con medidas
+  Accesos: rutas por nombre + minutos a CABA + minutos a [nodo relevante]
+  Servicios del parque: energia, gas, agua, fibra, seguridad, categoria habilitada
+  Uso de suelo y categoria de industria admitida
+  Fotos secundarias (4): interior, portones, playa, tablero
+  Contacto del broker + QR a la landing</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Regla</span>
+        <p class="note">No se debe publicar una ficha con campos vacíos. Si un dato no está confirmado, se escribe <b>"a confirmar"</b> explícitamente — nunca se omite la fila. Un dato faltante que aparece en la visita cuesta la operación; un "a confirmar" declarado, no.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="piece">
+    <div class="piece-head">
+      <span class="piece-id">D-02</span>
+      <span class="piece-name">Informe comparativo · el entregable del servicio</span>
+      <span class="piece-spec">PDF · plantilla estandarizada</span>
+      <span class="chip bofu">BOFU</span>
+    </div>
+    <div class="piece-body">
+      <div class="field">
+        <span class="field-label">Estructura</span>
+        <p class="copy">Portada:   Busqueda [TIPO] / [OPERACION] / [PARAMETRO DISTINTIVO]
+           Preparado para [EMPRESA] · [FECHA]
+Pagina 1:  El requerimiento, escrito en una linea
+           "Nave de [M2] m2 para [ACTIVIDAD], en [ZONA], para [TIMING]."
+Pagina 2:  Tabla comparativa — una fila por opcion
+           Opcion / Ubicacion / Sup. cubierta / Valor mensual + IVA /
+           USD por m2 / Estado / Accesos / Distancia a CABA
+Pagina 3:  Lectura del broker — 3 a 5 observaciones sobre la tabla
+           (mejor relacion, advertencias tecnicas, que conviene visitar primero)
+Pagina 4+: Una ficha por opcion recomendada
+Cierre:    Proximos pasos y coordinacion de visitas</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Nota</span>
+        <p class="note">Esta plantilla no se inventa: es la formalización del informe que Krak ya entrega. La única adición importante es la <b>página 3, la lectura del broker</b>. Una tabla la arma cualquiera; el criterio sobre la tabla es el servicio, y es lo que justifica el honorario. También es el activo que se muestra en MT-06 y en el bloque 4 de la landing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diseno">
+  <h2><span class="num">10</span> Especificaciones de diseño</h2>
+  <p class="h2sub">Medidas, jerarquía y reglas de armado</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Pieza</th><th>Formato</th><th>Medida</th><th>Zona segura</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><th>MT-01 carrusel</th><td>1:1</td><td>1080 × 1080</td><td>Franja de dato en el tercio inferior</td><td>10 tarjetas: portada + 9</td></tr>
+        <tr><th>MT-02 video</th><td>9:16 / 1:1 / 16:9</td><td>1080 × 1920 · 1080 × 1080 · 1920 × 1080</td><td>Texto entre 15% y 80% del alto en 9:16</td><td>Subtitulado obligatorio</td></tr>
+        <tr><th>MT-03 placa</th><td>1:1 y 9:16</td><td>1080 × 1080 · 1080 × 1920</td><td>Dato principal centrado vertical</td><td>3 versiones, una por corredor</td></tr>
+        <tr><th>MT-04 reel</th><td>9:16</td><td>1080 × 1920</td><td>Evitar el 20% inferior (interfaz)</td><td>Corte cada 8-11 s</td></tr>
+        <tr><th>MT-05 remarketing</th><td>9:16 y 1:1</td><td>1080 × 1920 · 1080 × 1080</td><td>—</td><td>9 versiones, una por nave</td></tr>
+        <tr><th>MT-06 comparativo</th><td>1:1</td><td>1080 × 1080</td><td>—</td><td>Captura real, datos tapados</td></tr>
+        <tr><th>LI-02 imagen</th><td>1.91:1</td><td>1200 × 627</td><td>—</td><td>Texto breve, se lee en escritorio</td></tr>
+        <tr><th>LI-03 documento</th><td>Vertical</td><td>A4 · 8 páginas</td><td>—</td><td>PDF, también lead magnet de Meta</td></tr>
+        <tr><th>D-01 ficha</th><td>A4</td><td>210 × 297 mm</td><td>Margen 15 mm</td><td>9 versiones</td></tr>
+        <tr><th>Landing hero</th><td>Responsive</td><td>Foto ≥ 2400 px de ancho</td><td>Formulario visible sin scroll</td><td>Mobile: formulario primero</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Las cinco reglas de armado</h3>
+  <div class="prose">
+    <ol>
+      <li><strong>Los metros son el titular.</strong> En cualquier pieza que muestre una nave, la cifra de m² va en el mayor cuerpo tipográfico, aunque haya una frase encima. Es lo único que el cliente busca primero.</li>
+      <li><strong>El azul es para una sola cosa por pieza.</strong> <code>#08407C</code> se reserva para el dato clave o el CTA, nunca para ambos, y nunca como fondo completo. Todo lo demás vive en la gama de grises.</li>
+      <li><strong>Sin foto real no sale.</strong> Ni render, ni banco de imágenes, ni una nave parecida. Si no hay foto de esa nave, se produce antes de publicar.</li>
+      <li><strong>Todo dato numérico se compone con cifras tabulares</strong> y con la misma unidad siempre: m², USD/mes, USD/m², kVA, t/m², minutos. Nada de "amplia superficie" ni "excelente ubicación".</li>
+      <li><strong>Cada pieza lleva el par completo:</strong> prueba (cartera) y oferta (búsqueda). Una pieza que solo muestra naves deja afuera a la mayoría; una que solo ofrece buscar no tiene con qué probar que sabe.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="produccion">
+  <h2><span class="num">11</span> Orden de producción</h2>
+  <p class="h2sub">Qué se hace primero y qué bloquea a qué</p>
+
+  <ol class="phases">
+    <li><div>
+      <h4>Completar los datos técnicos de las 9 naves</h4>
+      <p>Altura libre útil, capacidad de piso, potencia instalada en kVA, cantidad y tipo de portones, radio de giro y expensas. Sin esto no se puede producir ni una ficha ni un solo video de recorrido.</p>
+      <p class="gate"><b>Bloquea:</b> D-01, MT-05, V-02, V-03 y el bloque 2 de la landing. <b>Es el primer cuello de botella real del proyecto.</b></p>
+    </div></li>
+    <li><div>
+      <h4>Rodaje</h4>
+      <p>Una jornada por corredor: Norte (Escobar ×2, Malvinas, Norlog), Oeste (Hurlingham, Reconquista, Pablo Podestá), Sur (Ezeiza ×2). Se sale con la plantilla V-02 y se aprovecha la misma salida para las fotos de las fichas y de las placas.</p>
+      <p class="gate"><b>Entrega:</b> 9 recorridos + banco de fotos completo. <b>Una sola salida por corredor, no dos.</b></p>
+    </div></li>
+    <li><div>
+      <h4>Landing y medición</h4>
+      <p>Se pasa la sección 04 a desarrollo. En paralelo: eventos instrumentados, campos de Tokko mapeados y obligatorios, y la notificación inmediata al broker funcionando de punta a punta.</p>
+      <p class="gate"><b>Condición de salida:</b> un lead de prueba llega a Tokko con metros, actividad, zona, timing y origen correctos, y el broker recibe el aviso en el momento.</p>
+    </div></li>
+    <li><div>
+      <h4>Piezas de siembra</h4>
+      <p>V-01 manifiesto, V-04 cinco errores, V-05 comparativa de corredores, MT-01 carrusel, MT-03 placas y el checklist LI-03. Son las que no dependen de los datos técnicos por nave, así que pueden producirse en paralelo con la fase 1.</p>
+      <p class="gate"><b>Entrega:</b> biblioteca de frío completa.</p>
+    </div></li>
+    <li><div>
+      <h4>Salida al aire</h4>
+      <p>Arranca Google Search (captura desde el día uno) y la campaña fría de Meta. LinkedIn entra una vez que el checklist esté publicado. Remarketing se activa recién cuando las audiencias tengan tamaño.</p>
+      <p class="gate"><b>Optimización inicial:</b> por <code>download_ficha</code> o <code>select_zona_m2</code>, nunca por lead — no va a haber volumen.</p>
+    </div></li>
+  </ol>
+
+  <h3>Inventario completo</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Código</th><th>Pieza</th><th>Cantidad</th><th>Etapa</th><th>Depende de</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">L-01</td><td>Landing de requerimiento</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Proyecto web</td></tr>
+        <tr><td class="mono">GS-01</td><td>Search por corredor</td><td class="tnum">3 grupos</td><td><span class="chip tofu">TOFU</span></td><td>Landing</td></tr>
+        <tr><td class="mono">GS-02</td><td>Search requerimiento genérico</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Landing</td></tr>
+        <tr><td class="mono">GS-03</td><td>Search marca</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>—</td></tr>
+        <tr><td class="mono">MT-01</td><td>Carrusel de cartera</td><td class="tnum">10 placas</td><td><span class="chip tofu">TOFU</span></td><td>Fotos</td></tr>
+        <tr><td class="mono">MT-02</td><td>Video manifiesto</td><td class="tnum">3 formatos</td><td><span class="chip tofu">TOFU</span></td><td>V-01</td></tr>
+        <tr><td class="mono">MT-03</td><td>Placas de dato</td><td class="tnum">6</td><td><span class="chip tofu">TOFU</span></td><td>Fotos</td></tr>
+        <tr><td class="mono">MT-04</td><td>Reel 5 errores</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>V-04</td></tr>
+        <tr><td class="mono">MT-05</td><td>Remarketing por nave</td><td class="tnum">9</td><td><span class="chip mofu">MOFU</span></td><td>Datos técnicos + V-02</td></tr>
+        <tr><td class="mono">MT-06</td><td>El comparativo como producto</td><td class="tnum">1</td><td><span class="chip mofu">MOFU</span></td><td>D-02</td></tr>
+        <tr><td class="mono">MT-07</td><td>Recuperación de formulario</td><td class="tnum">1</td><td><span class="chip bofu">BOFU</span></td><td>Landing</td></tr>
+        <tr><td class="mono">MT-08</td><td>Formulario instantáneo</td><td class="tnum">1</td><td><span class="chip bofu">BOFU</span></td><td>—</td></tr>
+        <tr><td class="mono">LI-02</td><td>Imagen única LinkedIn</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Fotos</td></tr>
+        <tr><td class="mono">LI-03</td><td>Checklist técnico</td><td class="tnum">1 PDF</td><td><span class="chip mofu">MOFU</span></td><td>—</td></tr>
+        <tr><td class="mono">LI-04</td><td>Mensaje de conversación</td><td class="tnum">1</td><td><span class="chip mofu">MOFU</span></td><td>—</td></tr>
+        <tr><td class="mono">V-01</td><td>Manifiesto</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Rodaje</td></tr>
+        <tr><td class="mono">V-02</td><td>Recorridos de nave</td><td class="tnum">9</td><td><span class="chip mofu">MOFU</span></td><td>Datos técnicos + rodaje</td></tr>
+        <tr><td class="mono">V-03</td><td>Cómo elegir una nave</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Rodaje</td></tr>
+        <tr><td class="mono">V-04</td><td>5 errores</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Rodaje</td></tr>
+        <tr><td class="mono">V-05</td><td>Comparativa de corredores</td><td class="tnum">1</td><td><span class="chip tofu">TOFU</span></td><td>Rodaje + animación</td></tr>
+        <tr><td class="mono">V-06</td><td>Testimonio</td><td class="tnum">1</td><td><span class="chip bofu">BOFU</span></td><td>Caso cerrado</td></tr>
+        <tr><td class="mono">W-01</td><td>Calificador de WhatsApp</td><td class="tnum">1</td><td><span class="chip bofu">BOFU</span></td><td>Desarrollo</td></tr>
+        <tr><td class="mono">E-01</td><td>Secuencia de email</td><td class="tnum">4</td><td><span class="chip mofu">MOFU</span></td><td>—</td></tr>
+        <tr><td class="mono">D-01</td><td>Fichas técnicas</td><td class="tnum">9 PDF</td><td><span class="chip mofu">MOFU</span></td><td>Datos técnicos</td></tr>
+        <tr><td class="mono">D-02</td><td>Plantilla de comparativo</td><td class="tnum">1</td><td><span class="chip bofu">BOFU</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="font-size:14.5px;color:var(--ink-3)">Total: 34 piezas producibles, de las cuales 21 no dependen de ningún dato pendiente y pueden arrancar hoy.</p>
+</section>
+
+<section id="pendiente">
+  <h2><span class="num">12</span> Lo único que falta</h2>
+  <p class="h2sub">Dos cosas, y las dos son datos que ya existen</p>
+
+  <div class="finding crit">
+    <h4>Datos técnicos de las 9 naves <span class="chip risk">Bloquea 4 grupos de piezas</span></h4>
+    <p>El informe de búsqueda tiene superficie, valor, USD/m², estado, accesos y minutos a CABA. Falta lo que diferencia una ficha técnica de un aviso de portal: <b>altura libre útil, capacidad de piso en t/m², potencia instalada en kVA, cantidad y tipo de portones, radio de giro de la playa, y qué incluyen las expensas</b> de cada nave.</p>
+    <p>Está en las carpetas de cada propiedad o se lo pide al propietario. Es una planilla de nueve filas y seis columnas, y es lo primero que hay que resolver.</p>
+  </div>
+
+  <div class="finding">
+    <h4>El listado del canal de YouTube <span class="chip neutral">Afecta solo a V-00</span></h4>
+    <p>No pude auditar el canal: el dominio está bloqueado por la política de red de esta sesión, y lo mismo pasó con <code>propiedades.krak.com.ar</code>, Argenprop y el sitio de Tokko. Por eso el criterio de re-edición (V-00) quedó escrito como regla aplicable y no como lista de videos.</p>
+    <p>Con el título, la duración y una línea de qué se ve en cada video te devuelvo la selección concreta, pieza por pieza, con el corte de cada una.</p>
+  </div>
+
+  <h3>Sobre conectar Tokko</h3>
+  <div class="prose">
+    <p>Tres caminos, y conviene saber cuál sirve para qué:</p>
+    <ul>
+      <li><strong>Export a Drive — funciona hoy, y es como armé este kit.</strong> Los archivos <code>Contactos_-_Listado_completo</code> y <code>Propiedades_-_Listado_completo</code> ya están ahí. Un pedido: exportá las propiedades como <b>.xlsx o Google Sheet</b>, porque el <code>.xls</code> viejo del 12/3/2026 no se puede leer, y con un export actualizado de propiedades en alquiler te cierro las fichas con datos reales en lugar de plantillas.</li>
+      <li><strong>API de Tokko — sirve para la web, no para mí.</strong> Existe, usa una clave que un administrador saca desde <em>Mi Empresa → Permisos</em>, y el proveedor web ya verificó que permite traer las propiedades al sitio. Desde esta sesión no la puedo usar: el dominio de Tokko también está bloqueado por la política de red. <b>No me mandes la clave</b> — no me serviría y es una credencial.</li>
+      <li><strong>Lo que sí vale la pena automatizar</strong> es que la ficha de la landing lea la disponibilidad real desde Tokko. Así la regla de "nunca escasez falsa" deja de depender de que alguien se acuerde de pausar un anuncio.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Fuentes de los datos usados en este kit.</strong> Cartera, valores, accesos y distancias: informe <em>Búsqueda Nave Industria / Alquiler / 30 min CABA</em> (27/6/2026). Hallazgos de pipeline y taxonomía de campos: <em>Contactos — Listado completo</em> (18/7/2026). Marca, paleta, tipografía y criterio fotográfico: <em>Manual de Marca Krak Real Estate 2025</em>. Arquitectura de la unidad Industrial e integración con CRM: propuesta de ecosistema web (27/8/2026). Contacto y dirección: manual de marca y canales públicos de Krak.</p>
+  <p style="margin-top:12px">No se inventaron datos de cartera, precios, superficies, presupuesto ni resultados históricos. Todo valor que aparece en una pieza sale del informe de búsqueda; todo campo marcado entre corchetes es un dato a completar antes de producir.</p>
+</footer>
+
+</div>
