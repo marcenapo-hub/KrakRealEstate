@@ -1,0 +1,599 @@
+<title>Kit de Campaña B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+:root{
+  --ink:#14181E; --ink-2:#4E586E; --ink-3:#7C8594;
+  --rule:#D8DCE2; --rule-soft:#E9ECF0;
+  --surface:#FFFFFF; --ground:#F2F4F6; --raise:#FAFBFC;
+  --brand:#08407C; --brand-soft:#E5EDF7;
+  --hyp:#8A5310; --hyp-soft:#F7EEE0;
+  --ok:#15683A; --ok-soft:#E2F0E7;
+  --risk:#9E1F1B; --risk-soft:#F7E5E4;
+  --code-bg:#F5F6F8; --code-ink:#1D2530;
+  --dot-on:#08407C; --dot-off:#D8DCE2;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;margin:0;padding-inline:26px;padding-block:0 110px}
+.page{max-width:1120px;margin:0 auto}
+.prose{max-width:72ch}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+header.top{padding-block:46px 22px;border-bottom:3px solid var(--brand);margin-bottom:10px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+h1{font-size:clamp(29px,4.4vw,44px);line-height:1.05;font-weight:800;letter-spacing:-.028em;
+  margin:12px 0;text-wrap:balance}
+.dek{font-size:18px;color:var(--ink-2);max-width:64ch;margin:0}
+dl.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 24px;
+  margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft)}
+dl.meta div{display:flex;flex-direction:column;gap:2px}
+dl.meta dt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+dl.meta dd{margin:0;font-size:14px;font-weight:600}
+
+section{margin-top:64px}
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--brand);
+  margin:0 0 8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h2 .num{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);font-weight:500}
+.h2sub{font-size:clamp(22px,2.8vw,30px);font-weight:700;letter-spacing:-.022em;line-height:1.16;
+  margin:0 0 20px;max-width:28ch;text-wrap:balance}
+h3{font-size:19px;font-weight:700;letter-spacing:-.014em;margin:36px 0 10px}
+h4{font-size:14.5px;font-weight:700;margin:20px 0 6px;color:var(--ink-2)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:21px}
+li{margin-bottom:6px}
+a{color:var(--brand)}
+
+.thesis{background:var(--brand-soft);border-left:3px solid var(--brand);padding:22px 24px;
+  margin:0 0 28px;border-radius:0 5px 5px 0}
+.thesis .lead{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.38;margin-bottom:10px}
+.thesis p:last-child{margin-bottom:0}
+
+.scroll{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:7px;
+  background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.45;min-width:640px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  background:var(--raise);border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+tbody th{font-weight:700;width:1%;white-space:nowrap}
+td.mono{font-family:"IBM Plex Mono";font-size:12px}
+.tnum{font-variant-numeric:tabular-nums;text-align:right}
+
+/* cobertura: puntos llenos y vacios */
+.cov{display:flex;gap:4px;align-items:center}
+.dot{width:10px;height:10px;border-radius:2px;background:var(--dot-off);flex:none}
+.dot.on{background:var(--dot-on)}
+.dot.half{background:linear-gradient(90deg,var(--dot-on) 50%,var(--dot-off) 50%)}
+.covnum{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-2);margin-left:6px;white-space:nowrap}
+
+.chip{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:2.5px 7px;border-radius:3px;white-space:nowrap;vertical-align:middle}
+.chip.platzi{background:var(--brand-soft);color:var(--brand)}
+.chip.inf{background:var(--hyp-soft);color:var(--hyp)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.risk{background:var(--risk-soft);color:var(--risk)}
+.chip.off{background:var(--rule-soft);color:var(--ink-3)}
+
+/* ficha de principio */
+.pri{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:16px 0;
+  overflow:hidden}
+.pri-head{padding:13px 18px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.pri-name{font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:160px}
+.pri-body{padding:16px 18px 18px;display:grid;gap:13px}
+.row{display:grid;gap:4px}
+.rowlab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.rowval{font-size:14.5px;color:var(--ink-2)}
+.rowval b{color:var(--ink)}
+
+/* ficha de angulo — la espina del documento */
+.ang{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:20px 0;
+  overflow:hidden}
+.ang.top{border-color:var(--brand);box-shadow:0 1px 2px rgba(8,64,124,.06),0 10px 28px -20px rgba(8,64,124,.5)}
+.ang-head{padding:14px 20px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.ang-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px}
+.ang-name{font-size:16.5px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:170px}
+.ang-src{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-3)}
+.chain{padding:0;margin:0;list-style:none}
+.chain li{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:12px 20px;
+  border-bottom:1px solid var(--rule-soft);font-size:14.5px}
+.chain li:last-child{border-bottom:none}
+.chain .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:700;padding-top:3px}
+.chain .v{color:var(--ink-2)}
+.chain .v b{color:var(--ink)}
+.chain li.hook .v{font-family:"IBM Plex Mono";font-size:13.5px;color:var(--ink);
+  background:var(--code-bg);padding:9px 12px;border-radius:5px;border-left:2px solid var(--hyp)}
+@media (max-width:560px){.chain li{grid-template-columns:1fr;gap:4px}}
+
+.note{background:var(--hyp-soft);border-left:3px solid var(--hyp);padding:15px 19px;margin:16px 0;
+  border-radius:0 6px 6px 0;font-size:14.5px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.note p:last-child{margin-bottom:0}
+
+ol.steps{list-style:none;padding:0;margin:20px 0;counter-reset:st}
+ol.steps>li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:16px 0;border-bottom:1px solid var(--rule-soft)}
+ol.steps>li::before{content:counter(st);font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;
+  color:var(--brand);background:var(--brand-soft);border-radius:4px;width:28px;height:25px;
+  display:grid;place-items:center}
+ol.steps h4{margin:0 0 4px;font-size:16px;color:var(--ink)}
+ol.steps p{font-size:14.5px;margin:0 0 5px;color:var(--ink-2)}
+
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){body{padding-inline:16px;font-size:15.5px}}
+/* extras del Kit B */
+.copy{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:13px;line-height:1.66;
+  background:var(--code-bg);color:var(--code-ink);padding:13px 15px;border-radius:5px;
+  border-left:2px solid var(--ink-3);white-space:pre-wrap;overflow-x:auto;margin:0}
+.copy.cta{border-left-color:var(--ok)}
+.copy.hook{border-left-color:var(--hyp)}
+.pz{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:20px 0;overflow:hidden}
+.pz-head{padding:13px 19px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:9px 14px;align-items:baseline;flex-wrap:wrap}
+.pz-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px}
+.pz-name{font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:150px}
+.pz-spec{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-3)}
+.pz-body{padding:16px 19px 18px;display:grid;gap:14px}
+.f{display:grid;gap:5px}
+.flab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:22px 0}
+.kpi div{background:var(--surface);border:1px solid var(--rule);border-radius:7px;padding:15px 17px}
+.kpi dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  margin-bottom:5px}
+.kpi dd{margin:0;font-size:25px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  color:var(--brand)}
+.kpi dd small{display:block;font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:0;
+  margin-top:4px}
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow">Krak Industrial · Kit B · Piezas de pauta</div>
+  <h1>Kit de Campaña B</h1>
+  <p class="dek">Quince piezas construidas sobre los tres ángulos aprobados, con el copy completo listo para publicar. El Kit A no se toca: queda intacto para comparar.</p>
+  <dl class="meta">
+    <div><dt>Ángulos</dt><dd>B-01 · B-02 · B-03</dd></div>
+    <div><dt>Piezas</dt><dd>15</dd></div>
+    <div><dt>Canales</dt><dd>Meta · Search · LinkedIn</dd></div>
+    <div><dt>Honorario</dt><dd>1 mes de alquiler</dd></div>
+    <div><dt>Fecha</dt><dd>16 de septiembre de 2026</dd></div>
+    <div><dt>Estado</dt><dd>Listo para producir</dd></div>
+  </dl>
+</header>
+
+<section id="economia">
+  <h2><span class="num">01</span> La economía de la campaña</h2>
+  <p class="h2sub">Por qué el clic barato es el enemigo</p>
+
+  <p class="prose">Con el honorario de <strong>un mes del valor locativo a cargo del locador</strong>, la cartera actual define el valor de cada operación. Los números salen del informe de búsqueda del 27 de junio:</p>
+
+  <dl class="kpi">
+    <div><dt>Honorario mínimo</dt><dd>8.612<small>USD · módulo Arbox 1.325 m²</small></dd></div>
+    <div><dt>Honorario promedio</dt><dd>37.428<small>USD · las 8 naves con valor</small></dd></div>
+    <div><dt>Honorario máximo</dt><dd>67.500<small>USD · Reconquista 9.000 m²</small></dd></div>
+  </dl>
+
+  <p class="prose">Con eso, el valor de un requerimiento calificado según cuántos hagan falta para cerrar uno:</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Cierra 1 cada</th><th class="tnum">Vale un requerimiento</th><th>Lectura</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">10</td><td class="tnum">USD 3.743</td><td>Optimista</td></tr>
+        <tr><td class="mono">20</td><td class="tnum">USD 1.871</td><td>Razonable</td></tr>
+        <tr><td class="mono">50</td><td class="tnum">USD 749</td><td>Conservador</td></tr>
+        <tr><td class="mono">100</td><td class="tnum">USD 374</td><td>Muy pesimista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><b>Incluso en el escenario más pesimista, un requerimiento calificado vale USD 374.</b> Con costos por lead que en este rubro difícilmente pasen las dos cifras, la conclusión es clara y cambia el plan de medios: <b>el costo por lead no es la restricción del negocio.</b></p>
+    <p>Dos consecuencias. La primera: Krak puede pagar por un clic bastante más que cualquier inmobiliaria generalista, lo que es una ventaja directa en la subasta — se puede comprar el inventario premium sin que duela. La segunda, y más importante: <b>si el medio no es la restricción, la restricción es la capacidad de atender.</b> Y ese es el dato que todavía no tengo. <span class="chip inf">Inferencia</span></p>
+  </div>
+
+  <div class="note">
+    <p><b>Un hallazgo del honorario que vale un ángulo entero.</b> Si el mes de honorario lo paga el locador, entonces <b>para el inquilino que busca, el servicio de Krak no tiene costo</b>. Eso elimina de entrada la objeción más previsible —"¿por qué le voy a pagar una comisión a un broker?"— y explica por qué descartaste el bloque entero de dolores económicos.</p>
+    <p>No lo usé en ninguna pieza porque necesito que me confirmes una cosa: <b>¿el locatario paga algo?</b> Si la respuesta es no, es probablemente el reason-to-believe más fuerte de toda la campaña y merece su propio test.</p>
+  </div>
+</section>
+
+<section id="prueba">
+  <h2><span class="num">02</span> Prueba sin exponer a nadie</h2>
+  <p class="h2sub">B-06 reformulado</p>
+
+  <p class="prose">Tu respuesta sobre los casos cerrados no es una limitación menor: es información sobre el cliente. <strong>El industrial argentino no quiere que se sepa dónde opera, cuánto paga ni que se mudó.</strong> Eso obliga a reformular la prueba social y, de paso, ajusta una pieza del Kit A — el testimonio V-06 hay que darlo por caído en su forma original.</p>
+
+  <p class="prose">Cuatro formas de probar sin exponer a nadie, ordenadas por lo que ya existe:</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Forma de prueba</th><th>Qué expone</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><th>El informe comparativo real, con datos tapados</th><td>El proceso, no al cliente</td><td><span class="chip ok">Ya existe</span></td></tr>
+        <tr><th>La cartera con metros y valores a la vista</th><td>Producto propio, nada del cliente</td><td><span class="chip ok">Ya existe</span></td></tr>
+        <tr><th>Autoridad profesional: perito tasador, martillero, pericias judiciales</th><td>Credenciales propias</td><td><span class="chip ok">Ya existe</span></td></tr>
+        <tr><th>Caso anónimo por rubro y rango de metros</th><td>Riesgo bajo, con una condición</td><td><span class="chip inf">A validar</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><b>La condición del caso anónimo:</b> "una empresa de alimentos que necesitaba entre 4.000 y 6.000 m² en el corredor oeste" no identifica a nadie <b>si hay muchas empresas así</b>. Si hay tres, identifica perfectamente. La regla segura: <b>nunca cruzar rubro, metros exactos y parque en la misma frase.</b> Dos de los tres, y el tercero en rango amplio.</p>
+    <p>Y la prueba más fuerte que te queda no necesita ningún cliente: sos <b>perito tasador y martillero público</b>, hacés pericias judiciales de activos industriales. En un rubro donde el reclamo validado es que "el que te atiende no entiende de naves", esa credencial es el argumento, y no expone a nadie.</p>
+  </div>
+</section>
+
+<section id="b01">
+  <h2><span class="num">03</span> Ángulo B-01</h2>
+  <p class="h2sub">El mercado que no ves</p>
+
+  <p class="prose"><strong>Insight:</strong> las mejores naves se alquilan antes de llegar al portal. El que busca en un aviso no está viendo el mercado: está viendo lo que sobró. <strong>Dolores:</strong> 9, 13, 17.</p>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B01-M1</span><span class="pz-name">Negación · el mercado no se publica</span><span class="pz-spec">Meta · 1:1 y 9:16 · frío</span><span class="chip platzi">Hook: negación</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">No es que no haya naves industriales en GBA. Es que las mejores se alquilan antes de llegar al portal.
+
+Cuando queda libre una nave con la altura, los accesos y la potencia que una operacion necesita, se ocupa entre los que ya estaban en la rueda. Lo que llega al aviso es lo que quedo, y llega tarde.
+
+Krak Industrial trabaja adentro de esa rueda. Nueve naves en cartera propia, de 1.325 a 9.000 m2, mas el relevamiento del corredor completo.
+
+Decinos los metros que necesitas, la actividad y la zona. Te mandamos lo que hay.</p></div>
+      <div class="f"><span class="flab">Titular y descripción</span>
+<p class="copy">Titular:      El mercado industrial no esta en los portales
+Descripcion:  Nueve naves propias de 1.325 a 9.000 m2</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Mas informacion  →  landing de requerimiento</p></div>
+      <div class="f"><span class="flab">Estructura y brief visual</span><p class="rowval">Estructura <b>PAS</b>: el problema es que buscaste mal, la agitación es que llegás tarde, la solución es estar adentro. Visual: foto real de nave vacía en gris, sin texto encima, para que el copy haga todo el trabajo. La placa de datos entra recién en la última tarjeta.</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B01-M2</span><span class="pz-name">Pregunta incómoda · cuántas viste que sirvieran</span><span class="pz-spec">Meta · 1:1 · frío</span><span class="chip platzi">Hook: pregunta</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">De todas las naves que viste publicadas, cuantas servian de verdad para tu operacion?
+
+Si la respuesta es ninguna, no es mala suerte. El industrial es un mercado que casi no se publica: se mueve entre brokers, entre colegas y entre quien esta adentro cuando algo queda libre.
+
+Ahi trabajamos nosotros. Nueve naves propias de 1.325 a 9.000 m2, y acceso al resto del corredor.
+
+Tres datos —metros, actividad y zona— y te armamos el comparativo.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Nueve naves propias en GBA
+CTA:      Mas informacion</p></div>
+      <div class="f"><span class="flab">Estructura</span><p class="rowval"><b>Objeción → refutación → CTA.</b> La objeción implícita es "ya busqué y no hay nada"; la refutación es que buscó en el lugar equivocado.</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B01-V1</span><span class="pz-name">Dos canchas de fútbol</span><span class="pz-spec">Meta · video 9:16 · 45 s · frío</span><span class="chip platzi">Hook: dato</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">La nave que tenemos en Parque Industrial Reconquista mide dos canchas de futbol.
+
+Nueve mil metros cubiertos, a treinta minutos de CABA, sobre el cruce del Acceso Oeste y el Camino del Buen Ayre.
+
+El mercado de naves industriales no funciona como el residencial: lo bueno se mueve entre los que estan adentro. Nosotros estamos adentro.
+
+Nueve naves en cartera, de 1.325 a 9.000 m2. Decinos que necesitas.</p></div>
+      <div class="f"><span class="flab">Material</span><p class="rowval">Re-corte de <b>RE-01</b>, el video del canal que ya existe y tiene 61 vistas. El título original —"Esta Nave Industrial Mide 2 Canchas de Fútbol"— es el hook y ya está filmado. Arranca en el plano de mayor escala, sin presentación.</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Mas informacion</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B01-S1</span><span class="pz-name">Search · el mercado que no se publica</span><span class="pz-spec">Búsqueda · responsive</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Títulos (máx. 30)</span>
+<p class="copy">Naves que No Estan en Portales
+El Mercado que No se Publica
+Cartera Propia en Exclusiva
+Nueve Naves Propias en GBA
+1.325 a 9.000 m2 en GBA</p></div>
+      <div class="f"><span class="flab">Descripciones (máx. 90)</span>
+<p class="copy">El industrial casi no se publica. Nosotros trabajamos adentro de ese mercado.
+Nueve naves propias mas el relevamiento del corredor completo. Pedi el listado.
+Las mejores naves se alquilan antes de llegar al aviso. Nosotros estamos antes.</p></div>
+      <div class="f"><span class="flab">Palabras clave</span>
+<p class="copy">busco nave industrial que no encuentro
+no hay galpones en alquiler
+broker industrial gba
+inmobiliaria especializada naves industriales
+donde buscar nave industrial alquiler</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B01-L1</span><span class="pz-name">LinkedIn · por qué no encontrás</span><span class="pz-spec">Imagen única 1200×627 · tráfico</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Texto introductorio</span>
+<p class="copy">Si estas buscando una nave industrial y no encontras nada que sirva, probablemente el problema no sea la oferta.
+
+El mercado industrial de GBA casi no se publica. Cuando queda libre una nave con la altura util, la potencia instalada y los accesos que una operacion real necesita, se ocupa entre quienes ya estaban en la rueda: brokers, colegas, contactos del parque. Al portal llega lo que quedo disponible, y llega despues.
+
+Trabajamos adentro de ese mercado. Hoy tenemos nueve naves en cartera propia, de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA, en los corredores de Panamericana, Acceso Oeste y Riccheri.
+
+Si nos decis cuantos metros necesitas, para que actividad y en que zona, relevamos lo nuestro y lo del corredor y te devolvemos un comparativo.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span><p class="copy">Titular:  El mercado industrial no esta en los portales
+CTA:      Mas informacion</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="b02">
+  <h2><span class="num">04</span> Ángulo B-02</h2>
+  <p class="h2sub">La mudanza no arranca cuando te vence</p>
+
+  <p class="prose"><strong>Insight:</strong> mudar una operación industrial lleva meses. El que empieza cuando se le vence el contrato ya llegó tarde. <strong>Dolor:</strong> 1. Es el único ángulo que le habla a quien todavía no está buscando.</p>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B02-M1</span><span class="pz-name">Elegir o aceptar</span><span class="pz-spec">Meta · 1:1 y 9:16 · frío</span><span class="chip platzi">Hook: historia</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Tu contrato vence en marzo. Y vas a empezar a buscar en febrero.
+
+Entre relevar el mercado, comparar en serio, visitar, negociar, habilitar y mudar la operacion sin dejar de entregar, una mudanza industrial se lleva meses. El que arranca tarde no elige: firma lo que quedo disponible.
+
+Nueve naves en cartera propia, de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA.
+
+Decinos metros, actividad y zona. Te mandamos lo que hay, sin que tengas que comprometerte a nada todavia.</p></div>
+      <div class="f"><span class="flab">Titular y descripción</span>
+<p class="copy">Titular:      Empezar antes es toda la diferencia
+Descripcion:  Nueve naves propias en GBA</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Ver opciones  →  landing de requerimiento</p></div>
+      <div class="f"><span class="flab">Estructura y nota de segmentación</span><p class="rowval">Estructura <b>Antes / Después / Puente</b>. El mes del hook debería rotarse según el calendario: "vence en marzo" en octubre, no en marzo. <span class="chip inf">Inferencia</span></p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B02-M2</span><span class="pz-name">Firmar contra reloj sale caro</span><span class="pz-spec">Meta · 1:1 · frío</span><span class="chip platzi">Hook: dolor directo</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Firmar un alquiler industrial contra reloj sale caro. Pero no por el valor del metro.
+
+Sale caro por lo que aceptas cuando ya no te queda tiempo: menos altura de la que necesitabas, accesos que no eran los que querias, un corredor que te suma media hora de distribucion todos los dias. Y eso lo pagas durante los proximos cinco anos.
+
+La diferencia entre elegir y aceptar es cuando empezaste a buscar.
+
+Nueve naves propias de 1.325 a 9.000 m2. Contanos que necesitas y te mandamos el comparativo.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Elegi en lugar de aceptar
+CTA:      Mas informacion</p></div>
+      <div class="f"><span class="flab">Estructura</span><p class="rowval"><b>PAS.</b> Es la pieza más cercana al dolor directo de todo el Kit B, y la que más conviene vigilar: si sube CTR y baja la calidad del requerimiento, el registro se pasó de intensidad.</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B02-M3</span><span class="pz-name">Cuánto tarda mudar una operación</span><span class="pz-spec">Meta · carrusel 1:1 · 6 tarjetas</span><span class="chip platzi">Hook: resultado</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Cuanto tarda mudar una operacion industrial, etapa por etapa.
+
+Sumalo con tu propio calendario. Si el contrato te vence en menos de seis meses, el momento de arrancar es ahora.
+
+Las dos primeras etapas las hacemos nosotros: relevamos el mercado y te devolvemos el comparativo listo para que compares. Nueve naves propias, de 1.325 a 9.000 m2, mas el corredor completo.</p></div>
+      <div class="f"><span class="flab">Tarjetas</span>
+<p class="copy">Portada  ·  CUANTO TARDA MUDAR UNA OPERACION INDUSTRIAL
+1 ·  Relevar el mercado          [PLAZO A VALIDAR]
+2 ·  Visitar y comparar          [PLAZO A VALIDAR]
+3 ·  Negociar y firmar           [PLAZO A VALIDAR]
+4 ·  Habilitacion municipal      [PLAZO A VALIDAR]
+5 ·  Mudar sin frenar la entrega [PLAZO A VALIDAR]</p></div>
+      <div class="f"><span class="flab">Bloqueo de producción</span><p class="rowval"><b>No inventé los plazos.</b> Son el dato que hace que esta pieza funcione y tienen que salir de la experiencia de Pablo, no de mi estimación. Con esos cinco números esta pieza pasa a ser la más útil del ángulo: es contenido que nadie publica y se comparte entre colegas.</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Mas informacion</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B02-S1</span><span class="pz-name">Search · vencimiento y plazos</span><span class="pz-spec">Búsqueda · responsive</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Títulos (máx. 30)</span>
+<p class="copy">Vence tu Contrato de Alquiler
+Empeza Antes de que Te Venza
+Mudanza Industrial sin Frenar
+Naves Industriales en Alquiler
+Elegi en Lugar de Aceptar</p></div>
+      <div class="f"><span class="flab">Descripciones (máx. 90)</span>
+<p class="copy">Mudar una operacion lleva meses. Si te vence en seis, el momento es ahora.
+Firmar contra reloj sale caro. No por el precio: por lo que aceptas sin tiempo.
+Decinos metros, actividad y zona. Te mandamos el comparativo del mercado.</p></div>
+      <div class="f"><span class="flab">Palabras clave</span>
+<p class="copy">vencimiento contrato alquiler galpon
+cuanto tarda mudar una empresa
+alquiler nave industrial gba
+renovacion contrato alquiler comercial industrial
+mudanza de planta industrial</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B02-L1</span><span class="pz-name">LinkedIn · el calendario de una mudanza</span><span class="pz-spec">Imagen única · tráfico</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Texto introductorio</span>
+<p class="copy">Si el contrato de tu nave vence en los proximos seis meses, el momento de empezar a buscar ya paso hace un rato.
+
+Una mudanza industrial no se resuelve en treinta dias. Hay que relevar un mercado que casi no se publica, verificar altura util, capacidad de piso, potencia instalada y uso de suelo habilitado para tu actividad, negociar, y despues mudar la operacion sin frenar la entrega.
+
+El que arranca con el vencimiento encima no elige: firma lo que quedo disponible. Y despues convive cinco anos con esa decision.
+
+Tenemos nueve naves en cartera propia, de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA. Si nos decis metros, actividad y zona, relevamos lo nuestro y lo del corredor y te devolvemos un comparativo. Sin compromiso de tu parte.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span><p class="copy">Titular:  Tu contrato vence en seis meses. Y eso ya es poco tiempo
+CTA:      Mas informacion</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="b03">
+  <h2><span class="num">05</span> Ángulo B-03</h2>
+  <p class="h2sub">Estás haciendo trabajo de broker gratis</p>
+
+  <p class="prose"><strong>Insight:</strong> el que busca la nave es el mismo que tiene que hacer funcionar la empresa. <strong>Dolores:</strong> 16, 47. Es el ángulo más cercano al Kit A, y por eso funciona como control del test.</p>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B03-M1</span><span class="pz-name">Cuántas tardes recorriendo galpones</span><span class="pz-spec">Meta · 1:1 y 9:16 · frío</span><span class="chip platzi">Hook: pregunta</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Cuantas tardes llevas recorriendo galpones que no servian?
+
+El que busca la nave suele ser el mismo que tiene que hacer funcionar la empresa: el dueno, el gerente de operaciones. Cada visita que no sirve son tres horas que la operacion no tuvo a su responsable.
+
+Esa parte la hacemos nosotros. Nos decis metros, actividad y zona, y te llega un comparativo con cada opcion: metros cubiertos, valor mensual, accesos, estado y minutos a CABA.
+
+Vas a visitar dos o tres. No doce.</p></div>
+      <div class="f"><span class="flab">Titular y descripción</span>
+<p class="copy">Titular:      Deja de recorrer galpones que no sirven
+Descripcion:  Tres datos y te armamos el comparativo</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Mas informacion  →  landing de requerimiento</p></div>
+      <div class="f"><span class="flab">Estructura</span><p class="rowval"><b>PAS</b>, con la agitación puesta en el costo de oportunidad y no en el miedo. El cierre —"dos o tres, no doce"— es el beneficio en su forma más concreta.</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B03-M2</span><span class="pz-name">No es buscar una casa más grande</span><span class="pz-spec">Meta · 1:1 · frío</span><span class="chip platzi">Hook: negación</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Buscar una nave industrial no es buscar una casa mas grande.
+
+Altura libre util, capacidad de piso en toneladas por metro, potencia instalada en kVA, radio de giro real para el camion que vas a usar, uso de suelo habilitado para tu actividad puntual. Si el que te atiende no sabe preguntarte eso, te va a mostrar lo que tiene, no lo que necesitas.
+
+Krak Industrial es brokerage industrial. No una inmobiliaria que ademas tiene algunos galpones.
+
+Tres datos y te armamos el comparativo.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Especialistas en naves, no generalistas
+CTA:      Mas informacion</p></div>
+      <div class="f"><span class="flab">Prueba de respaldo</span><p class="rowval">Es la pieza donde entra la autoridad profesional sin exponer a ningún cliente: perito tasador y martillero público, con pericias judiciales de activos industriales. Va en la placa o en el cierre del video, no en el copy primario.</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B03-M3</span><span class="pz-name">El comparativo como producto</span><span class="pz-spec">Meta · 1:1 · imagen única</span><span class="chip platzi">Hook: beneficio</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Asi entregamos una busqueda de nave industrial.
+
+Una tabla con cada opcion: metros cubiertos, valor mensual mas IVA, dolar por metro, estado, accesos por nombre de ruta y minutos a CABA. Cartera propia y mercado, en la misma hoja, ordenadas para que puedas comparar de verdad.
+
+Vos nos das tres datos. El resto lo hacemos nosotros.</p></div>
+      <div class="f"><span class="flab">Brief visual</span><p class="rowval">La pieza <b>es</b> el informe: captura real de la tabla comparativa con los datos sensibles tapados, sobre fondo gris. Es la prueba más fuerte que existe y no expone a ningún cliente. Heredada de MT-06 del Kit A, con hook nuevo.</p></div>
+      <div class="f"><span class="flab">CTA</span><p class="copy cta">Obtener oferta</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B03-S1</span><span class="pz-name">Search · delegación y especialización</span><span class="pz-spec">Búsqueda · responsive</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Títulos (máx. 30)</span>
+<p class="copy">No Busques la Nave Vos Solo
+Te Armamos el Comparativo
+Brokers Industriales en GBA
+Tres Datos y Te Mandamos Todo
+Especialistas en Naves</p></div>
+      <div class="f"><span class="flab">Descripciones (máx. 90)</span>
+<p class="copy">Cada visita que no sirve son tres horas que tu operacion no te tuvo.
+Altura, piso, potencia y uso de suelo. Si no te preguntan eso, no es industrial.
+Vas a visitar dos o tres naves, no doce. Nosotros filtramos antes.</p></div>
+      <div class="f"><span class="flab">Palabras clave</span>
+<p class="copy">broker industrial buenos aires
+inmobiliaria industrial especializada
+busqueda de nave industrial servicio
+asesor alquiler galpon industrial
+tasacion nave industrial</p></div>
+    </div>
+  </div>
+
+  <div class="pz">
+    <div class="pz-head"><span class="pz-id">B03-L1</span><span class="pz-name">LinkedIn · quién está buscando</span><span class="pz-spec">Imagen única · tráfico</span></div>
+    <div class="pz-body">
+      <div class="f"><span class="flab">Texto introductorio</span>
+<p class="copy">En la mayoria de las empresas industriales, el que busca la nave nueva es el gerente de operaciones o directamente el dueno. La misma persona que tiene que sostener la entrega todos los dias.
+
+Y buscar una nave no es mirar avisos. Es verificar altura libre util contra el racking que ya compraste, pedir por escrito la capacidad de piso, confirmar la potencia instalada, probar el radio de giro con el camion real y chequear que el uso de suelo admita tu actividad. Cada visita que no cumple esos puntos son tres horas que la operacion no tuvo a su responsable.
+
+Eso es lo que hacemos nosotros. Nos pasas metros, actividad y zona; relevamos cartera propia y mercado, y te devolvemos un comparativo con cada opcion y sus datos duros.
+
+Vas a visitar dos o tres naves. No doce.</p></div>
+      <div class="f"><span class="flab">Titular y CTA</span><p class="copy">Titular:  El que busca la nave es el que tiene que operar la empresa
+CTA:      Mas informacion</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <h2><span class="num">06</span> Plan de test y nomenclatura</h2>
+  <p class="h2sub">Una variable por ronda</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Ronda</th><th>Enfrenta</th><th>Variable que cambia</th><th>Qué aprendemos</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>Kit A (MT-01) contra B03-M1</td><td>Solo el hook</td><td>Si el problema del Kit A era de ángulo o de intensidad</td></tr>
+        <tr><th>2</th><td>Ganador contra B01-M1</td><td>El ángulo completo</td><td>Si conviene hablarle al que ya busca o al que no sabe que el mercado está oculto</td></tr>
+        <tr><th>3</th><td>Ganador contra B02-M1</td><td>El momento del cliente</td><td>Si vale invertir en quien todavía no busca</td></tr>
+        <tr><th>4</th><td>Dentro del ángulo ganador</td><td>Estructura, después CTA</td><td>Cuánto era el ángulo y cuánto la ejecución</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Nomenclatura</h3>
+  <p class="prose mono" style="background:var(--code-bg);padding:12px 14px;border-radius:5px;font-size:13px">KRE_IND | [kit] | [angulo] | [hook] | [estructura] | [cta] | [formato]<br>KRE_IND | B | B01 | negacion | PAS | directo | img11<br>KRE_IND | B | B02 | historia | antes-despues | directo | video916<br>KRE_IND | A | — | oferta | informativa | directo | carrusel11</p>
+
+  <h3>Criterio de lectura</h3>
+  <p class="prose">El orden de decisión no cambia respecto del diagnóstico: <strong>CTR</strong> diagnostica el hook, <strong>% de requerimientos con los cuatro datos completos</strong> protege del clic barato, y <strong>costo por requerimiento calificado</strong> es el número que se compara entre kits. Una diferencia que no se sostiene dos ciclos completos es ruido, no resultado.</p>
+</section>
+
+<section id="falta">
+  <h2><span class="num">07</span> Lo que bloquea producción</h2>
+  <p class="h2sub">Tres datos, ninguno grande</p>
+
+  <div class="prose">
+    <ol>
+      <li><strong>Los cinco plazos de una mudanza industrial</strong>, para B02-M3. Es la única pieza con campos abiertos y no los quise estimar: ese dato es la pieza.</li>
+      <li><strong>¿El locatario paga honorarios?</strong> Si la respuesta es no, tenemos un argumento que hoy no está en ninguna pieza de ninguno de los dos kits, y merece su propio test.</li>
+      <li><strong>Capacidad de atención semanal.</strong> Lo vengo preguntando desde el Kit A y sigue sin respuesta. Dado que el costo por lead no es la restricción, <strong>la capacidad del equipo es literalmente el único límite del presupuesto</strong>: es el número que define cuánto se puede invertir sin destruir valor.</li>
+    </ol>
+    <p>Con el punto 1 se cierra la última pieza. Los puntos 2 y 3 no frenan la producción, pero sí el plan de medios.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Trazabilidad.</strong> Ángulos derivados de los 11 dolores validados por Marcelo Napolitano sobre 50 hipótesis. Framework de hooks, ángulos de promesa, estructuras y CTAs: <em>Sistema creativo: análisis, volumen e iteración</em>, recurso de clase de Platzi. Valores de cartera y honorario: informe de búsqueda del 27/6/2026 y criterio de comisión provisto por Marce. Títulos y descripciones de Search verificados contra los límites de 30 y 90 caracteres.</p>
+  <p style="margin-top:12px">El Kit A no fue modificado. Todo lo marcado como inferencia es criterio propio. No hay datos de performance: ninguno de los dos kits salió al aire, así que cada pieza es una hipótesis a testear.</p>
+</footer>
+
+</div>
