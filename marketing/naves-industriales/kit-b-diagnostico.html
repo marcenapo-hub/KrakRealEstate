@@ -1,0 +1,528 @@
+<title>Diagnóstico Kit B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#14181E; --ink-2:#4E586E; --ink-3:#7C8594;
+  --rule:#D8DCE2; --rule-soft:#E9ECF0;
+  --surface:#FFFFFF; --ground:#F2F4F6; --raise:#FAFBFC;
+  --brand:#08407C; --brand-soft:#E5EDF7;
+  --hyp:#8A5310; --hyp-soft:#F7EEE0;
+  --ok:#15683A; --ok-soft:#E2F0E7;
+  --risk:#9E1F1B; --risk-soft:#F7E5E4;
+  --code-bg:#F5F6F8; --code-ink:#1D2530;
+  --dot-on:#08407C; --dot-off:#D8DCE2;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;margin:0;padding-inline:26px;padding-block:0 110px}
+.page{max-width:1120px;margin:0 auto}
+.prose{max-width:72ch}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+header.top{padding-block:46px 22px;border-bottom:3px solid var(--brand);margin-bottom:10px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+h1{font-size:clamp(29px,4.4vw,44px);line-height:1.05;font-weight:800;letter-spacing:-.028em;
+  margin:12px 0;text-wrap:balance}
+.dek{font-size:18px;color:var(--ink-2);max-width:64ch;margin:0}
+dl.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 24px;
+  margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft)}
+dl.meta div{display:flex;flex-direction:column;gap:2px}
+dl.meta dt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+dl.meta dd{margin:0;font-size:14px;font-weight:600}
+
+section{margin-top:64px}
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--brand);
+  margin:0 0 8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h2 .num{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);font-weight:500}
+.h2sub{font-size:clamp(22px,2.8vw,30px);font-weight:700;letter-spacing:-.022em;line-height:1.16;
+  margin:0 0 20px;max-width:28ch;text-wrap:balance}
+h3{font-size:19px;font-weight:700;letter-spacing:-.014em;margin:36px 0 10px}
+h4{font-size:14.5px;font-weight:700;margin:20px 0 6px;color:var(--ink-2)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:21px}
+li{margin-bottom:6px}
+a{color:var(--brand)}
+
+.thesis{background:var(--brand-soft);border-left:3px solid var(--brand);padding:22px 24px;
+  margin:0 0 28px;border-radius:0 5px 5px 0}
+.thesis .lead{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.38;margin-bottom:10px}
+.thesis p:last-child{margin-bottom:0}
+
+.scroll{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:7px;
+  background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.45;min-width:640px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  background:var(--raise);border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+tbody th{font-weight:700;width:1%;white-space:nowrap}
+td.mono{font-family:"IBM Plex Mono";font-size:12px}
+.tnum{font-variant-numeric:tabular-nums;text-align:right}
+
+/* cobertura: puntos llenos y vacios */
+.cov{display:flex;gap:4px;align-items:center}
+.dot{width:10px;height:10px;border-radius:2px;background:var(--dot-off);flex:none}
+.dot.on{background:var(--dot-on)}
+.dot.half{background:linear-gradient(90deg,var(--dot-on) 50%,var(--dot-off) 50%)}
+.covnum{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-2);margin-left:6px;white-space:nowrap}
+
+.chip{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:2.5px 7px;border-radius:3px;white-space:nowrap;vertical-align:middle}
+.chip.platzi{background:var(--brand-soft);color:var(--brand)}
+.chip.inf{background:var(--hyp-soft);color:var(--hyp)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.risk{background:var(--risk-soft);color:var(--risk)}
+.chip.off{background:var(--rule-soft);color:var(--ink-3)}
+
+/* ficha de principio */
+.pri{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:16px 0;
+  overflow:hidden}
+.pri-head{padding:13px 18px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.pri-name{font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:160px}
+.pri-body{padding:16px 18px 18px;display:grid;gap:13px}
+.row{display:grid;gap:4px}
+.rowlab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.rowval{font-size:14.5px;color:var(--ink-2)}
+.rowval b{color:var(--ink)}
+
+/* ficha de angulo — la espina del documento */
+.ang{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:20px 0;
+  overflow:hidden}
+.ang.top{border-color:var(--brand);box-shadow:0 1px 2px rgba(8,64,124,.06),0 10px 28px -20px rgba(8,64,124,.5)}
+.ang-head{padding:14px 20px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.ang-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px}
+.ang-name{font-size:16.5px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:170px}
+.ang-src{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-3)}
+.chain{padding:0;margin:0;list-style:none}
+.chain li{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:12px 20px;
+  border-bottom:1px solid var(--rule-soft);font-size:14.5px}
+.chain li:last-child{border-bottom:none}
+.chain .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:700;padding-top:3px}
+.chain .v{color:var(--ink-2)}
+.chain .v b{color:var(--ink)}
+.chain li.hook .v{font-family:"IBM Plex Mono";font-size:13.5px;color:var(--ink);
+  background:var(--code-bg);padding:9px 12px;border-radius:5px;border-left:2px solid var(--hyp)}
+@media (max-width:560px){.chain li{grid-template-columns:1fr;gap:4px}}
+
+.note{background:var(--hyp-soft);border-left:3px solid var(--hyp);padding:15px 19px;margin:16px 0;
+  border-radius:0 6px 6px 0;font-size:14.5px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.note p:last-child{margin-bottom:0}
+
+ol.steps{list-style:none;padding:0;margin:20px 0;counter-reset:st}
+ol.steps>li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:16px 0;border-bottom:1px solid var(--rule-soft)}
+ol.steps>li::before{content:counter(st);font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;
+  color:var(--brand);background:var(--brand-soft);border-radius:4px;width:28px;height:25px;
+  display:grid;place-items:center}
+ol.steps h4{margin:0 0 4px;font-size:16px;color:var(--ink)}
+ol.steps p{font-size:14.5px;margin:0 0 5px;color:var(--ink-2)}
+
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){body{padding-inline:16px;font-size:15.5px}}
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow">Krak Industrial · Kit B · Fase de diagnóstico</div>
+  <h1>Diagnóstico previo a las piezas del Kit B</h1>
+  <p class="dek">Auditoría del Kit A contra el framework de Platzi, mapa de dolores validado con Marce, y seis ángulos creativos como hipótesis a testear. Sin piezas escritas todavía.</p>
+  <dl class="meta">
+    <div><dt>Kit A</dt><dd>Intacto, sin modificar</dd></div>
+    <div><dt>Marco</dt><dd>Sistema creativo Platzi</dd></div>
+    <div><dt>Dolores validados</dt><dd>11 de 50</dd></div>
+    <div><dt>Ángulos propuestos</dt><dd>6</dd></div>
+    <div><dt>Fecha</dt><dd>16 de septiembre de 2026</dd></div>
+    <div><dt>Etapa siguiente</dt><dd>Conceptos y piezas</dd></div>
+  </dl>
+</header>
+
+<section id="partida">
+  <h2><span class="num">01</span> Punto de partida</h2>
+  <p class="h2sub">Lo que cambió con tres respuestas</p>
+
+  <div class="thesis prose">
+    <p class="lead">No hay un flujo de demanda entrante que estemos capturando mal. Hay demanda que nunca llega.</p>
+    <p>Las consultas vienen de referidos, de campañas que no estaban bien armadas, de la base y de portales — y de todo eso, poco. Eso reordena el problema: el Kit B no compite por una demanda que ya circula. Tiene que <strong>generarla sobre un universo que todavía no está buscando</strong>.</p>
+  </div>
+
+  <div class="prose">
+    <h3>Tres consecuencias directas</h3>
+    <ul>
+      <li><strong>El test es prospectivo, no comparativo.</strong> El Kit A nunca salió al aire, así que no hay histórico contra el que medir. A y B se corren en paralelo desde cero, con presupuesto partido y las mismas audiencias — que es, de hecho, la forma más limpia de compararlos.</li>
+      <li><strong>Si una operación vale mucho, el objetivo no es el clic barato.</strong> Con alquileres de USD 28.400 a 67.500 por mes en la cartera, el valor de una operación cerrada admite costos por lead que en residencial serían absurdos. La consecuencia operativa es contraintuitiva: <strong>el Kit B debería optimizar por calidad de requerimiento, no por volumen de clics</strong>, y aceptar un CPL alto si el requerimiento llega completo.</li>
+      <li><strong>Los referidos son el activo más fuerte y el Kit A casi no los usa.</strong> Si el negocio crece por recomendación, es porque el que trabajó con Krak vuelve a hablar de Krak. Eso es la prueba más potente que existe y en el Kit A aparece una sola vez, en un testimonio que además está marcado como "producir cuando haya un caso cerrado".</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <p><b>Falta un número y lo necesito.</b> "Vale un montón" me alcanza para la dirección estratégica, no para calcular el techo del costo por adquisición. El cálculo que quiero cerrar con vos es simple: <b>comisión por operación × tasa de cierre desde requerimiento = lo máximo que podemos pagar por un requerimiento calificado.</b> Con eso, el plan de medios deja de ser intuición.</p>
+    <p>No me hace falta el número exacto: me alcanza con el <b>criterio de comisión</b> en alquiler industrial —uno o dos meses, un porcentaje del contrato, lo que sea que usen— y una estimación gruesa de cuántos requerimientos hacen falta para cerrar uno.</p>
+  </div>
+</section>
+
+<section id="auditoria">
+  <h2><span class="num">02</span> Auditoría del Kit A</h2>
+  <p class="h2sub">Dónde está concentrado y dónde no toca nada</p>
+
+  <p class="prose">Clasifiqué las piezas de pauta del Kit A contra los cinco ejes del framework. La lectura confirma tu intuición, y con más precisión de la que esperaba: el Kit A no carece de dolor — <strong>carece de variedad de mecanismo</strong>. Está sobre-indexado en un solo tipo de promesa y en un solo tipo de cierre.</p>
+
+  <h3>Eje 1 · Hooks</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Tipo de hook <span class="chip platzi">Platzi</span></th><th style="width:130px">Cobertura</th><th>Dónde aparece en el Kit A</th></tr></thead>
+      <tbody>
+        <tr><th>Dolor directo</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Ninguna pieza</td></tr>
+        <tr><th>Pregunta incómoda</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Ninguna pieza</td></tr>
+        <tr><th>Dato sorprendente</th><td><div class="cov"><span class="dot half"></span><span class="covnum">parcial</span></div></td><td>MT-04, el reel de cinco errores — pero el dato es técnico, no sorprendente</td></tr>
+        <tr><th>Negación · "No es X, es Y"</th><td><div class="cov"><span class="dot on"></span><span class="covnum">sí</span></div></td><td>MT-02, "Nadie se enamora de una nave industrial". Es el mejor hook del kit</td></tr>
+        <tr><th>Historia identificable</th><td><div class="cov"><span class="dot on"></span><span class="covnum">sí</span></div></td><td>LI-02, el contrato que vence en seis meses. Y débilmente MT-07</td></tr>
+        <tr><th>Resultado específico</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Ninguna pieza</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><b>El hallazgo más incómodo de esta auditoría:</b> el único hook del Kit A anclado a un disparador real —el contrato que vence— está en <b>LI-02, LinkedIn</b>. El canal más caro y de menor volumen. En Meta, donde está el alcance, los siete creativos abren con oferta: metros, valores, corredores. <span class="chip inf">Inferencia</span></p>
+  </div>
+
+  <h3>Eje 2 · Ángulos de promesa</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Ángulo <span class="chip platzi">Platzi</span></th><th style="width:130px">Cobertura</th><th>Observación</th></tr></thead>
+      <tbody>
+        <tr><th>Simplicidad</th><td><div class="cov"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="covnum">dominante</span></div></td><td>"Decinos metros, actividad y zona" atraviesa todo el kit</td></tr>
+        <tr><th>Velocidad</th><td><div class="cov"><span class="dot half"></span><span class="covnum">parcial</span></div></td><td>"Respuesta en horario hábil", pero sin plazo comprometido</td></tr>
+        <tr><th>Pérdida evitada</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td><b>El que mejor encaja con los dolores 1, 6, 7 y 31. Ausente.</b></td></tr>
+        <tr><th>Identidad</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Hay material para usarlo vía el dolor 47</td></tr>
+        <tr><th>Pertenencia</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Se descarta con fundamento — ver sección 03</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Eje 3 · Estructuras de cuerpo</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Estructura <span class="chip platzi">Platzi</span></th><th style="width:130px">Cobertura</th><th>Observación</th></tr></thead>
+      <tbody>
+        <tr><th>PAS · Problema, agitación, solución</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Ninguna pieza instala un problema antes de ofrecer</td></tr>
+        <tr><th>AIDA adaptada a feed</th><td><div class="cov"><span class="dot half"></span><span class="covnum">parcial</span></div></td><td>Hay atención e interés; el deseo queda implícito</td></tr>
+        <tr><th>Antes / Después / Puente</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>No hay contraste de situación en ninguna pieza</td></tr>
+        <tr><th>Beneficios con prueba embebida</th><td><div class="cov"><span class="dot half"></span><span class="covnum">parcial</span></div></td><td>MT-01 lista cartera, pero sin prueba social</td></tr>
+        <tr><th>Objeción, refutación, CTA</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Ninguna pieza toma una objeción de frente</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">La estructura real que usa el Kit A no es ninguna de las cinco: es <strong>declaración más dato más oferta</strong>. Es una estructura informativa, correcta para un catálogo y débil para un feed.</p>
+
+  <h3>Eje 4 · CTAs</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Tipo de CTA <span class="chip platzi">Platzi</span></th><th style="width:130px">Cobertura</th><th>Observación</th></tr></thead>
+      <tbody>
+        <tr><th>Directo sin adorno</th><td><div class="cov"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="covnum">dominante</span></div></td><td>"Ver las opciones disponibles", "Más información"</td></tr>
+        <tr><th>Bajo compromiso</th><td><div class="cov"><span class="dot half"></span><span class="covnum">parcial</span></div></td><td>"Pedí la ficha técnica" se acerca</td></tr>
+        <tr><th>Curiosidad</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Espacio libre, y compatible con el tono</td></tr>
+        <tr><th>Prueba social</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Con referidos como canal principal, es la ausencia más costosa</td></tr>
+        <tr><th>Identidad</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Utilizable vía el dolor 47</td></tr>
+        <tr><th>Urgencia real</th><td><div class="cov"><span class="dot"></span><span class="covnum">nulo</span></div></td><td>Descartado a propósito en el Kit A, y bien — ver sección 03</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Eje 5 · Formatos</h3>
+  <p class="prose">Es el único eje bien cubierto: el Kit A tiene video con texto en pantalla, imagen estática con copy, carrusel, imagen de resultado y un testimonio pendiente de producción. <strong>El déficit no está en los formatos. Está en los hooks, las promesas y las estructuras.</strong></p>
+
+  <div class="note">
+    <p><b>Síntesis de la auditoría, como hipótesis de performance y no como veredicto:</b> el Kit A cubre 2 de 6 hooks, 1 de 5 ángulos de promesa y ninguna de las 5 estructuras persuasivas, con un solo tipo de CTA dominante. Eso produce un conjunto uniforme: todas las piezas le hablan igual, a la misma persona, en el mismo momento de su problema. <b>Lo que falta no es agresividad. Es variedad de entrada.</b> <span class="chip inf">Inferencia</span></p>
+  </div>
+</section>
+
+<section id="framework">
+  <h2><span class="num">03</span> Framework operativo</h2>
+  <p class="h2sub">Qué tomamos de Platzi y qué descartamos</p>
+
+  <p class="prose">El recurso se titula <strong>"Sistema creativo: análisis, volumen e iteración"</strong>, y su aporte central no es una fórmula de copy. Es el desplazamiento de <em>escribir piezas</em> a <em>generar combinaciones testeables</em>: cruza hooks × promesas × estructuras × CTAs × formatos y obliga a nombrar cada variante para poder leer cuál ganó. El Kit A tiene 34 piezas, una por idea; eso no es un sistema de aprendizaje.</p>
+
+  <p class="prose">Debajo, cada eje traducido. <span class="chip platzi">Platzi</span> marca lo que el recurso dice literalmente; <span class="chip inf">Inferencia</span> marca lo que agrego yo y es discutible.</p>
+
+  <div class="pri">
+    <div class="pri-head"><span class="pri-name">Los seis tipos de hook</span><span class="chip platzi">Platzi</span></div>
+    <div class="pri-body">
+      <div class="row"><span class="rowlab">Qué dice el recurso</span><span class="rowval">Pide seis hooks distintos por campaña: dolor directo, pregunta incómoda, dato sorprendente, negación, historia identificable y resultado específico. Son las primeras dos o tres líneas, o los primeros tres segundos de video.</span></div>
+      <div class="row"><span class="rowlab">Aplicación en paid media <span class="chip inf">Inferencia</span></span><span class="rowval">En un feed B2B el hook compite con contenido personal, no con otros anuncios. El umbral de interrupción es más alto, no más bajo.</span></div>
+      <div class="row"><span class="rowlab">Implicación para nuestras piezas</span><span class="rowval"><b>Los seis se pueden usar acá</b>, y son el eje donde el Kit A tiene más margen. El "resultado específico" es el que más me interesa probar: en un rubro donde nadie publica nada, decir qué se consiguió y en cuánto tiempo es casi desleal.</span></div>
+    </div>
+  </div>
+
+  <div class="pri">
+    <div class="pri-head"><span class="pri-name">Pérdida evitada como ángulo de promesa</span><span class="chip platzi">Platzi</span></div>
+    <div class="pri-body">
+      <div class="row"><span class="rowlab">Qué dice el recurso</span><span class="rowval">Lista cinco ángulos: velocidad, simplicidad, identidad, pérdida evitada y pertenencia. Define pérdida evitada como "lo que pierdes si NO actúas".</span></div>
+      <div class="row"><span class="rowlab">Aplicación en paid media <span class="chip inf">Inferencia</span></span><span class="rowval">Es el ángulo que mejor calza con un dolor que tiene fecha. Cuatro de los cinco disparadores que validaste son pérdidas en curso: metros que no usás, un contrato que se vence, un municipio que aprieta, distribución que te cuesta más de lo que debería.</span></div>
+      <div class="row"><span class="rowlab">Implicación para nuestras piezas</span><span class="rowval"><b>Es el ángulo central del Kit B</b>, y está completamente ausente en el A. Con una condición: pérdida evitada no es alarmismo. La pérdida se enuncia, no se dramatiza.</span></div>
+    </div>
+  </div>
+
+  <div class="pri">
+    <div class="pri-head"><span class="pri-name">Urgencia real, no falsa</span><span class="chip platzi">Platzi</span></div>
+    <div class="pri-body">
+      <div class="row"><span class="rowlab">Qué dice el recurso</span><span class="rowval">Pide "CTA de urgencia real (no fake countdown)" — explícitamente descarta la escasez fabricada.</span></div>
+      <div class="row"><span class="rowlab">Aplicación en paid media <span class="chip inf">Inferencia</span></span><span class="rowval">Coincide exactamente con la regla que el Kit A ya tiene: sin disponibilidad real desde Tokko, no hay contador. La convergencia es tranquilizadora — no hay que elegir entre el framework y la regla propia.</span></div>
+      <div class="row"><span class="rowlab">Implicación para nuestras piezas</span><span class="rowval">La urgencia legítima no está en la oferta, <b>está en el calendario del cliente</b>. No es "quedan dos naves": es "una mudanza industrial lleva meses y tu contrato vence en marzo". Esa urgencia es verdadera y no depende de nuestro inventario.</span></div>
+    </div>
+  </div>
+
+  <div class="pri">
+    <div class="pri-head"><span class="pri-name">Pertenencia</span><span class="chip off">Descartado</span></div>
+    <div class="pri-body">
+      <div class="row"><span class="rowlab">Qué dice el recurso</span><span class="rowval">Ángulo de promesa: "únete a quienes ya lo lograron". Y CTA de prueba social: "únete a N personas que...".</span></div>
+      <div class="row"><span class="rowlab">Por qué lo descarto <span class="chip inf">Inferencia</span></span><span class="rowval">El universo de empresas buscando nave en GBA se cuenta en cientos. "Sumate a los cientos que ya..." suena hueco y, peor, invita a verificar un número que no tenemos.</span></div>
+      <div class="row"><span class="rowlab">Qué rescato en su lugar</span><span class="rowval">La <b>prueba social sin número</b>: los referidos. No "cuántos", sino "quiénes" y "qué resolvieron". Es más creíble en B2B y es el activo que el negocio ya genera solo.</span></div>
+    </div>
+  </div>
+
+  <div class="pri">
+    <div class="pri-head"><span class="pri-name">Volumen e iteración</span><span class="chip platzi">Platzi</span></div>
+    <div class="pri-body">
+      <div class="row"><span class="rowlab">Qué dice el recurso</span><span class="rowval">Pide como salida final las tres mejores combinaciones justificadas, tres anuncios listos sin placeholders, y una convención de nombres para poder trackear qué variable está ganando.</span></div>
+      <div class="row"><span class="rowlab">Aplicación en paid media <span class="chip inf">Inferencia</span></span><span class="rowval">Con volúmenes bajos como los de este rubro, no se pueden testear veinte variantes en paralelo: la señal se diluye. Hay que testear pocas, secuenciales, y cambiar una variable por vez.</span></div>
+      <div class="row"><span class="rowlab">Implicación para nuestras piezas</span><span class="rowval">La convención de nombres del Kit A —<code>KRE_IND | zona | etapa | objetivo</code>— no sirve para esto: no codifica la variable creativa. El Kit B necesita extenderla con hook, promesa y estructura.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="painmap">
+  <h2><span class="num">04</span> Mapa de dolores validado</h2>
+  <p class="h2sub">Once dolores, dos núcleos</p>
+
+  <p class="prose">De cincuenta hipótesis, Marce validó once y descartó tres bloques completos: lo técnico de la nave, lo contractual y legal, y lo económico. La lectura de esos descartes es la corrección más valiosa de esta fase — <strong>lo técnico no es dolor, es especificación</strong>, y su lugar es la prueba, no el gancho.</p>
+
+  <h3>Núcleo 1 · El inmueble dejó de servirle a la operación</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:44px">#</th><th>Situación actual</th><th>Dolor</th><th>Consecuencia de no actuar</th><th>Situación deseada</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1</td><td>Vence el contrato y no le renuevan</td><td>Tiene fecha de salida y no tiene adónde ir</td><td>Firma cualquier cosa contra reloj</td><td>Elegir en vez de aceptar lo que queda</td></tr>
+        <tr><td class="mono">3</td><td>Creció y no entra la mercadería</td><td>Opera incómodo todos los días</td><td>Frena el crecimiento</td><td>Metros con aire para los próximos años</td></tr>
+        <tr><td class="mono">6</td><td>Se achicó y paga metros que no usa</td><td>Quema plata en espacio vacío</td><td>Sostiene un costo que no rinde</td><td>Pagar por lo que usa</td></tr>
+        <tr><td class="mono">7</td><td>El municipio apretó con habilitación o uso de suelo</td><td>Riesgo de clausura</td><td>Sale forzado y sin plan</td><td>Nave habilitada para su actividad</td></tr>
+        <tr><td class="mono">31</td><td>Está mal ubicado respecto de su cliente</td><td>La distribución le cuesta de más</td><td>Pierde margen cada mes</td><td>Estar donde le conviene a la operación</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Núcleo 2 · Buscar nave es un trabajo que el mercado no facilita</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:44px">#</th><th>Fricción</th><th>Qué revela</th><th>Cómo la resuelve Krak</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">9</td><td>No hay dónde buscar</td><td>El mercado industrial es opaco</td><td>Cartera propia más relevamiento del corredor</td></tr>
+        <tr><td class="mono">10</td><td>Los avisos no traen los datos que importan</td><td>Nadie publica bien</td><td>Ficha técnica completa por nave</td></tr>
+        <tr><td class="mono">13</td><td>Imposible comparar entre opciones</td><td>Falta un criterio común</td><td>El informe comparativo en formato único</td></tr>
+        <tr><td class="mono">16</td><td>El que busca es el que tiene que operar</td><td>No tiene tiempo para esto</td><td><b>Delegación</b>: le devolvemos el trabajo hecho</td></tr>
+        <tr><td class="mono">17</td><td>Las buenas se alquilan antes de publicarse</td><td>Hay un mercado que no se ve</td><td><b>Acceso</b>: estamos adentro de ese mercado</td></tr>
+        <tr><td class="mono">47</td><td>El que lo atiende no entiende de naves</td><td>El rubro está mal atendido</td><td>Especialización, no generalismo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><b>La propuesta de valor no hay que inventarla: está contenida en los dolores validados.</b> El 16 pide delegación y el 17 pide acceso. Delegación más acceso es, literalmente, la definición de un broker industrial. <span class="chip inf">Inferencia</span></p>
+  </div>
+</section>
+
+<section id="angulos">
+  <h2><span class="num">05</span> Seis ángulos creativos</h2>
+  <p class="h2sub">Hipótesis, no piezas</p>
+
+  <p class="prose">Cada ángulo es una hipótesis testeable con su cadena completa. Los hooks están escritos como <strong>dirección, no como copy final</strong>: marcan el registro y el tipo, y se redactan en la fase siguiente. Los tres primeros son los que propongo probar primero.</p>
+
+  <div class="ang top">
+    <div class="ang-head"><span class="ang-id">B-01</span><span class="ang-name">El mercado que no ves</span><span class="ang-src">dolores 9 · 17 · 13</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">Las mejores naves industriales se alquilan antes de publicarse. El que busca en el portal no está viendo el mercado: está viendo lo que sobró.</span></li>
+      <li><span class="k">Tensión</span><span class="v">Buscaste y no encontraste nada que te sirva. No es que no haya: es que no está ahí.</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Negación — "No es que no haya naves. Es que las que sirven no se publican."</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Acceso.</b> Variante propia del ángulo de identidad de Platzi, adaptada a B2B.</span></li>
+      <li><span class="k">Prueba</span><span class="v">Nueve naves en exclusiva. La de 9.000 m² de Reconquista está en cartera y no en ningún portal.</span></li>
+      <li><span class="k">CTA</span><span class="v">Curiosidad o directo, según variante. "Pedí el listado completo."</span></li>
+      <li><span class="k">Por qué primero</span><span class="v">Es el único ángulo que convierte la opacidad del mercado —tu principal problema comercial— en tu principal argumento de venta. Y es el que mejor responde la objeción de por qué pagarle a un broker.</span></li>
+    </ul>
+  </div>
+
+  <div class="ang top">
+    <div class="ang-head"><span class="ang-id">B-02</span><span class="ang-name">La mudanza no arranca cuando te vence</span><span class="ang-src">dolor 1</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">Mudar una operación industrial lleva meses: buscar, comparar, visitar, negociar, habilitar, mudar sin frenar. El que empieza cuando se le vence el contrato ya llegó tarde.</span></li>
+      <li><span class="k">Tensión</span><span class="v">La fecha existe, está en el calendario, y el reloj corre aunque no hagas nada.</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Historia identificable + pérdida evitada — anclado al mes de vencimiento, no a una consigna genérica.</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Pérdida evitada.</b> Lo que se evita es firmar contra reloj lo que quedó disponible.</span></li>
+      <li><span class="k">Prueba</span><span class="v">El plazo real de una mudanza industrial, desglosado por etapa. Dato que Krak tiene y nadie publica.</span></li>
+      <li><span class="k">CTA</span><span class="v">Bajo compromiso. Ver qué hay disponible hoy, sin comprometer nada.</span></li>
+      <li><span class="k">Por qué primero</span><span class="v">Es el único ángulo que le habla a quien <b>todavía no está buscando</b> — y dado que las consultas entrantes son pocas, ahí está el volumen que no estamos capturando.</span></li>
+    </ul>
+  </div>
+
+  <div class="ang top">
+    <div class="ang-head"><span class="ang-id">B-03</span><span class="ang-name">Estás haciendo trabajo de broker gratis</span><span class="ang-src">dolores 16 · 47</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">El que busca la nave es el gerente de operaciones o el dueño: la misma persona que tiene que hacer funcionar la empresa todos los días.</span></li>
+      <li><span class="k">Tensión</span><span class="v">Cada tarde visitando galpones que no servían es una tarde que la operación no tuvo a su responsable.</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Pregunta incómoda — sobre cuántas horas lleva la búsqueda y quién las está poniendo.</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Simplicidad</b> en su forma más fuerte: delegación completa.</span></li>
+      <li><span class="k">Prueba</span><span class="v">El informe comparativo. Es el entregable del servicio y se puede mostrar.</span></li>
+      <li><span class="k">CTA</span><span class="v">Bajo compromiso. Tres datos y lo recibís hecho.</span></li>
+      <li><span class="k">Por qué primero</span><span class="v">Es el ángulo que el Kit A ya insinúa y nunca dice de frente. Bajo riesgo, y sirve de control: si B-03 gana por poco contra el Kit A, sabemos que el problema del A era de intensidad; si gana por mucho, era de ángulo.</span></li>
+    </ul>
+  </div>
+
+  <div class="ang">
+    <div class="ang-head"><span class="ang-id">B-04</span><span class="ang-name">Metros que pagás y no usás</span><span class="ang-src">dolores 6 · 3</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">El desajuste entre operación e inmueble se paga todos los meses, en las dos direcciones: de más si te achicaste, en eficiencia si creciste.</span></li>
+      <li><span class="k">Tensión</span><span class="v">Es una pérdida cuantificable y silenciosa. Nadie la ve en el balance porque está dentro del alquiler.</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Dato o pregunta incómoda — sobre cuántos metros estás pagando contra cuántos usás.</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Pérdida evitada</b>, en su versión más aritmética.</span></li>
+      <li><span class="k">Prueba</span><span class="v">El rango real de USD/m² de la cartera: 5,50 a 8,84. Permite que el tipo haga la cuenta solo.</span></li>
+      <li><span class="k">CTA</span><span class="v">Directo, orientado a comparar contra lo que paga hoy.</span></li>
+      <li><span class="k">Riesgo</span><span class="v">Puede atraer a quien quiere renegociar con su propietario y no mudarse. <b>Vigilar la calidad del requerimiento, no solo el CTR.</b></span></li>
+    </ul>
+  </div>
+
+  <div class="ang">
+    <div class="ang-head"><span class="ang-id">B-05</span><span class="ang-name">La ubicación te cuesta plata todos los meses</span><span class="ang-src">dolor 31</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">Se elige la nave por el valor del alquiler y la diferencia se paga en distribución, todos los meses, sin que aparezca en la decisión original.</span></li>
+      <li><span class="k">Tensión</span><span class="v">Ahorraste en el alquiler y lo perdiste en fletes.</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Insight inesperado — el alquiler más barato puede ser el más caro.</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Pérdida evitada</b>, sobre un costo que el cliente no estaba mirando.</span></li>
+      <li><span class="k">Prueba</span><span class="v">El criterio de minutos a CABA que Krak ya usa en sus informes — 25 a 40 minutos, por corredor y ruta de acceso.</span></li>
+      <li><span class="k">CTA</span><span class="v">Curiosidad, hacia el comparador de corredores.</span></li>
+      <li><span class="k">Nota</span><span class="v">Es el ángulo más educativo de los seis. Probablemente rinda mejor en LinkedIn y en video que en imagen estática. <span class="chip inf">Inferencia</span></span></li>
+    </ul>
+  </div>
+
+  <div class="ang">
+    <div class="ang-head"><span class="ang-id">B-06</span><span class="ang-name">Quién te recomendó a Krak</span><span class="ang-src">canal de referidos</span></div>
+    <ul class="chain">
+      <li><span class="k">Insight</span><span class="v">El negocio crece por recomendación. Eso significa que los que ya trabajaron con Krak vuelven a hablar de Krak — la prueba más difícil de falsificar que existe.</span></li>
+      <li><span class="k">Tensión</span><span class="v">Objeción, no dolor: "¿por qué le voy a confiar esto a una inmobiliaria?"</span></li>
+      <li class="hook"><span class="k">Hook</span><span class="v">Resultado específico — qué necesitaba una empresa concreta, qué se consiguió, en cuánto tiempo.</span></li>
+      <li><span class="k">Promesa</span><span class="v"><b>Prueba social sin número.</b> Quiénes y qué resolvieron, nunca cuántos.</span></li>
+      <li><span class="k">Prueba</span><span class="v">Los casos cerrados. Es el ángulo que <b>depende de un insumo que todavía no tengo</b>.</span></li>
+      <li><span class="k">CTA</span><span class="v">Directo, con derivación a WhatsApp.</span></li>
+      <li><span class="k">Bloqueo</span><span class="v">Necesito uno o dos casos reales con permiso para nombrarlos. Sin eso, este ángulo no se puede producir — y es probablemente el de mayor techo de los seis.</span></li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <p><b>Lo que deliberadamente no propongo:</b> ningún ángulo de escasez de inventario, ninguno de pertenencia, y ninguno que apele al miedo personal del decisor —el dolor 50 de la lista, que Marce descartó con criterio—. En B2B industrial, con un decisor que no te conoce, el registro emocional directo puede costar más credibilidad de la atención que gana. <span class="chip inf">Inferencia</span></p>
+  </div>
+</section>
+
+<section id="test">
+  <h2><span class="num">06</span> Plan de experimentación</h2>
+  <p class="h2sub">Cómo comparamos A contra B sin engañarnos</p>
+
+  <p class="prose">Como el Kit A nunca salió, no hay histórico: los dos kits arrancan juntos. Eso es una ventaja metodológica — misma audiencia, mismo período, mismas condiciones de subasta.</p>
+
+  <ol class="steps">
+    <li><div>
+      <h4>Ronda 1 · ¿Ángulo o intensidad?</h4>
+      <p>Kit A contra B-03, que es el ángulo más cercano al A. Única variable que cambia: el hook. Mismo creativo, misma landing, mismo CTA.</p>
+      <p><b>Lo que aprendemos:</b> si el problema del Kit A era de ángulo o solamente de intensidad. Es la pregunta que abrió todo esto.</p>
+    </div></li>
+    <li><div>
+      <h4>Ronda 2 · El ángulo ganador contra el ángulo lejano</h4>
+      <p>El ganador de la ronda 1 contra B-01, el mercado que no ves. Acá cambia el ángulo completo, no solo el hook.</p>
+      <p><b>Lo que aprendemos:</b> si conviene hablarle al que ya busca o al que no sabe que el mercado está oculto.</p>
+    </div></li>
+    <li><div>
+      <h4>Ronda 3 · Momento del cliente</h4>
+      <p>El ganador contra B-02, el disparador temporal. Es el test de si vale la pena invertir en quien todavía no busca.</p>
+      <p><b>Lo que aprendemos:</b> si la generación de demanda tiene retorno o si hay que quedarse en captura.</p>
+    </div></li>
+    <li><div>
+      <h4>Ronda 4 · Estructura y CTA</h4>
+      <p>Sobre el ángulo ganador, variar una sola cosa por vez: primero la estructura de cuerpo, después el tipo de CTA.</p>
+      <p><b>Lo que aprendemos:</b> cuánto de la diferencia era el ángulo y cuánto la ejecución.</p>
+    </div></li>
+  </ol>
+
+  <div class="note">
+    <p><b>Una advertencia sobre la lectura de los resultados.</b> Con el volumen de este rubro, las rondas van a tardar más de lo que la impaciencia tolera, y va a haber presión para declarar un ganador temprano. Una diferencia que no se sostiene durante dos ciclos completos de medición no es un resultado: es ruido. Vale más una ronda bien leída que cuatro mal leídas.</p>
+  </div>
+
+  <h3>Nomenclatura</h3>
+  <p class="prose">La convención del Kit A no codifica la variable creativa, así que no permite leer qué ganó. Propuesta para el Kit B:</p>
+  <p class="prose mono" style="background:var(--code-bg);padding:12px 14px;border-radius:5px;font-size:13px">KRE_IND | [kit] | [angulo] | [hook] | [estructura] | [cta] | [formato]<br>KRE_IND | B | B01 | negacion | PAS | curiosidad | video916</p>
+
+  <h3>Métricas, en orden de importancia</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Métrica</th><th>Qué mide</th><th>Rol en la decisión</th></tr></thead>
+      <tbody>
+        <tr><th>CTR</th><td>Si el hook detiene</td><td>Diagnóstico del creativo. <b>Nunca el criterio final.</b></td></tr>
+        <tr><th>Tasa de inicio de formulario</th><td>Si la promesa sobrevive al clic</td><td>Detecta el hook que promete algo que la landing no cumple</td></tr>
+        <tr><th>% de requerimientos completos</th><td>Si llegan los cuatro datos</td><td><b>La métrica que protege del clic barato.</b> Un ángulo que sube CTR y baja esto, perdió</td></tr>
+        <tr><th>Costo por requerimiento calificado</th><td>Eficiencia real del medio</td><td>El número que se compara entre A y B</td></tr>
+        <tr><th>Tasa requerimiento → visita</th><td>Calidad comercial del lead</td><td>Llega tarde, pero es la que dice la verdad</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">La comparación honesta entre Kit A y Kit B no es cuál juntó más clics: es <strong>cuál trajo más visitas agendadas por peso invertido</strong>. Todo lo anterior es diagnóstico en el camino hacia ese número.</p>
+</section>
+
+<section id="falta">
+  <h2><span class="num">07</span> Para pasar a producción</h2>
+  <p class="h2sub">Dos insumos y una decisión</p>
+
+  <div class="prose">
+    <ol>
+      <li><strong>El criterio de comisión y una estimación de cierre.</strong> Para calcular cuánto podemos pagar por un requerimiento calificado. Sin eso, el plan de medios es intuición y el framework de Platzi queda con un campo obligatorio vacío.</li>
+      <li><strong>Uno o dos casos cerrados con permiso para nombrarlos.</strong> Desbloquea B-06, que es el ángulo de mayor techo y el único que capitaliza el canal que hoy sostiene el negocio.</li>
+      <li><strong>Tu decisión sobre cuáles de los seis ángulos van.</strong> Propongo empezar con B-01, B-02 y B-03. Si querés otro orden, cambia el plan de test.</li>
+    </ol>
+    <p>Con eso avanzo a conceptos y piezas. El Kit A no se toca: queda como está para poder comparar.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Fuentes.</strong> Framework: <em>Sistema creativo: análisis, volumen e iteración</em> — recurso de clase del Curso de generación de imágenes con IA de Platzi, 2026. Dolores: validación directa de Marcelo Napolitano sobre 50 hipótesis, 11 confirmadas. Cartera, valores y corredores: informe de búsqueda del 27/6/2026. Canales de origen y estado del pipeline: export de contactos de Tokko del 18/7/2026 y validación de Marce.</p>
+  <p style="margin-top:12px">Todo lo marcado como inferencia es criterio propio y es discutible. No hay datos de performance en este documento porque el Kit A todavía no salió al aire: cada afirmación sobre rendimiento es una hipótesis a testear, no un resultado.</p>
+</footer>
+
+</div>
