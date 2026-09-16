@@ -13,6 +13,7 @@ inquilinos de la cartera de naves industriales en GBA.
 | `funnel-naves-industriales-v1-borrador.excalidraw` | Borrador original auditado, conservado como referencia. |
 | `kit-b-diagnostico.html` | **Kit B — fase de diagnóstico.** Auditoría del Kit A contra el framework de Platzi, mapa de dolores validado y seis ángulos creativos. |
 | `kit-b.html` | **Kit B — piezas.** Quince piezas de pauta sobre los tres ángulos aprobados, con copy completo. |
+| `anexo-alternativas.html` | **Anexo al Kit A.** Una alternativa apareada por cada pieza de pauta, más tres slots nuevos, con su ubicación exacta. |
 | `landing-busqueda-naves.excalidraw` | Wireframe de la landing de requerimiento, adaptado del mockup de captación. |
 | `canal-youtube-inventario.json` | Inventario de los 75 videos del canal, vía API de YouTube. |
 
@@ -65,6 +66,18 @@ Los tres ángulos aprobados:
 1. **B-01 · El mercado que no ves** — las mejores naves se alquilan antes de llegar al portal.
 2. **B-02 · La mudanza no arranca cuando te vence** — el único que le habla a quien todavía no busca.
 3. **B-03 · Estás haciendo trabajo de broker gratis** — el más cercano al Kit A, sirve de control.
+
+## Tres documentos, tres funciones
+
+| Documento | Qué hace |
+|---|---|
+| Kit A | Intacto. Fuente de verdad sobre qué se dice y a quién. |
+| Kit B | Quince piezas nuevas sobre tres ángulos completos de dolor. |
+| Anexo de alternativas | Una alternativa apareada por pieza del Kit A, mismo slot, sin rearmar la campaña. |
+
+El anexo y el Kit B no compiten: el Kit B propone una campaña alternativa completa;
+el anexo permite cambiar pieza por pieza sin tocar la estructura. Se pueden usar los
+dos, uno o ninguno.
 
 ## Economía de la campaña
 

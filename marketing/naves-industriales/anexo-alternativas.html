@@ -1,0 +1,818 @@
+<title>Alternativas por Dolor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+:root{
+  --ink:#14181E; --ink-2:#4E586E; --ink-3:#7C8594;
+  --rule:#D8DCE2; --rule-soft:#E9ECF0;
+  --surface:#FFFFFF; --ground:#F2F4F6; --raise:#FAFBFC;
+  --brand:#08407C; --brand-soft:#E5EDF7;
+  --hyp:#8A5310; --hyp-soft:#F7EEE0;
+  --ok:#15683A; --ok-soft:#E2F0E7;
+  --risk:#9E1F1B; --risk-soft:#F7E5E4;
+  --code-bg:#F5F6F8; --code-ink:#1D2530;
+  --dot-on:#08407C; --dot-off:#D8DCE2;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EBF0; --ink-2:#A7B0BE; --ink-3:#7C8594;
+  --rule:#2A323C; --rule-soft:#1E242C;
+  --surface:#161B21; --ground:#0D1116; --raise:#1A2028;
+  --brand:#7FB0E6; --brand-soft:#14263A;
+  --hyp:#DDA55F; --hyp-soft:#281F12;
+  --ok:#6CCB90; --ok-soft:#13271B;
+  --risk:#EE908D; --risk-soft:#2A1615;
+  --code-bg:#11161C; --code-ink:#D3DAE3;
+  --dot-on:#7FB0E6; --dot-off:#2A323C;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;margin:0;padding-inline:26px;padding-block:0 110px}
+.page{max-width:1120px;margin:0 auto}
+.prose{max-width:72ch}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+header.top{padding-block:46px 22px;border-bottom:3px solid var(--brand);margin-bottom:10px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+h1{font-size:clamp(29px,4.4vw,44px);line-height:1.05;font-weight:800;letter-spacing:-.028em;
+  margin:12px 0;text-wrap:balance}
+.dek{font-size:18px;color:var(--ink-2);max-width:64ch;margin:0}
+dl.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 24px;
+  margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft)}
+dl.meta div{display:flex;flex-direction:column;gap:2px}
+dl.meta dt{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+dl.meta dd{margin:0;font-size:14px;font-weight:600}
+
+section{margin-top:64px}
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--brand);
+  margin:0 0 8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h2 .num{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);font-weight:500}
+.h2sub{font-size:clamp(22px,2.8vw,30px);font-weight:700;letter-spacing:-.022em;line-height:1.16;
+  margin:0 0 20px;max-width:28ch;text-wrap:balance}
+h3{font-size:19px;font-weight:700;letter-spacing:-.014em;margin:36px 0 10px}
+h4{font-size:14.5px;font-weight:700;margin:20px 0 6px;color:var(--ink-2)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:21px}
+li{margin-bottom:6px}
+a{color:var(--brand)}
+
+.thesis{background:var(--brand-soft);border-left:3px solid var(--brand);padding:22px 24px;
+  margin:0 0 28px;border-radius:0 5px 5px 0}
+.thesis .lead{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.38;margin-bottom:10px}
+.thesis p:last-child{margin-bottom:0}
+
+.scroll{overflow-x:auto;margin:20px 0 8px;border:1px solid var(--rule);border-radius:7px;
+  background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.45;min-width:640px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  background:var(--raise);border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+tbody th{font-weight:700;width:1%;white-space:nowrap}
+td.mono{font-family:"IBM Plex Mono";font-size:12px}
+.tnum{font-variant-numeric:tabular-nums;text-align:right}
+
+/* cobertura: puntos llenos y vacios */
+.cov{display:flex;gap:4px;align-items:center}
+.dot{width:10px;height:10px;border-radius:2px;background:var(--dot-off);flex:none}
+.dot.on{background:var(--dot-on)}
+.dot.half{background:linear-gradient(90deg,var(--dot-on) 50%,var(--dot-off) 50%)}
+.covnum{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-2);margin-left:6px;white-space:nowrap}
+
+.chip{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:2.5px 7px;border-radius:3px;white-space:nowrap;vertical-align:middle}
+.chip.platzi{background:var(--brand-soft);color:var(--brand)}
+.chip.inf{background:var(--hyp-soft);color:var(--hyp)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.risk{background:var(--risk-soft);color:var(--risk)}
+.chip.off{background:var(--rule-soft);color:var(--ink-3)}
+
+/* ficha de principio */
+.pri{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:16px 0;
+  overflow:hidden}
+.pri-head{padding:13px 18px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.pri-name{font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:160px}
+.pri-body{padding:16px 18px 18px;display:grid;gap:13px}
+.row{display:grid;gap:4px}
+.rowlab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.rowval{font-size:14.5px;color:var(--ink-2)}
+.rowval b{color:var(--ink)}
+
+/* ficha de angulo — la espina del documento */
+.ang{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:20px 0;
+  overflow:hidden}
+.ang.top{border-color:var(--brand);box-shadow:0 1px 2px rgba(8,64,124,.06),0 10px 28px -20px rgba(8,64,124,.5)}
+.ang-head{padding:14px 20px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap}
+.ang-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px}
+.ang-name{font-size:16.5px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:170px}
+.ang-src{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-3)}
+.chain{padding:0;margin:0;list-style:none}
+.chain li{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:12px 20px;
+  border-bottom:1px solid var(--rule-soft);font-size:14.5px}
+.chain li:last-child{border-bottom:none}
+.chain .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:700;padding-top:3px}
+.chain .v{color:var(--ink-2)}
+.chain .v b{color:var(--ink)}
+.chain li.hook .v{font-family:"IBM Plex Mono";font-size:13.5px;color:var(--ink);
+  background:var(--code-bg);padding:9px 12px;border-radius:5px;border-left:2px solid var(--hyp)}
+@media (max-width:560px){.chain li{grid-template-columns:1fr;gap:4px}}
+
+.note{background:var(--hyp-soft);border-left:3px solid var(--hyp);padding:15px 19px;margin:16px 0;
+  border-radius:0 6px 6px 0;font-size:14.5px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.note p:last-child{margin-bottom:0}
+
+ol.steps{list-style:none;padding:0;margin:20px 0;counter-reset:st}
+ol.steps>li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:16px 0;border-bottom:1px solid var(--rule-soft)}
+ol.steps>li::before{content:counter(st);font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;
+  color:var(--brand);background:var(--brand-soft);border-radius:4px;width:28px;height:25px;
+  display:grid;place-items:center}
+ol.steps h4{margin:0 0 4px;font-size:16px;color:var(--ink)}
+ol.steps p{font-size:14.5px;margin:0 0 5px;color:var(--ink-2)}
+
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){body{padding-inline:16px;font-size:15.5px}}
+/* anexo: la ficha de par es la espina del documento */
+.copy{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.64;
+  background:var(--code-bg);color:var(--code-ink);padding:12px 14px;border-radius:5px;
+  white-space:pre-wrap;overflow-x:auto;margin:0}
+.par{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:22px 0;
+  overflow:hidden}
+.par-head{padding:13px 19px;background:var(--raise);border-bottom:1px solid var(--rule);
+  display:flex;gap:9px 14px;align-items:baseline;flex-wrap:wrap}
+.par-id{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);padding:2px 8px;border-radius:3px}
+.par-name{font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1;min-width:150px}
+.par-slot{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink-3)}
+.par-cols{display:grid;grid-template-columns:1fr 1fr}
+.par-col{padding:16px 19px 18px;display:grid;gap:11px;align-content:start}
+.par-col.orig{background:var(--raise);border-right:1px solid var(--rule)}
+.par-col.orig .copy{background:transparent;border:1px dashed var(--rule);color:var(--ink-3)}
+.col-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  display:flex;align-items:center;gap:8px}
+.col-tag.a{color:var(--ink-3)}
+.col-tag.b{color:var(--hyp)}
+.col-tag::after{content:"";height:1px;flex:1;background:var(--rule)}
+.f{display:grid;gap:5px}
+.flab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.why{padding:13px 19px;border-top:1px solid var(--rule);background:var(--hyp-soft);
+  font-size:14px;color:var(--ink-2)}
+.why b{color:var(--ink)}
+@media (max-width:720px){
+  .par-cols{grid-template-columns:1fr}
+  .par-col.orig{border-right:none;border-bottom:1px solid var(--rule)}
+}
+.keep{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--ok);
+  border-radius:0 7px 7px 0;padding:14px 18px;margin:13px 0}
+.keep h4{margin:0 0 4px;font-size:15px;color:var(--ink);display:flex;gap:10px;align-items:baseline;
+  flex-wrap:wrap}
+.keep p{font-size:14px;margin:0;color:var(--ink-2)}
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow">Krak Industrial · Anexo al Kit de Campaña A</div>
+  <h1>Alternativas por dolor</h1>
+  <p class="dek">Para cada pieza de pauta del Kit A, una alternativa construida sobre los once dolores validados — y el slot exacto donde entra. El Kit A no se modifica.</p>
+  <dl class="meta">
+    <div><dt>Alternativas</dt><dd>11 apareadas</dd></div>
+    <div><dt>Slots nuevos</dt><dd>3</dd></div>
+    <div><dt>Piezas que se dejan</dt><dd>4</dd></div>
+    <div><dt>Base</dt><dd>11 dolores validados</dd></div>
+    <div><dt>Fecha</dt><dd>16 de septiembre de 2026</dd></div>
+    <div><dt>Kit A</dt><dd>Intacto</dd></div>
+  </dl>
+</header>
+
+<section id="uso">
+  <h2><span class="num">01</span> Cómo se usa</h2>
+  <p class="h2sub">Alternativa, no reemplazo</p>
+
+  <div class="thesis prose">
+    <p class="lead">Cada alternativa ocupa el mismo slot que su pieza original: mismo canal, misma etapa, misma audiencia, mismo formato. Lo único que cambia es el mecanismo de entrada.</p>
+    <p>Eso permite dos cosas. Producir solo las alternativas que interesen, sin rearmar la campaña. Y correr original contra alternativa en el mismo ad set, que es la única forma de saber cuál funciona.</p>
+  </div>
+
+  <div class="prose">
+    <p>Tres reglas para leer el documento:</p>
+    <ul>
+      <li><strong>La columna izquierda es el Kit A tal como está.</strong> Está ahí como referencia, no para corregirla. Aparece atenuada a propósito.</li>
+      <li><strong>Lo técnico no desaparece: se muda de lugar.</strong> La altura libre, la capacidad de piso y los kVA siguen siendo el diferencial, pero pasan a ser la prueba y dejan de ser el gancho. En varias alternativas el dato técnico sigue estando — más abajo en el copy.</li>
+      <li><strong>Los slots nuevos son dolores sin pieza.</strong> Tres de los cinco disparadores validados no tienen ninguna pieza en el Kit A que les hable. No son alternativas: son huecos.</li>
+    </ul>
+  </div>
+
+  <h3>Mapa de sustitución</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Pieza del Kit A</th><th>Alternativa</th><th>Dolor que activa</th><th>Dónde entra</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">MT-01</td><td class="mono">MT-01/D</td><td>17 · lo bueno no se publica</td><td>Meta frío · mismo carrusel</td></tr>
+        <tr><td class="mono">MT-02</td><td class="mono">MT-02/D</td><td>16 · el que busca es el que opera</td><td>Meta frío · mismo video</td></tr>
+        <tr><td class="mono">MT-03</td><td class="mono">MT-03/D</td><td>31 · mal ubicado, lo pagás en fletes</td><td>Meta frío · 3 placas, una por corredor</td></tr>
+        <tr><td class="mono">MT-04</td><td class="mono">MT-04/D</td><td>1 · 3 · 6 · 7 · 31</td><td>Meta frío · mismo reel enumerado</td></tr>
+        <tr><td class="mono">MT-05</td><td class="mono">MT-05/D</td><td>3 y 6 · según rango de metros</td><td>Meta remarketing · por nave vista</td></tr>
+        <tr><td class="mono">MT-06</td><td class="mono">MT-06/D</td><td>13 · imposible comparar</td><td>Meta remarketing · intención declarada</td></tr>
+        <tr><td class="mono">MT-07</td><td class="mono">MT-07/D</td><td>16 · no tiene tiempo</td><td>Meta remarketing · 7 días</td></tr>
+        <tr><td class="mono">MT-08</td><td class="mono">MT-08/D</td><td>1 · vencimiento</td><td>Meta · formulario instantáneo</td></tr>
+        <tr><td class="mono">GS-01</td><td class="mono">GS-01/D</td><td>9 y 1</td><td>Search · grupos nuevos, no reemplaza</td></tr>
+        <tr><td class="mono">GS-02</td><td class="mono">comparte GS-01/D</td><td>9 · no hay dónde buscar</td><td>Search · usa los mismos títulos y descripciones</td></tr>
+        <tr><td class="mono">LI-02</td><td class="mono">LI-02/D</td><td>16 y 47</td><td>LinkedIn · imagen única</td></tr>
+        <tr><td class="mono">LI-04</td><td class="mono">LI-04/D</td><td>17 · acceso al mercado</td><td>LinkedIn · mensaje</td></tr>
+        <tr><td class="mono">—</td><td class="mono">NEW-01</td><td>7 · el municipio apretó</td><td><b>Slot nuevo</b> · Meta frío</td></tr>
+        <tr><td class="mono">—</td><td class="mono">NEW-02</td><td>6 · metros que pagás y no usás</td><td><b>Slot nuevo</b> · Meta frío</td></tr>
+        <tr><td class="mono">—</td><td class="mono">NEW-03</td><td>3 · creciste y no entra</td><td><b>Slot nuevo</b> · Meta frío</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="meta">
+  <h2><span class="num">02</span> Meta · Frío</h2>
+  <p class="h2sub">Donde está el volumen y donde el Kit A no ataca dolor</p>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-01/D</span><span class="par-name">Carrusel de cartera</span><span class="par-slot">1:1 · 10 tarjetas · frío</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Nueve naves industriales en alquiler
+en GBA, de 1.325 a 9.000 m2.
+
+Desde USD 5,50 el m2 por mes, entre
+25 y 40 minutos de CABA.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Oferta directa. Le habla al que ya está buscando.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Estas nueve naves no las vas a
+encontrar recorriendo avisos.
+
+En industrial, cuando queda libre una
+nave con la altura, los accesos y la
+potencia que una operacion necesita,
+se ocupa entre los que ya estaban en
+la rueda. Al portal llega lo que quedo.
+
+De 1.325 a 9.000 m2, entre 25 y 40
+minutos de CABA, desde USD 5,50 el m2.
+
+Desliza para verlas. Y si ninguna te
+sirve, decinos metros, actividad y zona
+y relevamos el corredor completo.</p></div>
+        <div class="f"><span class="flab">Cambios de tarjeta</span><p class="rowval">Solo la portada: <b>"9 NAVES QUE NO ESTÁN EN NINGÚN PORTAL"</b> en lugar de "9 NAVES DISPONIBLES". Las nueve tarjetas de nave quedan idénticas.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> El carrusel funciona y no hay que rehacerlo: los datos de cada nave son la prueba. Lo que cambia es que el copy deja de anunciar inventario y empieza a explicar <b>por qué ese inventario es difícil de conseguir</b>. Dolor 17, validado. Costo de producción: reescribir un copy y una placa.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-02/D</span><span class="par-name">Video manifiesto</span><span class="par-slot">9:16 · 45 s · frío · alimenta V-01</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Nadie se enamora de una nave
+industrial.
+
+Cuando una empresa busca galpon es
+porque se le vence el contrato, porque
+crecio, o porque el dueno le pidio
+el inmueble.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Negación. <b>Es el mejor hook del Kit A</b> y el único que ya toca disparadores.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Nadie se enamora de una nave
+industrial. Y el que la busca, ademas,
+no tiene tiempo de buscarla.
+
+Casi siempre es el dueno o el gerente
+de operaciones: la misma persona que
+tiene que sostener la entrega todos
+los dias. Cada tarde recorriendo
+galpones que no servian son tres horas
+que la operacion no tuvo a su
+responsable.
+
+Nos decis metros, actividad y zona.
+Te devolvemos el comparativo hecho.
+
+Vas a visitar dos o tres. No doce.</p></div>
+        <div class="f"><span class="flab">Guion</span><p class="rowval">Mismo rodaje que V-01 con dos bloques nuevos entre 0:12 y 0:28. La placa de cierre cambia de "9 naves propias" a <b>"Vas a visitar dos o tres. No doce."</b></p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> El original ya arranca bien; la alternativa no compite con el hook, <b>le agrega la segunda mitad que falta</b>. El Kit A dice por qué la gente se muda y se detiene ahí. La alternativa sigue: y además no tiene tiempo de resolverlo. Dolor 16, validado, y el que conecta directo con la propuesta de valor.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-03/D</span><span class="par-name">Placas de dato por corredor</span><span class="par-slot">1:1 y 9:16 · 3 versiones · frío</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual · Norte</span>
+<p class="copy">Naves en alquiler sobre Panamericana
+y Ruta 9, de 1.325 a 6.447 m2.
+
+Escobar, Malvinas Argentinas y Norlog.
+Entre 25 y 40 minutos de CABA.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Especificación geográfica. Informa, no tensiona.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy · Norte</span>
+<p class="copy">Ahorraste en el alquiler y lo perdes
+en fletes.
+
+Es la cuenta que casi nadie hace antes
+de firmar: media hora mas de
+distribucion, todos los dias, durante
+los proximos cinco anos. El alquiler
+mas barato puede terminar siendo el
+mas caro de los dos.
+
+Nuestra cartera del corredor norte esta
+entre 25 y 40 minutos de CABA, sobre
+Panamericana y Ruta 9: Escobar,
+Malvinas Argentinas y Norlog.
+De 1.325 a 6.447 m2.
+
+Decinos donde tenes que entregar y
+vemos desde donde te conviene operar.</p></div>
+        <div class="f"><span class="flab">Placa</span><p class="rowval">El dato principal deja de ser el rango de metros y pasa a ser <b>los minutos a CABA</b>. Los metros bajan a la línea secundaria.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolor 31, validado, y el único de los cinco disparadores que es <b>una pérdida en curso que el cliente no está mirando</b>. Las versiones de Oeste y Sur son la misma estructura con sus rutas y minutos. <b>Vigilar:</b> es un ángulo educativo, así que puede tener buen CTR y requerimientos flojos — mirar la calidad, no el clic.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-04/D</span><span class="par-name">Reel enumerado</span><span class="par-slot">9:16 · 60 s · frío · alimenta V-04</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Cinco errores que vemos todas las
+semanas cuando una empresa alquila
+una nave.
+
+1. Mirar los metros cubiertos y no la
+   altura libre.
+2. No preguntar la capacidad de piso.
+3. Descubrir la potencia despues de
+   firmar.
+...</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Dato técnico. <b>Es la pieza que más ganó con tu validación:</b> lo técnico no es dolor.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Cinco razones por las que una empresa
+industrial se muda. Ninguna es que
+encontro algo mas lindo.
+
+1. Se le vence el contrato y el
+   propietario no renueva.
+2. Crecio y ya no entra la mercaderia.
+3. Se achico y esta pagando metros
+   que no usa.
+4. El municipio le apreto con la
+   habilitacion o el uso de suelo.
+5. Esta mal parada respecto de su
+   cliente y lo paga en distribucion.
+
+Si alguna te suena, no estas buscando
+una nave: estas resolviendo un problema
+con fecha.
+
+Nueve naves propias de 1.325 a
+9.000 m2. Decinos metros, actividad
+y zona.</p></div>
+        <div class="f"><span class="flab">Guion</span><p class="rowval">Mismo formato de corte rápido que V-04, un plano por razón. La razón 4 se ilustra con documento de habilitación; la 5 con camión en ruta.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Es la sustitución más limpia del anexo: <b>mismo formato, mismo lugar, mismo conteo de cinco</b> — y el contenido pasa de especificación a los cinco disparadores que validaste, uno por uno. El cierre, "no estás buscando una nave: estás resolviendo un problema con fecha", es la tesis del Kit B en una línea. El reel técnico original no se descarta: pasa a MOFU, donde el dato técnico es prueba.</div>
+  </div>
+</section>
+
+<section id="slots">
+  <h2><span class="num">03</span> Slots nuevos</h2>
+  <p class="h2sub">Tres disparadores sin ninguna pieza que les hable</p>
+
+  <p class="prose">Estos no son alternativas: son huecos. Tres de los cinco disparadores validados no tienen en el Kit A una sola pieza dirigida a ellos. Van al mismo ad set de frío en Meta, junto a las demás.</p>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">NEW-01</span><span class="par-name">El municipio te observó</span><span class="par-slot">1:1 · frío · dolor 7</span></div>
+    <div class="par-cols">
+      <div class="par-col">
+        <span class="col-tag b">Pieza nueva</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Si el municipio te observo la habilitacion, tenes menos tiempo del que parece.
+
+Una nave con el uso de suelo habilitado para tu actividad puntual no aparece en una semana. Hay que verificar la categoria de industria admitida, el estado de la habilitacion del predio y si el parque esta inscripto. Recien despues se puede hablar de metros y de precio.
+
+Eso es lo primero que chequeamos. Nueve naves propias en GBA, de 1.325 a 9.000 m2, con la categoria habilitada declarada en cada ficha.
+
+Contanos que actividad desarrollas y en que zona la necesitas.</p></div>
+        <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Habilitacion verificada antes de hablar de precio
+CTA:      Mas informacion</p></div>
+      </div>
+      <div class="par-col orig">
+        <span class="col-tag a">Contexto</span>
+        <div class="f"><span class="flab">Por qué es su propio slot</span><p class="rowval">Es el disparador más urgente de los cinco y el más específico: quien lo tiene, lo tiene <b>ahora</b>. Ninguna pieza del Kit A lo menciona.</p></div>
+        <div class="f"><span class="flab">Segmentación sugerida</span><p class="rowval">Es el único caso donde vale segmentar por rubro en Meta, usando los rubros de Tokko con categorías de industria más exigentes — químicos, plásticos, alimentos, metalúrgica. <span class="chip inf">Inferencia</span></p></div>
+        <div class="f"><span class="flab">Cuidado</span><p class="rowval">No se debe dar a entender que Krak gestiona habilitaciones si no las gestiona. La promesa es <b>verificar</b>, no tramitar.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Dato pendiente:</b> la ficha técnica D-01 ya prevé el campo de uso de suelo y categoría admitida, pero está sin completar en las nueve naves. Esta pieza no debería salir antes de tener ese dato — es exactamente lo que promete.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">NEW-02</span><span class="par-name">Metros que pagás y no usás</span><span class="par-slot">1:1 · frío · dolor 6</span></div>
+    <div class="par-cols">
+      <div class="par-col">
+        <span class="col-tag b">Pieza nueva</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Cuantos metros estas pagando y cuantos usas realmente?
+
+Si la operacion se achico y el contrato quedo igual, la diferencia se paga todos los meses y no aparece en ninguna linea del balance: esta escondida dentro del alquiler.
+
+En nuestra cartera el metro esta entre USD 5,50 y 8,84 por mes. Hace la cuenta con los metros que no usas y vas a tener el numero en treinta segundos.
+
+Nueve naves propias de 1.325 a 9.000 m2, y una de ellas se divide en modulos de 1.325. Decinos cuantos metros necesitas de verdad.</p></div>
+        <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Pagar por lo que usas
+CTA:      Mas informacion</p></div>
+      </div>
+      <div class="par-col orig">
+        <span class="col-tag a">Contexto</span>
+        <div class="f"><span class="flab">Por qué funciona</span><p class="rowval">Es el único dolor validado que <b>el cliente puede cuantificar solo</b>, con datos que ya tiene. El copy le da la fórmula y él hace la cuenta.</p></div>
+        <div class="f"><span class="flab">Prueba</span><p class="rowval">El rango real de USD/m² de la cartera. Es el dato que permite la cuenta y no expone a nadie.</p></div>
+        <div class="f"><span class="flab">Riesgo</span><p class="rowval">Puede atraer a quien quiere renegociar con su propietario y no mudarse. <b>Mirar la tasa de requerimiento completo</b>, no el CTR.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Oportunidad de cartera:</b> el módulo de 1.325 m² de Arbox Escobar es el único producto propio para quien necesita achicar. Esta pieza es prácticamente la única del sistema que lo coloca — en el resto de la campaña queda tapado por naves de cinco mil metros para arriba.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">NEW-03</span><span class="par-name">Creciste y ya no entra</span><span class="par-slot">1:1 y 9:16 · frío · dolor 3</span></div>
+    <div class="par-cols">
+      <div class="par-col">
+        <span class="col-tag b">Pieza nueva</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Estas apilando mercaderia en el pasillo.
+
+Nadie decide mudar una operacion de un dia para el otro: primero se aguanta. Se apila mas alto, se usa el pasillo, se alquila un deposito chico al lado, se sale a cargar a la calle. Hasta que la operacion empieza a costar mas de lo que cuesta la nave que necesitabas.
+
+Nueve naves propias de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA. Con la altura libre y los accesos declarados en cada ficha, para que sepas de entrada si tu operacion entra.
+
+Decinos cuantos metros necesitas para operar tranquilo.</p></div>
+        <div class="f"><span class="flab">Titular y CTA</span>
+<p class="copy">Titular:  Cuando aguantar sale mas caro que mudarse
+CTA:      Mas informacion</p></div>
+      </div>
+      <div class="par-col orig">
+        <span class="col-tag a">Contexto</span>
+        <div class="f"><span class="flab">Por qué este hook</span><p class="rowval">"Estás apilando mercadería en el pasillo" es la imagen más concreta del dolor 3, y es reconocible de inmediato por cualquiera que lo esté viviendo. <span class="chip inf">Inferencia</span></p></div>
+        <div class="f"><span class="flab">A validar</span><p class="rowval">Las cuatro conductas de aguante —apilar, usar el pasillo, alquilar al lado, cargar en la calle— son mi reconstrucción. Si Pablo ve otras más frecuentes, se reemplazan: <b>esa lista es el corazón de la pieza</b>.</p></div>
+        <div class="f"><span class="flab">Formato</span><p class="rowval">Funciona mejor en video corto que en estático: las cuatro conductas son cuatro planos.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué importa que exista:</b> el dolor 3 es crecimiento, y el que crece es el mejor cliente posible — tiene urgencia, tiene plata y va a necesitar más metros otra vez en unos años. El Kit A no le habla en ninguna de sus 34 piezas.</div>
+  </div>
+</section>
+
+<section id="remk">
+  <h2><span class="num">04</span> Meta · Remarketing</h2>
+  <p class="h2sub">Acá el dolor ya está reconocido: cambia la función del copy</p>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-05/D</span><span class="par-name">Recorrido de la nave que miró</span><span class="par-slot">9:16 y 1:1 · una versión por nave</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">[SUPERFICIE] m2 en [PARQUE], a
+[MINUTOS] minutos de CABA.
+
+Altura libre de [X] m, [N] portones,
+playa de maniobras para semi y
+[X] kVA instalados.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Ficha técnica. <b>Correcto para esta etapa:</b> ya vio la nave, quiere los datos.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Variante A · si vio una nave grande</span>
+<p class="copy">Miraste la de [SUPERFICIE] m2 en
+[PARQUE]. Antes de que sigas
+comparando, un dato: altura libre de
+[X] m y [X] kVA instalados.
+
+Si estas mudando porque creciste, esos
+dos numeros importan mas que los metros
+cuadrados. El metro se ve en el plano;
+la altura y la potencia se descubren
+cuando ya firmaste.
+
+USD [VALOR] por mes mas IVA. Esta
+[ESTADO]. Coordinamos la visita esta
+semana si queres.</p></div>
+        <div class="f"><span class="flab">Variante B · si vio el módulo de 1.325</span>
+<p class="copy">Miraste el modulo de 1.325 m2 en Arbox
+Escobar. Se pueden tomar de uno a
+cuatro, segun lo que necesites.
+
+Si estas achicando, esa es la parte
+importante: pagas por el modulo que
+usas y no por una nave entera.
+
+USD 8.612 por modulo. Coordinamos la
+visita cuando quieras.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué dos variantes.</b> Quien mira una nave de 9.000 m² y quien mira un módulo de 1.325 están en dolores opuestos —creció o se achicó— y el Kit A les habla igual. La segmentación es gratuita: ya sabemos qué ficha vio. <b>El dato técnico se queda</b>, pero deja de ser una lista y pasa a explicar por qué esos dos números le importan a él en particular.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-06/D</span><span class="par-name">El comparativo</span><span class="par-slot">1:1 · imagen única · intención declarada</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Asi entregamos una busqueda de nave.
+
+Una tabla con cada opcion, los metros
+cubiertos, el valor mensual, el USD
+por m2, el estado, los accesos y los
+minutos a CABA.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Beneficio con prueba. Buena pieza, buen lugar.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Cada aviso te muestra la informacion
+de una manera distinta. Por eso no
+podes comparar.
+
+Uno pone los metros totales, otro los
+cubiertos. Uno declara la altura, otro
+no. Uno el valor con expensas, otro
+sin. Cuando querer decidir entre tres
+opciones te lleva una tarde de armar
+una planilla, el problema no sos vos.
+
+Asi entregamos una busqueda: una tabla,
+un criterio, todas las opciones con los
+mismos campos. Cartera propia y mercado,
+en la misma hoja.
+
+Tres datos y te llega hecha.</p></div>
+        <div class="f"><span class="flab">Brief visual</span><p class="rowval">Sin cambios: el informe real con datos tapados. <b>Es la mejor prueba del sistema y no expone a ningún cliente.</b></p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolor 13, validado. El original muestra el entregable; la alternativa <b>nombra primero el problema que ese entregable resuelve</b>. Es la estructura de beneficios con prueba embebida convertida en problema-solución, sin cambiar una sola imagen.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-07/D</span><span class="par-name">Recuperación de formulario</span><span class="par-slot">1:1 · ventana 7 días</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Empezaste a cargar tu requerimiento
+y quedo por la mitad.
+
+Son cuatro datos: metros, actividad,
+zona y para cuando lo necesitas.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Situación. Correcto, pero pone el esfuerzo del lado del cliente.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Copy primario</span>
+<p class="copy">Quedo por la mitad. Pasa siempre, y
+casi nunca es por el formulario.
+
+El que esta buscando la nave es el que
+tiene la operacion encima: empieza a
+cargar, entra una llamada, y no vuelve.
+
+Escribinos por WhatsApp y lo cargamos
+nosotros mientras hablamos. Metros,
+actividad, zona y para cuando: cuatro
+respuestas y arrancamos el relevamiento.</p></div>
+        <div class="f"><span class="flab">CTA</span><p class="copy">Enviar mensaje  →  WhatsApp con mensaje prellenado</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolor 16. El original le pide que vuelva y termine; la alternativa <b>le quita la tarea de encima</b> — que es exactamente lo que vende el servicio. Y le da una explicación que no lo culpa, lo cual importa cuando el que abandonó es el dueño de la empresa.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">MT-08/D</span><span class="par-name">Formulario instantáneo</span><span class="par-slot">Meta · solo si la landing no está lista</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Primera pregunta actual</span>
+<p class="copy">1. Cuantos metros cubiertos necesitas?</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Arranca por especificación.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Primera pregunta</span>
+<p class="copy">1. Para cuando necesitas mudarte?
+   [ Ya ]  [ 1 a 3 meses ]
+   [ 3 a 6 meses ]  [ +6 meses ]
+   [ Estoy relevando ]</p></div>
+        <div class="f"><span class="flab">Texto de introducción del formulario</span>
+<p class="copy">Cuatro preguntas. La primera es la que
+mas nos dice: el resto de la busqueda
+depende de cuanto tiempo tenes.</p></div>
+        <div class="f"><span class="flab">Orden completo</span><p class="rowval">Timing → metros → actividad → zona. Los cuatro campos del Kit A, invertido el primero.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolor 1. Arrancar por el timing hace dos cosas: le confirma al cliente que entendemos que su problema tiene fecha, y <b>nos da de entrada el dato que ordena la prioridad comercial</b>. Dado el histórico del CRM —leads que se acumulan sin trabajar—, saber quién necesita mudarse ya, en la primera pregunta, vale más que saber cuántos metros quiere.</div>
+  </div>
+</section>
+
+<section id="search">
+  <h2><span class="num">05</span> Search y LinkedIn</h2>
+  <p class="h2sub">Grupos que se suman, no que reemplazan</p>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">GS-01/D</span><span class="par-name">Grupos nuevos de búsqueda</span><span class="par-slot">Search · se suman a los 3 corredores</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Grupos actuales</span>
+<p class="copy">Norte  ·  Oeste  ·  Sur
+(keywords de ubicacion y ruta)</p></div>
+        <div class="f"><span class="flab">Qué cubre</span><p class="rowval">Al que ya sabe en qué corredor busca.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Dos grupos nuevos</span>
+        <div class="f"><span class="flab">Grupo "no encuentro" · dolor 9</span>
+<p class="copy">no hay galpones en alquiler
+busco nave industrial y no encuentro
+donde buscar nave industrial alquiler
+naves industriales que no estan publicadas
+broker industrial gba</p></div>
+        <div class="f"><span class="flab">Grupo "vencimiento" · dolor 1</span>
+<p class="copy">vencimiento contrato alquiler galpon
+no me renuevan el alquiler comercial
+cuanto tarda mudar una empresa
+mudanza de planta industrial
+alquiler industrial plazo contrato</p></div>
+        <div class="f"><span class="flab">Títulos y descripciones</span>
+<p class="copy">El Mercado que No se Publica
+Naves que No Estan en Portales
+Vence tu Contrato de Alquiler
+Empeza Antes de que Te Venza
+
+El industrial casi no se publica. Nosotros trabajamos adentro de ese mercado.
+Mudar una operacion lleva meses. Si te vence en seis, el momento es ahora.</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué se suman y no reemplazan.</b> Los grupos por corredor del Kit A capturan intención alta y hay que dejarlos. Estos dos capturan un momento distinto: el que ya se frustró buscando, y el que tiene fecha. <b>Volumen esperado bajo</b> —son búsquedas de cola larga— pero con intención altísima y competencia casi nula.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">LI-02/D</span><span class="par-name">LinkedIn · imagen única</span><span class="par-slot">1200×627 · tráfico</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Si tu contrato de alquiler vence en
+los proximos seis meses, el momento
+de empezar a buscar es ahora.</p></div>
+        <div class="f"><span class="flab">Nota</span><p class="rowval"><b>Es el único hook del Kit A anclado a un disparador validado.</b> Se deja como está y se testea contra la alternativa.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Texto introductorio</span>
+<p class="copy">En la mayoria de las empresas industriales, el que busca la nave nueva es el gerente de operaciones o directamente el dueno. La misma persona que tiene que sostener la entrega todos los dias.
+
+Y buscar una nave no es mirar avisos. Es verificar altura libre util contra el racking que ya se compro, pedir por escrito la capacidad de piso, confirmar la potencia instalada, probar el radio de giro con el camion real y chequear que el uso de suelo admita la actividad.
+
+Si el que atiende del otro lado no sabe preguntar eso, va a mostrar lo que tiene, no lo que hace falta.
+
+Somos brokers industriales. Nos pasan metros, actividad y zona; relevamos cartera propia y mercado, y devolvemos un comparativo con los datos duros de cada opcion.
+
+Van a visitar dos o tres naves. No doce.</p></div>
+        <div class="f"><span class="flab">Titular</span><p class="copy">El que busca la nave es el que tiene que operar la empresa</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolores 16 y 47 juntos, que es la combinación natural en LinkedIn: el decisor está identificado por cargo, así que se le puede hablar de su rol. Y acá el detalle técnico <b>sí funciona en el cuerpo</b> — no como gancho, sino como demostración de que sabemos preguntar lo que hay que preguntar.</div>
+  </div>
+
+  <div class="par">
+    <div class="par-head"><span class="par-id">LI-04/D</span><span class="par-name">LinkedIn · mensaje de conversación</span><span class="par-slot">Mensaje directo · cargos de operaciones</span></div>
+    <div class="par-cols">
+      <div class="par-col orig">
+        <span class="col-tag a">Kit A · sin tocar</span>
+        <div class="f"><span class="flab">Arranque actual</span>
+<p class="copy">Somos brokers industriales en GBA.
+Tenemos nueve naves propias en
+alquiler, entre 1.325 y 9.000 m2.</p></div>
+        <div class="f"><span class="flab">Mecanismo</span><p class="rowval">Presentación de oferta. Se lee como mensaje de vendedor.</p></div>
+      </div>
+      <div class="par-col">
+        <span class="col-tag b">Alternativa por dolor</span>
+        <div class="f"><span class="flab">Mensaje</span>
+<p class="copy">Asunto: El mercado industrial que no se publica
+
+Hola [NOMBRE],
+
+Te escribo por si en algun momento les toca mover la operacion.
+
+El industrial de GBA casi no se publica: cuando queda libre una nave con la altura y los accesos que sirven, se ocupa entre quienes ya estaban en la rueda. Nosotros trabajamos ahi adentro.
+
+Te dejo el listado de lo que tenemos hoy, por si les sirve ahora o mas adelante. Son nueve naves propias de 1.325 a 9.000 m2, entre 25 y 40 minutos de CABA.
+
+Y si en algun momento necesitan algo puntual que no este en esa lista, me decis metros, actividad y zona y armo el comparativo del corredor.
+
+[BOTON] Ver el listado    [BOTON] Contarte que necesito</p></div>
+      </div>
+    </div>
+    <div class="why"><b>Por qué.</b> Dolor 17. El original pide atención sin dar nada; la alternativa <b>abre con una explicación de cómo funciona el mercado</b> —que es información útil aunque el tipo no esté buscando— y recién después ofrece. "Por si en algún momento les toca" baja la presión y hace que el mensaje sea guardable, que es lo único que importa en un canal de ciclo largo.</div>
+  </div>
+</section>
+
+<section id="quedan">
+  <h2><span class="num">06</span> Lo que se deja como está</h2>
+  <p class="h2sub">Cuatro piezas del Kit A no necesitan alternativa</p>
+
+  <div class="keep">
+    <h4>GS-03 · Search de marca <span class="chip ok">Sin cambios</span></h4>
+    <p>Es defensiva y de intención máxima: quien busca "Krak Industrial" ya decidió. Meterle dolor ahí sería ruido.</p>
+  </div>
+
+  <div class="keep">
+    <h4>LI-03 · Checklist técnico <span class="chip ok">Sin cambios</span></h4>
+    <p>Es técnico, sí, pero está en MOFU y su función es probar autoridad, no detener a nadie. Es exactamente el lugar correcto para el contenido técnico. Lo único que cambiaría es el título del PDF, para que nombre el problema antes del método.</p>
+  </div>
+
+  <div class="keep">
+    <h4>W-01 · Calificador de WhatsApp <span class="chip ok">Sin cambios</span></h4>
+    <p>Las cuatro preguntas están bien y el orden importa menos que en el formulario, porque hay una persona conduciendo la conversación. Sugerencia menor: si el timing es "ya", que el aviso al broker salga marcado como urgente.</p>
+  </div>
+
+  <div class="keep">
+    <h4>D-02 · Informe comparativo <span class="chip ok">Sin cambios</span></h4>
+    <p>Es el entregable del servicio y la mejor prueba del sistema. No es una pieza de pauta: es lo que las piezas prometen.</p>
+  </div>
+</section>
+
+<section id="produccion">
+  <h2><span class="num">07</span> Orden de producción</h2>
+  <p class="h2sub">Qué conviene hacer primero</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Prioridad</th><th>Pieza</th><th>Esfuerzo</th><th>Por qué en ese orden</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td class="mono">MT-04/D</td><td>Bajo · reescribir copy, mismo formato</td><td>Sustitución más limpia del anexo y la que mejor corrige el diagnóstico: cinco errores técnicos pasan a cinco razones reales</td></tr>
+        <tr><th>2</th><td class="mono">MT-01/D</td><td>Muy bajo · un copy y una placa</td><td>El carrusel ya existe. Cambio de costo casi nulo sobre la pieza de mayor alcance</td></tr>
+        <tr><th>3</th><td class="mono">MT-07/D · MT-08/D</td><td>Muy bajo · solo copy</td><td>Remarketing y formulario. Se implementan en una tarde y mejoran la calidad del lead</td></tr>
+        <tr><th>4</th><td class="mono">GS-01/D</td><td>Bajo · dos grupos nuevos</td><td>Cola larga sin competencia. Capturan al frustrado y al que tiene fecha</td></tr>
+        <tr><th>5</th><td class="mono">NEW-02 · NEW-03</td><td>Medio · piezas nuevas</td><td>Dos disparadores sin cobertura, y NEW-02 es lo único que coloca el módulo de 1.325</td></tr>
+        <tr><th>6</th><td class="mono">MT-02/D · MT-03/D · LI-02/D · LI-04/D</td><td>Medio</td><td>Requieren rodaje o rearmado de placas</td></tr>
+        <tr><th>7</th><td class="mono">MT-05/D · MT-06/D</td><td>Medio · depende de datos técnicos</td><td>MT-05/D necesita altura y kVA por nave, que siguen pendientes</td></tr>
+        <tr><th>8</th><td class="mono">NEW-01</td><td>Bajo de producción, bloqueado por datos</td><td>No debería salir antes de tener el uso de suelo y la categoría habilitada de las nueve naves: es lo que promete</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><b>Las tres primeras se producen sin ningún dato nuevo y sin rodaje.</b> Son reescrituras de copy sobre piezas que ya existen, y cubren el alcance más grande de la campaña. Si hubiera que elegir una sola, es MT-04/D.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Relación con los otros documentos.</strong> El <em>Kit A</em> no fue modificado por este anexo. El <em>Kit B</em> propone quince piezas nuevas sobre tres ángulos completos; este anexo hace algo distinto: ofrece una alternativa apareada a cada pieza de pauta existente, sin cambiar canal, etapa ni formato. Se pueden usar los dos, uno, o ninguno — cada alternativa es independiente.</p>
+  <p style="margin-top:12px"><strong>Trazabilidad.</strong> Los once dolores que sostienen las alternativas fueron validados por Marcelo Napolitano sobre una lista de cincuenta hipótesis. Valores, metros y corredores salen del informe de búsqueda del 27/6/2026. Los campos entre corchetes y todo lo marcado como inferencia están pendientes de validación: nada de eso debería publicarse sin confirmar.</p>
+</footer>
+
+</div>
