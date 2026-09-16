@@ -79,6 +79,21 @@ El anexo y el Kit B no compiten: el Kit B propone una campaña alternativa compl
 el anexo permite cambiar pieza por pieza sin tocar la estructura. Se pueden usar los
 dos, uno o ninguno.
 
+## Los once dolores, con nombre
+
+El equipo los nombra así, no por número. En primera persona, como los piensa el cliente.
+
+**Disparadores — por qué arranca a buscar:** Tengo fecha de salida · Ya no entra nada ·
+Pago metros vacíos · Me observaron la habilitación · Lo pago en fletes
+
+**Fricciones — por qué buscar es desesperante:** No hay dónde buscar · Los avisos no
+dicen nada · No puedo comparar · Busco yo, que además opero · Lo bueno no se publica ·
+Me atiende alguien que no entiende
+
+Lo que quedó afuera: altura libre, capacidad de piso, kVA, garantías, expensas y
+comisión **no son dolores**, son especificaciones. Van en el cuerpo del anuncio como
+prueba, nunca en la primera línea.
+
 ## Economía de la campaña
 
 Honorario: un mes del valor locativo, a cargo del locador. Sobre la cartera actual son
