@@ -47,20 +47,24 @@ tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
 .card .lb { font-size:6.4pt; text-transform:uppercase; letter-spacing:.7px; color:#7C8594; margin-bottom:2px; }
 .card .big { font-size:13pt; font-weight:800; color:#08407C; letter-spacing:-.4px; line-height:1.1; }
 .card .sm { font-size:6.9pt; color:#4E586E; margin-top:1px; }
+.card.hi { border:1.5px solid #08407C; background:#EAF0F7; }
+.card.hi .sm b { color:#08407C; }
 .card.key { background:#08407C; border-color:#08407C; }
 .card.key .lb { color:#C3C3C3; } .card.key .big { color:#fff; } .card.key .sm { color:#C3C3C3; }
 
 .offer { display:flex; gap:7px; align-items:stretch; margin-top:7px; }
-.offer .box { border:1.5px solid #08407C; border-radius:2px; padding:6px 9px; text-align:center; min-width:96px; }
+.offer .box { border:1.5px solid #08407C; border-radius:2px; padding:6px 8px; text-align:center; min-width:86px;
+               display:flex; flex-direction:column; justify-content:center; }
 .offer .box .lb { font-size:6.4pt; text-transform:uppercase; letter-spacing:.7px; color:#7C8594; }
 .offer .box .big { font-size:13pt; font-weight:800; color:#08407C; letter-spacing:-.4px; line-height:1.15; }
 .offer .box .sm { font-size:6.9pt; color:#4E586E; }
-.offer .txt { flex:1; font-size:7.7pt; color:#2b2f38; line-height:1.42; display:flex; flex-direction:column; justify-content:center; }
+.offer .txt { flex:1; font-size:7.45pt; color:#2b2f38; line-height:1.46; padding-top:2px; }
 .offer .txt b { color:#08407C; }
 
 .bar { margin-top:9px; }
 .bar .track { position:relative; height:17px; background:#EDEFF2; border-radius:2px; }
-.bar .rng { position:absolute; top:0; bottom:0; left:23.4%; width:14.9%; background:#08407C; opacity:.78; border-radius:2px; }
+.bar .rng { position:absolute; top:0; bottom:0; left:38.3%; width:46.8%; background:#08407C; opacity:.20; }
+.bar .mk2 { position:absolute; top:-3px; bottom:-3px; width:2.5px; background:#7C8594; }
 .bar .mk { position:absolute; top:-3px; bottom:-3px; width:2.5px; background:#08407C; }
 .bar .lbls { position:relative; height:12px; font-size:6.2pt; color:#4E586E; margin-top:2px; }
 .bar .lbls span { position:absolute; white-space:nowrap; }
@@ -78,8 +82,8 @@ tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
 </style></head><body>
 
 <div class="head">
-  <div class="brand">KRAK <span>REAL ESTATE</span></div>
-  <div class="doctype"><b>ANÁLISIS COMPARATIVO DE MERCADO</b>Opinión de valor · 19 de septiembre de 2026</div>
+  <div class="brand">ANÁLISIS COMPARATIVO <span>DE MERCADO</span></div>
+  <div class="doctype"><b>OPINIÓN DE VALOR</b>19 de septiembre de 2026</div>
 </div>
 
 <div class="subject">
@@ -116,28 +120,30 @@ tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
 <tfoot><tr><td></td><td>PROMEDIO — 10 comparables</td><td class="n">—</td><td class="n">58</td><td class="n">141.390</td><td class="n">2.451</td><td></td></tr></tfoot>
 </table>
 
-<h2>Del precio publicado al valor de cierre</h2>
+<h2>Del precio publicado al valor de cierre — ajuste aplicado: &minus;5%</h2>
 <div class="grid">
-  <div class="card"><div class="lb">Promedio publicado</div><div class="big">2.451</div><div class="sm">USD/m² — precio de lista, no de cierre</div></div>
-  <div class="card"><div class="lb">Ajuste por negociación</div><div class="big">−5% a −10%</div><div class="sm">margen habitual en esta tipología</div></div>
-  <div class="card"><div class="lb">USD/m² ajustado</div><div class="big">2.206 – 2.328</div><div class="sm">valor probable de cierre</div></div>
-  <div class="card key"><div class="lb">Valor de referencia · 55 m²</div><div class="big">USD 121.000 – 128.000</div><div class="sm">2.206 a 2.328 USD/m² × 55 m²</div></div>
+  <div class="card"><div class="lb">1 · Promedio publicado</div><div class="big">2.451</div><div class="sm">USD/m² &mdash; precio de lista de los 10 comparables, no de cierre</div></div>
+  <div class="card"><div class="lb">2 · Rango habitual de negociación</div><div class="big">5% &ndash; 10%</div><div class="sm">margen entre publicación y cierre en esta tipología</div></div>
+  <div class="card hi"><div class="lb">3 · Ajuste aplicado</div><div class="big">&minus;5%</div><div class="sm"><b>la punta más baja del rango:</b> el criterio más conservador, el que menos reduce el valor de los comparables</div></div>
+  <div class="card key"><div class="lb">4 · Valor de referencia · 55 m²</div><div class="big">USD 128.000</div><div class="sm">2.451 &minus;5% = 2.328 USD/m² × 55 m²</div></div>
 </div>
 
 <h2>Posicionamiento de la oferta recibida</h2>
 <div class="offer">
   <div class="box"><div class="lb">Oferta</div><div class="big">USD 150.000</div><div class="sm">2.727 USD/m²</div></div>
-  <div class="box"><div class="lb">Sobre la referencia</div><div class="big">+17% a +24%</div><div class="sm">vs. USD 121.000 – 128.000</div></div>
+  <div class="box"><div class="lb">Sobre la referencia</div><div class="big">+17,2%</div><div class="sm">vs. USD 128.000</div></div>
   <div class="txt">
-    La oferta se ubica <b>por encima del rango de referencia</b> que surge de los comparables relevados. Los dos comparables más próximos lo confirman de forma independiente: <b>Olleros 1847</b> —misma calle— se publica a USD 120.000, y <b>Jorge Newbery 1800</b> —misma superficie homogeneizada, 55 m²— a USD 129.000. Ambos son precios de lista, todavía sin descontar la negociación.
+    La oferta supera el valor de referencia en <b>USD 22.000</b>. Esa diferencia se mide contra el ajuste más conservador posible: al descontar solo el 5% (la punta baja del rango) los comparables quedan valuados lo más alto que el mercado admite. <b>Con el 10%, la referencia sería USD 121.300 y la brecha treparía a +23,7%.</b> Los dos comparables más próximos lo confirman por separado: <b>Olleros 1847</b> (misma calle) se publica a USD 120.000 y <b>Jorge Newbery 1800</b> (misma superficie homogeneizada, 55 m²) a USD 129.000, ambos todavía sin descontar negociación.
     <div class="bar">
       <div class="track">
         <div class="rng"></div>
+        <div class="mk2" style="left:38.3%"></div>
         <div class="mk" style="left:85.1%"></div>
       </div>
       <div class="lbls">
         <span style="left:0">110.000</span>
-        <span style="left:30.9%; transform:translateX(-50%); color:#08407C; font-weight:700">REFERENCIA 121&ndash;128.000</span>
+        <span style="left:38.3%; transform:translateX(-50%); color:#4E586E; font-weight:700">REFERENCIA 128.000</span>
+        <span style="left:61.7%; transform:translateX(-50%); color:#08407C">+17,2%</span>
         <span style="left:85.1%; transform:translateX(-50%); color:#08407C; font-weight:700">OFERTA 150.000</span>
       </div>
     </div>
@@ -148,7 +154,8 @@ tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
   <div class="col">
     <h3>Alcance y metodología</h3>
     <ul>
-      <li><b>Los valores son de publicación, no de cierre.</b> En Argentina no existe registro público de precios de cierre por unidad comparable. El ajuste del 5% al 10% es una estimación fundada del margen de negociación habitual, no un dato verificado.</li>
+      <li><b>Los valores son de publicación, no de cierre.</b> En Argentina no existe registro público de precios de cierre por unidad comparable.</li>
+      <li><b>Se aplicó un ajuste del 5%, la punta más baja del rango habitual de negociación (5% a 10%).</b> Es el criterio más conservador: reduce lo mínimo el valor de los comparables y, por lo tanto, eleva el valor de referencia resultante. Con el 10% la referencia sería USD 121.300. El rango es una estimación fundada del margen de negociación habitual, no un dato verificado.</li>
       <li>Las superficies se homogeneizaron ponderando metros cubiertos y descubiertos, para hacerlas comparables entre sí.</li>
       <li>Relevamiento propio sobre avisos publicados al 19/09/2026. Los enlaces de la tabla remiten a cada aviso original.</li>
     </ul>
@@ -165,7 +172,7 @@ tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
 </div>
 
 <div class="foot">
-  <span>Krak Real Estate · Opinión fundada de valor de mercado. No constituye tasación oficial ni informe pericial.</span>
+  <span>Opinión fundada de valor de mercado. No constituye tasación oficial ni informe pericial.</span>
   <span>Nivel de confianza: medio · 19/09/2026</span>
 </div>
 
