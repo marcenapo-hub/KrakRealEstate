@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>ACM Olleros 1695</title>
+<style>
+@page { size: A4 portrait; margin: 11mm 11mm 9mm 11mm; }
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color:#2b2f38; font-size:8.3pt; line-height:1.34; }
+a { color:#08407C; text-decoration:none; }
+
+.head { border-bottom:2.5px solid #08407C; padding-bottom:5px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:flex-end; }
+.brand { font-size:14pt; font-weight:800; color:#08407C; letter-spacing:-0.3px; }
+.brand span { font-weight:400; color:#7C8594; }
+.doctype { font-size:7.6pt; color:#4E586E; text-align:right; line-height:1.3; }
+.doctype b { color:#08407C; font-size:8.6pt; display:block; letter-spacing:.3px; }
+
+.subject { background:#08407C; color:#fff; padding:6px 9px; border-radius:2px; display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+.subject .t { font-size:7pt; text-transform:uppercase; letter-spacing:1.1px; color:#C3C3C3; }
+.subject .v { font-size:11pt; font-weight:700; }
+.subject .m { font-size:8pt; color:#C3C3C3; }
+.subject .m b { color:#fff; font-size:10pt; }
+
+h2 { font-size:7.4pt; text-transform:uppercase; letter-spacing:1.1px; color:#08407C; font-weight:700;
+     border-bottom:1px solid #C3C3C3; padding-bottom:2.5px; margin:9px 0 5px; }
+h2:first-of-type { margin-top:0; }
+.univ { font-size:7.6pt; color:#4E586E; margin-bottom:6px; }
+.univ b { color:#08407C; }
+
+table { width:100%; border-collapse:collapse; font-size:7.7pt; }
+thead th { background:#4E586E; color:#fff; font-weight:600; font-size:6.8pt; text-transform:uppercase;
+           letter-spacing:.5px; padding:4px 5px; text-align:left; }
+thead th.n { text-align:right; }
+tbody td { padding:3.4px 5px; border-bottom:.5px solid #E3E5E9; }
+tbody td.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+tbody tr:nth-child(even) { background:#F7F8FA; }
+tbody tr.hl { background:#EAF0F7; }
+tbody tr.hl td { font-weight:600; }
+td.idx { color:#7C8594; width:14px; }
+td.dir { font-size:7.5pt; }
+td.sub { color:#7C8594; font-size:6.7pt; }
+a.lk { color:#08407C; font-weight:600; font-size:7pt; white-space:nowrap; }
+tfoot td { padding:4.5px 5px; background:#08407C; color:#fff; font-weight:700; font-size:8pt; }
+tfoot td.n { text-align:right; font-variant-numeric:tabular-nums; }
+.tag { display:inline-block; background:#08407C; color:#fff; font-size:5.8pt; padding:.5px 3px;
+       border-radius:2px; letter-spacing:.3px; vertical-align:1px; margin-left:3px; }
+
+.grid { display:flex; gap:6px; margin:7px 0 0; }
+.card { flex:1; border:1px solid #C3C3C3; border-radius:2px; padding:6px 8px; }
+.card .lb { font-size:6.4pt; text-transform:uppercase; letter-spacing:.7px; color:#7C8594; margin-bottom:2px; }
+.card .big { font-size:13pt; font-weight:800; color:#08407C; letter-spacing:-.4px; line-height:1.1; }
+.card .sm { font-size:6.9pt; color:#4E586E; margin-top:1px; }
+.card.key { background:#08407C; border-color:#08407C; }
+.card.key .lb { color:#C3C3C3; } .card.key .big { color:#fff; } .card.key .sm { color:#C3C3C3; }
+
+.offer { display:flex; gap:7px; align-items:stretch; margin-top:7px; }
+.offer .box { border:1.5px solid #08407C; border-radius:2px; padding:6px 9px; text-align:center; min-width:96px; }
+.offer .box .lb { font-size:6.4pt; text-transform:uppercase; letter-spacing:.7px; color:#7C8594; }
+.offer .box .big { font-size:13pt; font-weight:800; color:#08407C; letter-spacing:-.4px; line-height:1.15; }
+.offer .box .sm { font-size:6.9pt; color:#4E586E; }
+.offer .txt { flex:1; font-size:7.7pt; color:#2b2f38; line-height:1.42; display:flex; flex-direction:column; justify-content:center; }
+.offer .txt b { color:#08407C; }
+
+.bar { margin-top:9px; }
+.bar .track { position:relative; height:17px; background:#EDEFF2; border-radius:2px; }
+.bar .rng { position:absolute; top:0; bottom:0; left:23.4%; width:14.9%; background:#08407C; opacity:.78; border-radius:2px; }
+.bar .mk { position:absolute; top:-3px; bottom:-3px; width:2.5px; background:#08407C; }
+.bar .lbls { position:relative; height:12px; font-size:6.2pt; color:#4E586E; margin-top:2px; }
+.bar .lbls span { position:absolute; white-space:nowrap; }
+
+.notes { margin-top:8px; display:flex; gap:9px; }
+.notes .col { flex:1; }
+.notes h3 { font-size:6.8pt; text-transform:uppercase; letter-spacing:.8px; color:#08407C; margin-bottom:2.5px; }
+.notes ul { list-style:none; }
+.notes li { font-size:6.9pt; color:#4E586E; line-height:1.4; padding-left:7px; position:relative; margin-bottom:1.5px; }
+.notes li:before { content:"—"; position:absolute; left:0; color:#C3C3C3; }
+.notes li b { color:#2b2f38; }
+
+.foot { margin-top:8px; border-top:1px solid #C3C3C3; padding-top:4px;
+        display:flex; justify-content:space-between; font-size:6.3pt; color:#7C8594; }
+</style></head><body>
+
+<div class="head">
+  <div class="brand">KRAK <span>REAL ESTATE</span></div>
+  <div class="doctype"><b>ANÁLISIS COMPARATIVO DE MERCADO</b>Opinión de valor · 19 de septiembre de 2026</div>
+</div>
+
+<div class="subject">
+  <div><div class="t">Unidad objeto</div><div class="v">Olleros 1695 — Unidad 2.º "D"</div></div>
+  <div class="m">Superficie<br><b>55 m²</b></div>
+  <div class="m">Oferta recibida<br><b>USD 150.000</b></div>
+  <div class="m">Equivale a<br><b>USD 2.727/m²</b></div>
+</div>
+
+<div class="univ"><b>Universo analizado:</b> propiedades de tipología PH (acceso por escalera, sin ascensor) dentro del perímetro Zabala — Dorrego — Cabildo — Libertador. Relevamiento propio sobre Zonaprop. Superficies homogeneizadas ponderando metros cubiertos y descubiertos.</div>
+
+<h2>Comparables de mercado</h2>
+<table>
+<thead><tr>
+  <th style="width:14px"></th><th>Dirección</th>
+  <th class="n" style="width:74px">m² totales</th>
+  <th class="n" style="width:54px">m² homog.</th>
+  <th class="n" style="width:62px">Precio USD</th>
+  <th class="n" style="width:58px">USD/m²</th>
+  <th style="width:52px">Aviso</th>
+</tr></thead>
+<tbody>
+<tr><td class="idx">1</td><td class="dir">Huergo 200 <span class="sub">· Las Cañitas</span></td><td class="n">87 <span class="sub">(62 cub.)</span></td><td class="n">75</td><td class="n">185.000</td><td class="n">2.483</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclphin-ph-3-ambientes-venta-las-canitas-60187229.html">Ver →</a></td></tr>
+<tr><td class="idx">2</td><td class="dir">Av. Luis M. Campos y Chenaut <span class="sub">· Las Cañitas</span></td><td class="n">50 <span class="sub">(45 cub.)</span></td><td class="n">48</td><td class="n">134.900</td><td class="n">2.840</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclphin-ph-en-venta-en-las-canitas-palermo-59955124.html">Ver →</a></td></tr>
+<tr><td class="idx">3</td><td class="dir">Soldado de la Independencia 700 <span class="sub">· Las Cañitas</span></td><td class="n">71 <span class="sub">(61 cub.)</span></td><td class="n">66</td><td class="n">190.000</td><td class="n">2.879</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclphin-ph-3-ambientes-las-canitas-refaccionado-a-nuevo-60178672.html">Ver →</a></td></tr>
+<tr><td class="idx">4</td><td class="dir">Vuelta de Obligado 1100 <span class="sub">· Belgrano</span></td><td class="n">58 <span class="sub">(56 cub.)</span></td><td class="n">57</td><td class="n">125.000</td><td class="n">2.193</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-depto-2-amb-con-estudio-en-venta-belgrano-frente-60136711.html">Ver →</a></td></tr>
+<tr class="hl"><td class="idx">5</td><td class="dir">Olleros 1847 <span class="sub">· Las Cañitas</span><span class="tag">MISMA CALLE</span></td><td class="n">52</td><td class="n">52</td><td class="n">120.000</td><td class="n">2.308</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-lindo-3-ambientes-en-las-canitas-59917104.html">Ver →</a></td></tr>
+<tr><td class="idx">6</td><td class="dir">Teodoro García 2300 <span class="sub">· Las Cañitas</span></td><td class="n">45</td><td class="n">45</td><td class="n">110.000</td><td class="n">2.444</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-depto-3-ambientes-en-venta-excelente-ubicacion!-60062829.html">Ver →</a></td></tr>
+<tr><td class="idx">7</td><td class="dir">Av. Cabildo 900 <span class="sub">· Palermo</span></td><td class="n">78 <span class="sub">(64 cub.)</span></td><td class="n">71</td><td class="n">125.000</td><td class="n">1.761</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-venta-belgrano-palermo-departamento-3-ambientes-60134663.html">Ver →</a></td></tr>
+<tr><td class="idx">8</td><td class="dir">Ortega y Gasset 1500 <span class="sub">· Las Cañitas</span></td><td class="n">54</td><td class="n">54</td><td class="n">130.000</td><td class="n">2.407</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-venta-departamento-2-amb-en-canitas-palermo.-59944834.html">Ver →</a></td></tr>
+<tr class="hl"><td class="idx">9</td><td class="dir">Jorge Newbery 1800, 1.º "9" <span class="sub">· Las Cañitas</span><span class="tag">MISMA SUPERFICIE</span></td><td class="n">55</td><td class="n">55</td><td class="n">129.000</td><td class="n">2.345</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-departamento-en-las-canitas-58735004.html">Ver →</a></td></tr>
+<tr><td class="idx">10</td><td class="dir">Ortega y Gasset 1700 <span class="sub">· Las Cañitas</span></td><td class="n">61 <span class="sub">(55 cub.)</span></td><td class="n">58</td><td class="n">165.000</td><td class="n">2.845</td><td><a class="lk" href="https://www.zonaprop.com.ar/propiedades/clasificado/veclapin-departamento-3-ambientes-las-canitas-venta-58277197.html">Ver →</a></td></tr>
+</tbody>
+<tfoot><tr><td></td><td>PROMEDIO — 10 comparables</td><td class="n">—</td><td class="n">58</td><td class="n">141.390</td><td class="n">2.451</td><td></td></tr></tfoot>
+</table>
+
+<h2>Del precio publicado al valor de cierre</h2>
+<div class="grid">
+  <div class="card"><div class="lb">Promedio publicado</div><div class="big">2.451</div><div class="sm">USD/m² — precio de lista, no de cierre</div></div>
+  <div class="card"><div class="lb">Ajuste por negociación</div><div class="big">−5% a −10%</div><div class="sm">margen habitual en esta tipología</div></div>
+  <div class="card"><div class="lb">USD/m² ajustado</div><div class="big">2.206 – 2.328</div><div class="sm">valor probable de cierre</div></div>
+  <div class="card key"><div class="lb">Valor de referencia · 55 m²</div><div class="big">USD 121.000 – 128.000</div><div class="sm">2.206 a 2.328 USD/m² × 55 m²</div></div>
+</div>
+
+<h2>Posicionamiento de la oferta recibida</h2>
+<div class="offer">
+  <div class="box"><div class="lb">Oferta</div><div class="big">USD 150.000</div><div class="sm">2.727 USD/m²</div></div>
+  <div class="box"><div class="lb">Sobre la referencia</div><div class="big">+17% a +24%</div><div class="sm">vs. USD 121.000 – 128.000</div></div>
+  <div class="txt">
+    La oferta se ubica <b>por encima del rango de referencia</b> que surge de los comparables relevados. Los dos comparables más próximos lo confirman de forma independiente: <b>Olleros 1847</b> —misma calle— se publica a USD 120.000, y <b>Jorge Newbery 1800</b> —misma superficie homogeneizada, 55 m²— a USD 129.000. Ambos son precios de lista, todavía sin descontar la negociación.
+    <div class="bar">
+      <div class="track">
+        <div class="rng"></div>
+        <div class="mk" style="left:85.1%"></div>
+      </div>
+      <div class="lbls">
+        <span style="left:0">110.000</span>
+        <span style="left:30.9%; transform:translateX(-50%); color:#08407C; font-weight:700">REFERENCIA 121&ndash;128.000</span>
+        <span style="left:85.1%; transform:translateX(-50%); color:#08407C; font-weight:700">OFERTA 150.000</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notes">
+  <div class="col">
+    <h3>Alcance y metodología</h3>
+    <ul>
+      <li><b>Los valores son de publicación, no de cierre.</b> En Argentina no existe registro público de precios de cierre por unidad comparable. El ajuste del 5% al 10% es una estimación fundada del margen de negociación habitual, no un dato verificado.</li>
+      <li>Las superficies se homogeneizaron ponderando metros cubiertos y descubiertos, para hacerlas comparables entre sí.</li>
+      <li>Relevamiento propio sobre avisos publicados al 19/09/2026. Los enlaces de la tabla remiten a cada aviso original.</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h3>Información faltante que puede modificar el resultado</h3>
+    <ul>
+      <li><b>Distribución de metros de la unidad objeto.</b> Al no conocerse el reparto entre cubiertos y descubiertos, sus 55 m² no pudieron homogeneizarse. Si incluyeran superficie descubierta, el valor de referencia sería menor.</li>
+      <li><b>Estado de conservación de la unidad.</b> Sin relevamiento no se aplicó ajuste por estado, en ningún sentido.</li>
+      <li><b>Piso de los comparables.</b> Los avisos no informan si son PB, 1.º o 2.º. El acceso por escalera resta valor, y ese efecto crece con la altura.</li>
+      <li><b>Días de publicación.</b> No disponibles; su incorporación permitiría medir el margen de negociación real de la zona en lugar de estimarlo.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="foot">
+  <span>Krak Real Estate · Opinión fundada de valor de mercado. No constituye tasación oficial ni informe pericial.</span>
+  <span>Nivel de confianza: medio · 19/09/2026</span>
+</div>
+
+</body></html>
