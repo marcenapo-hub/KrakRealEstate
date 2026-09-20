@@ -4,7 +4,7 @@
 :root{
   --paper:#FFFFFF; --surf:#F4F6F8; --surf-2:#E9EDF1; --rule:#DBE1E7; --rule-2:#EDF0F3;
   --ink:#131A21; --ink-2:#48545F; --ink-3:#6E7A86;
-  --navy:#08407C; --navy-soft:#E7EEF7; --graf:#2F3941; --elec:#1A62D6;
+  --navy:#08407C; --navy-soft:#E7EEF7; --elec:#1A62D6;
   --ok:#0E6B52; --ok-bg:#E4F2ED; --warn:#96530F; --warn-bg:#FBF0E2;
   --crit:#A5201A; --crit-bg:#FBEAE8; --pend:#5C6873; --pend-bg:#EDF0F3;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -14,15 +14,15 @@
   :root:not([data-theme="light"]){
     --paper:#0E1419; --surf:#161D24; --surf-2:#1E272F; --rule:#2A343D; --rule-2:#212A32;
     --ink:#E6EBEF; --ink-2:#A3AFBA; --ink-3:#7E8A95;
-    --navy:#6FA3DC; --navy-soft:#14243A; --graf:#A3AFBA; --elec:#7FB0F0;
-    --ok:#5FBF9C; --ok-bg:#12271F; --warn:#D9A council; --warn:#D9A055; --warn-bg:#2A1F10;
+    --navy:#6FA3DC; --navy-soft:#14243A; --elec:#7FB0F0;
+    --ok:#5FBF9C; --ok-bg:#12271F; --warn:#D9A055; --warn-bg:#2A1F10;
     --crit:#E8867E; --crit-bg:#2B1513; --pend:#8E9AA5; --pend-bg:#1E272F;
   }
 }
 :root[data-theme="dark"]{
   --paper:#0E1419; --surf:#161D24; --surf-2:#1E272F; --rule:#2A343D; --rule-2:#212A32;
   --ink:#E6EBEF; --ink-2:#A3AFBA; --ink-3:#7E8A95;
-  --navy:#6FA3DC; --navy-soft:#14243A; --graf:#A3AFBA; --elec:#7FB0F0;
+  --navy:#6FA3DC; --navy-soft:#14243A; --elec:#7FB0F0;
   --ok:#5FBF9C; --ok-bg:#12271F; --warn:#D9A055; --warn-bg:#2A1F10;
   --crit:#E8867E; --crit-bg:#2B1513; --pend:#8E9AA5; --pend-bg:#1E272F;
 }
@@ -31,76 +31,79 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased;padding:0 20px}
 h1,h2,h3,h4{margin:0;text-wrap:balance;letter-spacing:-.015em}
 p{margin:0}
-.wrap{max-width:980px;margin:0 auto}
-.mono{font-family:var(--mono)}
-code{font-family:var(--mono);font-size:.88em;background:var(--surf-2);padding:1px 5px;border-radius:3px}
+.wrap{max-width:1000px;margin:0 auto}
+code{font-family:var(--mono);font-size:.87em;background:var(--surf-2);padding:1px 5px;border-radius:3px;word-break:break-word}
 
-/* topbar */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
   border-bottom:1px solid var(--rule);margin:0 -20px;padding:10px 20px}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .top b{font-size:13.5px;font-weight:600}
-.top .st{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--warn);
-  background:var(--warn-bg);padding:4px 10px;border-radius:3px;white-space:nowrap}
+.top .st{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ok);
+  background:var(--ok-bg);padding:4px 10px;border-radius:3px;white-space:nowrap}
 
-header.mast{padding-block:52px 34px}
+header.mast{padding-block:52px 30px}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 .mast h1{font-size:clamp(30px,4.6vw,46px);line-height:1.05;font-weight:700;margin:14px 0 18px}
-.mast .lede{font-size:17.5px;color:var(--ink-2);max-width:62ch}
+.mast .lede{font-size:17.5px;color:var(--ink-2);max-width:64ch}
 
-.blocker{border:1px solid var(--crit);background:var(--crit-bg);padding:26px 28px;margin-block:8px 44px;border-radius:4px}
-.blocker h2{font-size:19px;color:var(--crit);margin-bottom:12px}
-.blocker p{font-size:15px;color:var(--ink-2);max-width:74ch}
-.blocker .cmd{font-family:var(--mono);font-size:12.5px;background:var(--paper);border:1px solid var(--rule);
-  padding:12px 14px;margin-top:16px;border-radius:3px;overflow-x:auto;white-space:pre}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-block:28px 8px}
+.verdict div{background:var(--paper);padding:16px 18px}
+.verdict dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.verdict dd{margin:0;font-size:24px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.verdict dd small{display:block;font-size:12px;font-weight:400;color:var(--ink-3);margin-top:4px;letter-spacing:0}
 
 section{padding-block:44px;border-top:1px solid var(--rule)}
 .snum{font-family:var(--mono);font-size:12px;color:var(--elec);letter-spacing:.08em}
 section h2{font-size:clamp(21px,2.7vw,28px);font-weight:700;margin:10px 0 14px}
-section .intro{color:var(--ink-2);max-width:72ch}
+section .intro{color:var(--ink-2);max-width:74ch}
 h3{font-size:17px;font-weight:600;margin:34px 0 10px}
-h4{font-size:14px;font-weight:600;margin:22px 0 8px}
+h4{font-size:14.5px;font-weight:600;margin:22px 0 8px}
 ul{padding-left:19px;margin:12px 0}
-li{margin:6px 0}
+li{margin:7px 0}
 
-/* tablas */
 .tw{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;margin:18px 0}
-table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:680px}
 th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-3);background:var(--surf);padding:10px 13px;border-bottom:1px solid var(--rule);white-space:nowrap}
 td{padding:11px 13px;border-bottom:1px solid var(--rule-2);vertical-align:top}
 tr:last-child td{border-bottom:0}
 td.k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
 
-/* chips */
 .chip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;
   padding:3px 8px;border-radius:3px;white-space:nowrap;font-weight:500}
-.c-pend{background:var(--pend-bg);color:var(--pend)}
 .c-ok{background:var(--ok-bg);color:var(--ok)}
 .c-warn{background:var(--warn-bg);color:var(--warn)}
 .c-crit{background:var(--crit-bg);color:var(--crit)}
+.c-pend{background:var(--pend-bg);color:var(--pend)}
 .c-req{background:var(--navy-soft);color:var(--navy)}
 
-/* unidades */
-.units{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:20px}
-.unit{border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper)}
-.unit .bar{height:5px}
-.unit .b{padding:16px 18px}
-.unit h4{margin:0 0 6px;font-size:15px}
-.unit p{font-size:12.5px;color:var(--ink-2)}
-.unit .dom{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:10px;word-break:break-all}
+.find{border:1px solid var(--rule);border-left-width:4px;border-radius:4px;padding:20px 22px;margin:16px 0;background:var(--paper)}
+.find.crit{border-left-color:var(--crit)}
+.find.warn{border-left-color:var(--warn)}
+.find.good{border-left-color:var(--ok)}
+.find h4{margin:0 0 4px;font-size:16.5px;font-weight:650}
+.find .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);margin-bottom:12px}
+.find dl{margin:0;display:grid;grid-template-columns:104px 1fr;gap:7px 14px;font-size:14px}
+@media(max-width:560px){.find dl{grid-template-columns:1fr;gap:2px 0}.find dt{margin-top:8px}}
+.find dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.find dd{margin:0;color:var(--ink-2)}
+.find dd strong{color:var(--ink)}
 
 .note{border-left:3px solid var(--elec);background:var(--surf);padding:15px 17px;margin:18px 0;font-size:14.5px}
-.flag{border-left:3px solid var(--warn);background:var(--warn-bg);padding:15px 17px;margin:18px 0;font-size:14.5px}
+.pos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+.pos div{border:1px solid var(--rule);border-radius:4px;padding:18px 20px;background:var(--surf)}
+.pos b{display:block;font-size:14.5px;margin-bottom:6px}
+.pos p{font-size:13.5px;color:var(--ink-2)}
 
-.contra{display:flex;flex-direction:column;gap:14px;margin-top:18px}
-.contra .row{border:1px solid var(--rule);border-radius:4px;padding:18px 20px;background:var(--surf)}
-.contra b{display:block;font-size:15px;margin-bottom:8px}
-.contra .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
-@media(max-width:560px){.contra .vs{grid-template-columns:1fr}}
-.contra .vs div{background:var(--paper);border:1px solid var(--rule);padding:10px 12px;border-radius:3px;font-size:13px}
-.contra .vs span{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.08em;margin-bottom:4px}
-.contra p{font-size:13.5px;color:var(--ink-2)}
+.check{border:1px solid var(--rule);border-radius:4px;padding:6px 0;margin-top:16px}
+.check .row{display:grid;grid-template-columns:34px 68px 1fr;gap:12px;padding:11px 18px;border-bottom:1px solid var(--rule-2);align-items:start}
+.check .row:last-child{border-bottom:0}
+.check .box{width:16px;height:16px;border:1.5px solid var(--ink-3);border-radius:3px;margin-top:3px}
+.check .p{font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding-top:3px}
+.check .p.p0{color:var(--crit)} .check .p.p1{color:var(--warn)} .check .p.p2{color:var(--ink-3)}
+.check .t{font-size:14px}
+.check .t small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px}
 
 footer.end{border-top:1px solid var(--rule);padding-block:30px 60px;font-size:13px;color:var(--ink-3)}
 :focus-visible{outline:2px solid var(--elec);outline-offset:2px}
@@ -108,302 +111,437 @@ footer.end{border-top:1px solid var(--rule);padding-block:30px 60px;font-size:13
 
 <div class="top"><div class="wrap">
   <b>Auditoría · Web madre Krak</b>
-  <span class="st">FASE 1 COMPLETA · FASES 2–5 BLOQUEADAS</span>
+  <span class="st">COMPLETA · 20 SEP 2026</span>
 </div></div>
 
 <div class="wrap">
 
 <header class="mast">
-  <p class="eyebrow">Universo Krak · auditoría de implementación</p>
-  <h1>La web madre frente al brief</h1>
-  <p class="lede">Reconstrucción del ecosistema a partir del Excalidraw completo (1.435 elementos, cuatro
-    regiones) y el instrumento de auditoría pre-cargado, listo para ejecutar sobre la implementación.</p>
-</header>
+  <p class="eyebrow">Universo Krak · brief vs. implementación</p>
+  <h1>Buen sitio, ninguna puerta abierta</h1>
+  <p class="lede">La implementación interpreta el brief con fidelidad y está construida con oficio. Pero el
+    hub tiene un solo trabajo —rutear a las cuatro unidades— y hoy los cuatro destinos fallan.</p>
 
-<div class="blocker">
-  <h2>No pude acceder a la implementación</h2>
-  <p><code>darkorange-caribou-318894.hostingersite.com</code> devuelve <strong>403 del proxy de egreso</strong>
-    de esta sesión — la misma política que bloqueaba <code>krak.com.ar</code> y <code>krakstudio.com</code>
-    hasta que los habilitaste. No es un error del sitio del programador: es la lista de dominios permitidos
-    de mi entorno.</p>
-  <div class="cmd">https  → 000 (CONNECT tunnel failed, 403)
-http   → 403</div>
-  <p style="margin-top:16px">Auditar un sitio que no puedo ver significaría inventar hallazgos, que es
-    exactamente lo que pediste evitar. <strong>Habilitá ese dominio y completo las fases 2 a 5 en una sola
-    pasada</strong> — la grilla de la sección 05 ya está armada, solo hay que ejecutarla. Alternativa si
-    preferís no tocar la configuración: capturas de la home completa (desktop y mobile) más el HTML exportado.</p>
-</div>
+  <dl class="verdict">
+    <div><dt>Alineación con el brief</dt><dd>Alta<small>copy, estructura y bloques fieles</small></dd></div>
+    <div><dt>Calidad técnica</dt><dd>Alta<small>decisiones de performance correctas</small></dd></div>
+    <div><dt>Rutas funcionando</dt><dd>0 / 4<small>3 dan 404, 1 apunta a #</small></dd></div>
+    <div><dt>Bloqueantes P0</dt><dd>4<small>2 heredados del brief</small></dd></div>
+  </dl>
+</header>
 
 <section style="border-top:0">
   <p class="snum">01</p>
-  <h2>Qué puedo afirmar hoy</h2>
-  <p class="intro">Tres conclusiones que no dependen de ver el sitio, porque salen del propio brief.</p>
-  <ul>
-    <li><strong>El brief es sólido y está bien formado.</strong> Define cuatro unidades, su función, su color,
-      sus conversiones y su relación. Un programador puede trabajar con esto sin adivinar casi nada.</li>
-    <li><strong>Pero arrastra tres contradicciones internas</strong> (sección 04) que, si el programador las
-      implementó literalmente, ya están en el código. Dos son de una línea; la tercera es estructural y es la
-      que puede generar retrabajo.</li>
-    <li><strong>Hay una unidad ya en producción que cambia el orden de prioridades:</strong>
-      <code>agentes.krak.com.ar</code> figura en el brief como <em>"Esta web está terminada"</em>. Es la
-      cuarta unidad, y significa que el hub tiene que enlazar a algo que ya existe y ya tiene su propia
-      identidad visual definida.</li>
-  </ul>
+  <h2>Resumen ejecutivo</h2>
+  <p class="intro">El programador entendió el brief. La estructura es la pedida, el copy es casi literal, el
+    orden de las unidades respeta la jerarquía y las decisiones técnicas que tomó por su cuenta —el video del
+    hero, la ausencia de iframes, el sistema de animaciones con failsafe— son mejores que las que toma un
+    desarrollador promedio. <strong>Esto no es un problema de ejecución.</strong></p>
+
+  <p class="intro" style="margin-top:14px">El problema es que la web madre existe para una sola cosa y esa
+    cosa no funciona. Las cuatro tarjetas de unidad apuntan a <code>/residencial/</code>,
+    <code>/industrial/</code>, <code>/marketing/</code> —las tres devuelven <strong>404</strong>— y a
+    <code>#</code> en el caso de Masterclass. Un visitante que hoy entra, entiende el ecosistema y elige su
+    unidad, se choca contra una página de error. Es el único recorrido que el sitio tiene que resolver.</p>
+
+  <p class="intro" style="margin-top:14px">Que las páginas de unidad no existan todavía es esperable: son
+    fases posteriores y no corresponde penalizarlo. <strong>Lo que sí es un error de criterio es enlazar a
+    páginas inexistentes teniendo dos unidades ya publicadas y funcionando:</strong>
+    <code>industrial.krak.com.ar</code> y <code>krakstudio.com</code> responden 200 hoy. El hub debería
+    llevar ahí hasta que existan las versiones nuevas.</p>
+
+  <p class="intro" style="margin-top:14px">Los otros dos bloqueantes —la contradicción entre "cuatro
+    unidades" y la cifra "3", y los dos nombres de la cuarta unidad— <strong>no son culpa del
+    programador: están en el brief</strong> y él los implementó con fidelidad. Se corrigen decidiendo, no
+    programando.</p>
 </section>
 
 <section>
   <p class="snum">02</p>
-  <h2>El ecosistema, reconstruido</h2>
-  <p class="intro">Cuatro unidades de negocio que no comparten público ni ciclo de venta, unidas por una misma
-    marca madre y un mismo sistema cromático.</p>
+  <h2>Qué busca construir el ecosistema Krak</h2>
+  <p class="intro">Reconstruido del Excalidraw completo: 1.435 elementos en cuatro regiones, una por web.</p>
 
-  <div class="units">
-    <div class="unit"><div class="bar" style="background:#08407C"></div><div class="b">
-      <h4>Krak Real Estate</h4>
-      <p>Residencial. CABA y Zona Norte. Capta propietarios para vender; deriva compradores a Tokko.</p>
-      <p class="dom">krak.com.ar/real-estate</p>
-    </div></div>
-    <div class="unit"><div class="bar" style="background:#2F3941"></div><div class="b">
-      <h4>Krak Industrial</h4>
-      <p>B2B. Naves, galpones, lotes y parques industriales en Norte, Oeste y Sur.</p>
-      <p class="dom">industrial.krak.com.ar</p>
-    </div></div>
-    <div class="unit"><div class="bar" style="background:#1A62D6"></div><div class="b">
-      <h4>Krak Studio</h4>
-      <p>Agencia de marketing 360. Cliente objetivo: desarrolladoras y productos de decisión lenta.</p>
-      <p class="dom">krakstudio.com</p>
-    </div></div>
-    <div class="unit"><div class="bar" style="background:#062E5C"></div><div class="b">
-      <h4>Krak Masterclass</h4>
-      <p>Formación y carrera de agente. <strong>Ya en producción.</strong></p>
-      <p class="dom">agentes.krak.com.ar</p>
-    </div></div>
-  </div>
-
-  <h3>Función de la web madre</h3>
-  <p class="intro">El brief la define sin ambigüedad, y lo hace dos veces: en el panel de contexto y en la
-    anotación del bloque H-01.</p>
-  <div class="note"><strong>Ruteador de marca, no home corporativa.</strong> Su trabajo es que en menos de
-    10 segundos el visitante entienda que Krak es un grupo con cuatro unidades y entre a la suya. El peso de
-    conversión vive en las landings de unidad, no en el hub. El tráfico pago entra directo a la landing de
-    unidad, nunca al hub.</div>
-  <p class="intro">Con una excepción explícita: el hub <em>también capta</em>. Lleva CTA fijo
-    <code>Tasar mi propiedad</code> en el header y una banda de captación propia, porque Real Estate sigue
-    siendo el negocio principal del grupo.</p>
-
-  <h3>Públicos y hacia dónde van</h3>
   <div class="tw"><table>
-    <thead><tr><th>Público</th><th>Entra buscando</th><th>Destino correcto</th><th>Conversión</th></tr></thead>
+    <thead><tr><th>Unidad</th><th>Negocio</th><th>Público</th><th>Conversión</th><th>Estado hoy</th></tr></thead>
     <tbody>
-      <tr><td>Propietario residencial</td><td>Cuánto vale su propiedad</td><td>Real Estate → tasación</td><td>Solicitud de tasación</td></tr>
-      <tr><td>Comprador / inquilino</td><td>Propiedades disponibles</td><td>Salida a Tokko</td><td>Salida medida (no es conversión)</td></tr>
-      <tr><td>Empresa / pyme</td><td>Metros industriales</td><td>Industrial → consulta técnica</td><td>Consulta calificada</td></tr>
-      <tr><td>Propietario industrial</td><td>Comercializar su inmueble</td><td>Industrial → publicar</td><td>Captación industrial</td></tr>
-      <tr><td>Desarrolladora</td><td>Agencia que entienda el rubro</td><td>Studio</td><td>Consulta comercial</td></tr>
-      <tr><td>Aspirante a agente</td><td>Formarse / trabajar en RE</td><td>Masterclass</td><td>Postulación / inscripción</td></tr>
+      <tr><td><strong>Krak Residencial</strong></td><td>Venta residencial, CABA y Zona Norte</td><td>Propietario que vende</td><td>Tasación</td><td>En diseño</td></tr>
+      <tr><td><strong>Krak Industrial</strong></td><td>Naves, galpones, lotes, parques</td><td>Empresas y pymes · propietarios industriales</td><td>Consulta técnica · captación</td><td><span class="chip c-ok">Online</span></td></tr>
+      <tr><td><strong>Krak Studio</strong></td><td>Agencia de marketing 360</td><td>Desarrolladoras</td><td>Consulta comercial</td><td><span class="chip c-ok">Online</span></td></tr>
+      <tr><td><strong>Krak Masterclass</strong></td><td>Formación y carrera de agente</td><td>Aspirantes a agente</td><td>Postulación</td><td><span class="chip c-crit">No responde</span></td></tr>
     </tbody>
   </table></div>
-  <p class="intro" style="font-size:14px"><strong>Seis públicos, un solo hub.</strong> Ese es el problema de
-    diseño real de la web madre: no puede optimizarse para ninguno en particular sin traicionar a los otros
-    cinco. Por eso el brief la resuelve como router y no como landing.</p>
 
-  <h3>Jerarquía entre unidades</h3>
-  <p class="intro">El brief la establece de forma explícita: <em>"Real Estate primero por volumen de
-    negocio"</em>, y el CTA fijo del header apunta a tasación. Industrial segundo, Studio tercero,
-    Masterclass cuarta en el orden de tarjetas.</p>
+  <p class="intro">Cuatro unidades que no comparten público ni ciclo de venta. Seis perfiles distintos llegan
+    al mismo dominio. Por eso el brief resuelve la web madre como ruteador y no como landing: no puede
+    optimizarse para ninguno sin traicionar a los otros cinco.</p>
+
+  <h3>Rol de la web madre, según el brief</h3>
+  <div class="note"><strong>Ruteador de marca, no home corporativa.</strong> Que en menos de 10 segundos el
+    visitante entienda que Krak es un grupo con cuatro unidades y entre a la suya. El peso de conversión vive
+    en las landings de unidad. El tráfico pago entra directo a la unidad, nunca al hub.
+    <br><br>Con una excepción explícita: <strong>el hub también capta</strong>, con CTA fijo
+    <code>Tasar mi propiedad</code> y una banda de captación propia, porque Residencial es el negocio
+    principal del grupo.</div>
 </section>
 
 <section>
   <p class="snum">03</p>
-  <h2>Requisitos del brief vs. orientaciones</h2>
-  <p class="intro">La distinción que pediste. Lo marcado como requisito está escrito literalmente en el
-    Excalidraw; lo orientativo es estructura que admite interpretación del programador.</p>
+  <h2>Qué implementó el programador</h2>
+  <p class="intro">WordPress 7.1.1 con Bricks Builder y tema hijo propio. Tres páginas publicadas: home, blog
+    y privacidad.</p>
 
   <div class="tw"><table>
-    <thead><tr><th>#</th><th>Punto</th><th>Qué dice el brief</th><th>Carácter</th></tr></thead>
+    <thead><tr><th>#</th><th>Bloque</th><th>Contenido</th><th>¿Estaba en el brief?</th></tr></thead>
     <tbody>
-      <tr><td class="k">R-01</td><td>Sistema cromático por unidad</td><td>"Residencial: azul con logo blanco. Industrial: gris con logo blanco. Marketing: blanco con logo azul. Masterclass: azul más deep con toques eléctricos"</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-02</td><td>Rol del hub</td><td>Ruteador de marca, no home corporativa. Entender el grupo en menos de 10 segundos</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-03</td><td>Cuatro tarjetas de unidad</td><td>Real Estate, Industrial, Studio, Masterclass. Toda la tarjeta clickeable</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-04</td><td>Orden de las tarjetas</td><td>"Real Estate primero por volumen de negocio"</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-05</td><td>CTA fijo en header</td><td>"Tasar mi propiedad (siempre visible)"</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-06</td><td>Banda de captación</td><td>"¿Tenés una propiedad y querés saber cuánto vale?" · "Tasación sin costo. En menos de 24hs"</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-07</td><td>Barra de cifras</td><td>3 unidades / +100 campañas / +500 operaciones / +15 años</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-08</td><td>Bloque "Krak en redes"</td><td>4 piezas, "Ver el canal →", producido por Studio</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-09</td><td>Enlace a Masterclass</td><td><code>agentes.krak.com.ar</code> — web terminada. CTA "Postularme"</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-10</td><td>Datos legales en footer</td><td>11 3988-2095 · info@krak.com.ar · CMCPSI 6645 · CUCICBA 5456</td><td><span class="chip c-req">REQUISITO</span></td></tr>
-      <tr><td class="k">R-11</td><td>Hero con video</td><td>"Video institucional en loop, sin audio, &lt;8s, con poster"</td><td><span class="chip c-warn">ORIENTATIVO</span></td></tr>
-      <tr><td class="k">R-12</td><td>Titular del hero</td><td>"Cuatro unidades, un mismo estándar de trabajo"</td><td><span class="chip c-warn">ORIENTATIVO</span></td></tr>
-      <tr><td class="k">R-13</td><td>Mobile: stack vertical</td><td>"Franja de color arriba de cada card en vez de header completo: ahorra alto"</td><td><span class="chip c-warn">ORIENTATIVO</span></td></tr>
-      <tr><td class="k">R-14</td><td>Límite de bloques</td><td>Máximo 6–7 bloques para que no derive en home corporativa</td><td><span class="chip c-warn">ORIENTATIVO</span></td></tr>
+      <tr><td class="k">1</td><td>Header</td><td>Logo + 4 ítems + teléfono + CTA "Tasar mi propiedad"</td><td>Sí</td></tr>
+      <tr><td class="k">2</td><td>Hero</td><td>H1 "Cuatro unidades, un mismo estándar de trabajo." + video en loop</td><td>Sí</td></tr>
+      <tr><td class="k">3</td><td>Elegí tu unidad</td><td>4 tarjetas con color propio, CTA por unidad</td><td>Sí</td></tr>
+      <tr><td class="k">4</td><td>Números</td><td>3 unidades · +100 campañas · +500 operaciones · +15 años</td><td>Sí</td></tr>
+      <tr><td class="k">5</td><td>Krak en redes</td><td>3 videos + "Ver el canal" a YouTube</td><td>Sí (el brief pedía 4)</td></tr>
+      <tr><td class="k">6</td><td>Nuestro Blog</td><td>3 notas reales con fecha, categoría y bajada</td><td><span class="chip c-warn">NO</span></td></tr>
+      <tr><td class="k">7</td><td>Captación</td><td>"¿Tenés una propiedad...?" + "Tasación sin costo. En menos de 24hs."</td><td>Sí</td></tr>
+      <tr><td class="k">8</td><td>Footer</td><td>Grupo · Contacto · Redes + matrícula</td><td>Sí</td></tr>
     </tbody>
   </table></div>
+
+  <p class="intro">Ocho bloques. El brief fijaba un máximo de seis o siete para que el hub no derivara en
+    home corporativa. El octavo es el blog, que no figuraba en la región del hub del Excalidraw.</p>
 </section>
 
 <section>
   <p class="snum">04</p>
-  <h2>Tres contradicciones dentro del brief</h2>
-  <p class="intro">Estas no son fallas del programador: están en el documento que recibió. Si las implementó
-    literalmente, el error ya está en el sitio y la corrección arranca acá, no en el código.</p>
+  <h2>Brief vs. implementación</h2>
 
-  <div class="contra">
-    <div class="row">
-      <b>1 · El hub dice que hay tres unidades y muestra cuatro <span class="chip c-crit">ESTRUCTURAL</span></b>
-      <div class="vs">
-        <div><span>TITULAR DEL HERO</span>"Cuatro unidades, un mismo estándar de trabajo" + cuatro tarjetas</div>
-        <div><span>BARRA DE CIFRAS</span>"3 · unidades de negocio que trabajan entre sí"</div>
-      </div>
-      <p>Un visitante lee cuatro tarjetas y una cifra que dice tres, con quince centímetros de distancia.
-        Es el tipo de detalle que destruye credibilidad justo en el bloque cuyo único trabajo es construirla.
-        <strong>Acción:</strong> decidir si Masterclass cuenta como unidad de negocio. Si cuenta, la cifra es
-        4. Si no cuenta, hay que explicar por qué aparece como tarjeta al mismo nivel que las otras tres.</p>
-    </div>
-
-    <div class="row">
-      <b>2 · La cuarta unidad tiene dos nombres <span class="chip c-crit">ESTRUCTURAL</span></b>
-      <div class="vs">
-        <div><span>NAVEGACIÓN Y FOOTER</span>"Trabajá con Nosotros"</div>
-        <div><span>TARJETA DE UNIDAD</span>"KRAK MASTERCLASS" · CTA "Postularme"</div>
-      </div>
-      <p>No son sinónimos: "Trabajá con Nosotros" es una página de empleo, "Masterclass" es un producto de
-        formación que se vende. La diferencia define si esa unidad factura o solo recluta, y arrastra el
-        modelo de negocio, el copy y la conversión. <strong>Acción:</strong> un solo nombre en menú, tarjeta,
-        footer y en el propio <code>agentes.krak.com.ar</code>, que ya está publicado.</p>
-    </div>
-
-    <div class="row">
-      <b>3 · Los parques industriales no coinciden <span class="chip c-warn">DATO</span></b>
-      <div class="vs">
-        <div><span>TARJETA EN EL HUB</span>"+20 de parques industriales en cartera"</div>
-        <div><span>WEB INDUSTRIAL</span>"+25 · parques industriales en cartera"</div>
-      </div>
-      <p>El mismo dato con dos valores en dos webs del mismo grupo. Cualquiera de los dos puede ser el
-        correcto, pero no los dos. <strong>Acción:</strong> fijar el número real y usarlo en los dos lugares.
-        Conviene además que salga de una sola fuente, para que no vuelva a divergir.</p>
-    </div>
-  </div>
-
-  <div class="flag"><strong>Una cuarta, de arquitectura:</strong> los dominios siguen sin criterio único.
-    Real Estate cuelga del hub como ruta (<code>krak.com.ar/real-estate</code>), Industrial y Masterclass son
-    subdominios (<code>industrial.</code>, <code>agentes.</code>) y Studio es un dominio ajeno
-    (<code>krakstudio.com</code>). Para el usuario, el clic a Studio "sale" de la marca de un modo que el
-    clic a Industrial no. Para SEO, la autoridad se reparte en vez de acumularse. Esta decisión conviene
-    tomarla <em>antes</em> de que el programador avance con las otras webs, porque después implica
-    redirecciones y pérdida de posicionamiento.</div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Requisito</th><th>Implementado</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td class="k">R-01</td><td>Color propio por unidad en cada tarjeta</td><td>Las 4 tarjetas con identidad cromática diferenciada</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-02</td><td>Hub como ruteador, no home corporativa</td><td>Estructura correcta, pero 8 bloques y ninguna ruta funcional</td><td><span class="chip c-crit">🔴 NO CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-03</td><td>Cuatro tarjetas, toda la tarjeta clickeable</td><td>4 tarjetas, el <code>&lt;a&gt;</code> envuelve la tarjeta completa</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-04</td><td>Residencial primero por volumen de negocio</td><td>Orden exacto: Residencial, Industrial, Studio, Masterclass</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-05</td><td>CTA "Tasar mi propiedad" siempre visible</td><td>En header, hero y banda de captación → <code>/residencial#tasacion</code></td><td><span class="chip c-warn">🟡 PARCIAL</span></td></tr>
+      <tr><td class="k">R-06</td><td>Banda de captación con promesa de 24 hs</td><td>Copy literal del brief</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-07</td><td>Barra de cifras del brief</td><td>Las 4 cifras exactas, con contador animado</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-08</td><td>Bloque de videos + "Ver el canal"</td><td>3 piezas reales con título; enlace al canal correcto</td><td><span class="chip c-warn">🟡 PARCIAL</span></td></tr>
+      <tr><td class="k">R-09</td><td>Enlace a Masterclass en <code>agentes.krak.com.ar</code></td><td><code>href="#"</code> en las tres apariciones</td><td><span class="chip c-crit">🔴 NO CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-10</td><td>Datos legales en footer</td><td>Dirección, mail, matrículas CMCPSI y CUCICBA correctas</td><td><span class="chip c-warn">🟡 PARCIAL</span></td></tr>
+      <tr><td class="k">R-11</td><td>Video sin audio, con poster, &lt;8s</td><td>Ejemplar: muted, loop, playsinline, preload=none, poster, fuente mobile aparte</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-12</td><td>Titular del hero</td><td>Literal</td><td><span class="chip c-ok">🟢 CUMPLIDO</span></td></tr>
+      <tr><td class="k">R-13</td><td>Mobile: stack vertical con franja de color</td><td>Breakpoints en 767 y 380 px</td><td><span class="chip c-pend">⚪ NO VERIFICABLE</span></td></tr>
+      <tr><td class="k">R-14</td><td>Máximo 6–7 bloques</td><td>8 bloques (el blog es adicional)</td><td><span class="chip c-warn">🟡 PARCIAL</span></td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <section>
   <p class="snum">05</p>
-  <h2>El instrumento de auditoría</h2>
-  <p class="intro">La grilla que pediste, ya cargada con todo lo verificable del brief. Todo figura como
-    <span class="chip c-pend">⚪ NO VERIFICABLE</span> porque no pude abrir el sitio; cada fila tiene escrito
-    cómo se comprueba, así que la ejecución es mecánica apenas haya acceso — la podés usar vos mismo o
-    pasársela al programador como checklist.</p>
+  <h2>Problemas críticos</h2>
 
-  <h3>Arquitectura de información</h3>
-  <div class="tw"><table>
-    <thead><tr><th>#</th><th>Qué se verifica</th><th>Cómo</th><th>Estado</th></tr></thead>
-    <tbody>
-      <tr><td class="k">A-01</td><td>Las 4 unidades son alcanzables desde el primer scroll</td><td>Abrir home, no scrollear, contar accesos visibles</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-02</td><td>Orden Real Estate → Industrial → Studio → Masterclass</td><td>Orden en el DOM y visual</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-03</td><td>La tarjeta completa es clickeable, no solo el botón</td><td>Clic en zona muerta de la tarjeta</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-04</td><td>Los enlaces apuntan a los destinos reales</td><td>Revisar <code>href</code> de cada tarjeta</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-05</td><td>Masterclass enlaza a <code>agentes.krak.com.ar</code></td><td>Seguir el enlace hasta destino final</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-06</td><td>El hub no excede 6–7 bloques</td><td>Contar secciones de primer nivel</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">A-07</td><td>No hay blog, "quiénes somos" largo ni catálogo en el hub</td><td>Inventario de secciones</td><td><span class="chip c-pend">⚪</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="find crit">
+    <h4>1 · Las cuatro puertas del hub están cerradas</h4>
+    <p class="meta">P0 · REQUISITO DEL BRIEF (R-02, R-09) · VERIFICADO POR HTTP</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd><code>/residencial/</code>, <code>/industrial/</code> y <code>/marketing/</code>
+        devuelven <strong>404</strong>. La tarjeta de Masterclass, el ítem del menú y el del footer apuntan a
+        <code>href="#"</code>. El sitemap confirma que solo existen tres páginas: home, blog y privacidad.</dd>
+      <dt>Por qué importa</dt><dd>El hub tiene una sola función y es rutear. Un visitante que hace todo bien
+        —entiende el ecosistema, identifica su unidad, hace clic— termina en un error. El resto del sitio, por
+        bueno que sea, no llega a servir para nada.</dd>
+      <dt>Impacto</dt><dd>Pérdida del 100% del tráfico que intenta entrar a una unidad. Si esto llega a
+        producción, además, Google indexa enlaces rotos desde la página principal del dominio.</dd>
+      <dt>Qué haría</dt><dd><strong>Apuntar a lo que ya existe:</strong> Industrial a
+        <code>industrial.krak.com.ar</code> y Studio a <code>krakstudio.com</code> —ambos responden 200
+        hoy—, y Masterclass a su destino real una vez resuelto el punto 2. Residencial puede quedar
+        deshabilitada con un aviso honesto hasta que exista. <strong>Un enlace a un sitio viejo sirve; un 404
+        no sirve nunca.</strong></dd>
+    </dl>
+  </div>
 
-  <h3>UX y conversión</h3>
-  <div class="tw"><table>
-    <thead><tr><th>#</th><th>Qué se verifica</th><th>Cómo</th><th>Estado</th></tr></thead>
-    <tbody>
-      <tr><td class="k">U-01</td><td>CTA "Tasar mi propiedad" fijo y visible sin scroll</td><td>Desktop 1440×900 y mobile 390×844</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-02</td><td>El CTA lleva al paso 1 del flujo, no a un formulario genérico</td><td>Seguir el CTA y ver qué se pide primero</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-03</td><td>Banda de captación presente con la promesa de 24 hs</td><td>Buscar el bloque y su copy</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-04</td><td>No hay formulario genérico compitiendo con las conversiones de unidad</td><td>Inventario de formularios del hub</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-05</td><td>Prueba de los 10 segundos</td><td>Mostrar la home 10 s a alguien ajeno y preguntar qué es Krak</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-06</td><td>Mobile: tarjetas apiladas con franja de color, sin header por tarjeta</td><td>Inspeccionar en 390 px</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">U-07</td><td>Video del hero sin audio, con poster, y que no bloquee el render</td><td>Atributos del <code>&lt;video&gt;</code> y orden de carga</td><td><span class="chip c-pend">⚪</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="find crit">
+    <h4>2 · <code>agentes.krak.com.ar</code> no responde</h4>
+    <p class="meta">P0 · DATO DEL BRIEF · VERIFICADO POR TEST DIFERENCIAL</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El brief dice textualmente <em>"Esta web está terminada:
+        https://agentes.krak.com.ar/"</em>. El dominio no responde en tres intentos.</dd>
+      <dt>Cómo lo verifiqué</dt><dd>Test diferencial sobre el mismo dominio raíz:
+        <code>krak.com.ar</code> → 200, <code>industrial.krak.com.ar</code> → 200,
+        <code>propiedades.krak.com.ar</code> → 200, <code>agentes.krak.com.ar</code> → error de upstream.
+        <strong>No es un problema de mi red:</strong> los otros tres subdominios del mismo nivel responden.</dd>
+      <dt>Impacto</dt><dd>Una de las cuatro unidades del ecosistema puede estar caída, o la URL del brief
+        puede ser incorrecta. En cualquier caso, el programador no tiene a dónde enlazar la cuarta tarjeta.</dd>
+      <dt>Qué haría</dt><dd>Verificar desde tu red si el sitio está online. Si lo está, es un problema de DNS
+        o de configuración del servidor. Si no lo está, la cuarta unidad no tiene destino y hay que decidir
+        qué hace esa tarjeta mientras tanto.</dd>
+    </dl>
+  </div>
 
-  <h3>Branding y sistema visual</h3>
-  <div class="tw"><table>
-    <thead><tr><th>#</th><th>Qué se verifica</th><th>Cómo</th><th>Estado</th></tr></thead>
-    <tbody>
-      <tr><td class="k">B-01</td><td>Cada tarjeta lleva el color de su unidad (R-01)</td><td>Cuentagotas sobre las 4 tarjetas</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">B-02</td><td>Masterclass en azul deep con toques eléctricos</td><td>Comparar contra <code>agentes.krak.com.ar</code>, ya publicado</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">B-03</td><td>El logo cambia de color según fondo (blanco sobre azul/gris, azul sobre blanco)</td><td>Revisar las 4 tarjetas</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">B-04</td><td>El hub se lee como marca madre, no como una quinta unidad</td><td>Juicio visual sobre la home completa</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">B-05</td><td>Contraste de texto sobre cada color de unidad (AA, 4.5:1)</td><td>Medir los pares texto/fondo reales</td><td><span class="chip c-pend">⚪</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="find crit">
+    <h4>3 · El sitio dice que hay cuatro unidades y que hay tres</h4>
+    <p class="meta">P0 · ORIGEN: EL BRIEF · IMPLEMENTADO CON FIDELIDAD</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El H1 dice <em>"Cuatro unidades, un mismo estándar de trabajo"</em>, hay cuatro
+        tarjetas, y el bloque de cifras dice <strong>"3 · unidades de negocio que trabajan entre sí"</strong>.
+        El <code>data-count="3"</code> está en el HTML: es intencional, no un error de carga.</dd>
+      <dt>Por qué importa</dt><dd>Dos afirmaciones incompatibles a un scroll de distancia, en un bloque cuyo
+        único trabajo es construir credibilidad. Quien lo nota, deja de confiar en las otras tres cifras.</dd>
+      <dt>De quién es</dt><dd><strong>Del brief, no del programador.</strong> Ambos valores están en el
+        Excalidraw y él los transcribió.</dd>
+      <dt>Qué haría</dt><dd>Decidir si Masterclass cuenta como unidad de negocio. Si cuenta, la cifra es 4.
+        Si no cuenta, hay que justificar por qué aparece como tarjeta al mismo nivel que las otras tres.</dd>
+    </dl>
+  </div>
 
-  <h3>Copy y contenido</h3>
-  <div class="tw"><table>
-    <thead><tr><th>#</th><th>Qué se verifica</th><th>Cómo</th><th>Estado</th></tr></thead>
-    <tbody>
-      <tr><td class="k">C-01</td><td>Coherencia del número de unidades (contradicción 1)</td><td>Comparar titular contra barra de cifras</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">C-02</td><td>Un solo nombre para la cuarta unidad (contradicción 2)</td><td>Menú, tarjeta, footer y destino</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">C-03</td><td>Cifra de parques coincide con la web industrial (contradicción 3)</td><td>Comparar ambos sitios</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">C-04</td><td>No hay texto de relleno, lorem ni placeholders visibles</td><td>Lectura completa</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">C-05</td><td>Las cifras publicadas son las del brief y son reales</td><td>Contrastar contra fuente verificable</td><td><span class="chip c-pend">⚪</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="find crit">
+    <h4>4 · La cuarta unidad tiene dos nombres en la misma pantalla</h4>
+    <p class="meta">P0 · ORIGEN: EL BRIEF · IMPLEMENTADO CON FIDELIDAD</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El menú y el footer dicen <strong>"Trabajá con Nosotros"</strong>. La tarjeta
+        dice <strong>"Krak Masterclass"</strong> con CTA "Postularme". Los tres apuntan al mismo
+        <code>#</code>.</dd>
+      <dt>Por qué importa</dt><dd>No son sinónimos. "Trabajá con Nosotros" es una página de empleo;
+        "Masterclass" es un producto de formación que se vende. La diferencia define si esa unidad factura o
+        solo recluta, y de ahí cuelgan el modelo de negocio, el copy y la conversión.</dd>
+      <dt>Qué haría</dt><dd>Un solo nombre en menú, tarjeta, footer y en el propio sitio de la unidad. Si es
+        un producto, "Krak Masterclass" en los cuatro lugares y el CTA pasa de "Postularme" a algo de
+        inscripción.</dd>
+    </dl>
+  </div>
 
-  <h3>SEO y desarrollo</h3>
-  <div class="tw"><table>
-    <thead><tr><th>#</th><th>Qué se verifica</th><th>Cómo</th><th>Estado</th></tr></thead>
-    <tbody>
-      <tr><td class="k">S-01</td><td>Un solo <code>&lt;h1&gt;</code> y jerarquía correcta de encabezados</td><td>Outline del documento</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-02</td><td><code>title</code> y meta description propios, no genéricos</td><td>Ver <code>&lt;head&gt;</code></td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-03</td><td>Enlazado interno del hub a las 4 unidades, indexable</td><td>Enlaces <code>&lt;a href&gt;</code> reales, no JS</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-04</td><td>Datos estructurados de Organization con las unidades</td><td>Buscar JSON-LD</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-05</td><td>LCP, CLS e INP dentro de presupuesto</td><td>Lighthouse mobile</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-06</td><td>Imágenes en formato moderno y dimensionadas</td><td>Network + atributos width/height</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-07</td><td>Ningún enlace roto ni apuntando a <code>#</code></td><td>Recorrer todos los enlaces</td><td><span class="chip c-pend">⚪</span></td></tr>
-      <tr><td class="k">S-08</td><td>Los videos no embeben iframes de YouTube en la carga inicial</td><td>Network en primer render</td><td><span class="chip c-pend">⚪</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="note"><strong>Un quinto, de arquitectura, que no es del sitio pero condiciona todo lo que
+    viene:</strong> los dominios siguen sin criterio único. Residencial cuelga del hub como ruta, Industrial
+    y Masterclass son subdominios, Studio es un dominio ajeno. Para el usuario, el clic a Studio "sale" de la
+    marca de un modo que el clic a Industrial no; para SEO, la autoridad se reparte en vez de acumularse.
+    <strong>Conviene decidirlo antes de que el programador avance con las otras tres webs</strong>, porque
+    después implica redirecciones y pérdida de posicionamiento.</div>
 </section>
 
 <section>
   <p class="snum">06</p>
-  <h2>Qué hacer ahora</h2>
-  <p class="intro">Dos cosas, y se pueden hacer en paralelo.</p>
+  <h2>UX, UI y conversión</h2>
 
-  <h4>Vos, para desbloquear la auditoría</h4>
-  <ul>
-    <li>Habilitar <code>darkorange-caribou-318894.hostingersite.com</code> en la política de red del entorno,
-      como hiciste con <code>krak.com.ar</code>, <code>industrial.krak.com.ar</code> y
-      <code>krakstudio.com</code>. Sumá también <code>agentes.krak.com.ar</code>: necesito ver la web de
-      Masterclass que ya está publicada para auditar la coherencia entre unidades.</li>
-    <li>Si preferís no tocar la configuración: capturas de la home completa en desktop y mobile, más el HTML
-      exportado.</li>
-  </ul>
+  <div class="find warn">
+    <h4>El CTA principal también termina en 404</h4>
+    <p class="meta">P0 · CONVERSIÓN</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd><code>Tasar mi propiedad</code> aparece tres veces —header, hero y banda de
+        captación— y las tres apuntan a <code>/residencial#tasacion</code>, que no existe.</dd>
+      <dt>Impacto</dt><dd>El brief define la captación de tasaciones como la excepción explícita al rol de
+        ruteador del hub: es la única conversión propia que tiene. Hoy no convierte nada.</dd>
+      <dt>Qué haría</dt><dd>Hasta que exista la página de Residencial, apuntar a un formulario de tasación
+        mínimo en el propio hub, o a WhatsApp con mensaje prellenado. Cualquier cosa que capture un dato es
+        mejor que un 404.</dd>
+    </dl>
+  </div>
 
-  <h4>El programador, sin esperar la auditoría</h4>
-  <p class="intro" style="margin-bottom:10px">Las tres contradicciones de la sección 04 no dependen de mi
-    revisión: están en el brief y se resuelven con una decisión tuya.</p>
-  <ul>
-    <li><strong>P0 · Definir si Masterclass es unidad de negocio</strong> y corregir la cifra a 4, o explicar
-      su estatus distinto. <span class="chip c-req">DEL BRIEF</span></li>
-    <li><strong>P0 · Unificar el nombre de la cuarta unidad</strong> en menú, tarjeta, footer y destino.
-      <span class="chip c-req">DEL BRIEF</span></li>
-    <li><strong>P0 · Decidir el criterio de dominios</strong> antes de avanzar con las otras webs — es el
-      único punto de esta lista que genera retrabajo real si se posterga.
-      <span class="chip c-warn">RECOMENDACIÓN</span></li>
-    <li><strong>P1 · Fijar la cifra de parques industriales</strong> y unificarla entre hub e Industrial.
-      <span class="chip c-req">DEL BRIEF</span></li>
-  </ul>
+  <div class="find warn">
+    <h4>El bloque de blog empuja el hub fuera de su rol</h4>
+    <p class="meta">P1 · RECOMENDACIÓN · DESVÍO DEL BRIEF</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>Se sumó un bloque de tres notas que no figuraba en la región del hub del
+        Excalidraw. Lleva el sitio a ocho bloques, por encima del máximo de seis o siete que fijaba el brief.</dd>
+      <dt>El matiz</dt><dd>El contenido es real y de calidad —notas de mercado con fecha, categoría y bajada
+        propia—, así que no es relleno. Es una decisión razonable del programador, no un error.</dd>
+      <dt>Por qué lo movería igual</dt><dd>El blog es un motor de captación de propietarios: pertenece a
+        Residencial, no al grupo. En el hub compite con el ruteo, que es lo único que el hub tiene que lograr.</dd>
+      <dt>Qué haría</dt><dd>Moverlo a Residencial cuando exista. Mientras tanto puede quedarse: hoy es el
+        único contenido vivo del sitio y da señales de actividad.</dd>
+    </dl>
+  </div>
+
+  <h3>Lo que no puedo evaluar desde el frontend</h3>
+  <p class="intro">Puedo leer el HTML y el CSS, pero no ejecutar el sitio en un navegador real. Queda
+    pendiente de verificación con Lighthouse y en dispositivo: el rendimiento real (LCP, CLS, INP), el
+    comportamiento responsive efectivo, y si el autoplay del video del hero funciona en iOS.</p>
+</section>
+
+<section>
+  <p class="snum">07</p>
+  <h2>Branding y comunicación</h2>
+
+  <div class="find warn">
+    <h4>Studio se llama de tres formas distintas</h4>
+    <p class="meta">P1 · CONSISTENCIA DE MARCA</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El menú dice <strong>"Studio"</strong>, el footer dice
+        <strong>"Marketing"</strong>, la tarjeta dice <strong>"Krak Studio"</strong> y la URL es
+        <code>/marketing</code>.</dd>
+      <dt>Por qué importa</dt><dd>La unidad ya tiene marca propia y dominio propio: se llama Krak Studio.
+        "Marketing" es la categoría, no el nombre. Un ecosistema cuyo valor es presentarse como grupo
+        coherente no puede nombrar distinto a la misma unidad en dos lugares de la misma página.</dd>
+      <dt>Qué haría</dt><dd><strong>"Krak Studio"</strong> en los cuatro lugares y el slug a
+        <code>/studio</code>. Si se mantiene <code>/marketing</code> por SEO, que sea una decisión consciente
+        y no una inconsistencia.</dd>
+    </dl>
+  </div>
+
+  <div class="find warn">
+    <h4>El teléfono no coincide con el del brief</h4>
+    <p class="meta">P1 · DATO · REQUISITO DEL BRIEF (R-10)</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El sitio muestra <strong>11 3888-2095</strong> en header, footer y datos
+        estructurados. El brief indica <strong>11 3988-2095</strong>.</dd>
+      <dt>El contexto</dt><dd>Es una ambigüedad vieja del proyecto: el sitio industrial actual usa 3888 y
+        material comercial de Residencial usa 3988. Pueden ser dos líneas distintas o un error arrastrado.</dd>
+      <dt>Qué haría</dt><dd>Confirmar cuál es el número de contacto del grupo y unificarlo. Si son dos
+        líneas reales, decidir cuál va en la web madre.</dd>
+    </dl>
+  </div>
+
+  <div class="find warn">
+    <h4>El bloque de videos tiene tres piezas y el brief pedía cuatro</h4>
+    <p class="meta">P2 · MENOR</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>Hay tres videos reales: "Ley de Libertad Inmobiliaria", "Un Café en Krak con
+        Juan Pucheta" y "Parque Reconquista".</dd>
+      <dt>Qué haría</dt><dd>Sumar el cuarto para que la grilla cierre, o rediseñar a tres columnas. Una fila
+        de cuatro con un hueco se lee como contenido faltante.</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <p class="snum">08</p>
+  <h2>SEO y desarrollo</h2>
+
+  <div class="find warn">
+    <h4>Las seis imágenes reales no tienen texto alternativo</h4>
+    <p class="meta">P1 · ACCESIBILIDAD Y SEO · VERIFICADO EN HTML</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>Las miniaturas de los tres videos y las tres notas del blog tienen
+        <code>alt=""</code>. Solo el isotipo del header tiene alt correcto.</dd>
+      <dt>Impacto</dt><dd>Un lector de pantalla no puede describir ninguna de las seis. Y se pierde el
+        contexto semántico de seis imágenes que acompañan contenido con palabras clave del rubro.</dd>
+      <dt>Qué haría</dt><dd>Alt descriptivo en cada una. En las notas del blog puede derivar del título;
+        en los videos, del nombre de la pieza.</dd>
+    </dl>
+  </div>
+
+  <div class="find warn">
+    <h4>Los enlaces del blog están en absoluto al dominio de staging</h4>
+    <p class="meta">P1 · MIGRACIÓN</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>Las tres notas enlazan a
+        <code>https://darkorange-caribou-318894.hostingersite.com/blog/...</code> mientras el resto del sitio
+        usa rutas relativas. El <code>canonical</code> también apunta a staging.</dd>
+      <dt>Impacto</dt><dd>Al migrar a <code>krak.com.ar</code>, esos enlaces siguen apuntando al staging:
+        el usuario sale del dominio sin darse cuenta y Google puede indexar el entorno de pruebas.</dd>
+      <dt>Qué haría</dt><dd>Rutas relativas o búsqueda y reemplazo en base de datos al migrar. Y mientras
+        tanto, <code>noindex</code> en el staging para que no compita con el dominio real.</dd>
+    </dl>
+  </div>
+
+  <div class="find warn">
+    <h4>Los datos estructurados describen una inmobiliaria, no un grupo</h4>
+    <p class="meta">P2 · RECOMENDACIÓN</p>
+    <dl>
+      <dt>Qué ocurre</dt><dd>El JSON-LD declara <code>@type: RealEstateAgent</code> con nombre "Universo
+        Krak". No hay <code>subOrganization</code> para las cuatro unidades, y <code>sameAs</code> lista solo
+        Instagram y TikTok —falta YouTube, que está enlazado en la propia página.</dd>
+      <dt>Por qué importa</dt><dd>La web madre no es una inmobiliaria: es un grupo que incluye una
+        inmobiliaria, una unidad industrial, una agencia de marketing y una escuela. El marcado le está
+        diciendo a Google algo más chico de lo que el sitio es, y desaprovecha justamente la estructura de
+        ecosistema que es su razón de ser.</dd>
+      <dt>Qué haría</dt><dd><code>Organization</code> con las cuatro unidades como
+        <code>subOrganization</code>, cada una con su URL. Completar <code>sameAs</code> con todos los
+        perfiles. Es el marcado que hace que el ecosistema exista para un buscador.</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <p class="snum">09</p>
+  <h2>Lo que conviene conservar</h2>
+  <p class="intro">Esto no es cortesía: son decisiones que un desarrollador promedio no toma y que sería un
+    error perder en la próxima iteración.</p>
+
+  <div class="pos">
+    <div><b>El video del hero está impecable</b><p><code>muted loop playsinline preload="none"</code>, con
+      poster, <code>aria-hidden</code>, <code>disablepictureinpicture</code> y <strong>fuente separada para
+      mobile (720p) y desktop (1080p)</strong>. Cumple el requisito al pie y ahorra ancho de banda en
+      teléfono. Mejor de lo que pedía el brief.</p></div>
+
+    <div><b>Cero iframes de YouTube</b><p>El bloque de videos usa miniaturas propias en WebP y enlaza al
+      canal. Embeber cuatro iframes habría destruido el LCP. Decisión correcta tomada sin que nadie se la
+      pidiera.</p></div>
+
+    <div><b>El sistema de animaciones tiene red de seguridad</b><p>El estado oculto solo se aplica si el JS
+      está vivo (<code>.js</code> en el <code>&lt;html&gt;</code>), y hay un <code>reveal-rescue</code> que
+      fuerza la visibilidad a los 2,5 segundos. Si el JS falla, el contenido igual se ve. Muy poca gente
+      programa esa salvaguarda.</p></div>
+
+    <div><b>Accesibilidad de base cuidada</b><p><code>lang="es-AR"</code>, enlaces de salto al contenido y al
+      footer, <code>prefers-reduced-motion</code> contemplado, un solo H1 y jerarquía de encabezados
+      correcta.</p></div>
+
+    <div><b>Imágenes bien servidas</b><p>WebP, con <code>width</code> y <code>height</code> declarados
+      —previene saltos de layout— y carga diferida en todo menos el isotipo del header.</p></div>
+
+    <div><b>CSS propio, ordenado y documentado</b><p>Tema hijo con secciones numeradas y comentadas en
+      castellano, explicando la intención de cada sistema. Facilita que otro desarrollador lo continúe.</p></div>
+
+    <div><b>Fidelidad al copy</b><p>Titulares, bajadas, cifras y CTAs están transcriptos del brief casi
+      literalmente. No inventó textos ni metió relleno.</p></div>
+
+    <div><b>Metadatos propios</b><p><code>title</code> y <code>description</code> escritos para esta página,
+      nombrando las cuatro unidades y las zonas. No quedaron los que pone WordPress por defecto.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="snum">10</p>
+  <h2>Checklist para el programador</h2>
+  <p class="intro">Ordenado por prioridad. Las marcadas <span class="chip c-req">BRIEF</span> salen
+    directamente del Excalidraw; las demás son recomendación profesional.</p>
+
+  <div class="check">
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Apuntar las tarjetas de Industrial y Studio a <code>industrial.krak.com.ar</code> y <code>krakstudio.com</code><small>Ambos responden 200. Un enlace a la web vieja sirve; un 404 no. <span class="chip c-req">BRIEF</span></small></div></div>
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Resolver el destino de Masterclass<small>Hoy es <code>href="#"</code> en tres lugares y <code>agentes.krak.com.ar</code> no responde. <span class="chip c-req">BRIEF</span></small></div></div>
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Dar destino al CTA "Tasar mi propiedad"<small>Las tres apariciones van a <code>/residencial#tasacion</code>, que es 404. Formulario mínimo en el hub o WhatsApp. <span class="chip c-req">BRIEF</span></small></div></div>
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Decidir si son 3 o 4 unidades y unificar la cifra<small>Decisión de Marce, no del programador.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Unificar el nombre de la cuarta unidad<small>Menú y footer dicen "Trabajá con Nosotros", la tarjeta dice "Krak Masterclass". Decisión de Marce.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p0">P0</div><div class="t">Definir el criterio de dominios antes de las otras tres webs<small>Es el único punto que genera retrabajo real si se posterga.</small></div></div>
+
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Unificar "Krak Studio" en menú, tarjeta, footer y slug<small>Hoy son tres nombres distintos para la misma unidad.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Confirmar y unificar el teléfono<small>Sitio: 3888. Brief: 3988. También en el JSON-LD. <span class="chip c-req">BRIEF</span></small></div></div>
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Texto alternativo en las seis imágenes<small>Miniaturas de videos y notas del blog.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Pasar los enlaces del blog a rutas relativas<small>Hoy apuntan en absoluto al dominio de staging.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Poner <code>noindex</code> en el staging<small>Para que no compita con krak.com.ar cuando se publique.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p1">P1</div><div class="t">Correr Lighthouse mobile y verificar en dispositivo real<small>No pude medir rendimiento ni responsive desde el HTML.</small></div></div>
+
+    <div class="row"><div class="box"></div><div class="p p2">P2</div><div class="t">JSON-LD como <code>Organization</code> con las 4 unidades<small>Hoy declara <code>RealEstateAgent</code> y no describe el ecosistema.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p2">P2</div><div class="t">Completar <code>sameAs</code> con YouTube, LinkedIn y Facebook<small>YouTube está enlazado en la página pero no en el marcado.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p2">P2</div><div class="t">Cuarto video o grilla de tres<small>Hoy la fila queda con un hueco.</small></div></div>
+    <div class="row"><div class="box"></div><div class="p p2">P2</div><div class="t">Mover el blog a Residencial cuando exista<small>Mientras tanto puede quedarse: es el único contenido vivo.</small></div></div>
+  </div>
+</section>
+
+<section>
+  <p class="snum">11</p>
+  <h2>Conclusión</h2>
+  <p class="intro"><strong>La implementación interpreta correctamente la estrategia.</strong> Estructura,
+    jerarquía, orden de unidades, copy, sistema cromático y bloques responden a lo que definiste. Las
+    decisiones que el programador tomó por su cuenta —el video, la ausencia de iframes, el failsafe de las
+    animaciones— van en la dirección correcta y algunas superan lo pedido.</p>
+
+  <p class="intro" style="margin-top:14px">Pero la web madre <strong>todavía no cumple su función</strong>,
+    por una razón puntual y reparable: ninguna de las cuatro rutas lleva a ningún lado. Un visitante hoy
+    entiende qué es Krak, entiende cuáles son sus unidades, sabe dónde tiene que entrar según su necesidad
+    —y no puede. Todo lo anterior queda anulado por ese último paso.</p>
+
+  <p class="intro" style="margin-top:14px">La buena noticia es que <strong>no hay error conceptual ni
+    estructural que obligue a rehacer nada.</strong> Que era el riesgo real de esta auditoría: que el sitio
+    se viera profesional sobre una arquitectura equivocada. No es el caso. Lo que hay son enlaces sin
+    destino, dos decisiones tuyas pendientes que el programador transcribió tal como estaban en el brief, y
+    una definición de dominios que conviene cerrar antes de avanzar con las otras tres webs.</p>
+
+  <p class="intro" style="margin-top:14px">Se puede seguir construyendo sobre esto.</p>
 </section>
 
 <footer class="end">
-  <p>Fuentes: Excalidraw <em>"Web de Krak para que claude me ayude a corregir"</em> — 1.435 elementos,
-    4 regiones (hub, Real Estate, Industrial, Studio), 7 imágenes embebidas. Implementación en
-    <code>darkorange-caribou-318894.hostingersite.com</code>: <strong>no accesible</strong> desde este
-    entorno al momento de la auditoría.</p>
+  <p>Auditoría del 20 de septiembre de 2026. Fuentes: Excalidraw <em>"Web de Krak para que claude me ayude a
+    corregir"</em> (1.435 elementos, 4 regiones) e implementación en
+    <code>darkorange-caribou-318894.hostingersite.com</code>, analizada por HTML, CSS, sitemap y respuestas
+    HTTP. Rendimiento, responsive y autoplay no verificados: requieren ejecución en navegador.</p>
 </footer>
 
 </div>
