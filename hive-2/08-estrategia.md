@@ -58,7 +58,7 @@ ahora para nutrirlo.
 
 - **Qué lo mueve:** dejar de pagar alquiler, tener activo propio, la altura y
   el acceso de camión.
-- **Qué lo frena:** febrero 2028 le queda lejos si necesita mudarse ya.
+- **Qué lo frena:** mediados de 2028 le queda lejos si necesita mudarse ya.
 - **Canal:** Meta con creatividades operativas + outbound sobre la base de
   empresas industriales de Zona Norte y Oeste.
 - **Mensaje:** *"Dejá de pagar alquiler por un galpón que nunca va a ser tuyo."*
@@ -124,20 +124,33 @@ Alternativas para testear: *"La escala de un parque. La medida de tu empresa."*
 - **Calles internas de hormigón de 10 m** — contra 6,40 m de Arbox Norlog II.
   Es la diferencia entre maniobrar un camión y no poder.
 - **Trifásica, fibra óptica, red de incendios, pórtico de control de ingreso.**
+- **Doble anillo de seguridad** — control en el acceso al parque y control en
+  el acceso al predio.
+- **Zonificación categorías I y II** — habilita toda actividad industrial,
+  comercial y logística salvo las complejas (químicos y contaminantes). Para
+  una PyME metalmecánica, de e-commerce o de distribución, entra todo.
 - **64 cocheras y espacio para semirremolque**, incluidas.
 
 ## 5. Manejo de las objeciones reales
 
 ### «Está cerca de villas de emergencia»
 
-**No se esquiva ni se discute.** Se responde con el perímetro:
+**No se esquiva ni se discute. Se responde con el doble anillo**, que es el
+argumento más fuerte del proyecto en este frente:
 
-> *"El predio es cerrado, con pórtico de control de ingreso, cerco perimetral e
-> iluminación LED en todas las calles internas. Lo mismo que Hive 1, que está
-> enfrente, lleno de empresas operando desde hace años."*
+> *"Para llegar a tu nave hay que pasar dos controles: primero el ingreso al
+> Polo Industrial Buen Ayre 2, y después el ingreso al predio de Hive 2. Son
+> dos perímetros, no uno. Más cerco de 2,20 m e iluminación LED en todas las
+> calles internas."*
 
-**Bloqueante:** falta que Stark confirme vigilancia, cámaras y monitoreo. Hasta
-que lo confirme, **no se dice "seguridad 24 horas"**.
+**Doble anillo de seguridad es el término a instalar.** Ningún competidor del
+corredor lo comunica así, y Logipark —que tiene "doble cordón"— está sobre
+Panamericana, donde la objeción de zona ni siquiera aparece. Acá el argumento
+trabaja mucho más.
+
+**Sigue sin poder decirse "seguridad 24 horas":** lo confirmado es control de
+acceso en dos anillos, no vigilancia permanente. Si Stark confirma cámaras con
+monitoreo, se suma.
 
 ### «Hay que pagar peaje»
 
@@ -151,7 +164,7 @@ autopista de carga.
 Sobre el ticket mínimo, la diferencia de USD 945 a 1.465 por m² son
 **USD 143.520** en una unidad de 276 m². Argumento cuantificable.
 
-### «Es pozo, y a febrero de 2028 falta»
+### «Es pozo, y a mediados de 2028 falta»
 
 > *"Es exactamente el mismo pozo que compraron los 18 de Hive 1, que hoy están
 > operando. La diferencia es que ellos pagaron 1.200 el metro y vos pagás 1.050."*
@@ -182,7 +195,8 @@ No se esquiva. Se explica la estructura:
 - Ninguna **proyección de revalorización**. Los USD 1.400/m² terminados son
   proyección propia.
 - Ninguna **fecha de escrituración**.
-- **"Seguridad 24 horas"**, hasta que Stark lo confirme por escrito.
+- **"Seguridad 24 horas"**. Lo confirmado es el doble anillo de control de
+  acceso. Se comunica eso, que además es más concreto y más creíble.
 - **Coworking y oficinas**: se cayeron del proyecto. Cualquier pieza que los
   mencione queda fuera de circulación.
 

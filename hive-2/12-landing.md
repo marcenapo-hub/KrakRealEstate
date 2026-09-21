@@ -22,7 +22,7 @@ Desarrolla y mantiene **Krak**. Objetivo de conversión primario:
 ### 01 · Hero
 - **Imagen:** render exterior, fachada al atardecer.
 - **Título:** *18 naves industriales con entrepiso privado, sobre el Camino del Buen Ayre.*
-- **Bajada:** Desde 276 m² totales. Más de 7 metros de altura libre. Entrega febrero 2028.
+- **Bajada:** Desde 276 m² totales. Más de 7 metros de altura libre. Entrega mediados de 2028.
 - **Precio visible:** `Desde USD 260.820 · Se reserva con USD 10.000`
 - **CTA primario:** Consultar por WhatsApp · **CTA secundario:** Ver tipologías
 
@@ -30,13 +30,14 @@ Desarrolla y mantiene **Krak**. Objetivo de conversión primario:
 > número: se usa como filtro.
 
 ### 02 · Barra de datos
-`18 unidades` · `276 a 907 m²` · `+7 m de altura libre` · `Feb 2028`
+`18 unidades` · `276 a 907 m²` · `+7 m de altura libre` · `Med. 2028`
 
-### 03 · El problema y la propuesta
-Tres bloques cortos:
-- **Comprás metros, no aire.** Cada nave incluye entrepiso privado (≈33%) a USD 630 el m² contra 1.050 de la planta.
-- **Entra el camión.** Calles internas de hormigón de 10 m, circulación separada, playa para semirremolque.
-- **Trabajás desde el día uno.** Trifásica, fibra óptica, red de incendios, pórtico de control de ingreso.
+### 03 · Qué resuelve
+Cuatro bloques cortos, en el orden de los ángulos creativos:
+- **La misma huella, usada dos veces.** Más de 7 m de altura libre para estibar hacia arriba, y entrepiso privado incluido para oficina, vestuario o repuestos. Superficie que no paga suelo.
+- **Entra y gira el camión.** Calles internas de hormigón de 10 m de ancho, circulación separada entre tráfico pesado y liviano, playa para semirremolque.
+- **Trabajás, no solo guardás.** Trifásica, fibra óptica y red de incendios. Habilitado para categorías I y II.
+- **Doble anillo de seguridad.** Un control al entrar al Polo Industrial y otro al entrar al predio de Hive 2.
 
 ### 04 · Tipologías
 Grilla de 10 fichas: letra, m² de nave, m² de entrepiso, total y **precio**.
@@ -46,20 +47,27 @@ precargado que incluye la tipología.
 > Esto es calificación pasiva: el vendedor recibe el mensaje sabiendo qué
 > unidad le interesa.
 
-### 05 · Ubicación
+### 05 · Ubicación y seguridad
 Mapa. Camino del Buen Ayre y De Benedetti, Polo Industrial Buen Ayre 2,
 General San Martín. Tiempos de acceso a los nodos logísticos.
 
-**Acá se aborda la objeción de zona, no se esquiva:** el bloque de accesos y el
-de seguridad del predio van juntos.
+**Acá se aborda la objeción de zona de frente**, con un esquema visual del
+**doble anillo**: primer control en el ingreso al parque industrial, segundo
+control en el ingreso al predio de Hive 2. Más cerco perimetral de 2,20 m,
+pórtico e iluminación LED en las calles internas.
 
-### 06 · Prueba — Hive 1
-El bloque más importante de la página.
+> Este bloque es el que desactiva la objeción principal del proyecto. No va
+> escondido abajo: va inmediatamente después del mapa.
 
-> *El primero está cruzando la calle.*
-> Hive 1, del mismo desarrollador, se vendió entero y hoy está lleno de
-> empresas operando. Hive 2 es el segundo, con las calles más anchas: ese fue
-> el aprendizaje.
+### 06 · Respaldo — Hive 1
+El bloque de confianza. **Con el encuadre correcto: Hive 1 avala al
+desarrollador, no describe a Hive 2.**
+
+> *El primero lo entregaron. Está cruzando la calle, lleno.*
+> Hive 1, del mismo desarrollador, se vendió entero y hoy opera lleno de
+> empresas. Hive 2 es el paso siguiente, no la repetición: calles más anchas,
+> más altura libre, entrepiso privado en cada unidad y doble anillo de
+> seguridad.
 
 Sin fotos de Hive 1 (no autorizado). Se resuelve con el plano aéreo del
 corredor y con texto.
@@ -69,23 +77,23 @@ Cuatro pasos numerados, honestos:
 1. Reservás con USD 10.000. Tenés 60 días.
 2. Reunión con la desarrolladora: obra, masterplan y estructura.
 3. Firmás la adhesión al fideicomiso de construcción al costo.
-4. Posesión al terminar la obra, febrero 2028.
+4. Posesión al terminar la obra, mediados de 2028.
 
 ### 08 · Preguntas frecuentes
 1. ¿Cuánto necesito para reservar? → USD 10.000, imputables a cuenta de precio, 60 días de vigencia.
 2. ¿Cómo se paga el resto? → 50% de anticipo y 18 cuotas. El esquema se detalla en la reunión.
-3. ¿Qué puedo hacer adentro de la nave? → *pendiente: usos permitidos de Stark.*
-4. ¿Cuándo se entrega? → Febrero de 2028.
+3. ¿Qué puedo hacer adentro de la nave? → Zonificación de categorías I y II: toda actividad industrial, comercial, logística y de depósito, **excepto las complejas** (químicos y productos con impacto ambiental).
+4. ¿Cuándo se entrega? → Mediados de 2028.
 5. ¿Cómo se instrumenta la compra? → Adhesión a un fideicomiso de construcción al costo.
 6. ¿Cuándo escrituro? → *La escritura depende de los plazos de subdivisión de la Provincia. Lo que tenés desde el primer día es tu posición en el fideicomiso.*
-7. ¿Qué seguridad tiene el predio? → *pendiente de confirmación de Stark.*
+7. ¿Qué seguridad tiene el predio? → Doble anillo de control de acceso: uno al ingresar al Polo Industrial Buen Ayre 2 y otro al ingresar al predio de Hive 2. Cerco perimetral de 2,20 m, pórtico de control e iluminación LED en las calles internas.
 8. ¿Puedo unir dos unidades? → *pendiente.*
 9. ¿Cuánto son las expensas? → *pendiente.*
 10. ¿Se puede visitar? → Sí, con turno.
 
-> **Las FAQ son el filtro de honestidad de la campaña.** Cuatro de diez están
-> pendientes de Stark. Ninguna se publica inventada: la que no tiene respuesta,
-> no sale hasta tenerla.
+> **Las FAQ son el filtro de honestidad de la campaña.** Quedan **dos**
+> pendientes de Stark: expensas y unión de unidades. Ninguna se publica
+> inventada: la que no tiene respuesta, no sale hasta tenerla.
 
 ### 09 · Cierre
 Repetición del CTA con el precio y la reserva. Formulario como alternativa.
@@ -133,8 +141,15 @@ el evento `Lead`. Es también la audiencia a excluir del remarketing.
 
 ## 5. Bloqueantes antes de publicar
 
+**Resueltos el 2026-09-21:** usos permitidos (categorías I y II) · esquema de
+seguridad (doble anillo) · fecha de entrega (mediados de 2028).
+
+**Abiertos:**
+
 1. **Brochure actualizado** — el actual vende un coworking que ya no existe.
-2. **Usos permitidos y habilitación** — sin eso faltan tres FAQ.
-3. **Esquema de seguridad confirmado** — sin eso no se puede escribir el bloque
-   que responde la objeción principal de la zona.
-4. **Render de la tipología J** — es la unidad de entrada y no tiene imagen.
+   En camino desde Stark.
+2. **Cuadro definitivo de las 18 unidades** — terminado por Stark, falta que
+   llegue a Krak. Sin él, el bloque de tipologías sale con las superficies del
+   brochure actual.
+3. **Render de la tipología J** — es la unidad de entrada y no tiene imagen.
+4. **Expensas** — es la FAQ que más preguntan los inversores.

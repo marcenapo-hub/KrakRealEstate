@@ -1,246 +1,331 @@
 # Hive 2 — Fase 5: Creatividades y contenidos
 
+**v2 — 2026-09-21.** Reformulación de los ángulos según devolución de Marce:
+se sale del terreno del precio y se entra al del valor operativo.
+
 **Regla que atraviesa todo:** solo se afirma lo que está en la Ficha Maestra.
 Nada de renta, revalorización, escrituración, "seguridad 24 horas" ni coworking.
 
 ---
 
-## 1. Inventario contra necesidad
+## 1. Por qué cambiaron los ángulos
 
-| Necesito | Tengo | Falta |
+El ángulo de precio comparado ("97 metros más por el mismo dinero") queda
+descartado. El razonamiento, y es correcto:
+
+> El comprador industrial es objetivo, pero no decide por metros sueltos.
+> Decide por si el producto le sirve para operar. Si le sirve, 97 metros no
+> cambian nada; si no le sirve, tampoco.
+
+El precio pasa de ser **argumento** a ser **dato**: aparece en la landing y en
+la conversación, no en el gancho. Lo que abre la conversación es lo que el
+producto resuelve.
+
+| | v1 (descartado) | **v2** |
 |---|---|---|
-| Exterior del parque | 6 renders (fachada atardecer, ingreso, pórtico ×2, isométrico) | — |
-| Interior con operación | 7 renders (racks, operarios, vista aérea, autos) | — |
-| Tipología grande (369 m²) | 2 renders desde entrepiso | — |
-| **Tipología Compact 207 m²** | **nada** | **Render — es el ticket de entrada** |
-| Altura libre demostrada | parcial | Render o video con referencia humana / rack |
-| Calles de 10 m con camión | nada | **Render con semi maniobrando** |
-| Video | nada | Reels de vocero + recorrido |
-| Drone del predio y del entorno | nada | Vuelo mostrando Hive 1 enfrente |
-| Plano comercial por tipología | nada | Ficha por tipología para la landing |
-
-### Pedido de producción a Stark (prioridad)
-
-1. **Render de la tipología J (207 m²)** con persona y rack para escala.
-2. **Render de calle interna con semirremolque maniobrando.** Es el
-   diferencial más difícil de explicar con palabras y el más fácil de mostrar.
-3. **Corte de una nave** mostrando los 7 m de altura y el entrepiso.
-4. Plano comercial por tipología, con medidas y portón acotado.
-
-### Producción propia de Krak Studio
-
-- **Vuelo de drone** sobre el predio, mostrando el Camino del Buen Ayre y
-  **Hive 1 enfrente**. Sin entrar a Hive 1 (no está autorizado), pero el plano
-  aéreo del corredor cuenta la historia.
-- **Reels con el vendedor** como vocero, en el predio.
+| A | Precio comparado: 97 m² más | **Capacidad operativa: el metro cuadrado no dice cuánto podés operar** |
+| B | Producto: 7 m, 10 m, entra el camión | **Producto pensado y dimensionado para PyME** |
+| C | Prueba: el anterior está lleno | **Respaldo: el desarrollador ya entregó. Este es superador** |
 
 ---
 
 ## 2. Los tres ángulos
 
-### ÁNGULO A — Precio comparado
-*Para el inversor nuevo. Fase de adquisición.*
+### ÁNGULO A — Capacidad operativa
+*Inversor nuevo y usuario final. Fase de adquisición.*
 
-**Idea:** en el mismo corredor logístico, el mismo dinero compra superficies muy
-distintas. Hive 2 es el metro operativo más barato.
+**Idea:** la superficie es una medida engañosa en industrial. Lo que define si
+una nave te sirve es cuánto podés meter adentro y cómo la podés usar. Hive 2
+está dimensionado para que el mismo metro cuadrado rinda más: altura libre para
+estibar hacia arriba y entrepiso privado para separar depósito de operación.
 
-**Hook:** *"Con la misma plata, 97 metros más."*
+**Hook:** *"El metro cuadrado no te dice cuánto podés guardar."*
 
-**Prohibido:** nombrar a Arbox o Logipark. Se habla de "otros desarrollos del
-corredor" o se muestra el propio precio sin comparar.
+**Desarrollo:** una nave de 207 m² con 7 metros de altura libre y 69 m² de
+entrepiso no es una nave de 207 m². Es depósito en altura, más una planta
+arriba para oficina, vestuario, repuestos o picking. Sin ampliar la huella y
+sin pagar suelo por esa superficie.
 
-### ÁNGULO B — Producto
-*Para el usuario final y la PyME. Fase de adquisición.*
+**A validar con Stark antes de publicar:** cuántos niveles de rack admite la
+altura libre y cuál es la resistencia del piso en kg/m². Con esos dos datos el
+argumento se vuelve cuantificable ("un nivel más de rack que una nave estándar")
+y hoy no se puede afirmar. **Hasta tenerlos, el ángulo se comunica en términos
+de uso, no de números de estiba.**
 
-**Idea:** las cosas que solo se notan cuando ya te mudaste. Altura para
-estibar, calles para maniobrar, trifásica para trabajar.
+### ÁNGULO B — Dimensionado para PyME
+*Usuario final y PyME. Fase de adquisición.*
 
-**Hook:** *"Siete metros de altura. Diez de calle. Entra el camión."*
+**Idea:** los parques industriales están pensados para grandes operadores, y la
+PyME termina alquilando un galpón viejo en una calle donde no entra un camión.
+Hive 2 toma la infraestructura de un parque grande y la baja a la escala de una
+empresa de verdad: 18 unidades, no 200.
 
-### ÁNGULO C — Prueba
-*Para todos. Solo remarketing.*
+Es la idea de la colmena, aplicada: **unidades chicas e independientes con la
+infraestructura de un parque grande.**
 
-**Idea:** no es una promesa, es la segunda vez. El proyecto anterior del mismo
-desarrollador está cruzando la calle, vendido y ocupado.
+**Hook:** *"Un parque industrial en serio, a la medida de tu empresa."*
 
-**Hook:** *"El anterior está enfrente. Lleno."*
+**Los cinco puntos de operatoria** (todos verificables):
+
+1. **Calles internas de hormigón de 10 metros de ancho.** Entra, gira y sale un
+   camión sin maniobrar en tres tiempos.
+2. **Circulación separada** entre tráfico pesado y liviano. La carga no se
+   cruza con las visitas.
+3. **Más de 7 metros de altura libre** y cortina motorizada con acceso propio.
+4. **Trifásica** — se puede trabajar, no solo guardar.
+5. **Doble anillo de seguridad** — control en el ingreso al parque y control en
+   el ingreso al predio.
+
+**Usos permitidos:** zonificación categorías I y II. Toda actividad industrial,
+comercial y logística salvo las complejas (químicos y productos con impacto
+ambiental). Para una metalmecánica, un e-commerce, una distribuidora o un
+taller, entra todo.
+
+### ÁNGULO C — Respaldo del desarrollador
+*Todos. Solo remarketing.*
+
+**Idea, con el matiz correcto:** Hive 1 no es el mismo producto. Hive 2 es
+superador. Lo que Hive 1 prueba no es cómo va a ser Hive 2 — prueba que **el
+desarrollador entrega lo que promete y que en esta zona hay demanda real.**
+
+**Hook:** *"El primero lo entregaron. Está enfrente, lleno."*
+
+**Desarrollo:** *"Hive 1 está cruzando la calle: se vendió entero y hoy opera
+lleno de empresas. Hive 2 es el paso siguiente, no la repetición. Calles más
+anchas, más altura, entrepiso privado en cada unidad y doble anillo de
+seguridad. El primero demostró que la zona funciona. El segundo está hecho para
+funcionar mejor."*
+
+**Lo que NO se hace:** poner a Hive 2 al lado de Hive 1 como si fueran lo
+mismo. Hive 1 es el aval del desarrollador, no el modelo del producto.
+
+**Restricción de producción:** no se puede filmar ni fotografiar Hive 1. Se
+resuelve con plano aéreo del corredor a distancia y con texto.
 
 ---
 
 ## 3. Copys para Meta
 
-> Formato: **Texto principal** / **Titular** / **Descripción** / **CTA**
-> Todos los anuncios llevan CTA *Más información* hacia landing, salvo los
-> marcados como WhatsApp.
+> **Texto principal** / **Titular** / **Descripción** / **CTA**
 
-### A1 — Precio comparado, hook numérico
+### A1 — Capacidad, hook conceptual
 
 **Texto principal:**
-> En el corredor del Camino del Buen Ayre, USD 260.000 te compran 179 m².
+> El metro cuadrado no te dice cuánto podés guardar.
 >
-> En Hive 2, esos mismos USD 260.820 te compran **276 m²**: 207 de nave más 69 de entrepiso privado.
+> Una nave de 207 m² con 4 metros de altura y una de 207 m² con **más de 7** no son el mismo producto. Y si además tiene **69 m² de entrepiso privado**, tampoco es una nave de 207.
 >
-> 97 metros más, por el mismo dinero.
+> En Hive 2 cada unidad viene con entrepiso incluido: depósito abajo, y arriba la oficina, el vestuario, los repuestos o el picking. Superficie que no paga suelo, porque está adentro de la misma nave.
 >
-> 18 naves con más de 7 m de altura libre, entrepiso incluido, calles de hormigón de 10 m y pórtico de control de ingreso. Del desarrollador cuyo proyecto anterior está enfrente, vendido y ocupado.
->
-> Se reserva con USD 10.000.
+> 18 unidades en el Polo Industrial Buen Ayre 2. Entrega mediados de 2028.
 
-**Titular:** 276 m² desde USD 260.820
-**Descripción:** Naves industriales con entrepiso · Polo Buen Ayre 2
+**Titular:** Naves con entrepiso privado y más de 7 m de altura
+**Descripción:** Polo Buen Ayre 2 · desde 276 m² totales
 **CTA:** Más información
 
-### A2 — Precio comparado, hook de eficiencia
+### A2 — Capacidad, hook de uso
 
 **Texto principal:**
-> El entrepiso te sale 40% menos que la planta.
+> Dos plantas adentro de una nave.
 >
-> USD 1.050 el m² de nave. USD 630 el m² de entrepiso. Es superficie rentable que no paga suelo: está adentro de la misma nave, arriba.
+> Abajo, la operación: más de 7 metros de altura libre, cortina motorizada, acceso independiente y trifásica.
 >
-> Sobre 18 unidades, son 1.629 m² extra de área operativa.
+> Arriba, el entrepiso privado: oficina, vestuario, archivo, repuestos. Lo que hoy te ocupa lugar en el piso.
+>
+> Es la misma huella, usada dos veces.
 >
 > Hive 2 Storage Park · Camino del Buen Ayre, San Martín.
 
-**Titular:** El metro más barato del corredor
-**Descripción:** Desde USD 260.820 · Reserva USD 10.000
+**Titular:** La misma huella, usada dos veces
+**Descripción:** 10 tipologías desde 276 m² · Entrega mediados de 2028
 **CTA:** Más información
 
-### B1 — Producto, hook operativo
+### B1 — PyME, hook de escala
 
 **Texto principal:**
-> Si alguna vez tuviste que sacar un camión marcha atrás por una calle de seis metros, este aviso es para vos.
+> Los parques industriales están pensados para operadores grandes. Tu empresa no lo es, y no debería pagar como si lo fuera.
 >
-> Hive 2 tiene calles internas de hormigón de **10 metros de calzada**, circulación separada entre tráfico liviano y pesado, y playa para semirremolque.
+> Hive 2 son **18 naves**, no 200. Infraestructura de parque industrial a escala de PyME:
 >
-> Adentro: **más de 7 metros de altura libre** y entrepiso privado. Estibás en altura sin agrandar la huella.
+> · Calles internas de hormigón de **10 metros de ancho**
+> · Circulación separada entre tráfico pesado y liviano
+> · Más de 7 m de altura libre y entrepiso privado
+> · Trifásica, fibra óptica y red de incendios
+> · **Doble anillo de seguridad**: control al entrar al parque y control al entrar al predio
 >
-> Trifásica, fibra óptica, red de incendios y pórtico de control de ingreso.
+> Polo Industrial Buen Ayre 2, San Martín.
 
-**Titular:** Calles de 10 metros. Entra el camión.
-**Descripción:** 18 naves desde 276 m² · Polo Buen Ayre 2
+**Titular:** Un parque industrial en serio, a tu escala
+**Descripción:** 18 naves con entrepiso · Polo Buen Ayre 2
 **CTA:** Más información
 
-### B2 — Producto, hook de dolor (PyME)
+### B2 — PyME, hook operativo concreto
+
+**Texto principal:**
+> Si alguna vez tuviste que sacar el camión marcha atrás por una calle de seis metros, sabés de qué se trata esto.
+>
+> Las calles internas de Hive 2 tienen **10 metros de calzada de hormigón**, con circulación separada entre tráfico pesado y liviano, y playa para semirremolque.
+>
+> Adentro: más de 7 metros de altura libre, cortina motorizada y entrepiso privado.
+>
+> La diferencia entre un parque que funciona y uno que te complica todos los días.
+
+**Titular:** Calles de 10 metros. Entra y gira el camión.
+**Descripción:** Naves desde 276 m² · Entrega mediados de 2028
+**CTA:** Más información
+
+### B3 — PyME, hook de dolor (WhatsApp)
 
 **Texto principal:**
 > Cada mes de alquiler es plata que no vuelve.
 >
-> Naves propias desde 276 m², con entrepiso privado incluido y más de 7 metros de altura libre, en el Polo Industrial Buen Ayre 2.
+> Naves propias desde 276 m² totales, con entrepiso privado incluido, más de 7 metros de altura libre y trifásica, en el Polo Industrial Buen Ayre 2.
 >
-> Se reserva con USD 10.000 y la entrega es en febrero de 2028.
+> Habilitado para toda actividad industrial, comercial y logística de categorías I y II.
 >
 > Escribinos y te pasamos las tipologías disponibles.
 
 **Titular:** Dejá de alquilar un galpón que nunca va a ser tuyo
-**Descripción:** 10 tipologías · desde USD 260.820
+**Descripción:** 10 tipologías · Polo Buen Ayre 2, San Martín
 **CTA:** Enviar WhatsApp
 
-### C1 — Prueba (remarketing)
+### C1 — Respaldo (remarketing)
 
 **Texto principal:**
-> Hive 1 está cruzando la calle. Se vendió entero y hoy está lleno de empresas operando.
+> El primero lo entregaron. Está cruzando la calle, lleno de empresas operando.
 >
-> Hive 2 es el segundo, del mismo desarrollador, en el mismo corredor. Con calles más anchas —ese fue el aprendizaje del primero— y entrepiso privado en cada unidad.
+> Hive 2 no es la repetición de Hive 1: es el paso siguiente. Calles más anchas —ese fue el aprendizaje del primero—, más altura libre, entrepiso privado en cada unidad y doble anillo de seguridad.
 >
-> El primero se vendió a USD 1.200 el metro. Este arranca en 1.050.
+> El primero demostró que la zona funciona. El segundo está hecho para funcionar mejor.
 >
-> Quedan 18 unidades. Se reservan con USD 10.000.
+> 18 unidades. Entrega mediados de 2028.
 
-**Titular:** El anterior está enfrente. Lleno.
-**Descripción:** Hive 2 Storage Park · desde USD 260.820
+**Titular:** El primero lo entregaron. Este es superador.
+**Descripción:** Hive 2 Storage Park · Polo Buen Ayre 2
 **CTA:** Enviar WhatsApp
 
-### C2 — Prueba, objeción de seguridad (remarketing)
-
-> *Solo se publica si Stark confirma por escrito el esquema de seguridad.*
+### C2 — Respaldo, objeción de zona (remarketing)
 
 **Texto principal:**
-> Predio cerrado, pórtico de control de ingreso, cerco perimetral e iluminación LED en todas las calles internas.
+> Para llegar a tu nave hay que pasar dos controles.
 >
-> Es el mismo estándar del parque de enfrente, donde hay empresas operando desde hace años.
+> Primero el ingreso al Polo Industrial Buen Ayre 2. Después, el ingreso al predio de Hive 2.
 >
-> Hive 2 · Camino del Buen Ayre y De Benedetti, San Martín.
+> **Doble anillo de seguridad**, cerco perimetral, pórtico de control e iluminación LED en todas las calles internas.
+>
+> Es el mismo corredor donde el parque de enfrente opera lleno desde hace años.
 
-**Titular:** Predio cerrado, control de ingreso
-**Descripción:** 18 naves con entrepiso · desde USD 260.820
+**Titular:** Doble anillo de seguridad
+**Descripción:** 18 naves con entrepiso · Polo Buen Ayre 2, San Martín
 **CTA:** Más información
 
 ---
 
 ## 4. Guiones de Reels
 
-### R1 · "Los 97 metros" (30 s) — ángulo A
+### R1 · "Dos plantas" (30 s) — ángulo A
 
 | Tiempo | Imagen | Voz / texto en pantalla |
 |---|---|---|
-| 0-3 s | Vocero a cámara, predio de fondo | "Doscientos sesenta mil dólares. Mirá lo que compran acá y lo que compran a diez kilómetros." |
-| 3-10 s | Placa: 179 m² vs 276 m² | "A diez kilómetros, 179 metros. Acá, 276." |
-| 10-20 s | Render interior con racks y entrepiso | "Porque cada nave viene con entrepiso privado arriba. Superficie que no paga suelo." |
-| 20-27 s | Render exterior, atardecer | "Siete metros de altura libre. Calles de diez. Trifásica." |
-| 27-30 s | Placa de cierre | "Se reserva con diez mil dólares. Link abajo." |
+| 0-4 s | Vocero a cámara, interior de nave | "Esto no es una nave de doscientos metros. Te explico por qué." |
+| 4-12 s | Render interior con racks y entrepiso | "Tiene más de siete metros de altura libre. Estibás para arriba, no para los costados." |
+| 12-22 s | Render desde el entrepiso, con carga | "Y tiene entrepiso privado: sesenta y nueve metros más, arriba. Oficina, vestuario, repuestos." |
+| 22-27 s | Plano del conjunto | "La misma huella, usada dos veces." |
+| 27-30 s | Placa de cierre | "Hive 2. Polo Buen Ayre 2. Link abajo." |
 
-### R2 · "El camión" (25 s) — ángulo B
+### R2 · "La calle" (25 s) — ángulo B
 
 | Tiempo | Imagen | Voz / texto |
 |---|---|---|
-| 0-3 s | Plano de calle interna ancha | "Esta es la diferencia entre un parque que funciona y uno que no." |
-| 3-12 s | Render de calle con semi (a producir) | "Diez metros de calzada de hormigón. Circulación separada para tráfico pesado y liviano." |
-| 12-20 s | Interior, cortina motorizada abriendo | "Cada nave con su acceso independiente y cortina motorizada." |
-| 20-25 s | Placa | "Hive 2. Metros que trabajan." |
+| 0-4 s | Plano de calle interna ancha | "Diez metros de calzada. Esto es lo que casi nadie mira hasta que se muda." |
+| 4-12 s | Render de calle con semi (a producir) | "Entra el camión, gira y sale. Sin maniobrar veinte minutos." |
+| 12-19 s | Cortina motorizada abriendo, interior | "Circulación separada entre carga y liviano. Cada nave con su acceso propio." |
+| 19-25 s | Placa | "Un parque industrial en serio, a tu escala." |
 
 ### R3 · "El de enfrente" (35 s) — ángulo C, remarketing
 
 | Tiempo | Imagen | Voz / texto |
 |---|---|---|
-| 0-4 s | Drone: predio y, al fondo, el parque de enfrente | "¿Ves ese parque de ahí? Es el primero. Está lleno." |
-| 4-15 s | Vocero caminando el terreno | "Mismo desarrollador, misma zona. Se vendió entero." |
-| 15-25 s | Renders de Hive 2 | "Este es el segundo. Con calles más anchas: ese fue el aprendizaje del primero." |
-| 25-35 s | Placa de cierre | "El primero se vendió a 1.200 el metro. Este arranca en 1.050." |
+| 0-5 s | Drone: predio y, al fondo, el parque de enfrente | "¿Ves ese parque? Es el primero que hicieron. Lo entregaron y está lleno." |
+| 5-14 s | Vocero caminando el terreno | "Este es el segundo. Y no es el mismo producto." |
+| 14-27 s | Renders de Hive 2 | "Calles más anchas, más altura libre, entrepiso privado en cada unidad y doble control de acceso." |
+| 27-35 s | Placa de cierre | "El primero demostró que la zona funciona. Este está hecho para funcionar mejor." |
 
 **Nota de producción:** el drone no puede entrar a Hive 1. El plano aéreo del
 corredor, mostrándolo a distancia, sí está autorizado y alcanza.
 
 ---
 
-## 5. Contenido orgánico — primeras 9 publicaciones
+## 5. Inventario contra necesidad
 
-Antes de encender la pauta, la cuenta no puede estar vacía: el prospecto entra
-al perfil desde el anuncio.
+| Necesito | Tengo | Falta |
+|---|---|---|
+| Exterior del parque | 7 renders (incluye pórtico corregido, 9-sep) | — |
+| Interior con operación | 7 renders (racks, operarios, vista aérea) | — |
+| Entrepiso en uso | 2 renders de la tipología D | — |
+| **Tipología Compact 207 m²** | **nada** | **Render — es la unidad de entrada** |
+| **Calle de 10 m con camión** | **nada** | **Render con semi maniobrando — es el ángulo B entero** |
+| Corte de nave mostrando altura + entrepiso | nada | Corte o axonometría — es el ángulo A entero |
+| **Ingreso al parque (primer anillo)** | nada | Render o foto — es el ángulo C2 |
+| Video y drone | nada | Jornada de producción |
+| Plano comercial por tipología | nada | Ficha por tipología para la landing |
+
+### Pedido de producción a Stark (por orden de impacto)
+
+1. **Render de calle interna con semirremolque maniobrando.** Sin esto, el
+   ángulo B se cuenta con palabras.
+2. **Corte o axonometría de una nave** con los 7 m de altura y el entrepiso,
+   con figura humana para escala. Sin esto, el ángulo A se cuenta con palabras.
+3. **Render de la tipología J (207 m²).** Es la unidad de entrada.
+4. **Imagen del ingreso al Polo Industrial** (primer anillo de seguridad).
+5. Plano comercial por tipología, con medidas y portón acotado.
+6. **Datos técnicos:** niveles de rack que admite la altura y resistencia del
+   piso en kg/m². Convierten el ángulo A en un argumento con números.
+
+### Producción propia de Krak Studio
+
+- **Vuelo de drone** sobre el predio y el corredor, mostrando Hive 1 a
+  distancia. Sin entrar.
+- **Grabación del vocero** en el predio: R1, R2 y R3 en una sola jornada.
+
+---
+
+## 6. Contenido orgánico — primeras 9 publicaciones
 
 | # | Formato | Contenido |
 |---|---|---|
 | 1 | Carrusel | Qué es Hive 2: ubicación, 18 unidades, tipologías |
 | 2 | Estático | El masterplan numerado |
-| 3 | Carrusel | Las tres agrupaciones: Compact, Medium, Large, con m² y ticket |
-| 4 | Reel | R1 — "Los 97 metros" |
-| 5 | Estático | Ficha técnica: 7 m de altura, entrepiso, calles de 10, trifásica |
-| 6 | Carrusel | Por qué un entrepiso privado cambia el negocio |
-| 7 | Reel | R2 — "El camión" |
-| 8 | Estático | Cómo se reserva: USD 10.000, 60 días, adhesión al fideicomiso |
-| 9 | Carrusel | El corredor del Camino del Buen Ayre: accesos y conectividad |
+| 3 | Carrusel | Compact, Medium y Large: para qué sirve cada escala |
+| 4 | Reel | R1 — "Dos plantas" |
+| 5 | Estático | Ficha técnica: altura, entrepiso, calles de 10 m, trifásica |
+| 6 | Carrusel | Por qué un entrepiso privado cambia la operación |
+| 7 | Reel | R2 — "La calle" |
+| 8 | Carrusel | **Doble anillo de seguridad**: cómo se entra al predio |
+| 9 | Carrusel | Qué se puede hacer adentro: categorías I y II |
 
-**Cadencia posterior:** 3 publicaciones por semana. Una de producto, una de
-avance o novedad, una de contexto de mercado.
+**Cadencia posterior:** 3 por semana — una de producto, una de avance o
+novedad, una de contexto de mercado.
 
 ---
 
-## 6. Brief de producción para Krak Studio
+## 7. Brief de producción para Krak Studio
 
 | Entregable | Cantidad | Prioridad |
 |---|---|---|
 | Adaptaciones estáticas de renders (4:5 y 1:1) | 12 | Alta |
-| Placas de datos (tipologías, ficha técnica, cómo reservar) | 6 | Alta |
+| Placas de datos (tipologías, ficha técnica, seguridad, usos) | 8 | Alta |
 | Edición de Reels R1, R2, R3 | 3 | Alta |
 | Vuelo de drone sobre el predio y el corredor | 1 jornada | Alta |
 | Grabación del vocero en el predio | 1 jornada | Alta |
 | Carruseles orgánicos | 5 | Media |
 | Fichas de tipología para la landing | 10 | Media |
 
-**Paleta:** la del proyecto es industrial oscura (panel sándwich negro,
-estructura metálica). Se respeta la identidad de Hive, que es de Stark. La
-paleta de Krak Studio (#08407C, #4E586E, #7C8594, #C3C3C3) se usa para las
-piezas firmadas por la inmobiliaria, no para las del desarrollo.
+**Identidad:** la del proyecto es industrial oscura (panel sándwich negro,
+estructura metálica expuesta). Se respeta la identidad de Hive, que es de
+Stark. La paleta de Krak Studio (#08407C, #4E586E, #7C8594, #C3C3C3) se reserva
+para las piezas firmadas por la inmobiliaria.
 
-**Una restricción de marca a resolver:** la marca "HIVE STORAGE" está registrada
-a nombre de Stark Desarrollos. No hay manual de marca. Antes de producir,
-definir con Stark quién valida el uso del logo y qué versiones existen.
+**Pendiente de marca:** "HIVE STORAGE" está registrada a nombre de Stark
+Desarrollos y no hay manual. Antes de producir, definir con Stark quién valida
+el uso del logo y qué versiones existen.

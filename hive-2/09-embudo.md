@@ -115,7 +115,7 @@ Los 18 de Hive 1 son el mejor canal de prospección disponible.
 1. Puede afrontar una reserva de USD 10.000 y conoce el esquema 50% + 18 cuotas.
 2. Tiene un motivo concreto: inversión, mudanza operativa o expansión.
 3. La zona le sirve (o no le molesta el peaje y la ubicación).
-4. Tiene horizonte compatible con febrero 2028.
+4. Tiene horizonte compatible con mediados de 2028.
 
 **Lead scoring (0-100):**
 

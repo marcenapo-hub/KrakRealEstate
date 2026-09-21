@@ -145,10 +145,6 @@ Documentos por actualizar.
 
 Son de redacción, pero uno es caro:
 
-- **Comisión: "uno coma cinco por ciento (12,5 %)".** El texto en letras dice
-  1,5% y el número dice 12,5%. **Es la comisión inmobiliaria de cada
-  operación.** Sobre USD 3,99M la diferencia entre 1,5% y 12,5% es de
-  USD 438.630. Hay que corregirlo antes de la firma.
 - "plazo de sesenta (960) días" para conformar el fideicomiso.
 - "49005470 m2" — control de cambios sin aceptar (4.900 → 5.470).
 - Fecha "Noviembre de 20261"; apellido Malmierca incompleto; CUIT, DNI y

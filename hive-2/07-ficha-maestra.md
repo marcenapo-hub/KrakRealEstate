@@ -21,7 +21,8 @@ por indicación de Marce: se trabaja el proyecto completo.
 | Vehículo legal | Fideicomiso Inmobiliario de Construcción al Costo (**aún no conformado**) |
 | Marca | "HIVE STORAGE" registrada a nombre de Stark Desarrollos |
 | Etapa | **Pozo** |
-| Fin de obra | **Febrero 2028** (según reserva firmada) — *a conciliar: Marce indicó fin 2028/principios 2029* |
+| Zonificación | Categorías I y II — toda actividad salvo las complejas |
+| Fin de obra | **Febrero 2028** (según reserva firmada)  |
 | Antecedente | **Hive 1**, mismo desarrollador, en el parque de enfrente: 100% vendido y ocupado |
 
 ## 2. Producto
@@ -65,6 +66,15 @@ metálica motorizada** con acceso independiente.
 diferenciada liviana / pesada · **64 cocheras + espacio para semirremolque**
 (no se venden por separado) · retiros laterales 5/10 m, de frente 10 m.
 
+**Seguridad — doble anillo:** primer control en el ingreso al Polo Industrial
+Buen Ayre 2, segundo control en el ingreso al predio de Hive 2. Cerco
+perimetral de 2,20 m, pórtico de control e iluminación LED en todas las calles
+internas.
+
+**Usos permitidos:** zonificación de **categorías I y II**. Se admite toda
+actividad industrial, comercial, logística y de depósito, **excepto las
+actividades complejas**: químicos y productos con impacto ambiental.
+
 **Baja del proyecto:** las oficinas y el coworking (563 m²) **se caen** y se
 reemplazan por otra nave. Pendiente actualizar brochure, anexo técnico y
 proyección de ventas, donde todavía figuran.
@@ -82,7 +92,6 @@ proyección de ventas, donde todavía figuran.
 | **Reserva** | **USD 10.000 de seña**, vigencia 60 días, imputable a cuenta de precio |
 | Modalidad alternativa | **Canje por materiales de construcción** + saldo en dólares (ya operada) |
 | Disponibilidad | Todo disponible salvo **Unidad F (reservada)**; una segunda operación en curso |
-| Comisión Krak | A confirmar — el borrador del acuerdo tiene una discrepancia entre letras y números |
 | Expensas | **No definidas** ❗ |
 | Gastos de escritura | No definidos |
 
@@ -147,7 +156,7 @@ baja el costo de obra al desarrollador. Ya hay un caso concreto.
 | Calles internas | **10 m** ✅ | 6,40 m | s/d |
 | Altura libre | **+7 m** ✅ | s/d | s/d |
 | Ubicación | Camino del Buen Ayre ❌ | Panamericana/Norlog ✅ | Panamericana Km 24 ✅ |
-| Entrega | feb-2028 | 20 meses | entregado ✅ |
+| Entrega | mediados de 2028 | 20 meses | entregado ✅ |
 | Seguridad publicada | **sin definir** ❌ | cámaras + control | 24 hs, doble cordón ✅ |
 
 ## 7. Propuesta de valor preliminar
@@ -235,35 +244,33 @@ Krak Studio.
 | 1 | **50% de anticipo**: 83% del ticket integrado en los primeros 12 meses vs 19% de Arbox. Reduce fuertemente el universo de compradores | **Alta** |
 | 2 | **Fideicomiso no conformado** y subdivisión sin registrar en Geodesia ni RPI. No hay fecha de escritura | **Alta** |
 | 3 | **Brochure desactualizado**: vende un coworking que ya no existe | **Alta** |
-| 4 | **Seguridad sin definir**, siendo la objeción n.º 1 de la zona | **Alta** |
-| 5 | **Expensas sin definir**: primera pregunta del inversor que calcula renta neta | Media |
-| 6 | **18 cuotas terminan 10 meses antes de la entrega** | Media |
-| 7 | Fecha de entrega contradictoria (feb-2028 vs fin 2028/2029) | Media |
-| 8 | Distribución de tipologías: 17 identificadas de 18 | Media |
-| 9 | Posible categoría especial de Meta para inmobiliario — a verificar antes de lanzar | Media |
-| 10 | Cuello de aprobación (Marce) y de reuniones (Stark) | Media |
+| 4 | **Expensas sin definir**: primera pregunta del inversor que calcula renta neta | Media |
+| 5 | **18 cuotas terminan 10 meses antes de la entrega** | Media |
+| 6 | Fecha de entrega contradictoria (mediados de 2028 vs fin 2028/2029) | Media |
+| 7 | Distribución de tipologías: 17 identificadas de 18 | Media |
+| 8 | Posible categoría especial de Meta para inmobiliario — a verificar antes de lanzar | Media |
+| 9 | Cuello de aprobación (Marce) y de reuniones (Stark) | Media |
 
-**No se puede afirmar sin respaldo:** porcentajes de renta, revalorización,
-fechas de escrituración, "seguridad 24 hs" (hasta que Stark lo confirme),
-habilitaciones por rubro.
+**No se puede afirmar sin respaldo:** porcentajes de renta, revalorización y
+fechas de escrituración. **"Seguridad 24 horas" sigue sin poder afirmarse**: lo
+confirmado es el doble anillo de control de acceso, no vigilancia permanente.
 
 ## 12. Pendientes
 
 ### De Stark
 1. Cuál es la 18ª unidad y su tipología.
-2. **Seguridad**: vigilancia física, cámaras, monitoreo 24/7, control de acceso.
+2. ¿Hay **vigilancia física y cámaras con monitoreo**, además del doble anillo
+   de control de acceso? Define si se puede decir "seguridad 24 horas".
 3. **Horarios de acceso** (¿24/7?).
-4. **Usos permitidos y prohibidos** + habilitación municipal por rubro.
-5. **Expensas** estimadas y qué incluyen.
-6. **Zonificación** del predio.
-7. **Cronograma de obra** con hitos y fecha de entrega definitiva.
-8. Resistencia del piso (kg/m²) y potencia eléctrica por unidad (KVA).
-9. Brochure actualizado sin coworking.
+4. **Expensas** estimadas y qué incluyen.
+5. **Cronograma de obra** con hitos.
+6. Resistencia del piso (kg/m²) y potencia eléctrica por unidad (KVA).
+7. Brochure actualizado sin coworking — **en camino**.
+8. Cuadro definitivo de las 18 unidades — **terminado, falta recibirlo**.
 
 ### De Marce
-10. Confirmar comisión de Krak (discrepancia en el borrador del acuerdo).
-11. Presupuesto de producción de contenidos, landing y herramientas.
-12. Fecha objetivo de lanzamiento.
+10. Presupuesto de producción de contenidos, landing y herramientas.
+11. Fecha objetivo de lanzamiento.
 
 ---
 

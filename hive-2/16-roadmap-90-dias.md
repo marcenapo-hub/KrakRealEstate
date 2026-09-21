@@ -7,16 +7,15 @@ KI = Krak Industrial (vendedores) · ST = Stark Desarrollos
 
 ## Bloque 0 — Bloqueantes (antes de todo)
 
-Nada de lo que sigue avanza sin estos cuatro. Tres dependen de Stark.
+Estado al 2026-09-21: B1 y B2 resueltos, B3 en camino, B4 pendiente de recibir.
 
 | # | Tarea | Resp. | Criterio de terminado |
 |---|---|---|---|
-| B1 | **Confirmar esquema de seguridad** del predio | ST | Documento escrito: vigilancia, cámaras, monitoreo, control de acceso |
-| B2 | **Usos permitidos y habilitación** por rubro | ST | Listado de usos permitidos y prohibidos |
-| B3 | **Brochure actualizado** sin coworking | ST | PDF nuevo aprobado por M |
-| B4 | **Cuadro definitivo de las 18 unidades** | ST | Planilla: tipología, m², cantidad, numeración del masterplan |
-| B5 | Corregir la comisión en el acuerdo marco | M | Acuerdo con el porcentaje unificado |
-| B6 | Conciliar la fecha de entrega (feb-2028 vs 2029) | M + ST | Una sola fecha en todos los documentos |
+| B1 | ~~Esquema de seguridad~~ **RESUELTO**: doble anillo — ingreso al parque industrial + ingreso al predio del storage | ST | ✅ 2026-09-21 |
+| B2 | ~~Usos permitidos~~ **RESUELTO**: zonificación categorías I y II. Toda actividad salvo las complejas (químicos y contaminantes) | ST | ✅ 2026-09-21 |
+| B3 | **Brochure actualizado** sin coworking | ST | 🔄 En camino |
+| B4 | **Cuadro definitivo de las 18 unidades** | ST | ⏳ Terminado por Stark, **falta que llegue a Krak** |
+| B5 | Unificar la fecha de entrega en todos los documentos: **mediados de 2028** | M + ST | Brochure, reserva y landing con la misma fecha |
 
 ---
 

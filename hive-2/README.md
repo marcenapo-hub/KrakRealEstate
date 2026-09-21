@@ -41,7 +41,8 @@ ubicación, precios, rentabilidad, público o presupuesto.
 | 8 | Tracking y medición | `14-tracking.md` | ✅ |
 | 9 | Modelo económico | `15-modelo-economico.md` | ✅ |
 | 10 | Roadmap 90 días | `16-roadmap-90-dias.md` | ✅ |
+**Bloqueantes abiertos (al 2026-09-21):** brochure actualizado (en camino) y
+cuadro definitivo de las 18 unidades (terminado por Stark, falta recibirlo).
 
-**Bloqueantes abiertos:** seguridad del predio, usos permitidos, brochure
-actualizado y cuadro definitivo de las 18 unidades (Stark) · comisión del
-acuerdo marco y conciliación de la fecha de entrega (Marce).
+**Resueltos el 2026-09-21:** doble anillo de seguridad · usos permitidos
+(categorías I y II) · fecha de entrega unificada en mediados de 2028.

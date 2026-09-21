@@ -104,19 +104,3 @@ el anticipo y en asegurar la agenda de reuniones.**
 | Califican pero no llegan a reunión | El cuello es la agenda de Stark. Fijar ventanas semanales |
 | Llegan a reunión y no reservan | El cuello es el anticipo. **Caso de negocio para renegociar con Stark** |
 | Hay menos de 8 leads calificados | Revisar oferta y precio antes que pauta |
-
-## 7. Nota sobre el ingreso de Krak
-
-Con el escenario base (5 ventas, USD 1.752.390 de volumen), la comisión de
-comercialización según las dos lecturas posibles del acuerdo marco:
-
-| Lectura | Comisión |
-|---|---:|
-| 1,5% (importe en letras) | **USD 26.286** |
-| 12,5% (importe en números) | **USD 219.049** |
-
-Diferencia sobre el objetivo de cuatro meses: **USD 192.763**. Ampliada a la
-comercialización completa del proyecto, es sustancialmente mayor.
-
-**Es la decisión de mayor impacto económico de todo este plan, y no depende de
-la campaña.** Se resuelve corrigiendo el borrador antes de la firma.

@@ -140,7 +140,7 @@ lo vio. La conversación empieza por la necesidad.
 
 1. *"¿Lo mirás como inversión o para operar vos?"* → define el guion completo.
 2. *"¿Qué superficie necesitás?"* → tipología y ticket.
-3. *"¿Manejás plazos? Porque la entrega es febrero 2028."* → filtra al que
+3. *"¿Manejás plazos? Porque la entrega es mediados de 2028."* → filtra al que
    necesita mudarse ya.
 4. *"¿Trabajaste alguna vez con compra en pozo o fideicomiso?"* → mide cuánta
    explicación de estructura hace falta.
