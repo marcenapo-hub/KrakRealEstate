@@ -1,0 +1,3006 @@
+/*
+ Theme Name:   Bricks Child Theme
+ Theme URI:    https://bricksbuilder.io/
+ Description:  Use this child theme to extend Bricks.
+ Author:       Bricks
+ Author URI:   https://bricksbuilder.io/
+ Template:     bricks
+ Version:      1.1
+ Text Domain:  bricks
+*/
+
+/* ==========================================================================
+   KRAK — SISTEMA DE DISEÑO
+   Ref: SPEC-HOME-Krak-General.md §1
+   --------------------------------------------------------------------------
+   NOTA DE UNIDADES: Bricks fija `html { font-size: 62.5% }` (1rem = 10px).
+   Para no depender de esa base, TODOS los valores del spec expresados en rem
+   estan convertidos a px a razon de 1rem = 16px. Los `em` se conservan
+   (son relativos al font-size propio del elemento, no a la raiz).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1.1 · TIPOGRAFIA — familia
+   -------------------------------------------------------------------------- */
+:root {
+  --font-sans: 'Inter', 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   1.2 · PALETA
+   -------------------------------------------------------------------------- */
+:root {
+  /* Azul corporativo */
+  --color-blue-900: #08407c;
+  --color-blue-800: #1a5289;
+  --color-blue-700: #396696;
+  --color-blue-500: #6a8cb0;
+  --color-blue-300: #9cb2ca;
+  --color-blue-100: #cdd8e4;
+
+  /* Azul grisaceo (neutro frio) */
+  --color-slate-700: #7c8594;
+  --color-slate-500: #969da9;
+  --color-slate-300: #b0b5be;
+  --color-slate-200: #caced4;
+  --color-slate-100: #e4e6e9;
+
+  /* Gris azulado profundo (Industrial) */
+  --color-steel-800: #4e586e;
+  --color-steel-600: #5f687c;
+  --color-steel-400: #838a99;
+  --color-steel-300: #a6abb6;
+  --color-steel-200: #c9ccd3;
+
+  /* Gris claro (superficies) */
+  --color-gray-400: #c3c3c3;
+  --color-gray-300: #cfcfcf;
+  --color-gray-200: #dbdbdb;
+  --color-gray-150: #e7e7e7;
+  --color-gray-100: #f3f3f3;
+
+  /* Neutros de apoyo */
+  --color-ink-900: #14161c;
+  --color-ink-800: #1c2230;
+  --color-white: #ffffff;
+
+  /* Acentos */
+  --color-brand-strong: #062f5c;
+  --color-electric: #2f7fff;
+
+  /* Tokens semanticos — unidad "General" */
+  --surface: #ffffff;
+  /* Superficie alterna: la seccion que rompe el blanco sin invertir a navy.
+     Historia corta — `#f3f3f3` (gris neutro, 4% del blanco) no se percibia;
+     `#f0f4f8` (navy al ~6%) seguia leyendose blanco al lado de una seccion
+     blanca de verdad. Este es `--brand` mezclado al 9% sobre blanco: sigue
+     siendo un tinte, no un gris, y el borde entre "Krak en redes" (blanco puro)
+     y "Nuestro Blog" ya se ve sin buscarlo.
+     Es tinte de marca, no gris de sistema: el canal azul queda 10 puntos por
+     encima del rojo, que es lo que le da la temperatura fria de Krak. */
+  --surface-muted: #e9eef4;
+  --surface-invert: #08407c;
+  --brand: #08407c;
+  --brand-strong: #062f5c;
+  --on-brand: #ffffff;
+  --text: #14161c;
+  --text-muted: #7c8594;
+  --line: #caced4;
+  --line-invert: rgba(255, 255, 255, 0.16);
+
+  /* Velo de medios. Unico para las dos familias de imagen de la home: las
+     miniaturas de "Krak en redes" (grado oscuro, cinematografico) y las fotos
+     de "Nuestro Blog" (luz natural, editorial). Es navy de marca, no negro:
+     ademas de bajar el brillo iguala la TEMPERATURA, que es lo que hacia que
+     los dos grupos se leyeran como de sitios distintos. */
+  --media-veil: rgba(6, 47, 92, .16);
+
+  /* Acentos por unidad */
+  --u-residencial: #08407c;
+  --u-industrial: #4e586e;
+  --u-studio: #396696;
+  --u-masterclass: #2f7fff;
+}
+
+/* --------------------------------------------------------------------------
+   1.3 · ESPACIADO Y LAYOUT   |   1.4 · RADIOS   |   1.5 · SOMBRAS
+   -------------------------------------------------------------------------- */
+:root {
+  --shell: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
+  /* Reducidos ~28% el 2026-09-17: con los valores anteriores (144/80 px tope)
+     las secciones intermedias quedaban desconectadas entre si. */
+  --section-y: clamp(56px, 6.4vw, 104px);
+  --section-y-tight: clamp(40px, 4.4vw, 68px);
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --shadow-soft: 0 1px 2px rgba(8, 64, 124, .05), 0 4px 14px -4px rgba(8, 64, 124, .08);
+  --shadow-card: 0 1px 2px rgba(20, 22, 28, .05), 0 8px 24px -8px rgba(20, 22, 28, .10), 0 24px 48px -24px rgba(8, 64, 124, .20);
+  --shadow-lift: 0 2px 4px rgba(20, 22, 28, .06), 0 18px 34px -10px rgba(20, 22, 28, .16), 0 44px 84px -32px rgba(8, 64, 124, .34);
+  --shadow-header: 0 1px 0 rgba(255, 255, 255, .08), 0 12px 32px -12px rgba(6, 47, 92, .65);
+  --shadow-float: 0 2px 6px rgba(20, 22, 28, .03), 0 20px 40px rgba(20, 22, 28, .06);
+  --shadow-whisper: 0 1px 3px rgba(20, 22, 28, .03), 0 14px 34px -8px rgba(8, 64, 124, .10);
+
+  /* 1.6 · Easings y duraciones */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 0.4s;
+
+  /* Iconos SVG inline (se colorean con currentColor via mask) */
+  --icon-arrow-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.6 7h8.3M7.6 3.4 11.2 7l-3.6 3.6'/%3E%3C/svg%3E");
+  --icon-arrow-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 2.6v8.3M3.4 7.4 7 11l3.6-3.6'/%3E%3C/svg%3E");
+  --icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.8 10v1.7a1.1 1.1 0 0 1-1.2 1.1 11 11 0 0 1-4.8-1.7 10.8 10.8 0 0 1-3.3-3.3A11 11 0 0 1 1.8 3a1.1 1.1 0 0 1 1.1-1.2h1.7a1.1 1.1 0 0 1 1.1 1c.1.5.2 1.1.4 1.6a1.1 1.1 0 0 1-.2 1.2l-.7.7a8.8 8.8 0 0 0 3.3 3.3l.7-.7a1.1 1.1 0 0 1 1.2-.3c.5.2 1 .3 1.6.4a1.1 1.1 0 0 1 1 1.1z'/%3E%3C/svg%3E");
+  --icon-instagram: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='14' height='14' rx='4'/%3E%3Ccircle cx='9' cy='9' r='3.2'/%3E%3Cpath d='M13.1 4.9h.01'/%3E%3C/svg%3E");
+  --icon-tiktok: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 2v8.6a3.1 3.1 0 1 1-2.6-3.05'/%3E%3Cpath d='M11 2a4 4 0 0 0 4 4'/%3E%3C/svg%3E");
+  --icon-youtube: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.4' y='4.1' width='15.2' height='9.8' rx='3.2'/%3E%3Cpath d='M7.5 6.9 11.5 9l-4 2.1z' fill='%23000' stroke='none'/%3E%3C/svg%3E");
+  --icon-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='%23000'%3E%3Cpath d='M4.5 2.4 15 9 4.5 15.6z'/%3E%3C/svg%3E");
+  /* Variante de trazo del play. El triangulo macizo pesaba demasiado sobre la
+     foto del video; este va en contorno de 1.4 y se usa en `.video-card__play`. */
+  --icon-play-thin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M6.4 4.2 13.2 9l-6.8 4.8z'/%3E%3C/svg%3E");
+  --grid-lines: repeating-linear-gradient(to right, rgba(255, 255, 255, .055) 0 1px, transparent 1px 12.5%);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body.krak {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--surface);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Resets con especificidad CERO (:where): son defaults, no reglas.
+   Si se escriben como `.krak h3` le ganan a cualquier clase del sistema
+   (`.unit-card__title`, `.hero__lede`, ...) y se comen los margenes. */
+:where(.krak) :where(h1, h2, h3, h4) {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+:where(.krak) :where(p) {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+:where(.krak) :is(.header-phone, .mobile-panel__phone, .stat__value, .post-card__date) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Foco visible (1.8) */
+.krak :is(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.krak .on-dark :is(a, button):focus-visible,
+.site-header :is(a, button):focus-visible,
+.mobile-panel :is(a, button):focus-visible,
+.hero :is(a, button):focus-visible,
+.cta-band :is(a, button):focus-visible,
+.site-footer :is(a, button):focus-visible,
+.unit-card--electric:focus-visible {
+  outline-color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Skip link (1.8)
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 12px 18px;
+  background: #ffffff;
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-160%);
+  transition: transform .22s var(--ease-out-soft);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   UTILIDADES DE LAYOUT
+   ========================================================================== */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--tight {
+  padding-block: var(--section-y-tight);
+}
+
+.section--light {
+  background-color: var(--surface);
+}
+
+.section--muted {
+  background-color: var(--surface-muted);
+}
+
+/* ==========================================================================
+   TIPOGRAFIA DEL SISTEMA (1.1)
+   ========================================================================== */
+.h-display {
+  font-size: clamp(40px, 6.4vw, 76px);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+}
+
+.h-section {
+  font-size: clamp(30.4px, 3.9vw, 48px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.lede {
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 54ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  flex: none;
+  background: currentColor;
+  opacity: .55;
+}
+
+.eyebrow--invert {
+  color: rgba(255, 255, 255, .72);
+}
+
+/* ==========================================================================
+   1.7 · BOTONES
+   ========================================================================== */
+.krak .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6em;
+  padding: 14.4px 24px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform .4s var(--ease-out-soft),
+    box-shadow .4s var(--ease-out-soft),
+    background-color .4s var(--ease-out-soft),
+    color .4s var(--ease-out-soft),
+    border-color .4s var(--ease-out-soft);
+}
+
+/* Barrido de luz */
+.krak .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 25%, rgba(255, 255, 255, .22) 50%, transparent 75%);
+  transform: translateX(-110%);
+  transition: transform .7s var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.krak .btn:hover::before,
+.krak .btn:focus-visible::before {
+  transform: translateX(110%);
+}
+
+.krak .btn:hover,
+.krak .btn:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.krak .btn:active {
+  transform: translateY(0) scale(0.995);
+}
+
+.krak .btn--solid {
+  background-color: var(--brand);
+  color: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.krak .btn--solid:hover,
+.krak .btn--solid:focus-visible {
+  background-color: var(--brand-strong);
+  box-shadow: 0 2px 6px rgba(8, 64, 124, .14), 0 18px 38px -12px rgba(8, 64, 124, .45);
+}
+
+.krak .btn--light {
+  background-color: #ffffff;
+  color: var(--brand);
+  box-shadow: 0 1px 2px rgba(6, 47, 92, .24), 0 10px 26px -12px rgba(0, 0, 0, .5);
+}
+
+.krak .btn--light:hover,
+.krak .btn--light:focus-visible {
+  color: var(--brand-strong);
+  box-shadow: 0 4px 10px rgba(6, 47, 92, .28), 0 24px 52px -16px rgba(0, 0, 0, .6);
+}
+
+.krak .btn--ghost {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, .42);
+}
+
+.krak .btn--ghost:hover,
+.krak .btn--ghost:focus-visible {
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .8);
+}
+
+.krak .btn--sm {
+  padding: 9.92px 16.8px;
+  font-size: 13px;
+}
+
+/* Flecha abajo con bob (4.4) */
+.btn__arrow-down {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-down) center / contain no-repeat;
+  mask: var(--icon-arrow-down) center / contain no-repeat;
+  animation: krak-bob 2.1s var(--ease-in-out-soft) infinite;
+}
+
+.krak .btn:hover .btn__arrow-down,
+.krak .btn:focus-visible .btn__arrow-down {
+  animation-duration: 1s;
+}
+
+@keyframes krak-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(3px); }
+}
+
+/* ==========================================================================
+   PATRON DE LINK CON SUBRAYADO + FLECHA (repetido en cards y secciones)
+   ========================================================================== */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+  position: relative;
+  line-height: 1.3;
+}
+
+.link-arrow > span {
+  position: relative;
+  display: inline-block;
+}
+
+.link-arrow > span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .4s var(--ease-out-soft);
+}
+
+.link-arrow::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) center / contain no-repeat;
+  mask: var(--icon-arrow-right) center / contain no-repeat;
+  transition: transform .4s var(--ease-out-soft);
+}
+
+.link-arrow:hover > span::after,
+.link-arrow:focus-visible > span::after,
+:is(.unit-card, .post-card):hover .link-arrow > span::after,
+:is(.unit-card, .post-card):focus-visible .link-arrow > span::after {
+  transform: scaleX(1);
+}
+
+.link-arrow:hover::after,
+.link-arrow:focus-visible::after,
+:is(.unit-card, .post-card):hover .link-arrow::after,
+:is(.unit-card, .post-card):focus-visible .link-arrow::after {
+  transform: translateX(5px);
+}
+
+/* ==========================================================================
+   2.1 · VELO DE ENTRADA DE PAGINA
+   ========================================================================== */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: var(--brand-strong);
+  pointer-events: none;
+  animation: krak-veil-out 560ms var(--ease-out-soft) forwards;
+}
+
+@keyframes krak-veil-out {
+  0%   { opacity: 1; clip-path: inset(0 0 0 0); }
+  100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+}
+
+/* ==========================================================================
+   2.2 · SISTEMA DE REVEALS ON-SCROLL
+   El estado oculto SOLO existe si el JS esta vivo (clase .js en <html>).
+   ========================================================================== */
+.js .krak [data-reveal]:not(.is-revealed),
+.js .krak [data-reveal-hero]:not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.krak [data-reveal].is-revealing,
+.krak [data-reveal-hero].is-revealing {
+  will-change: opacity, transform;
+  transition:
+    opacity var(--reveal-dur, .9s) var(--ease-out-soft) var(--reveal-delay, 0s),
+    transform var(--reveal-dur, .9s) var(--ease-out-soft) var(--reveal-delay, 0s);
+}
+
+.krak [data-reveal].is-revealed,
+.krak [data-reveal-hero].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Failsafe (2.2 regla 2): el JS aplica .reveal-rescue a los 2.5s */
+.krak.reveal-rescue [data-reveal],
+.krak.reveal-rescue [data-reveal-hero] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity .5s var(--ease-out-soft);
+}
+
+/* ==========================================================================
+   3 · HEADER
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color .45s var(--ease-out-soft),
+    box-shadow .45s var(--ease-out-soft),
+    -webkit-backdrop-filter .45s var(--ease-out-soft),
+    backdrop-filter .45s var(--ease-out-soft);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .1);
+  opacity: 0;
+  transition: opacity .45s var(--ease-out-soft);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+  height: 92px;
+  transition: height .45s var(--ease-out-soft);
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(6, 47, 92, 0.78);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+  box-shadow: var(--shadow-header);
+}
+
+.site-header.is-scrolled::after {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .site-header__inner {
+  height: 66px;
+}
+
+/* Fallback sin backdrop-filter (3.2) */
+@supports not ((-webkit-backdrop-filter: blur(2px)) or (backdrop-filter: blur(2px))) {
+  .site-header.is-scrolled {
+    background-color: var(--brand);
+  }
+}
+
+/* Evita doble blur con el panel mobile abierto (3.2) */
+.site-header.is-menu-open {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.site-header.is-menu-open::after {
+  opacity: 0;
+}
+
+/* 3.3 · Logo */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+  transition: opacity .25s var(--ease-out-soft);
+}
+
+.brand:hover {
+  opacity: .82;
+}
+
+.brand__mark {
+  display: block;
+  height: 34px;
+  width: auto;
+  aspect-ratio: 408 / 510;
+}
+
+/* Variante recoloreada para fondos claros (conserva el alfa del PNG) */
+.brand__mark--ink {
+  background-color: var(--brand);
+  -webkit-mask: var(--brand-mark-src) center / contain no-repeat;
+  mask: var(--brand-mark-src) center / contain no-repeat;
+}
+
+/* 3.4 · Nav */
+.nav {
+  display: none;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 34px);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding-block: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  color: rgba(255, 255, 255, .8);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .25s var(--ease-out-soft);
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--nav-accent, #ffffff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .4s var(--ease-out-soft);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: #ffffff;
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav__link--residencial { --nav-accent: #9cb2ca; }
+.nav__link--industrial  { --nav-accent: #a6abb6; }
+.nav__link--studio      { --nav-accent: #ffffff; }
+.nav__link--masterclass { --nav-accent: #2f7fff; }
+
+/* Bloque derecho */
+.header-aside {
+  display: flex;
+  align-items: center;
+  margin-inline-start: auto;
+  gap: clamp(9.6px, 1.6vw, 22.4px);
+}
+
+/* 3.5 · Telefono */
+.header-phone {
+  display: none;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .82);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .25s var(--ease-out-soft);
+}
+
+.header-phone::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-phone) center / contain no-repeat;
+  mask: var(--icon-phone) center / contain no-repeat;
+}
+
+.header-phone:hover,
+.header-phone:focus-visible {
+  color: #ffffff;
+}
+
+/* 3.6 · CTA del header */
+.header-cta {
+  flex: none;
+}
+
+.krak .header-cta {
+  padding-block: 11px;
+  padding-inline: 17px;
+  font-size: 14px;
+}
+
+.header-cta .header-cta__long { display: none; }
+.header-cta .header-cta__short { display: inline; }
+
+/* 3.7 · Burger */
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color .25s var(--ease-out-soft), background-color .25s var(--ease-out-soft);
+}
+
+.burger:hover {
+  border-color: rgba(255, 255, 255, .6);
+  background-color: rgba(255, 255, 255, .08);
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  width: 18px;
+  height: 1.5px;
+  background: #ffffff;
+  transition: transform .3s var(--ease-out-soft);
+}
+
+.burger[aria-expanded="true"]::before {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.burger[aria-expanded="true"]::after {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* 3.8 · Panel de menu mobile */
+.mobile-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  background: var(--brand-strong);
+  color: #ffffff;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-panel.is-open {
+  display: block;
+  animation: krak-panel-in .4s var(--ease-out-soft);
+}
+
+.mobile-panel__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-block: calc(92px + 32px) 48px;
+}
+
+@keyframes krak-panel-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-panel__list {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+}
+
+.mobile-panel__item {
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
+}
+
+.mobile-panel__link {
+  display: flex;
+  align-items: center;
+  padding-block: 18.4px;
+  font-size: clamp(24px, 7vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color .3s var(--ease-out-soft), padding-inline-start .3s var(--ease-out-soft);
+}
+
+.mobile-panel__link:hover,
+.mobile-panel__link:focus-visible {
+  color: var(--mp-accent, #ffffff);
+  padding-inline-start: 8px;
+}
+
+.mobile-panel__item--residencial  { --mp-accent: #9cb2ca; }
+.mobile-panel__item--industrial   { --mp-accent: #a6abb6; }
+.mobile-panel__item--studio       { --mp-accent: #ffffff; }
+.mobile-panel__item--masterclass  { --mp-accent: #2f7fff; }
+
+.mobile-panel__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 40px;
+}
+
+/* El numero arrancaba en el borde del panel y el CTA de arriba, en cambio,
+   arranca su etiqueta a 25px (24 de padding + 1 de borde de `.btn`). Con los
+   dos pegados a la izquierda el numero se leia "corrido" hacia afuera.
+
+   Ahora el icono cuelga en ese margen de 25px y el NUMERO cae exactamente
+   sobre la etiqueta del boton: 16px de icono + 9px de gap = 25px. Si algun dia
+   cambia el padding de `.btn`, hay que rehacer esa suma. */
+.mobile-panel__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 16.8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .85);
+  text-decoration: none;
+  transition: color .25s var(--ease-out-soft);
+}
+
+.mobile-panel__phone::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-phone) center / contain no-repeat;
+  mask: var(--icon-phone) center / contain no-repeat;
+}
+
+.mobile-panel__phone:hover,
+.mobile-panel__phone:focus-visible {
+  color: #ffffff;
+}
+
+body.is-menu-open {
+  overflow: hidden;
+}
+
+/* 3.9 · Breakpoints del header */
+@media (max-width: 380px) {
+  .site-header__inner { gap: 12px; }
+  .header-aside { gap: 8px; }
+}
+
+@media (min-width: 560px) {
+  .krak .header-cta { padding-inline: 21px; }
+  .header-cta .header-cta__long { display: inline; }
+  .header-cta .header-cta__short { display: none; }
+}
+
+@media (min-width: 1024px) {
+  .nav { display: flex; }
+  .header-phone { display: inline-flex; }
+  .burger { display: none; }
+  .mobile-panel { display: none !important; }
+}
+
+/* ==========================================================================
+   4 · HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(92px + clamp(48px, 12vh, 128px));
+  padding-bottom: clamp(24px, 4vh, 40px);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--brand-strong);
+  color: #ffffff;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* SIN FADE DE ENTRADA — a proposito.
+
+   El intento anterior era un velo solido (`.hero__media::after`) que se
+   levantaba al evento `playing`. No funciona: Chrome pausa el media *video-only*
+   (sin pista de audio) que considera no visible, y ese juicio incluye la
+   oclusion por otros elementos. El velo tapaba el video entero, asi que el
+   video no arrancaba, `playing` no disparaba y el velo no se levantaba nunca.
+   El sintoma era que el video recien aparecia al volver de otra pestaña, donde
+   el reintento por `visibilitychange` lo destrababa.
+
+   Por el mismo motivo tampoco sirve un `opacity` sobre el propio <video>.
+   Se acepta el corte: detras del video ya esta `--brand-strong`, que es el
+   mismo azul del scrim, asi que el cambio se nota poco.
+*/
+
+/* Capa 2 — Scrim (4.2)
+
+   Reescrito el 2026-09-17. El scrim anterior sumaba tres capas que en el centro
+   del cuadro daban ~0.95 de alfa: el video quedaba practicamente tapado. Ahora
+   el velo se concentra SOLO donde hay texto y deja respirar el resto:
+
+   - capa 1, banda superior: es la unica legibilidad que tiene el header cuando
+     todavia no scrolleo (`.site-header` arranca `background: transparent`).
+     Por eso sigue siendo densa arriba — pero cae a 0 en 300px en vez de cubrir
+     el cuadro entero. Peor caso medido (pixel blanco de video detras del nav,
+     a 46px del borde): alfa .77 -> 6.5:1 contra el texto blanco del header.
+   - capa 2, foco radial sobre la columna de texto (abajo a la izquierda).
+   - capa 3, piso del bloque de titulo + bajada + CTAs.
+
+   Peor caso sobre el H1: alfa .86 -> 8.7:1. Sobre la bajada (blanco al 78%):
+   6.0:1. En el centro/derecha del cuadro el alfa combinado baja a ~0.20, que
+   es lo que devuelve el movimiento del video. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(6, 47, 92, .88) 0,
+      rgba(6, 47, 92, .62) 92px,
+      rgba(6, 47, 92, .18) 190px,
+      rgba(6, 47, 92, 0) 300px),
+    radial-gradient(85% 65% at 24% 88%,
+      rgba(6, 47, 92, .58) 0%,
+      rgba(6, 47, 92, .16) 60%,
+      rgba(6, 47, 92, 0) 100%),
+    linear-gradient(to top,
+      rgba(6, 47, 92, .82) 0%,
+      rgba(6, 47, 92, .46) 26%,
+      rgba(8, 64, 124, .12) 58%,
+      rgba(8, 64, 124, .06) 100%);
+}
+
+/* Capa 3 — Reticula vertical (4.2) */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grid-lines);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+}
+
+.hero__body {
+  margin-top: auto;
+}
+
+.hero__title {
+  max-width: 30ch;
+}
+
+.hero__lede {
+  margin-top: 24px;
+  max-width: 46ch;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .78);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13.6px;
+  margin-top: 36px;
+}
+
+/* ==========================================================================
+   5 · ELEGI TU UNIDAD
+   ========================================================================== */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-head--ruled {
+  padding-bottom: clamp(32px, 4vw, 52px);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.section-head--plain {
+  padding-bottom: clamp(32px, 4vw, 48px);
+  gap: 24px;
+}
+
+.section-head__note {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.section-head__lede {
+  margin-top: 13.6px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .section-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .section-head__note {
+    text-align: right;
+    padding-bottom: 5.6px;
+  }
+
+  .section-head--plain .link-arrow {
+    padding-bottom: 8px;
+  }
+}
+
+/* 5.2 · Grilla */
+.unit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 1.8vw, 24px);
+}
+
+@media (min-width: 768px) {
+  .unit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* 5.3 · Card */
+.unit-card {
+  --accent: var(--brand);
+  --card-bg: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(304px, 26vw, 368px);
+  padding: clamp(24px, 2.6vw, 36px);
+  background-color: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  transition:
+    transform .55s var(--ease-out-soft),
+    box-shadow .55s var(--ease-out-soft),
+    border-color .55s var(--ease-out-soft),
+    background-color .55s var(--ease-out-soft);
+}
+
+/* Regla de acento superior */
+.unit-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0.16);
+  transform-origin: left center;
+  opacity: .75;
+  z-index: 2;
+  transition: transform .55s var(--ease-out-soft), opacity .55s var(--ease-out-soft);
+}
+
+.unit-card:hover::before,
+.unit-card:focus-visible::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.unit-card:hover,
+.unit-card:focus-visible {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-float);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background-color: color-mix(in srgb, var(--accent) 3%, var(--card-bg));
+}
+
+.unit-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.unit-card__eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+.unit-card__title {
+  margin-top: clamp(32px, 5vw, 48px);
+  max-width: 18ch;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.028em;
+  color: var(--text);
+}
+
+.unit-card__sub {
+  margin-top: 11.2px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.unit-card__cta {
+  margin-top: auto;
+  padding-top: 28px;
+  align-self: flex-start;
+  color: var(--accent);
+}
+
+/* --- Variantes (5.4) --- */
+.unit-card--blue {
+  --accent: var(--u-residencial);
+  --card-bg: #ffffff;
+}
+
+.unit-card--steel {
+  --accent: var(--u-industrial);
+  --card-bg: #ffffff;
+  border-color: var(--color-steel-300);
+}
+
+.unit-card--light {
+  --accent: var(--u-studio);
+  --card-bg: #f3f3f3;
+  border-color: var(--color-gray-200);
+}
+
+.unit-card--light .unit-card__title {
+  color: var(--brand);
+}
+
+.unit-card--electric {
+  --accent: var(--u-masterclass);
+  --card-bg: #062f5c;
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--u-masterclass) 55%, transparent);
+}
+
+.unit-card--electric .unit-card__eyebrow,
+.unit-card--electric .unit-card__cta {
+  color: color-mix(in srgb, var(--u-masterclass) 55%, #ffffff);
+}
+
+.unit-card--electric .unit-card__title {
+  color: #ffffff;
+}
+
+.unit-card--electric .unit-card__sub {
+  color: rgba(255, 255, 255, .7);
+}
+
+/* Glow radial — tratamiento de la variante suelta, fuera de #unidades. Dentro
+   de la seccion de unidades la foto ocupa este mismo `::after` y 5.5 lo
+   neutraliza; ver la nota alla. */
+.unit-card--electric::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(130% 78% at 50% -12%, color-mix(in srgb, var(--u-masterclass) 34%, transparent), transparent 68%);
+  opacity: 0;
+  transition: opacity .6s var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.unit-card--electric:hover::after,
+.unit-card--electric:focus-visible::after {
+  opacity: 1;
+}
+
+.unit-card--electric:hover,
+.unit-card--electric:focus-visible {
+  background-color: var(--card-bg);
+  border-color: var(--u-masterclass);
+  box-shadow:
+    0 20px 40px rgba(6, 47, 92, .22),
+    0 0 46px -14px color-mix(in srgb, var(--u-masterclass) 85%, transparent);
+}
+
+/* ==========================================================================
+   5.5 · CARDS DE UNIDAD CON FOTO DE FONDO   (seccion #unidades de la Home)
+   --------------------------------------------------------------------------
+   La foto vive en un pseudo `::after` con `z-index: -1` — mismo patron que el
+   glow de `--electric`. Dentro del stacking context que crea
+   `isolation: isolate` en `.unit-card`, un z-index negativo pinta SOBRE el
+   background-color de la card y DEBAJO del contenido, sin envolver nada.
+
+   Se cuelga de `#unidades` y no de una clase nueva en el elemento: el pipeline
+   de CSS de Bricks esta roto (NOTAS-TECNICAS.md §1) y las variantes
+   `--blue / --steel / --light` son 1:1 con las unidades solo dentro de esta
+   seccion. Scopear por id evita que otra pagina que reuse `.unit-card--blue`
+   herede la foto, y ahorra tocar el arbol de elementos en la base.
+
+   Las urls son absolutas desde la raiz del sitio, no desde el dominio:
+   sobreviven la migracion de staging a krak.com.ar sin tocar el CSS.
+
+   Desde 2026-09-17 aplica a las 4 unidades. `--electric` (Krak Masterclass)
+   estuvo excluida mientras no tuvo foto; al sumarla hubo que neutralizar su
+   glow, que ocupaba este mismo `::after` (ver la regla al final del bloque).
+   Lo unico que la sigue distinguiendo es el borde `dashed`.
+   ========================================================================== */
+#unidades .unit-card {
+  --card-bg: var(--brand-strong);
+  /* --photo-pos lo define cada unidad mas abajo. No va un default aca: este
+     selector tiene la misma especificidad que los `#unidades .unit-card--x`,
+     asi que un default aqui dependeria del orden en el archivo. El default
+     vive en el var() del background-position, que no compite. */
+  border-color: rgba(255, 255, 255, .14);
+}
+
+/* Scrim en dos capas del mismo color — al ser el mismo rgb el orden entre ellas
+   no cambia el resultado. La vertical densifica arriba (eyebrow + index) y abajo
+   (CTA); la horizontal abre el lado derecho, donde no hay texto. Medido contra el
+   brillo real de las 4 fotos: min 5.3:1 eyebrow, 4.6:1 titulo, 5.9:1 bajada.
+   La de masterclass, la ultima en sumarse, es la mas oscura y queda holgada:
+   peor caso 8.0:1 eyebrow, 7.3:1 titulo, 6.9:1 bajada, 7.5:1 CTA. */
+#unidades .unit-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--card-bg);
+  background-image:
+    linear-gradient(180deg,
+      rgba(6, 16, 30, .78) 0%,
+      rgba(6, 16, 30, .42) 30%,
+      rgba(6, 16, 30, .74) 100%),
+    linear-gradient(90deg,
+      rgba(6, 16, 30, .40) 0%,
+      rgba(6, 16, 30, .20) 58%,
+      rgba(6, 16, 30, 0) 100%),
+    var(--photo-src);
+  background-repeat: no-repeat;
+  background-position: var(--photo-pos, 50% 50%);
+  background-size: cover;
+  transform: scale(1.01);
+  transition: transform 1.2s var(--ease-out-soft);
+  pointer-events: none;
+}
+
+#unidades .unit-card:hover::after,
+#unidades .unit-card:focus-visible::after {
+  transform: scale(1.07);
+}
+
+#unidades .unit-card:hover,
+#unidades .unit-card:focus-visible {
+  background-color: var(--card-bg);
+  border-color: rgba(255, 255, 255, .34);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Regla de acento superior: el acento crudo es azul oscuro y sobre el scrim no
+   se lee. Se aclara con la misma logica que ya usa la card --electric. */
+#unidades .unit-card::before {
+  background: color-mix(in srgb, var(--accent) 35%, #ffffff);
+}
+
+/* Texto sobre foto */
+#unidades .unit-card .unit-card__title {
+  color: #ffffff;
+}
+
+#unidades .unit-card .unit-card__sub {
+  color: rgba(255, 255, 255, .88);
+}
+
+#unidades .unit-card .unit-card__eyebrow,
+#unidades .unit-card .unit-card__cta {
+  color: color-mix(in srgb, var(--accent) 25%, #ffffff);
+}
+
+/* Fuente y encuadre por unidad. `--photo-pos` centra el sujeto de cada foto:
+   el casco en la aerea, la nave en el galpon, las butacas en la sesion. */
+#unidades .unit-card--blue {
+  --photo-src: url("/wp-content/uploads/2026/09/unidad_residencial-1024x576.jpeg");
+  --photo-pos: 48% 48%;
+}
+
+#unidades .unit-card--steel {
+  --photo-src: url("/wp-content/uploads/2026/09/unidad_industrial-1024x678.jpg");
+  --photo-pos: 50% 45%;
+}
+
+#unidades .unit-card--light {
+  --photo-src: url("/wp-content/uploads/2026/09/unidad_marketing-768x1024.jpg");
+  --photo-pos: 50% 52%;
+}
+
+#unidades .unit-card--electric {
+  --photo-src: url("/wp-content/uploads/2026/09/unidad_masterclass-1024x678.jpg");
+  --photo-pos: 46% 44%;
+}
+
+/* El glow de `--electric` (5.4) vive en el mismo `::after` que la foto. Las
+   longhands de background las gana este bloque por especificidad, pero su
+   `opacity: 0` sobrevivia y dejaba la card sin foto salvo al hover. Con el id
+   delante, esta regla le gana tambien al `:hover::after` del glow. */
+#unidades .unit-card--electric::after {
+  opacity: 1;
+}
+
+/* En pantallas 2x se sirve la variante grande. Se resuelve con media query y
+   no con `image-set()`: si el navegador no lo soporta, el var() invalida toda
+   la declaracion `background-image` — scrim incluido — y la card se queda sin
+   overlay, con el texto blanco directamente sobre la foto. */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  #unidades .unit-card--blue {
+    --photo-src: url("/wp-content/uploads/2026/09/unidad_residencial-1536x864.jpeg");
+  }
+
+  #unidades .unit-card--steel {
+    --photo-src: url("/wp-content/uploads/2026/09/unidad_industrial-1536x1017.jpg");
+  }
+
+  #unidades .unit-card--light {
+    --photo-src: url("/wp-content/uploads/2026/09/unidad_marketing-1152x1536.jpg");
+  }
+
+  #unidades .unit-card--electric {
+    --photo-src: url("/wp-content/uploads/2026/09/unidad_masterclass-1536x1017.jpg");
+  }
+}
+
+/* ==========================================================================
+   6 · BANDA DE NUMEROS
+   ========================================================================== */
+/* El patron de puntos y el degradado con mascara se eliminaron el 2026-09-17:
+   con los bordes desvanecidos la banda no llegaba a leerse como bloque y solo
+   ensuciaba el fondo. Queda un color plano —`--surface-muted`, el azul hielo—
+   que corta el blanco de las secciones vecinas de un borde al otro.
+
+   Tambien se saco `overflow: hidden`: el conector editorial de abajo necesita
+   sobresalir por arriba de la seccion. `isolation: isolate` se conserva para
+   que el conector no compita con el stacking context de la pagina. */
+/* Desde el 2026-09-17 la banda es NAVY, no hielo (pedido del cliente): el mismo
+   `--brand` (#08407c) que usa `.cta-band` y que el header toma de fallback
+   cuando no hay `backdrop-filter`. No se inventa un hex nuevo.
+
+   `position: relative` e `isolation: isolate` quedan de cuando la seccion tenia
+   el patron de puntos y el conector: hoy no cuelga nada de ellos, pero tampoco
+   cuestan nada y evitan sorpresas si se vuelve a apoyar algo absoluto aca.
+
+   Con el fondo invertido todo el interior cambia de tinta. En vez de repetir
+   colores literales en cada regla, la seccion declara su propio juego de
+   tokens y las reglas de abajo leen de ahi: si manana la banda vuelve a ser
+   clara, se tocan estas cuatro lineas y nada mas.
+
+   Contraste medido sobre #08407c (L = .0514):
+     - `--stats-ink` (#ffffff) ................ 10.3:1  (AAA)
+     - `--stats-ink-soft` (--color-blue-100) ... 7.2:1  (AAA)
+   Los dos pasan AA holgado. El celeste es el tono 100 del azul de marca, no
+   un gris: mantiene el label dentro del sistema de color. */
+.stats {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--brand);
+  --stats-ink: #ffffff;
+  --stats-ink-soft: var(--color-blue-100);
+  --stats-rule: rgba(255, 255, 255, .20);
+  --stats-rule-soft: rgba(255, 255, 255, .14);
+}
+
+/* Centrado el 2026-09-17: con el bloque hielo a todo el ancho y las cuatro
+   metricas en tabla, un titulo alineado a la izquierda dejaba la composicion
+   descompensada. `max-width` sube de 20ch a 22ch para que corte en dos lineas
+   parejas y no en una linea huerfana. */
+.stats__title {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--stats-ink);
+}
+
+.stats__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: clamp(32px, 4vw, 48px) 0 0;
+  padding: 0;
+}
+
+/* Reglas superior e inferior de la tabla */
+.stats__grid::before,
+.stats__grid::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--stats-rule) 12%, var(--stats-rule) 88%, transparent);
+}
+
+.stats__grid::before { top: 0; }
+.stats__grid::after  { bottom: 0; }
+
+.stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 13.6px;
+  padding: clamp(24px, 3vw, 36px) clamp(16px, 2vw, 28px);
+  margin: 0;
+}
+
+/* Separador vertical */
+.stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--stats-rule-soft) 28%, var(--stats-rule-soft) 72%, transparent);
+}
+
+/* Separador horizontal (solo en 2 columnas) */
+.stat::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: clamp(16px, 2vw, 28px);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--stats-rule) 50%, transparent);
+}
+
+.stat:nth-child(odd)::before { display: none; }
+.stat:nth-child(-n+2)::after { display: none; }
+
+.stat__value {
+  font-size: clamp(44px, 6.5vw, 68px);
+  font-weight: 900;
+  line-height: .9;
+  letter-spacing: -0.045em;
+  color: var(--stats-ink);
+  margin: 0;
+}
+
+.stat__label {
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 24ch;
+  color: var(--stats-ink-soft);
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .stats__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .stat::after { display: none; }
+  .stat::before { display: block; }
+  .stat:first-child::before { display: none; }
+}
+
+/* ==========================================================================
+   7 · KRAK EN REDES
+   ========================================================================== */
+/* Tres videos desde el 2026-09-18 (se saco "Storage Park" a pedido del cliente)
+   y la grilla se reparte el espacio que quedo libre:
+
+   | ancho  | antes (4 col / 2 en mobile) | ahora (3 col / 1 en mobile) |
+   |--------|-----------------------------|------------------------------|
+   | 375px  | 160px                       | 335px   (+110%)              |
+   | 768px  | 165px                       | 225px   (+37%)               |
+   | 1440px | 289px                       | 395px   (+37%)               |
+
+   En mobile pasa a UNA columna: dos miniaturas de 16/9 a 160px de ancho eran
+   ilegibles, que era la mitad de la queja. El salto de 706px a 225px al cruzar
+   los 768 es grande pero solo se nota redimensionando la ventana.
+
+   Se elimino `.video-grid--2`, que centraba un par dentro de un track de 4
+   columnas mientras faltaban videos. Ya no hay track de 4 y el generador
+   `krak_home.py` emitiria `--3`, que nunca existio: la regla era codigo muerto
+   esperando a romperse. */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 2.2vw, 32px);
+}
+
+@media (min-width: 768px) {
+  .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.video-card {
+  display: block;
+  text-decoration: none;
+}
+
+/* Velo comun a las dos familias de imagen — ver `--media-veil`. Misma capa,
+   mismo color y misma opacidad en las dos; lo unico que las sigue separando es
+   el material de origen.
+
+   Va en un `::before` y no en un `filter` sobre la `<img>`: el filtro viajaria
+   tambien al `transform: scale()` del hover y a cualquier texto que se apoye
+   encima. Asi la capa es independiente del contenido de la tarjeta.
+
+   `z-index: 1` la deja sobre la foto y bajo el boton de play y su onda, que
+   suben a 2. Sin eso el `::before` —ultimo hijo generado— taparia el boton. */
+.video-card__frame::before,
+.post-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--media-veil);
+  pointer-events: none;
+}
+
+.video-card__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  background-color: var(--color-slate-100);
+}
+
+.video-card__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+
+.video-card:hover .video-card__thumb,
+.video-card:focus-within .video-card__thumb {
+  transform: scale(1.05);
+}
+
+/* El disco era `rgba(8, 64, 124, .82)`: un circulo azul casi opaco que competia
+   con la foto del video. Desde el 2026-09-17 es vidrio — un velo oscuro neutro
+   al 22% con `blur(4px)` — y el anillo interior blanco al 42% es lo que define
+   el borde. Sobre una miniatura clara el velo solo no alcanzaria, por eso el
+   icono lleva `drop-shadow`: el contorno fino se sostiene igual sobre blanco. */
+.video-card__play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: auto;
+  width: clamp(52px, 5.6vw, 68px);
+  height: clamp(52px, 5.6vw, 68px);
+  border: 0;
+  border-radius: 999px;
+  background-color: rgba(20, 22, 28, .22);
+  -webkit-backdrop-filter: blur(4px) saturate(135%);
+  backdrop-filter: blur(4px) saturate(135%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .42);
+  cursor: pointer;
+  transition:
+    transform .4s var(--ease-out-soft),
+    background-color .4s var(--ease-out-soft),
+    box-shadow .4s var(--ease-out-soft);
+}
+
+/* Sin `backdrop-filter` el velo al 22% deja el icono ilegible: se compensa con
+   un azul de marca mas cerrado, que sigue siendo mas liviano que el original. */
+@supports not ((-webkit-backdrop-filter: blur(2px)) or (backdrop-filter: blur(2px))) {
+  .video-card__play { background-color: rgba(6, 47, 92, .56); }
+}
+
+.video-card__play::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: clamp(21px, 2.2vw, 27px);
+  height: clamp(21px, 2.2vw, 27px);
+  background-color: #ffffff;
+  -webkit-mask: var(--icon-play-thin) center / contain no-repeat;
+  mask: var(--icon-play-thin) center / contain no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(6, 16, 30, .45));
+  transform: translateX(1px);
+}
+
+.video-card:hover .video-card__play,
+.video-card:focus-within .video-card__play,
+.video-card__play:hover,
+.video-card__play:focus-visible {
+  transform: scale(1.06);
+  background-color: rgba(20, 22, 28, .34);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .64);
+}
+
+/* Ondas concentricas — solo al hover/focus */
+.video-card__play::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-card__ripple {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-card:hover .video-card__play::after,
+.video-card:focus-within .video-card__play::after,
+.video-card:hover .video-card__ripple,
+.video-card:focus-within .video-card__ripple {
+  animation: krak-play-ripple 2s var(--ease-out-soft) infinite;
+}
+
+.video-card:hover .video-card__ripple,
+.video-card:focus-within .video-card__ripple {
+  animation-delay: 1s;
+}
+
+@keyframes krak-play-ripple {
+  0%   { opacity: .6; transform: scale(1); }
+  100% { opacity: 0;  transform: scale(1.85); }
+}
+
+.video-card__title {
+  margin-top: 16px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text);
+  transition: color .3s var(--ease-out-soft);
+}
+
+.video-card:hover .video-card__title,
+.video-card:focus-within .video-card__title {
+  color: var(--brand);
+}
+
+/* ==========================================================================
+   8 · NOTAS DEL GRUPO
+   ========================================================================== */
+.post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+@media (min-width: 860px) {
+  .post-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.post-card {
+  --accent: var(--u-residencial);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  border: 0;
+  box-shadow: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  transition: transform .55s var(--ease-out-soft), box-shadow .55s var(--ease-out-soft);
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0.16);
+  transform-origin: left center;
+  opacity: .75;
+  z-index: 2;
+  transition: transform .55s var(--ease-out-soft), opacity .55s var(--ease-out-soft);
+}
+
+.post-card:hover,
+.post-card:focus-visible {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-float);
+}
+
+.post-card:hover::before,
+.post-card:focus-visible::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.post-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-slate-100);
+}
+
+.post-card__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+
+.post-card:hover .post-card__cover,
+.post-card:focus-visible .post-card__cover {
+  transform: scale(1.05);
+}
+
+.post-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(20px, 2vw, 28px);
+}
+
+.post-card__pill {
+  align-self: flex-start;
+  padding: 5.6px 11.2px;
+  border-radius: 50px;
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: background-color .4s var(--ease-out-soft);
+}
+
+.post-card:hover .post-card__pill,
+.post-card:focus-visible .post-card__pill {
+  background-color: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.post-card__title {
+  margin-top: 13.6px;
+  font-size: clamp(18px, 1.5vw, 21px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  transition: color .3s var(--ease-out-soft);
+}
+
+.post-card:hover .post-card__title,
+.post-card:focus-visible .post-card__title {
+  color: var(--accent);
+}
+
+.post-card__excerpt {
+  margin-top: 10.4px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.post-card__date {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+}
+
+.post-card__cta {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* 8.4 · Acentos por categoria.
+   El acento se toma de `data-unit`, que la card recibe del dynamic tag
+   {krak_post_accent}. No usar clases: Bricks no compone `_cssClasses`
+   dinamicamente dentro de un loop. */
+.post-card[data-unit="residencial"] { --accent: var(--u-residencial); }
+.post-card[data-unit="industrial"]  { --accent: var(--u-industrial); }
+.post-card[data-unit="mercado"]     { --accent: var(--u-studio); }
+
+/* ==========================================================================
+   9 · BANDA CTA DE TASACION
+   ========================================================================== */
+.cta-band {
+  position: relative;
+  padding-block: clamp(72px, 9vw, 128px);
+  background-color: var(--brand);
+  color: #ffffff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Capa 1 — Aura animada */
+.cta-band__aura {
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 22% 32%, rgba(255, 255, 255, .16), transparent 68%),
+    radial-gradient(34% 42% at 78% 68%, rgba(47, 127, 255, .24), transparent 70%);
+  animation: krak-aura 26s var(--ease-in-out-soft) infinite alternate;
+}
+
+@keyframes krak-aura {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  100% { transform: translate3d(3%, 2%, 0) scale(1.12); }
+}
+
+/* Capa 2 — Reticula vertical */
+.cta-band__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .05) 0 1px, transparent 1px 12.5%);
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
+  mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
+}
+
+/* Capa 3 — Grano */
+.cta-band__grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 180px 180px;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+
+.cta-band__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cta-band__title {
+  max-width: 20ch;
+  color: #ffffff;
+}
+
+.cta-band__lede {
+  margin-top: 17.6px;
+  margin-bottom: 36px;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .78);
+}
+
+/* ==========================================================================
+   10 · FOOTER
+   ========================================================================== */
+.site-footer {
+  padding-block: clamp(56px, 7vw, 88px) clamp(32px, 4vw, 44px);
+  background-color: var(--color-ink-800);
+  color: rgba(255, 255, 255, .72);
+  font-size: 15px;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 48px);
+}
+
+@media (min-width: 720px) {
+  .site-footer__grid { grid-template-columns: 1.4fr repeat(3, 1fr); }
+}
+
+.footer-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 11.2px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer-lockup__mark {
+  height: 38px;
+  width: auto;
+  aspect-ratio: 408 / 510;
+  display: block;
+}
+
+.footer-lockup__word {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.footer-claim {
+  margin-top: 18.4px;
+  max-width: 26ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .58);
+}
+
+.footer-col__title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .62);
+  line-height: 1.4;
+}
+
+.footer-col__list {
+  display: grid;
+  gap: 11.2px;
+  margin: 18.4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9.6px;
+  color: rgba(255, 255, 255, .78);
+  text-decoration: none;
+  transition: color .4s var(--ease-out-soft);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: #ffffff;
+}
+
+.footer-link:not(.footer-link--social)::after,
+.footer-link--social > span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .4s var(--ease-out-soft);
+}
+
+.footer-link--social > span {
+  position: relative;
+}
+
+.footer-link:hover::after,
+.footer-link:focus-visible::after,
+.footer-link--social:hover > span::after,
+.footer-link--social:focus-visible > span::after {
+  transform: scaleX(1);
+}
+
+.footer-link--social::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--social-icon) center / contain no-repeat;
+  mask: var(--social-icon) center / contain no-repeat;
+}
+
+.footer-link--instagram { --social-icon: var(--icon-instagram); }
+.footer-link--tiktok    { --social-icon: var(--icon-tiktok); }
+.footer-link--youtube   { --social-icon: var(--icon-youtube); }
+
+.footer-text {
+  color: rgba(255, 255, 255, .6);
+}
+
+.site-footer__rule {
+  height: 1px;
+  border: 0;
+  background: rgba(255, 255, 255, .16);
+  margin-block: clamp(40px, 5vw, 56px) 24px;
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .58);
+}
+
+.legal-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legal-list > li + li::before {
+  content: "\00B7";
+  opacity: .5;
+  margin-inline-end: 13.6px;
+}
+
+.legal-list > li + li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.legal-list > li + li::before {
+  margin-inline: 13.6px;
+}
+
+.legal-list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .25s var(--ease-out-soft);
+}
+
+.legal-list a:hover,
+.legal-list a:focus-visible {
+  color: #ffffff;
+}
+
+@media (min-width: 720px) {
+  .site-footer__legal {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   11 · BLOG — indice /blog/ y nota individual /blog/<slug>/
+   Ref: SPEC-BLOG-Krak.md
+   --------------------------------------------------------------------------
+   Los valores en rem del spec estan convertidos a px a razon de 1rem = 16px
+   (Bricks fija html{font-size:62.5%}). Los `em` se conservan.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   11.1 · Acentos locales por categoria (spec §1.2)
+   `--a`      acento sobre fondo CLARO
+   `--a-tint` version legible del mismo acento sobre el AZUL DEEP del header
+   Nunca `--a` como texto sobre navy, ni `--a-tint` como texto sobre blanco.
+   Se enganchan por atributo, no por clase: Bricks no compone `_cssClasses`
+   con dynamic tags (ver NOTAS-TECNICAS).
+   -------------------------------------------------------------------------- */
+.post {
+  --a: var(--u-residencial);
+  --a-tint: var(--color-blue-300);
+
+  /* Escala propia del cuerpo de la nota (ajuste pedido el 2026-09-17).
+     Se declaran como tokens locales y no sueltos en cada regla, para que un
+     cambio de criterio se propague solo — igual que la paleta del sistema.
+
+     Los tres apuntan a la paleta de §1.2: no hay ningun color literal en el
+     cuerpo de la nota. Equivalencias respecto de los valores originales:
+
+       #0d233a -> --color-brand-strong (#062f5c)
+       #2b2f38 -> --text               (#14161c)
+       #e5e7eb -> --line               (#caced4)
+
+     El titulo usa `--color-brand-strong` y no `--color-ink-800` (#1c2230),
+     que es el mas parecido al #0d233a original: con el cuerpo en `--text`
+     (18,1:1 sobre blanco) un titulo en #1c2230 (15,9:1) queda MAS CLARO que
+     el texto y la jerarquia se invierte. `--color-brand-strong` da 13,4:1,
+     es el mismo navy del header del articulo y se lee como titulo. */
+  --post-ink: var(--color-brand-strong);  /* h2/h3/h4, citas y negritas de listas */
+  --post-body: var(--text);               /* texto corrido */
+  --post-rule: var(--line);               /* linea superior de los h2 */
+  --prose-measure: 720px;   /* ancho de lectura del cuerpo */
+  --cover-overlap: 80px;    /* cuanto sube la portada sobre el hero navy */
+}
+
+/* En mobile 80px es casi el 40% de la altura de una imagen 16:9 a 375px:
+   la portada taparia media banda navy. */
+@media (max-width: 767px) {
+  .post { --cover-overlap: 40px; }
+}
+
+.post[data-unit="residencial"] { --a: var(--u-residencial); --a-tint: var(--color-blue-300); }
+.post[data-unit="industrial"]  { --a: var(--u-industrial);  --a-tint: var(--color-steel-300); }
+.post[data-unit="mercado"]     { --a: var(--u-studio);      --a-tint: var(--color-blue-100); }
+
+.lede--invert {
+  color: rgba(255, 255, 255, .78);
+}
+
+
+/* ==========================================================================
+   11.2 · HEADER DE SECCION DEL INDICE  (.bhero, spec §3.3)
+   No es un hero a pantalla completa: la altura la define el padding.
+   ========================================================================== */
+.bhero {
+  position: relative;
+  background: var(--color-brand-strong);
+  background-image: linear-gradient(168deg, #062f5c 0%, #08407c 62%, #062f5c 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bhero__aura {
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 20% 30%, rgba(255, 255, 255, .14), transparent 68%),
+    radial-gradient(32% 44% at 80% 74%, rgba(47, 127, 255, .20), transparent 70%);
+  animation: krak-aura-blog 30s var(--ease-in-out-soft) infinite alternate;
+}
+
+@keyframes krak-aura-blog {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  100% { transform: translate3d(3%, 2%, 0) scale(1.1); }
+}
+
+/* Hairline inferior: empieza con color a la izquierda y se disuelve antes de
+   llegar a la derecha. Es la firma del blog. */
+.bhero::after,
+.post__hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  pointer-events: none;
+}
+
+.bhero::after {
+  background: linear-gradient(to right, var(--color-blue-300), transparent 72%);
+  opacity: .5;
+}
+
+.bhero__inner {
+  padding-top: calc(92px + clamp(40px, 7vh, 72px));
+  padding-bottom: clamp(44px, 6vh, 72px);
+}
+
+.bhero__title {
+  margin-top: 17.6px;
+  max-width: 16ch;
+}
+
+.bhero__lede {
+  margin-top: 18.4px;
+  max-width: 54ch;
+}
+
+
+/* ==========================================================================
+   11.3 · LISTADO DEL INDICE  (spec §3.4)
+   La card es el mismo `.post-card` de la home (§8). Aca solo cambian el
+   contenedor y los breakpoints de la grilla: 2 col en 640, 3 col en 1024.
+   Son distintos a los 860px de la home y de las relacionadas, a proposito.
+   ========================================================================== */
+.post-grid--index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: 1fr;
+}
+
+.post-grid--index > li {
+  display: flex;
+}
+
+.post-grid--index > li > .post-card {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .post-grid--index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .post-grid--index { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+
+/* ==========================================================================
+   11.4 · PAGINADOR  (spec §3.5)
+   No es un `.btn` del sistema: es una pieza propia mas liviana y SIN barrido
+   de luz (ese efecto es exclusivo de los `.btn`).
+   ========================================================================== */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--line);
+}
+
+.krak .pager__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  padding: 10.4px 16.8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+  transition:
+    transform .3s var(--ease-out-soft),
+    border-color .3s var(--ease-out-soft),
+    box-shadow .3s var(--ease-out-soft);
+}
+
+.krak .pager__btn:hover,
+.krak .pager__btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Flechas: la misma mascara, espejada para la de "Anteriores". */
+.pager__btn::before,
+.pager__btn::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) center / contain no-repeat;
+  mask: var(--icon-arrow-right) center / contain no-repeat;
+}
+
+.pager__btn--prev::after,
+.pager__btn--next::before { content: none; }
+
+.pager__btn--prev::before { transform: scaleX(-1); }
+
+/* Deshabilitado: sigue ocupando su lugar en la fila — el paginador no se
+   descuadra — pero no es foqueable ni clickeable. */
+.pager__btn.is-off {
+  opacity: .4;
+  pointer-events: none;
+}
+
+.pager__count {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================================================
+   11.5 · HEADER DE LA NOTA  (.post__hero, spec §5.1)
+   ========================================================================== */
+.post__hero {
+  position: relative;
+  background: var(--color-brand-strong);
+  background-image:
+    radial-gradient(92% 74% at 50% -8%,
+      rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, .03) 42%, transparent 72%),
+    linear-gradient(168deg, #062f5c 0%, #08407c 62%, #062f5c 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* El segundo radial usa el tinte de la categoria: la nota "sabe" de que
+   unidad es antes de que se lea el kicker. */
+.post__aura {
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 18% 28%, rgba(255, 255, 255, .14), transparent 68%),
+    radial-gradient(32% 44% at 82% 74%, color-mix(in srgb, var(--a-tint) 30%, transparent), transparent 70%);
+  animation: krak-aura-blog 30s var(--ease-in-out-soft) infinite alternate;
+}
+
+.post__hero::after {
+  background: linear-gradient(to right, var(--a-tint), transparent 72%);
+  opacity: .55;
+}
+
+/* Mas angosto que el `.shell` general: el header acompaña la medida de lectura. */
+.post__hero-inner,
+.post__measure {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.post__hero-inner {
+  max-width: min(1240px, 992px);
+  padding-top: calc(92px + clamp(40px, 7vh, 72px));
+  padding-bottom: clamp(44px, 6vh, 72px);
+}
+
+/* 1) Link de vuelta — la flecha va HACIA ATRAS al hover. La inversion es
+   intencional: es la unica flecha del sitio que se mueve a la izquierda. */
+.krak .post__back {
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: rgba(255, 255, 255, .72);
+  text-decoration: none;
+  transition: color .25s var(--ease-out-soft);
+}
+
+.krak .post__back:hover,
+.krak .post__back:focus-visible {
+  color: #ffffff;
+}
+
+.post__back::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) center / contain no-repeat;
+  mask: var(--icon-arrow-right) center / contain no-repeat;
+  transform: scaleX(-1);
+  transition: transform .3s var(--ease-out-soft);
+}
+
+.krak .post__back:hover::before,
+.krak .post__back:focus-visible::before {
+  transform: scaleX(-1) translateX(4px);
+}
+
+/* 2) Kicker de categoria — sin guion: no es un `.eyebrow`. */
+.post__kicker {
+  display: block;
+  margin-top: clamp(28px, 4vh, 44px);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--a-tint);
+}
+
+/* 3) H1 — no usa `.h-display`: el titulo de una nota es mas largo y necesita
+   un escalon menos para no partirse en cinco lineas en mobile. */
+.post__title {
+  margin-top: 14.4px;
+  max-width: 22ch;
+  font-size: clamp(32px, 5vw, 54.4px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.033em;
+  color: #ffffff;
+}
+
+/* 4) Bajada — es el campo `description`: mismo texto que el extracto de la
+   card y que el <meta description>. Un solo texto, tres usos. */
+.post__lede {
+  margin-top: 18.4px;
+  max-width: 58ch;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .78);
+}
+
+/* 5) Linea de metadatos — UN SOLO item: la fecha. Sin tiempo de lectura y
+   sin autor (spec §0.1). */
+.post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9.6px 16px;
+  list-style: none;
+  margin: clamp(28px, 4vh, 40px) 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line-invert);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .72);
+}
+
+.post__meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Separador entre items: pseudo-elemento, nunca un "·" tipeado. Con un solo
+   item no se dibuja nada; la regla queda escrita por si se suma otro dato. */
+.post__meta > li + li::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin-inline: 0 16px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: .6;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   11.6 · BARRA DE PROGRESO DE LECTURA  (spec §5.2)
+   Vive DENTRO del header fijo, no como barra fija propia: asi acompaña la
+   compresion de 92 -> 66px en vez de despegarse durante la transicion.
+   Sin JS arranca en scaleX(0): nunca muestra un progreso falso.
+   ========================================================================== */
+.read-progress {
+  display: none;
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.single-post .read-progress {
+  display: block;
+}
+
+.read-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, var(--color-blue-500), var(--color-blue-100));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+
+/* ==========================================================================
+   11.7 · CUERPO DE LA NOTA  (spec §5.3, §5.4)
+   Dos medidas anidadas: 56rem manda hasta donde llega la PORTADA y el bloque
+   "Segui por aca"; 68ch manda hasta donde llega el TEXTO. El texto nunca es
+   tan ancho como la portada — eso hace que se lea como nota y no como landing.
+   ========================================================================== */
+.post__measure {
+  max-width: min(1240px, 896px);
+}
+
+.post__cover {
+  margin: 0 0 clamp(36px, 5vw, 52px);
+}
+
+/* Cualquier imagen que suban se adapta sin deformarse ni desalinear el
+   layout: la relacion de aspecto la fija el contenedor, no el archivo. */
+.post__cover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+/* --------------------------------------------------------------------------
+   Solapamiento de la portada
+   --------------------------------------------------------------------------
+   La portada se apoya en el limite entre el hero navy y el cuerpo blanco y
+   sube `--cover-overlap` sobre el azul. Son tres piezas y las tres tienen
+   que ir juntas:
+
+     1. el hero suma esa altura a su padding inferior, para que la imagen no
+        se coma la linea de la fecha;
+     2. el cuerpo blanco pierde su padding superior — lo ocupa la imagen;
+     3. `display: flow-root` corta el colapso de margenes. Sin eso el
+        `margin-top` negativo de la figura no la mueve a ella: arrastra el
+        bloque blanco entero hacia arriba y tapa el navy.
+
+   Todo cuelga de `.krak-has-cover`, que el child theme pone en el <body>
+   solo cuando la nota tiene imagen destacada. Una nota sin portada conserva
+   el padding normal del hero y del cuerpo, y no queda ningun hueco.
+   -------------------------------------------------------------------------- */
+.krak-has-cover .post__hero-inner {
+  padding-bottom: calc(clamp(44px, 6vh, 72px) + var(--cover-overlap));
+}
+
+.krak-has-cover .post__bodywrap {
+  padding-top: 0;
+  display: flow-root;
+}
+
+.krak-has-cover .post__cover {
+  position: relative;
+  z-index: 10;
+  margin-top: calc(-1 * var(--cover-overlap));
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.post__updated {
+  max-width: var(--prose-measure, 720px);
+  margin: 40px auto 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   11.8 · .prose — TIPOGRAFIA DEL CUERPO  (spec §6)
+   Sin plugin de typography: todo atado a los tokens del manual.
+   ========================================================================== */
+.prose {
+  max-width: var(--prose-measure, 720px);
+  margin-inline: auto;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--post-body, var(--text));
+}
+
+/* Ritmo vertical: UN solo lugar donde se define la separacion entre bloques.
+   Todo lo demas son las excepciones puntuales de abajo. */
+.prose > * + * { margin-top: 1.35em; }
+
+/* 6.1 · Encabezados. El cuerpo arranca en h2: nunca un h1 dentro del texto.
+   El h2 se separa con una regla superior — reemplaza a la viñeta de acento
+   del spec §6.1, que era la que traia el color de la categoria al cuerpo. */
+.prose h2 {
+  margin-top: 48px;
+  margin-bottom: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--post-rule, var(--line));
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.028em;
+  color: var(--post-ink, var(--color-brand-strong));
+}
+
+/* Un h2 de apertura no lleva regla: no hay nada arriba que cortar. */
+.prose > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.prose h3 {
+  margin-top: 1.9em;
+  font-size: clamp(19px, 1.4vw, 22px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--post-ink, var(--color-brand-strong));
+}
+
+.prose h4 {
+  margin-top: 1.7em;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--post-ink, var(--color-brand-strong));
+}
+
+/* El titulo y su primer parrafo se leen como una unidad. El h2 ya define su
+   propio margen inferior, asi que el siguiente bloque no suma el suyo. */
+.prose h2 + * { margin-top: 0; }
+.prose :is(h3, h4) + * { margin-top: 0.85em; }
+
+/* 6.2 · Enlaces. Es `border-bottom`, no `text-decoration`: permite controlar
+   grosor, separacion y color por separado. El subrayado no es opcional
+   (WCAG 1.4.1: el link tiene que distinguirse sin depender del color). */
+.krak .prose a {
+  color: var(--color-blue-700);
+  font-weight: 500;
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid rgba(8, 64, 124, .3);
+  transition: color .3s var(--ease-out-soft), border-color .3s var(--ease-out-soft);
+}
+
+.krak .prose a:hover,
+.krak .prose a:focus-visible {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+
+/* 6.3 · Listas: marcador propio, nunca el del navegador.
+   El hueco del marcador va en el `li` y no en el `ul`, porque el punto y el
+   numeral son pseudo-elementos posicionados: si el padding estuviera en los
+   dos, la sangria se duplicaria. */
+.prose :is(ul, ol) {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 24px;
+}
+
+.prose :is(ul, ol) > li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.prose :is(ul, ol) > li:last-child { margin-bottom: 0; }
+
+.prose :is(ul, ol) :is(ul, ol) { margin-top: 8px; margin-bottom: 0; }
+
+/* `b` ademas de `strong`: el texto pegado desde Google Docs o Word entra
+   con `<b>`, no con la etiqueta semantica. */
+.prose li :is(strong, b) { color: var(--post-ink, var(--color-brand-strong)); }
+
+/* Viñeta SIEMPRE #08407c, nunca var(--a): si tomara el acento, las notas de
+   Industrial quedarian con viñetas grises y el cuerpo perderia el azul
+   corporativo. El acento manda en los titulos y en el chrome; el texto es
+   del sistema. */
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+.prose ol {
+  counter-reset: krak-ol;
+}
+
+/* El numeral pide mas hueco que la viñeta: con 20px, un "10." se pisa con
+   el texto del item. */
+.prose ol > li {
+  counter-increment: krak-ol;
+  padding-left: 28px;
+}
+
+.prose ol > li::before {
+  content: counter(krak-ol) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+}
+
+/* 6.4 · Citas — callout navy. La barra ya no toma el acento de la categoria:
+   es el mismo `--post-ink` que los titulos. */
+.prose blockquote {
+  /* Bricks sirve `blockquote { font-family: georgia, serif }` en su CSS de
+     frontend. La cita del cuerpo va en la tipografia del sistema. */
+  font-family: inherit;
+  margin: 32px 0;
+  padding: 20px 24px;
+  background: color-mix(in srgb, var(--post-ink, var(--color-brand-strong)) 3%, transparent);
+  border-left: 3px solid var(--post-ink, var(--color-brand-strong));
+  border-radius: 0 8px 8px 0;
+  font-size: 18.4px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: -0.012em;
+  color: var(--post-ink, var(--color-brand-strong));
+}
+
+.prose blockquote > * + * { margin-top: 0.7em; }
+
+.krak .prose blockquote a {
+  color: var(--brand);
+  border-bottom-color: rgba(8, 64, 124, .45);
+}
+
+/* 6.5 · Imagenes, figuras y separador */
+.prose :is(img, video) {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.prose figure {
+  margin-block: 2em;
+  margin-inline: 0;
+}
+
+.prose figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.prose hr {
+  margin-block: 2.75em;
+  height: 1px;
+  border: 0;
+  background: var(--line);
+}
+
+/* 6.6 · Codigo */
+.prose :is(pre, code, kbd, samp) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+.prose :not(pre) > code {
+  padding: .15em .4em;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  font-size: .88em;
+}
+
+.prose pre {
+  padding: 18.4px 21.6px;
+  border-radius: var(--radius-md);
+  background: var(--color-ink-900);
+  color: #ffffff;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* 6.6 · Tablas. El scroll horizontal va en el contenedor de la tabla, NUNCA
+   en el documento: en mobile es lo unico que lo evita. */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.prose :is(th, td) {
+  padding: 11.2px 14.4px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--brand);
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   11.9 · BLOQUE "SEGUI POR ACA"  (handoff, spec §5.6)
+   Es el puente del contenido al negocio y el UNICO CTA fuerte de la nota,
+   ahora que no hay banda azul al final (§0.2). No se elimina.
+   ========================================================================== */
+.handoff {
+  max-width: var(--prose-measure, 720px);
+  margin: clamp(48px, 6vw, 72px) auto 0;
+  padding: clamp(24px, 3vw, 36px);
+  background: color-mix(in srgb, var(--surface-muted) 55%, #ffffff);
+  border: 0;
+  /* La unica linea: con borde perimetral completo se leia como un wireframe. */
+  border-top: 3px solid var(--a, var(--brand));
+  border-radius: var(--radius-lg);
+}
+
+.handoff__eyebrow {
+  color: var(--a, var(--brand));
+}
+
+.handoff__list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .handoff__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.krak .handoff__card {
+  display: block;
+  height: 100%;
+  padding: 16px 18.4px;
+  background: #ffffff;
+  border: 0;
+  border-radius: var(--radius-md);
+  /* Una sombra minima en lugar de un borde. */
+  box-shadow: 0 4px 12px rgba(20, 22, 28, .03);
+  text-decoration: none;
+  transition: transform .4s var(--ease-out-soft), box-shadow .4s var(--ease-out-soft);
+}
+
+.krak .handoff__card:hover,
+.krak .handoff__card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(20, 22, 28, .04), 0 12px 26px -8px rgba(8, 64, 124, .16);
+}
+
+.handoff__name {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--a, var(--brand));
+}
+
+.handoff__name::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) center / contain no-repeat;
+  mask: var(--icon-arrow-right) center / contain no-repeat;
+  transition: transform .4s var(--ease-out-soft);
+}
+
+.krak .handoff__card:hover .handoff__name::after,
+.krak .handoff__card:focus-visible .handoff__name::after {
+  transform: translateX(5px);
+}
+
+.handoff__blurb {
+  display: block;
+  margin-top: 4.8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.handoff__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14.4px 17.6px;
+  margin-top: 28px;
+  padding-top: 24px;
+  /* Hairline degradado que se apaga hacia la derecha, igual que las reglas
+     de la banda de numeros de la home. */
+  border-top: 1px solid var(--line);
+  border-image: linear-gradient(to right, var(--line), transparent 88%) 1;
+}
+
+.handoff__note {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   11.10 · NOTAS RELACIONADAS  (spec §5.7)
+   Grilla de 1 -> 3 columnas en 860px: la misma que la home, distinta a la
+   del indice (640/1024). Son tres grillas con la misma card y tres
+   breakpoints distintos, a proposito.
+   ========================================================================== */
+.post-related {
+  background: var(--surface-muted);
+  border-top: 1px solid var(--line);
+}
+
+.post-related__title {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  padding-bottom: clamp(28px, 3vw, 40px);
+}
+
+.post-grid--related {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-grid--related > li {
+  display: flex;
+}
+
+.post-grid--related > li > .post-card {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   11.11 · CASCADA DE ENTRADA DEL HEADER DE LA NOTA  (spec §5.1, B2)
+   Distancia de movimiento reducida a 15px (el header de la home usa 20px).
+   ========================================================================== */
+.js .krak .post__hero [data-reveal-hero]:not(.is-revealed) {
+  transform: translate3d(0, 15px, 0);
+}
+
+/* ==========================================================================
+   2.3 · PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .page-veil { display: none; }
+
+  .js .krak [data-reveal]:not(.is-revealed),
+  .js .krak [data-reveal-hero]:not(.is-revealed) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .krak *,
+  .krak *::before,
+  .krak *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  /* Blog (spec §7): sin auras. EXCEPCION: la barra de progreso de lectura
+     sigue funcionando — es informacion, no decoracion. Lo unico que pierde
+     es el suavizado del scrub, que lo maneja el JS. */
+  .bhero__aura,
+  .post__aura {
+    animation: none;
+  }
+}
