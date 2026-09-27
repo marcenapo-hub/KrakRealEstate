@@ -14,6 +14,12 @@
 - Estructura de reunión FOCO
 - Manual de Procesos de Agentes = documento base de onboarding
 
+- **Campaña de naves industriales en alquiler** (sept 2026): estrategia, Kit A
+  de 34 piezas, Kit B de 15 sobre ángulos de dolor, anexo de alternativas y
+  guiones en producción. Cartera de 9 naves en exclusiva, 1.325 a 9.000 m².
+  Honorario de un mes de alquiler a cargo del locador. Ver
+  `memory/projects/campana-naves-industriales.md`
+
 ## Krak Studio
 - Cliente clave: Moto Morini Argentina. Tabla de análisis competitivo full-service vs agencia competidora
 - Nomenclatura Meta Ads simplificada: `[Propiedad] | [Objetivo]` — aplica a Krak RE, Krak Studio, VAV, Moto Morini

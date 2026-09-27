@@ -14,6 +14,7 @@ inquilinos de la cartera de naves industriales en GBA.
 | `kit-b-diagnostico.html` | **Kit B — fase de diagnóstico.** Auditoría del Kit A contra el framework de Platzi, mapa de dolores validado y seis ángulos creativos. |
 | `kit-b.html` | **Kit B — piezas.** Quince piezas de pauta sobre los tres ángulos aprobados, con copy completo. |
 | `anexo-alternativas.html` | **Anexo al Kit A.** Una alternativa apareada por cada pieza de pauta, más tres slots nuevos, con su ubicación exacta. |
+| `guiones-y-decisiones.md` | **Guiones en producción y decisiones de copy.** El documento más vivo: corrige a los kits donde haga falta. |
 | `landing-busqueda-naves.excalidraw` | Wireframe de la landing de requerimiento, adaptado del mockup de captación. |
 | `canal-youtube-inventario.json` | Inventario de los 75 videos del canal, vía API de YouTube. |
 
@@ -78,6 +79,18 @@ Los tres ángulos aprobados:
 El anexo y el Kit B no compiten: el Kit B propone una campaña alternativa completa;
 el anexo permite cambiar pieza por pieza sin tocar la estructura. Se pueden usar los
 dos, uno o ninguno.
+
+## Regla de copy que manda sobre todo lo demás
+
+**Modo capacidad, nunca modo carencia.** No se dice "si ninguna te sirve, la
+buscamos" — eso admite que no tenemos lo que el cliente necesita. Se dice
+**"y acceso a todo el corredor"**. Cómo se consigue la nave es método interno
+y no se publicita.
+
+    Cartera propia → acceso a todo el mercado → decinos qué necesitás
+
+Aplicado el 27/9/2026 a los tres kits y a los dos wireframes. Detalle en
+`guiones-y-decisiones.md`.
 
 ## Los once dolores, con nombre
 
