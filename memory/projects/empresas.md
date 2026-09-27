@@ -2,6 +2,16 @@
 
 ## Krak Real Estate
 **Estado actual**
+- **HIVE 2 STORAGE PARK — campaña integral en desarrollo (ver `CLAUDE.md` y `hive-2/`)**.
+  18 naves industriales con entrepiso, Polo Buen Ayre 2, Gral. San Martín.
+  Desarrolla Stark Desarrollos (Emiliano Valli), Krak RE comercializa en
+  exclusiva por su área Industrial. Preventa a USD 1.050/m² nave y 630/m²
+  entrepiso; ticket desde USD 260.820; reserva con USD 10.000; 50% de anticipo
+  + 18 cuotas; entrega mediados de 2028. Objetivo: 5-6 unidades en 4 meses con
+  USD 300/mes de Meta y la base propia como motor. Brief cerrado y Ficha
+  Maestra aprobada el 2026-09-07; las diez fases del plan están escritas y la
+  landing maquetada. Competidores directos: **Arbox Norlog II** y **Logipark**,
+  ambos comercializados también por Krak (datos propios en Drive)
 - Pipeline comercial en Tokko Broker: 7 estados configurados con SLAs y lógica de colores. Diseño previo en Excalidraw
 - One-pager de listing: lote en esquina Caballito, Av. Tte. Gral. Donato Álvarez 1104
 - Negociación de englobamiento parcelario para deal de 2 edificios con desarrollador: estrategia con FOMO/aversión a la pérdida y dinámica de propiedad horizontal

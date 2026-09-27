@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hive 2 Storage Park — Naves industriales con entrepiso | Polo Buen Ayre 2</title>
+<meta name="description" content="18 naves industriales con entrepiso privado y más de 7 m de altura libre, sobre el Camino del Buen Ayre. Desde USD 260.820. Se reserva con USD 10.000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   HIVE 2 — LANDING v1
+   Identidad industrial oscura, coherente con el brochure del
+   proyecto (panel sándwich negro, estructura metálica expuesta).
+   Tema único por decisión de marca: no sigue el tema del sistema.
+   Todos los colores se pintan explícitamente.
+   ============================================================ */
+:root{
+  --carbon:#0E1012;
+  --surface:#16191C;
+  --surface-2:#1E2226;
+  --line:#2A2F35;
+  --line-2:#3C434B;
+  --ink:#EDEFF1;
+  --ink-2:#A6ADB5;
+  --ink-3:#737C85;
+  --amber:#F5A623;        /* señalización industrial */
+  --amber-dim:#3A2B10;
+  --green:#5CBF8A;
+  --green-dim:#12261D;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Consolas,monospace;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--carbon);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--amber)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.005em;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,6.2vw,64px);line-height:1.02;text-transform:uppercase}
+h2{font-size:clamp(26px,4vw,40px);line-height:1.08;text-transform:uppercase}
+h3{font-size:21px;line-height:1.2}
+p{margin:0 0 16px;max-width:62ch}
+.eyebrow{
+  font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--amber);margin:0 0 14px;
+}
+
+/* ---------- PLACEHOLDER DE RENDER ---------- */
+.render{
+  border:2px dashed var(--amber);background:
+    repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(245,166,35,.045) 14px,rgba(245,166,35,.045) 28px),
+    var(--surface);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:36px 24px;gap:8px;min-height:240px;
+}
+.render .tag{
+  font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber);
+}
+.render .desc{font-size:15px;color:var(--ink-2);max-width:46ch;margin:0}
+.render .file{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:0}
+.render.tall{min-height:420px}
+.render.wide{min-height:320px}
+
+/* ---------- HERO ---------- */
+.hero{border-bottom:1px solid var(--line);padding:0 0 0}
+.hero-media{position:relative}
+.hero-copy{padding:52px 0 44px}
+.hero h1 span{color:var(--amber);display:block}
+.hero .lead{font-size:20px;color:var(--ink-2);max-width:54ch;margin:18px 0 0}
+.pricebar{
+  display:flex;flex-wrap:wrap;gap:0;margin:32px 0 28px;
+  border:1px solid var(--line-2);width:fit-content;
+}
+.pricebar div{padding:14px 22px;border-right:1px solid var(--line-2)}
+.pricebar div:last-child{border-right:0}
+.pricebar dt{
+  font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 4px;
+}
+.pricebar dd{margin:0;font-family:var(--mono);font-size:19px;font-weight:600;color:var(--ink)}
+.pricebar dd.hl{color:var(--amber)}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-block;font-family:var(--display);font-size:17px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;padding:15px 30px;
+  text-decoration:none;border:2px solid var(--amber);transition:.15s;
+}
+.btn-1{background:var(--amber);color:#14100A}
+.btn-1:hover{background:#FFBB47;border-color:#FFBB47}
+.btn-2{background:transparent;color:var(--amber)}
+.btn-2:hover{background:var(--amber-dim)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ---------- BARRA DE DATOS ---------- */
+.stats{background:var(--amber);color:#14100A}
+.stats .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0}
+.stats div{padding:20px 0;border-right:1px solid rgba(20,16,10,.22)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
+.stats small{
+  font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;opacity:.72;
+}
+
+section{padding:76px 0;border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:38px;max-width:64ch}
+
+/* ---------- RESUELVE ---------- */
+.solves{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:1px;background:var(--line)}
+.solves article{background:var(--surface);padding:28px 26px}
+.solves .n{
+  font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:.1em;
+  display:block;margin-bottom:12px;
+}
+.solves h3{margin-bottom:10px}
+.solves p{font-size:15.5px;color:var(--ink-2);margin:0}
+
+/* ---------- TIPOLOGIAS ---------- */
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:1px;background:var(--line)}
+.unit{background:var(--surface);padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px}
+.unit-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.unit .letter{font-family:var(--display);font-size:38px;font-weight:700;line-height:.9;color:var(--amber)}
+.unit .qty{
+  font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.unit dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+.unit dt{color:var(--ink-3);font-family:var(--display);letter-spacing:.08em;text-transform:uppercase;font-size:11px;align-self:center}
+.unit dd{margin:0;font-family:var(--mono);font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.unit .price{
+  font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);
+  padding-top:12px;border-top:1px solid var(--line);
+}
+.unit a{
+  font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;text-decoration:none;color:var(--amber);margin-top:auto;
+}
+.unit a:hover{text-decoration:underline}
+.units-note{margin-top:22px;font-size:14px;color:var(--ink-3);max-width:70ch}
+
+/* ---------- SEGURIDAD / DOBLE ANILLO ---------- */
+.rings{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
+.ring{border-left:3px solid var(--amber);padding:6px 0 6px 22px}
+.ring .step{
+  font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:.1em;
+  display:block;margin-bottom:8px;
+}
+.ring h3{margin-bottom:8px}
+.ring p{font-size:15.5px;color:var(--ink-2);margin:0}
+.extras{
+  margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none;
+}
+.extras li{
+  font-family:var(--mono);font-size:13px;padding:8px 14px;
+  border:1px solid var(--line-2);color:var(--ink-2);
+}
+
+/* ---------- RESPALDO ---------- */
+.proof{background:var(--surface);border:1px solid var(--line-2);padding:38px 36px}
+.proof .q{
+  font-family:var(--display);font-size:clamp(24px,3.4vw,34px);font-weight:700;
+  line-height:1.1;text-transform:uppercase;margin:0 0 20px;color:var(--ink);
+}
+.proof .q em{color:var(--amber);font-style:normal}
+.proof p{color:var(--ink-2);margin-bottom:0}
+
+/* ---------- PASOS ---------- */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line)}
+.steps article{background:var(--surface);padding:26px 24px;counter-increment:s;position:relative}
+.steps article::before{
+  content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:13px;
+  color:var(--amber);display:block;margin-bottom:12px;letter-spacing:.1em;
+}
+.steps h3{font-size:18px;margin-bottom:8px}
+.steps p{font-size:15px;color:var(--ink-2);margin:0}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:820px}
+details{border-bottom:1px solid var(--line)}
+summary{
+  font-family:var(--display);font-size:19px;font-weight:600;padding:18px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--amber);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+summary:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+details p{padding:0 0 20px;color:var(--ink-2);font-size:16px;margin:0}
+
+/* ---------- FORM ---------- */
+.final{background:var(--surface-2);border-bottom:0}
+.final-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+form{display:grid;gap:14px}
+label{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+input,select{
+  width:100%;background:var(--carbon);border:1px solid var(--line-2);color:var(--ink);
+  font-family:var(--body);font-size:16px;padding:13px 14px;margin-top:6px;border-radius:0;
+}
+input:focus,select:focus{outline:2px solid var(--amber);outline-offset:0;border-color:var(--amber)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-3);line-height:1.45}
+.consent input{width:auto;margin:3px 0 0}
+button{
+  font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--amber);color:#14100A;border:0;
+  padding:16px 28px;cursor:pointer;margin-top:4px;
+}
+button:hover{background:#FFBB47}
+
+footer{background:var(--carbon);padding:44px 0 56px;font-size:14px;color:var(--ink-3)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+footer a{color:var(--ink-2)}
+.legal{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.55;max-width:none}
+
+/* ---------- WHATSAPP FIJO (MOBILE) ---------- */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
+  background:var(--amber);padding:14px 20px;text-align:center;
+  font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:#14100A;text-decoration:none;
+}
+@media (max-width:760px){
+  .sticky{display:block}
+  body{padding-bottom:56px}
+  .final-grid{grid-template-columns:1fr;gap:40px}
+  section{padding:56px 0}
+  .pricebar{width:100%}
+  .pricebar div{flex:1 1 140px;border-right:0;border-bottom:1px solid var(--line-2)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Nota de obra: bloque visible solo para el equipo, se borra al publicar */
+.buildnote{background:var(--amber-dim);border-top:3px solid var(--amber);padding:22px 0;font-size:14.5px}
+.buildnote .wrap{max-width:var(--max)}
+.buildnote b{color:var(--amber);font-family:var(--display);letter-spacing:.1em;text-transform:uppercase;font-size:13px}
+.buildnote ul{margin:10px 0 0;padding-left:20px;color:var(--ink-2)}
+.buildnote li{margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 01 · HERO ══════════ -->
+<header class="hero">
+  <div class="hero-media">
+    <div class="render wide">
+      <span class="tag">▸ Aquí va render</span>
+      <p class="desc">Exterior del parque, fachada al atardecer. Plano ancho, apaisado, con cielo — es la primera imagen del sitio.</p>
+      <p class="file">RENDER EXTERIOR HIVE 2 - FACHADA ATARDECER.png · ya disponible en Drive</p>
+    </div>
+  </div>
+  <div class="wrap hero-copy">
+    <p class="eyebrow">Polo Industrial Buen Ayre 2 · General San Martín</p>
+    <h1>18 naves industriales<span>con entrepiso privado</span></h1>
+    <p class="lead">Más de 7 metros de altura libre, calles internas de 10 metros y doble anillo de seguridad, sobre el Camino del Buen Ayre.</p>
+
+    <dl class="pricebar">
+      <div><dt>Desde</dt><dd class="hl">USD 260.820</dd></div>
+      <div><dt>Se reserva con</dt><dd>USD 10.000</dd></div>
+      <div><dt>Entrega</dt><dd>Mediados 2028</dd></div>
+    </dl>
+
+    <div class="cta-row">
+      <a class="btn btn-1" href="https://wa.me/5491100000000?text=Hola,%20quiero%20informaci%C3%B3n%20de%20Hive%202">Consultar por WhatsApp</a>
+      <a class="btn btn-2" href="#tipologias">Ver tipologías</a>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 02 · BARRA DE DATOS ══════════ -->
+<div class="stats">
+  <div class="wrap">
+    <div><b>18</b><small>Unidades</small></div>
+    <div><b>276 – 907</b><small>m² totales</small></div>
+    <div><b>+7 m</b><small>Altura libre</small></div>
+    <div><b>10 m</b><small>Ancho de calle</small></div>
+  </div>
+</div>
+
+<!-- ══════════ 03 · QUÉ RESUELVE ══════════ -->
+<section id="producto">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">El producto</p>
+      <h2>El metro cuadrado no dice cuánto podés operar</h2>
+      <p>Una nave de 207 m² con cuatro metros de altura y una de 207 m² con más de siete no son el mismo producto. Y si además trae entrepiso privado, tampoco es una nave de 207.</p>
+    </div>
+
+    <div class="solves">
+      <article>
+        <span class="n">01</span>
+        <h3>La misma huella, usada dos veces</h3>
+        <p>Abajo la operación, con más de 7 m de altura libre para estibar hacia arriba. Arriba el entrepiso privado: oficina, vestuario, archivo o repuestos. Superficie que no paga suelo, porque está adentro de la misma nave.</p>
+      </article>
+      <article>
+        <span class="n">02</span>
+        <h3>Entra y gira el camión</h3>
+        <p>Calles internas de hormigón de 10 metros de ancho, con circulación separada entre tráfico pesado y liviano, y playa para semirremolque. Sin maniobrar en tres tiempos.</p>
+      </article>
+      <article>
+        <span class="n">03</span>
+        <h3>Trabajás, no solo guardás</h3>
+        <p>Potencia monofásica y trifásica, fibra óptica y red de incendios. Cada unidad con acceso independiente y cortina metálica motorizada.</p>
+      </article>
+      <article>
+        <span class="n">04</span>
+        <h3>Habilitado para lo que hacés</h3>
+        <p>Zonificación de categorías I y II: toda actividad industrial, comercial, logística y de depósito, excepto las complejas — químicos y productos con impacto ambiental.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03b · CORTE DE NAVE ══════════ -->
+<section>
+  <div class="wrap">
+    <div class="render tall">
+      <span class="tag">▸ Aquí va render</span>
+      <p class="desc"><strong>Pieza clave de esta sección.</strong> Corte o axonometría de una nave mostrando los más de 7 m de altura libre y el entrepiso privado, con figura humana y rack para dar escala. Sin esta imagen, el argumento central del producto se cuenta solo con palabras.</p>
+      <p class="file">A producir — pedido a Stark, prioridad 2</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 · TIPOLOGÍAS ══════════ -->
+<section id="tipologias">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Tipologías</p>
+      <h2>Diez medidas, tres escalas</h2>
+      <p>Desde la unidad Compact para e-commerce, profesionales y comercio, hasta las Large para operadores logísticos e industria.</p>
+    </div>
+
+    <div class="units">
+      <article class="unit">
+        <div class="unit-top"><span class="letter">J</span><span class="qty">6 unidades</span></div>
+        <dl><dt>Nave</dt><dd>207 m²</dd><dt>Entrepiso</dt><dd>69 m²</dd><dt>Total</dt><dd>276 m²</dd></dl>
+        <div class="price">USD 260.820</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20J%20de%20Hive%202%20(276%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">G</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>210 m²</dd><dt>Entrepiso</dt><dd>108 m²</dd><dt>Total</dt><dd>318 m²</dd></dl>
+        <div class="price">USD 288.540</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20G%20de%20Hive%202%20(318%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">B</span><span class="qty">2 unidades</span></div>
+        <dl><dt>Nave</dt><dd>244 m²</dd><dt>Entrepiso</dt><dd>81 m²</dd><dt>Total</dt><dd>325 m²</dd></dl>
+        <div class="price">USD 307.230</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20B%20de%20Hive%202%20(325%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">A</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>266 m²</dd><dt>Entrepiso</dt><dd>94 m²</dd><dt>Total</dt><dd>360 m²</dd></dl>
+        <div class="price">USD 338.520</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20A%20de%20Hive%202%20(360%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">F</span><span class="qty">Reservada</span></div>
+        <dl><dt>Nave</dt><dd>273 m²</dd><dt>Entrepiso</dt><dd>105 m²</dd><dt>Total</dt><dd>378 m²</dd></dl>
+        <div class="price">USD 352.800</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20saber%20si%20hay%20otra%20unidad%20como%20la%20F%20de%20Hive%202">Consultar disponibilidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">I</span><span class="qty">2 unidades</span></div>
+        <dl><dt>Nave</dt><dd>280 m²</dd><dt>Entrepiso</dt><dd>96 m²</dd><dt>Total</dt><dd>376 m²</dd></dl>
+        <div class="price">USD 354.480</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20I%20de%20Hive%202%20(376%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">C</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>300 m²</dd><dt>Entrepiso</dt><dd>96 m²</dd><dt>Total</dt><dd>396 m²</dd></dl>
+        <div class="price">USD 375.480</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20C%20de%20Hive%202%20(396%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">E</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>314 m²</dd><dt>Entrepiso</dt><dd>105 m²</dd><dt>Total</dt><dd>419 m²</dd></dl>
+        <div class="price">USD 395.850</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20E%20de%20Hive%202%20(419%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">D</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>369 m²</dd><dt>Entrepiso</dt><dd>121 m²</dd><dt>Total</dt><dd>490 m²</dd></dl>
+        <div class="price">USD 463.680</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20D%20de%20Hive%202%20(490%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+      <article class="unit">
+        <div class="unit-top"><span class="letter">H</span><span class="qty">1 unidad</span></div>
+        <dl><dt>Nave</dt><dd>675 m²</dd><dt>Entrepiso</dt><dd>232 m²</dd><dt>Total</dt><dd>907 m²</dd></dl>
+        <div class="price">USD 854.910</div>
+        <a href="https://wa.me/5491100000000?text=Hola,%20me%20interesa%20la%20tipolog%C3%ADa%20H%20de%20Hive%202%20(907%20m%C2%B2)">Consultar esta unidad →</a>
+      </article>
+    </div>
+    <p class="units-note">Precios de preventa: USD 1.050 por m² de nave y USD 630 por m² de entrepiso. Valores sujetos a modificación hasta la firma de la reserva.</p>
+  </div>
+</section>
+
+<!-- ══════════ 05 · UBICACIÓN Y SEGURIDAD ══════════ -->
+<section id="ubicacion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Ubicación</p>
+      <h2>Sobre el Camino del Buen Ayre</h2>
+      <p>Colectora norte del Camino del Buen Ayre, casi cruce De Benedetti. Polo Industrial Buen Ayre 2, partido de General San Martín.</p>
+    </div>
+
+    <div class="render wide">
+      <span class="tag">▸ Aquí va mapa</span>
+      <p class="desc">Mapa embebido con el punto del predio y los tiempos de acceso a los nodos logísticos del corredor. Alternativa: plano aéreo del drone mostrando el predio y su conexión con la autopista.</p>
+      <p class="file">A producir — jornada de drone de Krak Studio</p>
+    </div>
+  </div>
+</section>
+
+<section id="seguridad">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Seguridad</p>
+      <h2>Doble anillo</h2>
+      <p>Para llegar a tu nave hay que pasar dos controles. Son dos perímetros, no uno.</p>
+    </div>
+
+    <div class="rings">
+      <div class="ring">
+        <span class="step">ANILLO 01</span>
+        <h3>Ingreso al parque industrial</h3>
+        <p>Primer control de acceso, en la entrada al Polo Industrial Buen Ayre 2. Nadie llega al predio sin pasar por acá.</p>
+      </div>
+      <div class="ring">
+        <span class="step">ANILLO 02</span>
+        <h3>Ingreso al predio de Hive 2</h3>
+        <p>Segundo control, ya dentro del parque: pórtico de control en el acceso exclusivo al predio del storage.</p>
+      </div>
+    </div>
+
+    <ul class="extras">
+      <li>Cerco perimetral de 2,20 m</li>
+      <li>Pórtico de control de ingreso</li>
+      <li>Iluminación LED en calles internas</li>
+      <li>Red de incendios</li>
+      <li>Circulación separada carga / liviano</li>
+    </ul>
+
+    <div style="margin-top:34px">
+      <div class="render">
+        <span class="tag">▸ Aquí va render</span>
+        <p class="desc">Pórtico de control de ingreso al predio. Idealmente acompañado de una segunda imagen del acceso al Polo Industrial, para que el doble anillo se vea, no solo se lea.</p>
+        <p class="file">RENDER INGRESO PÓRTICO corregido.png · disponible · falta la del acceso al parque</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 · RESPALDO ══════════ -->
+<section id="respaldo">
+  <div class="wrap">
+    <p class="eyebrow">Respaldo</p>
+    <div class="proof">
+      <p class="q">El primero lo entregaron.<br><em>Está enfrente, lleno.</em></p>
+      <p>Hive 1, del mismo desarrollador, está cruzando la calle: se vendió entero y hoy opera lleno de empresas. Hive 2 no es la repetición de aquel, es el paso siguiente — calles más anchas, que fue el aprendizaje del primero, más altura libre, entrepiso privado en cada unidad y doble anillo de seguridad.</p>
+      <p><strong>El primero demostró que la zona funciona. El segundo está hecho para funcionar mejor.</strong></p>
+    </div>
+
+    <div style="margin-top:28px">
+      <div class="render">
+        <span class="tag">▸ Aquí va imagen aérea</span>
+        <p class="desc">Plano de drone del corredor mostrando el predio de Hive 2 y, al fondo, el parque de enfrente. <strong>Nota legal: no está autorizado filmar ni fotografiar dentro de Hive 1.</strong> La toma es a distancia, desde el predio propio.</p>
+        <p class="file">A producir — jornada de drone de Krak Studio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 · CÓMO SE COMPRA ══════════ -->
+<section id="como">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Cómo se compra</p>
+      <h2>Cuatro pasos</h2>
+    </div>
+    <div class="steps">
+      <article>
+        <h3>Reservás</h3>
+        <p>Con una seña de USD 10.000, imputable a cuenta del precio. Tenés 60 días para definir.</p>
+      </article>
+      <article>
+        <h3>Reunión con la desarrolladora</h3>
+        <p>Obra, masterplan y estructura de la operación, con Stark Desarrollos.</p>
+      </article>
+      <article>
+        <h3>Firmás la adhesión</h3>
+        <p>Contrato de adhesión al fideicomiso inmobiliario de construcción al costo.</p>
+      </article>
+      <article>
+        <h3>Recibís la unidad</h3>
+        <p>Posesión al terminar la obra, estimada para mediados de 2028.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 · FAQ ══════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Lo que todos preguntan</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>¿Cuánto necesito para reservar?</summary>
+        <p>USD 10.000 de seña, que se imputan a cuenta del precio total. La reserva tiene una vigencia de 60 días corridos, dentro de los cuales se firma el contrato de adhesión al fideicomiso.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se paga el resto?</summary>
+        <p>El esquema es de 50% de anticipo y 18 cuotas. El detalle, los vencimientos y las alternativas se conversan en la reunión con la desarrolladora.</p>
+      </details>
+      <details>
+        <summary>¿Qué puedo hacer adentro de la nave?</summary>
+        <p>El predio tiene zonificación de categorías I y II: se admite toda actividad industrial, comercial, logística y de depósito, excepto las actividades complejas — químicos y productos con impacto ambiental.</p>
+      </details>
+      <details>
+        <summary>¿Cuándo se entrega?</summary>
+        <p>La finalización de obra está estimada para mediados de 2028.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se instrumenta la compra?</summary>
+        <p>Mediante adhesión a un fideicomiso inmobiliario de construcción al costo, constituido para el desarrollo de Hive 2 Storage Park.</p>
+      </details>
+      <details>
+        <summary>¿Cuándo escrituro?</summary>
+        <p>La escritura depende de los plazos de subdivisión de la Provincia de Buenos Aires, que no maneja el desarrollador. Lo que tenés desde el primer día es tu posición en el fideicomiso, y la posesión de la unidad al terminar la obra.</p>
+      </details>
+      <details>
+        <summary>¿Qué seguridad tiene el predio?</summary>
+        <p>Doble anillo de control de acceso: uno al ingresar al Polo Industrial Buen Ayre 2 y otro al ingresar al predio de Hive 2. Sumado a cerco perimetral de 2,20 m, pórtico de control e iluminación LED en todas las calles internas.</p>
+      </details>
+      <details>
+        <summary>¿Se puede visitar?</summary>
+        <p>Sí, con turno previo. Escribinos por WhatsApp y coordinamos.</p>
+      </details>
+    </div>
+
+    <div class="buildnote" style="margin-top:36px;border-top:3px solid var(--amber)">
+      <div class="wrap" style="padding:0">
+        <b>▸ Nota de obra — borrar antes de publicar</b>
+        <ul>
+          <li><strong>Faltan dos FAQ</strong> que hoy no se pueden responder y no se publican inventadas: <em>¿cuánto son las expensas?</em> y <em>¿puedo unir dos unidades?</em> Ambas pendientes de Stark.</li>
+          <li>Las superficies y precios de las tipologías salen del brochure vigente. <strong>Actualizar cuando llegue el cuadro definitivo de las 18 unidades.</strong> Falta identificar la unidad n.º 18.</li>
+          <li>Reemplazar los <code>wa.me/5491100000000</code> por el número real de guardia comercial.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 09 · CIERRE + FORMULARIO ══════════ -->
+<section class="final" id="contacto">
+  <div class="wrap">
+    <div class="final-grid">
+      <div>
+        <p class="eyebrow">Consultá</p>
+        <h2>18 naves. Se reservan con USD 10.000.</h2>
+        <p style="color:var(--ink-2);font-size:18px">Escribinos por WhatsApp y te pasamos las tipologías disponibles, el plano del masterplan y el esquema de pago completo.</p>
+        <div class="cta-row" style="margin-top:26px">
+          <a class="btn btn-1" href="https://wa.me/5491100000000?text=Hola,%20quiero%20informaci%C3%B3n%20de%20Hive%202">Consultar por WhatsApp</a>
+        </div>
+        <p style="margin-top:28px;color:var(--ink-3);font-size:15px">¿Preferís que te escribamos nosotros? Dejanos tus datos y te contactamos dentro de la hora, en horario comercial.</p>
+      </div>
+
+      <form action="#" method="post" novalidate>
+        <div>
+          <label for="nombre">Nombre y apellido</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="tel">Teléfono</label>
+          <input id="tel" name="telefono" type="tel" autocomplete="tel" required>
+        </div>
+        <div>
+          <label for="mail">Email</label>
+          <input id="mail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="tipo">Tipología de interés</label>
+          <select id="tipo" name="tipologia">
+            <option value="">Todavía no sé</option>
+            <option value="J">J · 276 m² · USD 260.820</option>
+            <option value="G">G · 318 m² · USD 288.540</option>
+            <option value="B">B · 325 m² · USD 307.230</option>
+            <option value="A">A · 360 m² · USD 338.520</option>
+            <option value="I">I · 376 m² · USD 354.480</option>
+            <option value="F">F · 378 m² · USD 352.800</option>
+            <option value="C">C · 396 m² · USD 375.480</option>
+            <option value="E">E · 419 m² · USD 395.850</option>
+            <option value="D">D · 490 m² · USD 463.680</option>
+            <option value="H">H · 907 m² · USD 854.910</option>
+          </select>
+        </div>
+        <div>
+          <label for="uso">Uso previsto</label>
+          <select id="uso" name="uso">
+            <option value="inversion">Inversión</option>
+            <option value="propio">Uso propio de mi empresa</option>
+            <option value="indefinido">Todavía no lo definí</option>
+          </select>
+        </div>
+        <label class="consent" for="ok">
+          <input id="ok" name="consentimiento" type="checkbox" required>
+          <span>Autorizo el tratamiento de mis datos personales para ser contactado por esta consulta, conforme a la <a href="/privacidad">política de privacidad</a> (Ley 25.326).</span>
+        </label>
+        <button type="submit">Quiero que me contacten</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 10 · PIE ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p style="font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin:0 0 6px">Hive 2 Storage Park</p>
+        <p style="margin:0">Camino del Buen Ayre y De Benedetti<br>Polo Industrial Buen Ayre 2 · General San Martín</p>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><strong style="color:var(--ink-2)">Comercializa</strong></p>
+        <p style="margin:0">Krak Real Estate · Área Industrial<br><a href="https://wa.me/5491100000000">WhatsApp</a> · <a href="mailto:industrial@krak.com.ar">industrial@krak.com.ar</a></p>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><strong style="color:var(--ink-2)">Desarrolla</strong></p>
+        <p style="margin:0">Stark Desarrollos S.R.L.</p>
+      </div>
+    </div>
+    <p class="legal">
+      Las imágenes son ilustrativas y no contractuales. Las superficies son aproximadas y pueden ajustarse conforme al plano definitivo de subdivisión. Los precios están expresados en dólares estadounidenses y están sujetos a modificación hasta la firma de la reserva. La operación se instrumenta mediante adhesión a un fideicomiso inmobiliario de construcción al costo; los plazos de escrituración dependen de la tramitación de subdivisión ante los organismos de la Provincia de Buenos Aires. La fecha de finalización de obra es estimada.<br><br>
+      <span style="color:var(--amber)">▸ Nota de obra — completar antes de publicar:</span> matrícula del corredor público responsable, CUIT, domicilio de la oficina y enlaces a política de privacidad y términos.
+    </p>
+  </div>
+</footer>
+
+<a class="sticky" href="https://wa.me/5491100000000?text=Hola,%20quiero%20informaci%C3%B3n%20de%20Hive%202">Consultar por WhatsApp</a>
+
+</body>
+</html>
