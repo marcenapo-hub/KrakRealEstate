@@ -69,11 +69,13 @@ seguía vigente. Está derogado por el art. 67 de la Ley 27.743 desde julio de
 2024. Se corrigió, pero el episodio fijó el criterio.
 
 1. **Clasificar todo dato antes de ponerlo en pantalla.**
-   - *Estructural*: cómo funciona el instrumento. No caduca.
-   - *Coyuntural*: valor UVA, IPC, tasas. Caduca. Lleva fecha visible.
-   - *Por entidad*: LTV, cuota/ingreso, score, plazos. **Nunca como regla
-     universal.** Siempre "depende del banco".
-   - *Hipotético*: los ejemplos numéricos. Marcados como tales en la diapositiva.
+
+    - *Estructural*: cómo funciona el instrumento. No caduca.
+    - *Coyuntural*: valor UVA, IPC, tasas. Caduca. Lleva fecha visible.
+    - *Por entidad*: LTV, cuota/ingreso, score, plazos. **Nunca como regla
+      universal.** Siempre "depende del banco".
+    - *Hipotético*: los ejemplos numéricos. Marcados como tales en la diapositiva.
+
 2. **Fecha de corte visible** en carátula, cierre y notas del orador, más la
    lista de qué verificar antes de volver a dictar.
 3. **Sin pronósticos** de inflación, dólar ni precios.
