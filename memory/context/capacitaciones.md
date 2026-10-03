@@ -51,8 +51,9 @@ la sala.** No saltearlo nunca: pptxgenjs no avisa cuando el texto no entra.
 | Prospección | `capacitaciones/prospeccion/` | 11 | Lista |
 | Prospección avanzada | `capacitaciones/prospeccion/` | 14 | Lista |
 | Créditos hipotecarios UVA | `capacitaciones/creditos-uva/` | 18 | Lista + guion + PDF |
+| Co-broking: compartir honorarios con colegas | `capacitaciones/co-broking/` | 14 | Lista, falta validar con Marce (ver Pendiente) |
 
-Regenerar: `npm run impuestos` · `prospeccion` · `prospeccion-avanzada` · `creditos-uva`.
+Regenerar: `npm run impuestos` · `prospeccion` · `prospeccion-avanzada` · `creditos-uva` · `co-broking`.
 Requiere `npm install` (pptxgenjs). Para el QA visual: `libreoffice-impress`,
 `poppler-utils` y `fonts-inter`.
 
@@ -138,6 +139,8 @@ de los litros de nafta, y los cinco segundos tras leer la tabla del año 12.
 ---
 
 ## Pendiente
+
+- **Co-broking (2026-10-03)**: contenido armado con el criterio dictado por Marce (formas de reparto, qué cambia por producto, convenio vs reserva, mail y WhatsApp como prueba, preguntar primero). Antes de dictar, confirmar: (1) el alcance de la tercera forma de reparto, "a veces te comparten el uno" quedó como porcentaje fijo, por ejemplo 1%; (2) que la lectura de "mitad del comprador" del ejemplo numérico es la correcta (el colega con la propiedad conserva el honorario del vendedor); (3) la regla para naves, locales y alquileres, que figura como "se acuerda"; (4) la regla de comisión entre unidades del grupo, no definida. No hay casos reales: los tres de la diapositiva 11 son hipotéticos y el taller de la 12 junta los del equipo para la próxima versión.
 
 - **Unificación de las dos capacitaciones de prospección**: estructura propuesta,
   **esperando aprobación de Marce**. Quedaron cuatro preguntas abiertas: 25

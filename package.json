@@ -7,7 +7,8 @@
     "impuestos": "node capacitaciones/impuestos/generar-deck.js capacitaciones/impuestos/Capacitacion-Impuestos-Agentes-Inmobiliarios.pptx",
     "prospeccion": "node capacitaciones/prospeccion/generar-prospeccion.js capacitaciones/prospeccion/Prospeccion.pptx",
     "prospeccion-avanzada": "node capacitaciones/prospeccion/generar-prospeccion-avanzada.js capacitaciones/prospeccion/Prospeccion-Tecnicas-Avanzadas.pptx",
-    "creditos-uva": "node capacitaciones/creditos-uva/generar-creditos-uva.js capacitaciones/creditos-uva/Capacitacion-Creditos-Hipotecarios-UVA.pptx"
+    "creditos-uva": "node capacitaciones/creditos-uva/generar-creditos-uva.js capacitaciones/creditos-uva/Capacitacion-Creditos-Hipotecarios-UVA.pptx",
+    "co-broking": "node capacitaciones/co-broking/generar-co-broking.js capacitaciones/co-broking/Capacitacion-Co-broking.pptx"
   },
   "dependencies": {
     "pptxgenjs": "^4.0.1"
