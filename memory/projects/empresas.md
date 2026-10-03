@@ -7,6 +7,19 @@
 - Negociación de englobamiento parcelario para deal de 2 edificios con desarrollador: estrategia con FOMO/aversión a la pérdida y dinámica de propiedad horizontal
 - Consulta registral AFIP/ARCA para comprador en operación
 
+**Capacitaciones internas** (ver `memory/context/capacitaciones.md`)
+- Sistema de decks generados por código sobre `capacitaciones/krak.js`: una sola
+  fuente de verdad de la marca para las cuatro capacitaciones. Cambiar la marca
+  es editar un archivo y regenerar.
+- Impuestos para agentes (13 slides) · Prospección (11) · Prospección avanzada (14)
+- **Créditos hipotecarios UVA (18 slides)**: la más completa. Incluye guion
+  hablado palabra por palabra (~38 min), PDF de 21 páginas y material de
+  referencia con ejemplo numérico, mitos, FAQs y cheat sheet. Datos al 19/09/2026.
+  Pensada también para grabarse en video.
+- Corrección relevante: el ITI está derogado (art. 67, Ley 27.743, julio 2024).
+  De ahí salió la regla de clasificar cada dato como estructural / coyuntural /
+  por entidad / hipotético, con fecha de corte visible.
+
 **Procesos internos (documentos Word creados)**
 - Roles y responsabilidades de socios
 - Reunión semanal de socios (45 min)
