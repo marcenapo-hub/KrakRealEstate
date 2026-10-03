@@ -184,6 +184,47 @@ function card(s, o) {
   );
 }
 
+/* ============================================ 6 bis. CLARIDAD Y PALANCA */
+{
+  const s = d.slide(
+    "Acordar el reparto también da palanca",
+    "Con un número claro sobre la mesa, hay de dónde mover."
+  );
+  const cols = [
+    {
+      x: L, fill: BLUE, h: "CUANDO HAY QUE CEDER",
+      sub: "Vos tenés margen para flexibilizar",
+      items: [
+        "El cliente pide un descuento sobre los honorarios para poder cerrar.",
+        "En un caso extremo, se le cede más al colega para que haga el esfuerzo que la operación necesita.",
+      ],
+    },
+    {
+      x: L + 4.52, fill: GRAYC, h: "CUANDO TE COMPARTEN",
+      sub: "Podés pedir más, con argumentos creíbles",
+      items: [
+        "“Mi cliente ya me pidió un descuento.”",
+        "“Con este monto no me cierra dedicarle tiempo a la operación.”",
+        "“Tengo un acuerdo con un productor o asesor del cliente.”",
+      ],
+    },
+  ];
+  cols.forEach((c) => {
+    bandHeader(s, c.x, 1.3, 4.32, c.h, c.fill);
+    round(s, { x: c.x, y: 1.86, w: 4.32, h: 2.2, fill: { color: LIGHT } });
+    s.addText(c.sub, { x: c.x + 0.24, y: 1.96, w: 3.9, h: 0.3, margin: 0, valign: "middle", fontFace: F, fontSize: 11.5, bold: true, color: BLUE });
+    s.addText(
+      c.items.map((x, i) => ({ text: x, options: { bullet: { indent: 14 }, breakLine: i < c.items.length - 1 } })),
+      { x: c.x + 0.28, y: 2.34, w: 3.84, h: 1.65, margin: 0, valign: "top", fontFace: F, fontSize: 11, color: INK, paraSpaceAfter: 7 }
+    );
+  });
+  keyBar(s, 4.3, "PARA QUÉ SIRVE ACORDARLO PRIMERO",
+    "Cada uno sabe por cuánto trabaja y hay margen para negociar. Los argumentos tienen que ser reales.");
+  s.addNotes(
+    "Comunicar el reparto desde el principio sirve para dos cosas. Primero, claridad: cada uno sabe por lo que trabaja. Segundo, palanca: con un número acordado, hay de dónde mover. Lado uno, cuando hay que ceder: si el cliente pide un descuento sobre los honorarios para poder cerrar, o si en un caso extremo hace falta ceder un poco más al colega para que haga los esfuerzos necesarios para cerrar, existe un margen para hacerlo. Lado dos, cuando nos comparten un porcentaje: se puede pedir más con argumentos creíbles, por ejemplo que mi cliente ya me pidió un descuento, que el monto no me sirve para dedicarle tiempo a la operación, o que tengo un acuerdo con un productor o asesor del cliente. Matiz para el equipo: los argumentos tienen que ser reales. Es un agregado de esta presentación respecto del criterio dictado; si se quiere que sean solo 'creíbles', ajustar. Cualquier cambio de reparto se vuelve a dejar por escrito, como todo lo demás."
+  );
+}
+
 /* ================================================ 7. DOS FORMAS DE ASEGURARLO */
 {
   const s = d.slide(
