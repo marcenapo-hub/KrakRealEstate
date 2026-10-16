@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Reparto de Honorarios — Krak Real Estate</title>
+<style>
+  :root {
+    --azul: #08407C;
+    --azul-claro: #1E63AC;
+    --gris-oscuro: #4E586E;
+    --gris-medio: #7C8594;
+    --gris-claro: #C3C3C3;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(160deg, #eef0f3 0%, #dde1e7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    color: var(--gris-oscuro);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(8, 64, 124, 0.15), 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-claro) 100%);
+    color: #fff;
+    padding: 28px 32px;
+  }
+
+  .card-header h1 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .card-header p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  .card-body {
+    padding: 28px 32px 32px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    margin-bottom: 6px;
+  }
+
+  .field input[type="number"],
+  .field select {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--gris-claro);
+    font-size: 15px;
+    color: var(--gris-oscuro);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field input[type="number"]:focus,
+  .field select:focus {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(30, 99, 172, 0.15);
+  }
+
+  .field select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' stroke='%234E586E' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  #captor-field {
+    display: none;
+  }
+
+  #captor-field.visible {
+    display: block;
+  }
+
+  .rule-box {
+    display: flex;
+    gap: 10px;
+    background: #f4f6f9;
+    border-left: 4px solid var(--azul);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: var(--gris-oscuro);
+    margin: 22px 0;
+    line-height: 1.4;
+  }
+
+  .rule-box .icon {
+    font-weight: 700;
+    color: var(--azul);
+    flex-shrink: 0;
+  }
+
+  .partner-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .partner-row {
+    background: #fafbfc;
+    border: 1px solid #ecedf0;
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+
+  .partner-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .avatar.marcelo { background: linear-gradient(135deg, #08407C, #2A6FB5); }
+  .avatar.mariano { background: linear-gradient(135deg, #4E586E, #7C8594); }
+  .avatar.pablo   { background: linear-gradient(135deg, #7C8594, #4E586E); }
+
+  .partner-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .partner-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--gris-oscuro);
+  }
+
+  .partner-name .pct {
+    font-weight: 500;
+    color: var(--gris-medio);
+    font-size: 13px;
+  }
+
+  .partner-amount {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--azul);
+    white-space: nowrap;
+  }
+
+  .progress-track {
+    margin-top: 10px;
+    height: 8px;
+    background: #e8eaee;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.35s ease;
+  }
+
+  .progress-fill.marcelo { background: linear-gradient(90deg, #08407C, #2A6FB5); }
+  .progress-fill.mariano { background: linear-gradient(90deg, #4E586E, #7C8594); }
+  .progress-fill.pablo   { background: linear-gradient(90deg, #7C8594, #4E586E); }
+
+  .total-check {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13.5px;
+    color: #1f8a4c;
+    font-weight: 600;
+  }
+
+  .total-check .x {
+    color: #c0392b;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h1>Reparto de honorarios</h1>
+    <p>Krak Real Estate — Marcelo · Mariano · Pablo</p>
+  </div>
+
+  <div class="card-body">
+    <div class="field">
+      <label for="comision">Comisión total de la operación (USD)</label>
+      <input type="number" id="comision" min="0" step="0.01" value="10000">
+    </div>
+
+    <div class="field">
+      <label for="tipo">Tipo de operación</label>
+      <select id="tipo">
+        <option value="residencial">Residencial</option>
+        <option value="industrial">Industrial</option>
+        <option value="comercial">Comercial (locales / oficinas)</option>
+      </select>
+    </div>
+
+    <div class="field" id="captor-field">
+      <label for="captor">¿Quién captó?</label>
+      <select id="captor">
+        <option value="mariano">Mariano</option>
+        <option value="pablo">Pablo</option>
+      </select>
+    </div>
+
+    <div class="rule-box">
+      <span class="icon">ⓘ</span>
+      <span id="rule-text">—</span>
+    </div>
+
+    <div class="partner-list">
+      <div class="partner-row">
+        <div class="partner-top">
+          <div class="avatar marcelo">M</div>
+          <div class="partner-info">
+            <div class="partner-name">Marcelo <span class="pct" id="pct-marcelo">(0%)</span></div>
+          </div>
+          <div class="partner-amount" id="amount-marcelo">$0</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill marcelo" id="bar-marcelo" style="width:0%"></div></div>
+      </div>
+
+      <div class="partner-row">
+        <div class="partner-top">
+          <div class="avatar mariano">MA</div>
+          <div class="partner-info">
+            <div class="partner-name">Mariano <span class="pct" id="pct-mariano">(0%)</span></div>
+          </div>
+          <div class="partner-amount" id="amount-mariano">$0</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill mariano" id="bar-mariano" style="width:0%"></div></div>
+      </div>
+
+      <div class="partner-row">
+        <div class="partner-top">
+          <div class="avatar pablo">P</div>
+          <div class="partner-info">
+            <div class="partner-name">Pablo <span class="pct" id="pct-pablo">(0%)</span></div>
+          </div>
+          <div class="partner-amount" id="amount-pablo">$0</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill pablo" id="bar-pablo" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="total-check" id="total-check">✓ El total coincide</div>
+  </div>
+</div>
+
+<script>
+  // NOTA: los gastos operativos (50/25/25 sobre el consolidado mensual) son
+  // una capa independiente que NO se calcula acá — esta calculadora solo
+  // reparte el honorario de una operación puntual.
+
+  /**
+   * Calcula el reparto de un honorario total entre Marcelo, Mariano y Pablo.
+   * @param {number} total - comisión total de la operación (USD)
+   * @param {"residencial"|"industrial"|"comercial"} tipo
+   * @param {"mariano"|"pablo"} [captor] - solo aplica si tipo !== "comercial"
+   * @returns {{marcelo:number, mariano:number, pablo:number, ruleText:string}}
+   */
+  function calcularReparto(total, tipo, captor) {
+    let pctMariano, pctPablo, ruleText;
+
+    if (tipo === "comercial") {
+      // Regla: Comercial -> 25% / 25% entre Mariano y Pablo, sin distinción de captador.
+      pctMariano = 0.25;
+      pctPablo = 0.25;
+      ruleText = "Comercial: reparto fijo 25% / 25% entre Mariano y Pablo.";
+    } else if (tipo === "residencial") {
+      if (captor === "mariano") {
+        // Regla: sector propio -> captador 40%, el otro 10%.
+        pctMariano = 0.40;
+        pctPablo = 0.10;
+        ruleText = "Residencial captada por Mariano (sector propio): Mariano 40%, Pablo 10%.";
+      } else {
+        // Regla: sector cruzado -> captador 30%, dueño del sector 20%.
+        pctPablo = 0.30;
+        pctMariano = 0.20;
+        ruleText = "Residencial captada por Pablo (sector cruzado): Pablo 30%, Mariano 20%.";
+      }
+    } else { // industrial
+      if (captor === "pablo") {
+        // Regla: sector propio -> captador 40%, el otro 10%.
+        pctPablo = 0.40;
+        pctMariano = 0.10;
+        ruleText = "Industrial captada por Pablo (sector propio): Pablo 40%, Mariano 10%.";
+      } else {
+        // Regla: sector cruzado -> captador 30%, dueño del sector 20%.
+        pctMariano = 0.30;
+        pctPablo = 0.20;
+        ruleText = "Industrial captada por Mariano (sector cruzado): Mariano 30%, Pablo 20%.";
+      }
+    }
+
+    const montoMariano = round2(total * pctMariano);
+    const montoPablo = round2(total * pctPablo);
+    // Regla: Marcelo se calcula por diferencia contra el total (piso fijo del
+    // 50%, pero por diferencia se evita cualquier residuo de redondeo).
+    const montoMarcelo = round2(total - montoMariano - montoPablo);
+
+    return {
+      marcelo: montoMarcelo,
+      mariano: montoMariano,
+      pablo: montoPablo,
+      ruleText: ruleText
+    };
+  }
+
+  function round2(n) {
+    return Math.round((n + Number.EPSILON) * 100) / 100;
+  }
+
+  function formatUSD(n) {
+    return n.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
+
+  function render() {
+    const total = parseFloat(document.getElementById("comision").value) || 0;
+    const tipo = document.getElementById("tipo").value;
+    const captorField = document.getElementById("captor-field");
+
+    if (tipo === "comercial") {
+      captorField.classList.remove("visible");
+    } else {
+      captorField.classList.add("visible");
+    }
+
+    const captor = tipo === "comercial" ? undefined : document.getElementById("captor").value;
+    const r = calcularReparto(total, tipo, captor);
+
+    document.getElementById("rule-text").textContent = r.ruleText;
+
+    const setPartner = (key, monto) => {
+      const pct = total > 0 ? (monto / total) * 100 : 0;
+      document.getElementById("amount-" + key).textContent = formatUSD(monto);
+      document.getElementById("pct-" + key).textContent = "(" + pct.toFixed(1).replace(/\.0$/, "") + "%)";
+      document.getElementById("bar-" + key).style.width = pct + "%";
+    };
+
+    setPartner("marcelo", r.marcelo);
+    setPartner("mariano", r.mariano);
+    setPartner("pablo", r.pablo);
+
+    const suma = round2(r.marcelo + r.mariano + r.pablo);
+    const check = document.getElementById("total-check");
+    if (Math.abs(suma - round2(total)) < 0.005) {
+      check.innerHTML = "✓ El total coincide";
+      check.style.color = "#1f8a4c";
+    } else {
+      check.innerHTML = '<span class="x">✗ Diferencia: ' + formatUSD(suma - total) + "</span>";
+    }
+  }
+
+  document.getElementById("comision").addEventListener("input", render);
+  document.getElementById("tipo").addEventListener("change", render);
+  document.getElementById("captor").addEventListener("change", render);
+
+  render();
+
+  // ---- Self-tests (corren en consola al cargar la página) ----
+  (function runSelfTests() {
+    const tests = [
+      {
+        name: "PABLO captó Industrial (propio)",
+        args: [10000, "industrial", "pablo"],
+        expect: { marcelo: 5000, mariano: 1000, pablo: 4000 }
+      },
+      {
+        name: "PABLO captó Residencial (cruzado)",
+        args: [10000, "residencial", "pablo"],
+        expect: { marcelo: 5000, mariano: 2000, pablo: 3000 }
+      },
+      {
+        name: "MARIANO captó Residencial (propio)",
+        args: [10000, "residencial", "mariano"],
+        expect: { marcelo: 5000, mariano: 4000, pablo: 1000 }
+      },
+      {
+        name: "MARIANO captó Industrial (cruzado)",
+        args: [10000, "industrial", "mariano"],
+        expect: { marcelo: 5000, mariano: 3000, pablo: 2000 }
+      },
+      {
+        name: "Comercial",
+        args: [10000, "comercial", undefined],
+        expect: { marcelo: 5000, mariano: 2500, pablo: 2500 }
+      }
+    ];
+
+    let allPass = true;
+    console.group("Self-tests: calculadora de reparto de honorarios");
+    tests.forEach(t => {
+      const r = calcularReparto.apply(null, t.args);
+      const suma = round2(r.marcelo + r.mariano + r.pablo);
+      const okMarcelo = r.marcelo === t.expect.marcelo;
+      const okMariano = r.mariano === t.expect.mariano;
+      const okPablo = r.pablo === t.expect.pablo;
+      const okSuma = suma === t.args[0];
+      const pass = okMarcelo && okMariano && okPablo && okSuma;
+      allPass = allPass && pass;
+      console.log(
+        (pass ? "PASS" : "FAIL") + " — " + t.name,
+        { obtenido: { marcelo: r.marcelo, mariano: r.mariano, pablo: r.pablo, suma }, esperado: t.expect }
+      );
+    });
+    console.log(allPass ? "✓ Todos los self-tests pasaron." : "✗ Hay self-tests fallidos.");
+    console.groupEnd();
+  })();
+</script>
+
+</body>
+</html>
