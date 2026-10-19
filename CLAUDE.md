@@ -7,6 +7,8 @@ workspace de Marce, con foco en el tablero **Krak Real Estate**.
 - Skill de Trello: `.claude/skills/trello/SKILL.md`
 - Reglas de operación por tablero: `memory/context/trello-tableros.md`
 - Contexto de proyectos por empresa: `memory/projects/empresas.md`
+- Sistema de capacitaciones del equipo (decks generados por código): `memory/context/capacitaciones.md`
+- Plan de capacitaciones, decisiones y pendientes: `memory/projects/plan-capacitaciones.md`
 
 En este repo, el tablero de Trello **Krak Real Estate** es de solo lectura
 para Claude (ver la regla de alcance en la skill) — es el calendario de
@@ -60,3 +62,16 @@ kits.
 
 El Camino del Buen Ayre es corredor **Oeste**, no Norte. El Norte va por
 Panamericana y Ruta 9.
+
+## Capacitaciones del equipo
+
+Trabajo en curso. **Antes de crear o tocar una capacitación, leer
+`memory/projects/plan-capacitaciones.md` y `memory/context/capacitaciones.md`**:
+tienen el índice maestro, las ideas priorizadas, lo decidido en Co-broking y
+lo que falta validar con Marce.
+
+Los decks salen de `capacitaciones/krak.js` (una sola fuente de verdad de la
+marca) y se regeneran con `npm run <nombre>`. No se debe duplicar tokens de
+marca ni editar un .pptx a mano. Todo dato se clasifica como estructural,
+coyuntural, por entidad o hipotético, con fecha de corte visible, y no se
+inventa lo que Marce no dictó.
